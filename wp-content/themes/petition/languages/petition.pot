@@ -1,0 +1,2780 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Petition\n"
+"POT-Creation-Date: 2017-06-26 18:46+0700\n"
+"PO-Revision-Date: 2017-05-26 19:55+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: 404.php:17
+msgid "Sorry, we have a broken link!"
+msgstr ""
+
+#: 404.php:18
+msgid ""
+"The page you are looking for was moved, removed, renamed, or might never "
+"existed."
+msgstr ""
+
+#: 404.php:19
+msgid "Go Home"
+msgstr ""
+
+#: add-update.php:83 dashboard-petition.php:95 edit-petition.php:144
+#: single-petition.php:107
+msgid "Campaign"
+msgstr ""
+
+#: add-update.php:102 dashboard-petition.php:96 edit-petition.php:163
+#: single-petition.php:126
+msgid "Dashboard"
+msgstr ""
+
+#: add-update.php:103 dashboard-petition.php:115 edit-petition.php:182
+#: single-petition.php:145
+msgid "Update"
+msgstr ""
+
+#: add-update.php:122 dashboard-petition.php:134 edit-petition.php:183
+#: functions.php:195 single-petition.php:164 templates/ajax_comments.php:77
+#: templates/ajax_comments.php:131 templates/update_petition.php:75
+#: templates/update_petition.php:119
+msgid "Edit"
+msgstr ""
+
+#: add-update.php:141 edit-petition.php:207 libs/widgets/contact_widget.php:29
+#: libs/widgets/featured_petitions_widget.php:22
+#: libs/widgets/featured_posts_widget.php:23
+#: libs/widgets/recent_petitions_widget.php:22
+#: libs/widgets/recent_posts_widget.php:23 libs/widgets/social_widget.php:27
+#: submit-petition.php:83 submit-petition.php:124
+msgid "Title"
+msgstr ""
+
+#: add-update.php:143 single-petition.php:399 single-petition.php:775
+#: single-update.php:232 single-update.php:608
+#: templates/victory_petitions.php:94
+msgid "Victory!"
+msgstr ""
+
+#: add-update.php:147
+msgid "Your latest development"
+msgstr ""
+
+#: add-update.php:164
+msgid "URL for an article"
+msgstr ""
+
+#: add-update.php:170 edit-petition.php:366 submit-petition.php:376
+msgid "Add a photo or video"
+msgstr ""
+
+#: add-update.php:176
+msgid "Post update"
+msgstr ""
+
+#: admin/settings.php:32
+msgid "Add new"
+msgstr ""
+
+#: admin/settings.php:34
+msgid "Text"
+msgstr ""
+
+#: admin/settings.php:35
+msgid "Numeric"
+msgstr ""
+
+#: admin/settings.php:36 download-csv.php:16
+msgid "Date"
+msgstr ""
+
+#: admin/settings.php:37
+msgid "No"
+msgstr ""
+
+#: admin/settings.php:38 dashboard-petition.php:579 dashboard-petition.php:589
+#: dashboard-petition.php:599
+msgid "Yes"
+msgstr ""
+
+#: admin/settings.php:39 functions.php:196 functions.php:256
+#: templates/ajax_comments.php:78 templates/ajax_comments.php:132
+#: templates/gallery_upload.php:14 templates/update_petition.php:76
+#: templates/update_petition.php:120
+msgid "Delete"
+msgstr ""
+
+#: admin/settings.php:60 admin/settings.php:2469
+msgid "General Settings"
+msgstr ""
+
+#: admin/settings.php:61
+msgid "Logo"
+msgstr ""
+
+#: admin/settings.php:62
+msgid "Logo inverted"
+msgstr ""
+
+#: admin/settings.php:63 admin/settings.php:178 admin/settings.php:206
+#: download-csv.php:25 libs/widgets/contact_widget.php:61
+#: petitions-search-results.php:274
+msgid "Country"
+msgstr ""
+
+#: admin/settings.php:64
+msgid "Minimum of signature to display"
+msgstr ""
+
+#: admin/settings.php:65
+msgid "Number signature to change goal"
+msgstr ""
+
+#: admin/settings.php:66
+msgid "Smooth scroll"
+msgstr ""
+
+#: admin/settings.php:67
+msgid "Ajax pages"
+msgstr ""
+
+#: admin/settings.php:68
+msgid "Type of ajax preloader"
+msgstr ""
+
+#: admin/settings.php:69
+msgid "Front-end petition publish without admin approval"
+msgstr ""
+
+#: admin/settings.php:70
+msgid "Decision Maker publish without admin approval"
+msgstr ""
+
+#: admin/settings.php:71
+msgid "Google Analytics Code"
+msgstr ""
+
+#: admin/settings.php:77 admin/settings.php:2474
+msgid "Homepage"
+msgstr ""
+
+#: admin/settings.php:78
+msgid "Homepage header type"
+msgstr ""
+
+#: admin/settings.php:79
+msgid "Homepage header video"
+msgstr ""
+
+#: admin/settings.php:80
+msgid "Enable video sound"
+msgstr ""
+
+#: admin/settings.php:81
+msgid "Header image shadow opacity"
+msgstr ""
+
+#: admin/settings.php:82
+msgid "Show homepage caption"
+msgstr ""
+
+#: admin/settings.php:83
+msgid "Homepage caption alignment"
+msgstr ""
+
+#: admin/settings.php:84
+msgid "Homepage caption title"
+msgstr ""
+
+#: admin/settings.php:85
+msgid "Homepage caption subtitle"
+msgstr ""
+
+#: admin/settings.php:86
+msgid "Show homepage caption cta button"
+msgstr ""
+
+#: admin/settings.php:87 admin/settings.php:89
+msgid "Homepage caption cta button text"
+msgstr ""
+
+#: admin/settings.php:88 admin/settings.php:90
+msgid "Homepage caption cta button link"
+msgstr ""
+
+#: admin/settings.php:91
+msgid "Show homepage spotlight section"
+msgstr ""
+
+#: admin/settings.php:92
+msgid "Only show spotlight for guest"
+msgstr ""
+
+#: admin/settings.php:93
+msgid "Homepage spotlight section title"
+msgstr ""
+
+#: admin/settings.php:94
+msgid "Homepage spotlight section text"
+msgstr ""
+
+#: admin/settings.php:95
+msgid "Show homepage victory section"
+msgstr ""
+
+#: admin/settings.php:101 admin/settings.php:2479
+msgid "Header"
+msgstr ""
+
+#: admin/settings.php:102
+msgid "Show user menu in header"
+msgstr ""
+
+#: admin/settings.php:103
+msgid "Show submit button"
+msgstr ""
+
+#: admin/settings.php:104
+msgid "Display name on user menu"
+msgstr ""
+
+#: admin/settings.php:105
+msgid "Type of header menu"
+msgstr ""
+
+#: admin/settings.php:106
+msgid "Mobile menu animation"
+msgstr ""
+
+#: admin/settings.php:107
+msgid "Page header opacity"
+msgstr ""
+
+#: admin/settings.php:108
+msgid "Post header opacity"
+msgstr ""
+
+#: admin/settings.php:114 admin/settings.php:2484
+msgid "Appearance"
+msgstr ""
+
+#: admin/settings.php:115
+msgid "Sidebar position"
+msgstr ""
+
+#: admin/settings.php:116
+msgid "Show related articles on blog post"
+msgstr ""
+
+#: admin/settings.php:117
+msgid "Show similar petitions on petition page"
+msgstr ""
+
+#: admin/settings.php:118
+msgid "Number of petitions per page"
+msgstr ""
+
+#: admin/settings.php:119
+msgid "Number of updates per page"
+msgstr ""
+
+#: admin/settings.php:120
+msgid "Number of comments per page"
+msgstr ""
+
+#: admin/settings.php:121
+msgid "Number of reply per comment"
+msgstr ""
+
+#: admin/settings.php:122
+msgid "Show breadcrumbs on pages"
+msgstr ""
+
+#: admin/settings.php:123
+msgid "Copyright text"
+msgstr ""
+
+#: admin/settings.php:129 admin/settings.php:2489
+msgid "Colors"
+msgstr ""
+
+#: admin/settings.php:130
+msgid "Main color"
+msgstr ""
+
+#: admin/settings.php:131
+msgid "Background color"
+msgstr ""
+
+#: admin/settings.php:132
+msgid "Body text color"
+msgstr ""
+
+#: admin/settings.php:133
+msgid "Text link color"
+msgstr ""
+
+#: admin/settings.php:134
+msgid "Home caption color"
+msgstr ""
+
+#: admin/settings.php:135
+msgid "Preloader progress color"
+msgstr ""
+
+#: admin/settings.php:136
+msgid "Opacity hero page color"
+msgstr ""
+
+#: admin/settings.php:137
+msgid "Header menu"
+msgstr ""
+
+#: admin/settings.php:138
+msgid "Header menu text color"
+msgstr ""
+
+#: admin/settings.php:139
+msgid "Text and Progress Victory color"
+msgstr ""
+
+#: admin/settings.php:140
+msgid "Sign up button color"
+msgstr ""
+
+#: admin/settings.php:141
+msgid "Victory label color"
+msgstr ""
+
+#: admin/settings.php:142
+msgid "Sign petition button color"
+msgstr ""
+
+#: admin/settings.php:143
+msgid "Mobile menu background color"
+msgstr ""
+
+#: admin/settings.php:144
+msgid "Mobile menu text link color"
+msgstr ""
+
+#: admin/settings.php:145
+msgid "Posts overlay primary color"
+msgstr ""
+
+#: admin/settings.php:146
+msgid "Posts overlay secondary color"
+msgstr ""
+
+#: admin/settings.php:147
+msgid "Footer background color"
+msgstr ""
+
+#: admin/settings.php:148
+msgid "Footer text color"
+msgstr ""
+
+#: admin/settings.php:154 admin/settings.php:2494
+msgid "Typography"
+msgstr ""
+
+#: admin/settings.php:155
+msgid "Body Font"
+msgstr ""
+
+#: admin/settings.php:156
+msgid "Home Heading Font"
+msgstr ""
+
+#: admin/settings.php:157
+msgid "Home Sub-Heading Font"
+msgstr ""
+
+#: admin/settings.php:158
+msgid "Heading Font"
+msgstr ""
+
+#: admin/settings.php:159
+msgid "Page Heading Font"
+msgstr ""
+
+#: admin/settings.php:160
+msgid "Widget Title Font"
+msgstr ""
+
+#: admin/settings.php:161
+msgid "Posts Title Font"
+msgstr ""
+
+#: admin/settings.php:162
+msgid "Posts Content Font"
+msgstr ""
+
+#: admin/settings.php:163
+msgid "Button Font"
+msgstr ""
+
+#: admin/settings.php:169
+msgid "Petition Fiels"
+msgstr ""
+
+#: admin/settings.php:170 admin/settings.php:204 edit-petition.php:214
+#: petitions-search-results.php:222 submit-petition.php:142
+msgid "Category"
+msgstr ""
+
+#: admin/settings.php:171 petitions-search-results.php:207
+msgid "Topics"
+msgstr ""
+
+#: admin/settings.php:172 admin/settings.php:221 download-csv.php:21
+#: libs/widgets/contact_widget.php:45 templates/guest_sign.php:25
+#: templates/guest_sign.php:76 templates/user_modals.php:39
+#: user-account.php:180
+msgid "Address"
+msgstr ""
+
+#: admin/settings.php:173 admin/settings.php:208 download-csv.php:23
+#: libs/widgets/contact_widget.php:49 petitions-search-results.php:248
+msgid "City"
+msgstr ""
+
+#: admin/settings.php:174
+msgid "Coordinates"
+msgstr ""
+
+#: admin/settings.php:175 admin/settings.php:209
+#: petitions-search-results.php:235
+msgid "Neighborhood"
+msgstr ""
+
+#: admin/settings.php:176
+msgid "Zip Code"
+msgstr ""
+
+#: admin/settings.php:177 admin/settings.php:207
+msgid "County/State"
+msgstr ""
+
+#: admin/settings.php:179
+msgid "Receiver name"
+msgstr ""
+
+#: admin/settings.php:180
+msgid "Position"
+msgstr ""
+
+#: admin/settings.php:181
+msgid "Goal sign"
+msgstr ""
+
+#: admin/settings.php:182
+msgid "Goal default"
+msgstr ""
+
+#: admin/settings.php:183
+msgid "Video"
+msgstr ""
+
+#: admin/settings.php:184
+msgid "Media Upload"
+msgstr ""
+
+#: admin/settings.php:190 admin/settings.php:2504
+msgid "Search Suggestion"
+msgstr ""
+
+#: admin/settings.php:191
+msgid "Minimun Characters"
+msgstr ""
+
+#: admin/settings.php:192
+msgid "Maxinum Results"
+msgstr ""
+
+#: admin/settings.php:193 libs/class-tgm-plugin-activation.php:1390
+msgid "Type"
+msgstr ""
+
+#: admin/settings.php:194
+msgid "Link"
+msgstr ""
+
+#: admin/settings.php:195
+msgid "Description"
+msgstr ""
+
+#: admin/settings.php:196
+msgid "Image"
+msgstr ""
+
+#: admin/settings.php:197 dashboard-petition.php:156 dashboard-petition.php:614
+#: single-petition.php:419 single-petition.php:809 single-update.php:252
+#: single-update.php:642
+msgid "Supporters"
+msgstr ""
+
+#: admin/settings.php:203
+msgid "Search Filter Fields"
+msgstr ""
+
+#: admin/settings.php:205
+msgid "Topic"
+msgstr ""
+
+#: admin/settings.php:215 templates/page_caption.php:60
+msgid "Contact"
+msgstr ""
+
+#: admin/settings.php:216
+msgid "Company Name"
+msgstr ""
+
+#: admin/settings.php:217 single.php:157 user-account.php:164
+msgid "E-mail"
+msgstr ""
+
+#: admin/settings.php:218 libs/widgets/contact_widget.php:37
+msgid "Phone"
+msgstr ""
+
+#: admin/settings.php:219
+msgid "Mobile"
+msgstr ""
+
+#: admin/settings.php:220
+msgid "Skype"
+msgstr ""
+
+#: admin/settings.php:222 libs/widgets/social_widget.php:31
+msgid "Facebook Link"
+msgstr ""
+
+#: admin/settings.php:223 libs/widgets/social_widget.php:35
+msgid "Twitter Link"
+msgstr ""
+
+#: admin/settings.php:224 libs/widgets/social_widget.php:39
+msgid "Google+ Link"
+msgstr ""
+
+#: admin/settings.php:225 libs/widgets/social_widget.php:43
+msgid "LinkedIn Link"
+msgstr ""
+
+#: admin/settings.php:231 admin/settings.php:2519
+msgid "Authentication"
+msgstr ""
+
+#: admin/settings.php:232
+msgid "Allow Facebook Login"
+msgstr ""
+
+#: admin/settings.php:233
+msgid "Facebook App ID"
+msgstr ""
+
+#: admin/settings.php:234
+msgid "Facebook App Secret"
+msgstr ""
+
+#: admin/settings.php:235
+msgid "Allow Google Signin"
+msgstr ""
+
+#: admin/settings.php:236
+msgid "Google Client ID"
+msgstr ""
+
+#: admin/settings.php:237
+msgid "Google Client Secret"
+msgstr ""
+
+#: admin/settings.php:238
+msgid "Google Map API key"
+msgstr ""
+
+#: admin/settings.php:256 admin/settings.php:272 admin/settings.php:443
+msgid "Browse..."
+msgstr ""
+
+#: admin/settings.php:1546 admin/settings.php:1581 admin/settings.php:1616
+#: admin/settings.php:1651 admin/settings.php:1686 admin/settings.php:1721
+#: admin/settings.php:1756 admin/settings.php:1791 admin/settings.php:1826
+#: admin/settings.php:1861 admin/settings.php:1896 admin/settings.php:1931
+msgid "not required"
+msgstr ""
+
+#: admin/settings.php:2026
+msgid "category"
+msgstr ""
+
+#: admin/settings.php:2026
+msgid "standard"
+msgstr ""
+
+#: admin/settings.php:2499
+msgid "Petition Fields"
+msgstr ""
+
+#: admin/settings.php:2509
+msgid "Search Filter"
+msgstr ""
+
+#: admin/settings.php:2514 contact-page.php:45
+msgid "Contact Details"
+msgstr ""
+
+#: admin/settings.php:2524
+msgid "Documentation"
+msgstr ""
+
+#: archive.php:98 category.php:98 index.php:80 search.php:66
+#: templates/blog_featured.php:60 templates/related_posts.php:64
+#, php-format
+msgid "View all posts in %s"
+msgstr ""
+
+#: archive.php:124 category.php:124 index.php:106
+msgid "No posts found."
+msgstr ""
+
+#: author.php:67 author.php:147 my-petitions.php:73 my-petitions.php:153
+msgid "About"
+msgstr ""
+
+#: author.php:87 author.php:167 my-petitions.php:93 my-petitions.php:173
+msgid "Born on "
+msgstr ""
+
+#: author.php:93 author.php:173 my-petitions.php:99 my-petitions.php:179
+msgid "Joined "
+msgstr ""
+
+#: author.php:99 author.php:179 my-petitions.php:105 my-petitions.php:185
+msgid "Who is following?"
+msgstr ""
+
+#: author.php:120 author.php:200 my-petitions.php:126 my-petitions.php:206
+msgid "Petitions"
+msgstr ""
+
+#: author.php:126 author.php:206 my-petitions.php:132 my-petitions.php:212
+msgid "Followers"
+msgstr ""
+
+#: author.php:132 author.php:212 functions.php:193 my-petitions.php:138
+#: my-petitions.php:218 single.php:87 templates/page_caption.php:53
+msgid "Following"
+msgstr ""
+
+#: author.php:272 bookmark-petitions.php:98 functions.php:207 homepage.php:94
+#: my-petitions.php:294 petitions-search-results.php:139
+#: signed-petitions.php:98 single-petition.php:193
+#: taxonomy-petition_category.php:136 taxonomy-petition_topics.php:134
+#: templates/victory_petitions.php:118
+msgid "Petition to"
+msgstr ""
+
+#: author.php:316 author.php:336 bookmark-petitions.php:142
+#: bookmark-petitions.php:162 functions.php:208 homepage.php:138
+#: homepage.php:158 libs/widgets/featured_petitions_widget.php:149
+#: libs/widgets/recent_petitions_widget.php:146 my-petitions.php:338
+#: my-petitions.php:358 petitions-search-results.php:152
+#: petitions-search-results.php:165 signed-petitions.php:142
+#: signed-petitions.php:162 single-petition.php:405 single-petition.php:786
+#: single-update.php:151 single-update.php:238 single-update.php:619
+#: taxonomy-petition_category.php:180 taxonomy-petition_category.php:200
+#: taxonomy-petition_topics.php:178 taxonomy-petition_topics.php:198
+#: templates/similar_petitions.php:142 templates/victory_petitions.php:141
+msgid "supporters"
+msgstr ""
+
+#: author.php:319 bookmark-petitions.php:145 functions.php:197 homepage.php:141
+#: my-petitions.php:341 petitions-search-results.php:153
+#: signed-petitions.php:145 taxonomy-petition_category.php:183
+#: taxonomy-petition_topics.php:181 templates/update_petition.php:153
+msgid "comments"
+msgstr ""
+
+#: author.php:355 bookmark-petitions.php:181 homepage.php:182 homepage.php:189
+#: index.php:116 my-petitions.php:376 signed-petitions.php:181
+msgid "Load more..."
+msgstr ""
+
+#: author.php:358 bookmark-petitions.php:184 homepage.php:175
+#: my-petitions.php:379 petitions-search-results.php:196
+#: signed-petitions.php:184 taxonomy-petition_category.php:238
+#: taxonomy-petition_topics.php:236
+msgid "No petitions found."
+msgstr ""
+
+#: comments.php:27
+#, php-format
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:52
+msgid "Comments are closed."
+msgstr ""
+
+#: contact-page.php:66
+msgid "Follow Us"
+msgstr ""
+
+#: contact-page.php:92
+msgid "Send Us a Message"
+msgstr ""
+
+#: contact-page.php:96 templates/page_caption.php:90
+msgid "Name"
+msgstr ""
+
+#: contact-page.php:97 templates/page_caption.php:91
+msgid "Enter your name"
+msgstr ""
+
+#: contact-page.php:100 libs/widgets/contact_widget.php:41
+#: templates/guest_sign.php:19 templates/guest_sign.php:70
+#: templates/page_caption.php:94 templates/user_modals.php:32
+#: templates/user_modals.php:78
+msgid "Email"
+msgstr ""
+
+#: contact-page.php:101 templates/page_caption.php:95
+msgid "Enter your email"
+msgstr ""
+
+#: contact-page.php:105 templates/page_caption.php:103
+msgid "Subject"
+msgstr ""
+
+#: contact-page.php:106 templates/page_caption.php:104
+msgid "Enter the subject"
+msgstr ""
+
+#: contact-page.php:109 templates/page_caption.php:107
+msgid "Message"
+msgstr ""
+
+#: contact-page.php:110 templates/page_caption.php:108
+msgid "Type your message"
+msgstr ""
+
+#: contact-page.php:113
+msgid "Send Message"
+msgstr ""
+
+#: dashboard-petition.php:148 functions.php:615
+msgid "Views"
+msgstr ""
+
+#: dashboard-petition.php:164 single-petition.php:221
+#: templates/ajax_comments.php:37
+msgid "Comments"
+msgstr ""
+
+#: dashboard-petition.php:173
+msgid "Set new goals"
+msgstr ""
+
+#: dashboard-petition.php:175
+msgid "Enter a new goal"
+msgstr ""
+
+#: dashboard-petition.php:176 edit-petition.php:375 functions.php:225
+#: single-petition.php:330
+msgid "Save"
+msgstr ""
+
+#: dashboard-petition.php:202
+msgid "Declare victory"
+msgstr ""
+
+#: dashboard-petition.php:223 dashboard-petition.php:246
+msgid "Download CSV"
+msgstr ""
+
+#: dashboard-petition.php:224
+msgid "Close petition"
+msgstr ""
+
+#: dashboard-petition.php:226
+msgid "Reopen Petition"
+msgstr ""
+
+#: dashboard-petition.php:296
+msgid "Decision Makers"
+msgstr ""
+
+#: dashboard-petition.php:333 decision-makers-search.php:55 index.php:116
+#: petitions-search-results.php:189 taxonomy-petition_category.php:231
+#: taxonomy-petition_topics.php:229
+msgid " of "
+msgstr ""
+
+#: dashboard-petition.php:337
+msgid "Invite Response"
+msgstr ""
+
+#: dashboard-petition.php:450
+msgid "Geography"
+msgstr ""
+
+#: dashboard-petition.php:541
+msgid "Invitation letter"
+msgstr ""
+
+#: dashboard-petition.php:549
+msgid "Dear \n"
+msgstr ""
+
+#: dashboard-petition.php:565 dashboard-petition.php:578
+#: dashboard-petition.php:588 dashboard-petition.php:598 functions.php:226
+msgid "Cancel"
+msgstr ""
+
+#: dashboard-petition.php:566
+msgid "Send"
+msgstr ""
+
+#: dashboard-petition.php:575
+msgid "Are you sure change the goal is"
+msgstr ""
+
+#: dashboard-petition.php:575
+msgid "signatures"
+msgstr ""
+
+#: dashboard-petition.php:585
+msgid "Are you sure reopen this petition"
+msgstr ""
+
+#: dashboard-petition.php:595
+msgid "Are you sure close this petition"
+msgstr ""
+
+#: dashboard-petition.php:639
+msgid "Gender (%)"
+msgstr ""
+
+#: dashboard-petition.php:648
+msgid "Famale (%)"
+msgstr ""
+
+#: dashboard-petition.php:649
+msgid "Male (%)"
+msgstr ""
+
+#: dashboard-petition.php:650
+msgid "Unknown (%)"
+msgstr ""
+
+#: dashboard-petition.php:670
+msgid "Age (%)"
+msgstr ""
+
+#: decision-makers-search.php:67 functions.php:1125
+#: libs/author_petitions.php:175 libs/bookmark_petitions.php:238
+#: libs/my_petitions.php:161 libs/petitions.php:171
+#: libs/search_petitions.php:337 libs/sign_petitions.php:308
+#: libs/trending_petitions.php:358 petitions-search.php:147
+msgid "Petitions was loaded successfully."
+msgstr ""
+
+#: decision-makers-search.php:70 functions.php:1128
+#: libs/author_petitions.php:178 libs/bookmark_petitions.php:241
+#: libs/my_petitions.php:164 libs/petitions.php:174
+#: libs/search_petitions.php:340 libs/sign_petitions.php:311
+#: libs/trending_petitions.php:361 petitions-search.php:150
+msgid "Something went wrong. Not found petitions."
+msgstr ""
+
+#: download-csv.php:15
+msgid "User ID"
+msgstr ""
+
+#: download-csv.php:17 user-account.php:129
+msgid "First Name"
+msgstr ""
+
+#: download-csv.php:18 user-account.php:133
+msgid "Last Name"
+msgstr ""
+
+#: download-csv.php:19 user-account.php:110
+msgid "Gender"
+msgstr ""
+
+#: download-csv.php:20 user-account.php:171
+msgid "Birthday"
+msgstr ""
+
+#: download-csv.php:22
+msgid "Neigborhood"
+msgstr ""
+
+#: download-csv.php:24 petitions-search-results.php:261
+msgid "State"
+msgstr ""
+
+#: download-csv.php:26
+msgid "Reason"
+msgstr ""
+
+#: edit-petition.php:209 submit-petition.php:126
+msgid "What do you want to achieve?"
+msgstr ""
+
+#: edit-petition.php:216 submit-petition.php:144
+msgid "Select a category"
+msgstr ""
+
+#: edit-petition.php:231 submit-petition.php:193
+msgid "Choose a decision maker"
+msgstr ""
+
+#: edit-petition.php:238 submit-petition.php:204 templates/guest_sign.php:13
+#: templates/guest_sign.php:64
+msgid "Full name"
+msgstr ""
+
+#: edit-petition.php:240 edit-petition.php:268 functions.php:221
+#: submit-petition.php:206
+msgid "Who can make this happen?"
+msgstr ""
+
+#: edit-petition.php:250 submit-petition.php:216
+msgid "Title or organization"
+msgstr ""
+
+#: edit-petition.php:253 edit-petition.php:276 functions.php:222
+#: submit-petition.php:219
+msgid "What is their position?"
+msgstr ""
+
+#: edit-petition.php:288 submit-petition.php:228
+msgid "Add"
+msgstr ""
+
+#: edit-petition.php:293 submit-petition.php:233
+msgid "Add a place"
+msgstr ""
+
+#: edit-petition.php:295 submit-petition.php:235
+msgid "Add a neighborhood, state, city or country"
+msgstr ""
+
+#: edit-petition.php:325
+msgid "Explain the problem you want to solve"
+msgstr ""
+
+#: edit-petition.php:328 submit-petition.php:305
+msgid "Content"
+msgstr ""
+
+#: edit-petition.php:346 submit-petition.php:323
+msgid "Add topics"
+msgstr ""
+
+#: edit-petition.php:350 submit-petition.php:327
+msgid "Keywords related this petition"
+msgstr ""
+
+#: functions.php:56 libs/class-tgm-plugin-activation.php:161
+msgid "Install Required Plugins"
+msgstr ""
+
+#: functions.php:57 libs/class-tgm-plugin-activation.php:162
+msgid "Install Plugins"
+msgstr ""
+
+#: functions.php:58 libs/class-tgm-plugin-activation.php:163
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#: functions.php:59
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: functions.php:60 libs/class-tgm-plugin-activation.php:165
+#, php-format
+msgid "This theme requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions.php:61 libs/class-tgm-plugin-activation.php:166
+#, php-format
+msgid "This theme recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions.php:62 libs/class-tgm-plugin-activation.php:167
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to install the %s plugin. "
+"Contact the administrator of this site for help on getting the plugin "
+"installed."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to install the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions.php:63 libs/class-tgm-plugin-activation.php:168
+#, php-format
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions.php:64 libs/class-tgm-plugin-activation.php:169
+#, php-format
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions.php:65 libs/class-tgm-plugin-activation.php:170
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to activate the %s "
+"plugin. Contact the administrator of this site for help on getting the "
+"plugin activated."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to activate the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins activated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions.php:66 libs/class-tgm-plugin-activation.php:171
+#, php-format
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgid_plural ""
+"The following plugins need to be updated to their latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions.php:67 libs/class-tgm-plugin-activation.php:172
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to update the %s plugin. "
+"Contact the administrator of this site for help on getting the plugin "
+"updated."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to update the %s plugins. "
+"Contact the administrator of this site for help on getting the plugins "
+"updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions.php:68 libs/class-tgm-plugin-activation.php:173
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions.php:69 libs/class-tgm-plugin-activation.php:174
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions.php:70 libs/class-tgm-plugin-activation.php:175
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: functions.php:71 libs/class-tgm-plugin-activation.php:177
+#: libs/class-tgm-plugin-activation.php:1956
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: functions.php:72
+#, php-format
+msgid "All plugins installed and activated successfully. %s"
+msgstr ""
+
+#: functions.php:179 templates/ajax_comments.php:154
+#: templates/app_user_menu.php:156 templates/app_user_menu.php:166
+#: templates/user_menu.php:156 templates/user_menu.php:166
+#: templates/user_modals.php:61 templates/user_modals.php:115
+msgid "Sign Up"
+msgstr ""
+
+#: functions.php:180 templates/ajax_comments.php:153
+#: templates/app_user_menu.php:158 templates/app_user_menu.php:165
+#: templates/user_menu.php:158 templates/user_menu.php:165
+#: templates/user_modals.php:64 templates/user_modals.php:103
+#: templates/user_modals.php:119
+msgid "Sign In"
+msgstr ""
+
+#: functions.php:181 templates/user_modals.php:154
+msgid "Get New Password"
+msgstr ""
+
+#: functions.php:182 templates/user_modals.php:162
+#: templates/user_modals.php:188
+msgid "Reset Password"
+msgstr ""
+
+#: functions.php:183
+msgid "Sign In with Facebook"
+msgstr ""
+
+#: functions.php:184
+msgid "Login cancelled or not fully authorized!"
+msgstr ""
+
+#: functions.php:185
+msgid "Sign In with Google"
+msgstr ""
+
+#: functions.php:186
+msgid "Signin cancelled or not fully authorized!"
+msgstr ""
+
+#: functions.php:192 single.php:85 single.php:90 templates/page_caption.php:51
+#: templates/page_caption.php:56
+msgid "Follow"
+msgstr ""
+
+#: functions.php:194
+msgid "Unfollow"
+msgstr ""
+
+#: functions.php:198 templates/ajax_comments.php:75
+#: templates/ajax_comments.php:129
+msgid "Reply"
+msgstr ""
+
+#: functions.php:199
+msgid "Write comment here"
+msgstr ""
+
+#: functions.php:200
+msgid "Reply to"
+msgstr ""
+
+#: functions.php:201 templates/ajax_comments.php:62
+#: templates/ajax_comments.php:116
+msgid "like"
+msgstr ""
+
+#: functions.php:202 templates/ajax_comments.php:72
+#: templates/ajax_comments.php:126
+msgid "Like"
+msgstr ""
+
+#: functions.php:203 templates/ajax_comments.php:70
+#: templates/ajax_comments.php:124
+msgid "Unlike"
+msgstr ""
+
+#: functions.php:204
+msgid "View all"
+msgstr ""
+
+#: functions.php:205
+msgid "replies"
+msgstr ""
+
+#: functions.php:206
+msgid "Hide replies"
+msgstr ""
+
+#: functions.php:223
+msgid "Text copied to the clipboard."
+msgstr ""
+
+#: functions.php:224
+msgid "Copy not supported or blocked.  Press Ctrl+c to copy."
+msgstr ""
+
+#: functions.php:255
+msgid "Are you sure you want to delete this?"
+msgstr ""
+
+#: functions.php:265
+msgid "Allowed Files"
+msgstr ""
+
+#: functions.php:352 functions.php:379
+msgid "Show in Slideshow"
+msgstr ""
+
+#: functions.php:394
+msgid "yes"
+msgstr ""
+
+#: functions.php:396
+msgid "no"
+msgstr ""
+
+#: functions.php:442
+msgid "Main Widget Area"
+msgstr ""
+
+#: functions.php:444
+msgid "The main widget area"
+msgstr ""
+
+#: functions.php:452
+msgid "Blog Widget Area"
+msgstr ""
+
+#: functions.php:454
+msgid "Blogs widget area"
+msgstr ""
+
+#: functions.php:462
+msgid "1st Footer Widget Area"
+msgstr ""
+
+#: functions.php:464
+msgid "The first footer widget area"
+msgstr ""
+
+#: functions.php:472
+msgid "2nd Footer Widget Area"
+msgstr ""
+
+#: functions.php:474
+msgid "The second footer widget area"
+msgstr ""
+
+#: functions.php:482
+msgid "3rd Footer Widget Area"
+msgstr ""
+
+#: functions.php:484
+msgid "The third footer widget area"
+msgstr ""
+
+#: functions.php:492
+msgid "4th Footer Widget Area"
+msgstr ""
+
+#: functions.php:494
+msgid "The fourth footer widget area"
+msgstr ""
+
+#: functions.php:508
+msgid "Featured"
+msgstr ""
+
+#: functions.php:535
+msgid "Set as Featured"
+msgstr ""
+
+#: functions.php:707
+msgid "Sticky"
+msgstr ""
+
+#: functions.php:712 functions.php:717
+msgid ", "
+msgstr ""
+
+#: functions.php:725
+#, php-format
+msgid "View all posts by %s"
+msgstr ""
+
+#: functions.php:737
+#, php-format
+msgctxt "1: post format name. 2: date"
+msgid "%1$s on %2$s"
+msgstr ""
+
+#: functions.php:743
+#, php-format
+msgid "Permalink to %s"
+msgstr ""
+
+#: functions.php:818
+msgid "Home"
+msgstr ""
+
+#: functions.php:833
+msgid "Profile"
+msgstr ""
+
+#: functions.php:1019
+msgid "Comment navigation"
+msgstr ""
+
+#: functions.php:1022
+msgid "Older Comments"
+msgstr ""
+
+#: functions.php:1026
+msgid "Newer Comments"
+msgstr ""
+
+#: functions.php:1148
+msgid "K"
+msgstr ""
+
+#: functions.php:1152
+msgid "M"
+msgstr ""
+
+#: functions.php:1156
+msgid "B"
+msgstr ""
+
+#: functions.php:1160
+msgid "T"
+msgstr ""
+
+#: homepage.php:34
+msgid "Recently"
+msgstr ""
+
+#: homepage.php:35
+msgid "Trending"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:164
+msgid "Something went wrong."
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:176
+msgid "Return to the dashboard"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:178
+#: libs/class-tgm-plugin-activation.php:1644
+msgid "The following plugin was activated successfully:"
+msgid_plural "The following plugins were activated successfully:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: libs/class-tgm-plugin-activation.php:179
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:180
+msgid "Dismiss this notice"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:532
+#: libs/class-tgm-plugin-activation.php:2173
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1167
+#: libs/class-tgm-plugin-activation.php:1348
+msgid "Private Repository"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1170
+#: libs/class-tgm-plugin-activation.php:1351
+msgid "Pre-Packaged"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1175
+msgid "WordPress Repository"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1178
+msgid "Required"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1178
+msgid "Recommended"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1181
+msgid "Not Installed"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1183
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1288
+#: libs/class-tgm-plugin-activation.php:1409
+msgid "Install"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1312
+#: libs/class-tgm-plugin-activation.php:1410
+msgid "Activate"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1372
+#, php-format
+msgid ""
+"No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the "
+"Dashboard\">Return to the Dashboard</a>"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1388
+msgid "Plugin"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1389
+msgid "Source"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1391
+msgid "Status"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1939
+msgid "Install package not available."
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1940
+#, php-format
+msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1941
+msgid "Unpacking the package&#8230;"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1942
+msgid "Installing the plugin&#8230;"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1943
+msgid "Plugin install failed."
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1944
+msgid "Plugin installed successfully."
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:1955
+msgid "Plugin activation failed."
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:2069
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:2070
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:2070
+#: libs/class-tgm-plugin-activation.php:2079
+msgid "Show Details"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:2070
+#: libs/class-tgm-plugin-activation.php:2079
+msgid "Hide Details"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:2071
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:2072
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:2076
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:2077
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:2078
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:2079
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:2080
+msgid "All installations have been completed."
+msgstr ""
+
+#: libs/class-tgm-plugin-activation.php:2081
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: libs/comment_petition.php:46 libs/comment_petition.php:156
+msgid "Comment content is required!"
+msgstr ""
+
+#: libs/comment_petition.php:86
+msgid " just now"
+msgstr ""
+
+#: libs/comment_petition.php:86
+msgid "The comment was successfuly saved"
+msgstr ""
+
+#: libs/comment_petition.php:89
+msgid "Something went wrong. The comment was not saved."
+msgstr ""
+
+#: libs/comment_petition.php:167
+msgid "Update comment successfuly."
+msgstr ""
+
+#: libs/comment_petition.php:169 libs/comment_petition.php:194
+msgid "Something went wrong. Comment is not update."
+msgstr ""
+
+#: libs/comment_petition.php:192
+msgid "The comment was deleted successfuly."
+msgstr ""
+
+#: libs/comment_petition.php:215
+msgid "Comement content is required!"
+msgstr ""
+
+#: libs/comment_petition.php:309 libs/comment_petition.php:403
+#: libs/save_update.php:226 single-petition.php:382
+#: templates/update_petition.php:157
+msgid " ago"
+msgstr ""
+
+#: libs/comment_petition.php:454
+msgid "Comments was loaded successfully"
+msgstr ""
+
+#: libs/comment_petition.php:457
+msgid "Something went wrong. Not found comments."
+msgstr ""
+
+#: libs/contact_company.php:21 libs/contact_user.php:22
+#: libs/contact_user.php:68
+msgid "Your message failed to be sent. Please check your fields."
+msgstr ""
+
+#: libs/contact_company.php:30
+#, php-format
+msgid "[%s Contact] %s"
+msgstr ""
+
+#: libs/contact_company.php:36 libs/contact_user.php:38
+#: libs/contact_user.php:84
+msgid "Your message was successfully sent."
+msgstr ""
+
+#: libs/contact_company.php:39 libs/contact_user.php:41
+#: libs/contact_user.php:87
+msgid "Your message failed to be sent."
+msgstr ""
+
+#: libs/contact_user.php:29
+#, php-format
+msgid "%s send a message to you:"
+msgstr ""
+
+#: libs/contact_user.php:32
+#, php-format
+msgid "[%s Message] %s"
+msgstr ""
+
+#: libs/contact_user.php:75
+#, php-format
+msgid "%s send a invitation to you:"
+msgstr ""
+
+#: libs/contact_user.php:78
+#, php-format
+msgid "[%s Invitation Response] %s"
+msgstr ""
+
+#: libs/save_petition.php:16
+#, php-format
+msgid "A new petition was submitted on %s:"
+msgstr ""
+
+#: libs/save_petition.php:17 libs/save_petition.php:31
+#, php-format
+msgid "Petition title: %s"
+msgstr ""
+
+#: libs/save_petition.php:18 libs/save_petition.php:32
+#, php-format
+msgid "Petition link: %s"
+msgstr ""
+
+#: libs/save_petition.php:19 libs/save_petition.php:33 libs/save_update.php:30
+#, php-format
+msgid "User: %s"
+msgstr ""
+
+#: libs/save_petition.php:25
+#, php-format
+msgid "[Petition Submitted] %s"
+msgstr ""
+
+#: libs/save_petition.php:30
+#, php-format
+msgid "A petition was updated on %s:"
+msgstr ""
+
+#: libs/save_petition.php:39
+#, php-format
+msgid "[Petition Updated] %s"
+msgstr ""
+
+#: libs/save_petition.php:131 libs/save_update.php:79
+msgid "Title field is mandatory."
+msgstr ""
+
+#: libs/save_petition.php:135 libs/save_update.php:83
+msgid "Content field is mandatory."
+msgstr ""
+
+#: libs/save_petition.php:139
+msgid "Category field is mandatory."
+msgstr ""
+
+#: libs/save_petition.php:143
+msgid "Topics field is mandatory."
+msgstr ""
+
+#: libs/save_petition.php:147
+msgid "Coordinates fields are mandatory."
+msgstr ""
+
+#: libs/save_petition.php:151
+msgid "Address field is mandatory."
+msgstr ""
+
+#: libs/save_petition.php:155
+msgid "Neighborhood field is mandatory."
+msgstr ""
+
+#: libs/save_petition.php:159
+msgid "Zip Code field is mandatory."
+msgstr ""
+
+#: libs/save_petition.php:163
+msgid "County/State field is mandatory."
+msgstr ""
+
+#: libs/save_petition.php:167
+msgid "Country field is mandatory."
+msgstr ""
+
+#: libs/save_petition.php:171
+msgid "Receiver field is mandatory."
+msgstr ""
+
+#: libs/save_petition.php:176
+msgid "Position field is mandatory."
+msgstr ""
+
+#: libs/save_petition.php:181 libs/save_petition.php:303
+msgid "Goal field is mandatory."
+msgstr ""
+
+#: libs/save_petition.php:186
+msgid "Upload at least 1 image in gallery."
+msgstr ""
+
+#: libs/save_petition.php:249
+msgid "The petition was successfully saved and published."
+msgstr ""
+
+#: libs/save_petition.php:252
+msgid "The petition was successfully saved and pending for approval."
+msgstr ""
+
+#: libs/save_petition.php:256
+msgid "Something went wrong. The petition was not saved."
+msgstr ""
+
+#: libs/save_petition.php:277
+msgid "Letter field is mandatory."
+msgstr ""
+
+#: libs/save_petition.php:352
+msgid "The petition was successfully deleted. Redirecting..."
+msgstr ""
+
+#: libs/save_petition.php:355
+msgid "Something went wrong. The petition was not deleted."
+msgstr ""
+
+#: libs/save_update.php:27
+#, php-format
+msgid "A new update on %s:"
+msgstr ""
+
+#: libs/save_update.php:28
+#, php-format
+msgid "Update title: %s"
+msgstr ""
+
+#: libs/save_update.php:29
+#, php-format
+msgid "Update link: %s"
+msgstr ""
+
+#: libs/save_update.php:36
+#, php-format
+msgid "[Petition New Update] %s"
+msgstr ""
+
+#: libs/save_update.php:87
+msgid "Petition id field is mandatory."
+msgstr ""
+
+#: libs/save_update.php:112
+msgid "The update was successfully saved."
+msgstr ""
+
+#: libs/save_update.php:115
+msgid "Something went wrong. The update was not saved."
+msgstr ""
+
+#: libs/save_update.php:263
+msgid "The updates was loaded successfully."
+msgstr ""
+
+#: libs/save_update.php:266
+msgid "Not found updates."
+msgstr ""
+
+#: libs/save_update.php:288
+msgid "The update was successfully deleted."
+msgstr ""
+
+#: libs/save_update.php:291
+msgid "Something went wrong. The update was not deleted."
+msgstr ""
+
+#: libs/theme_setup.php:84
+msgid "Top primary menu"
+msgstr ""
+
+#: libs/theme_setup.php:85
+msgid "Category menu"
+msgstr ""
+
+#: libs/theme_setup.php:86
+msgid "Footer menu"
+msgstr ""
+
+#: libs/users.php:18
+#, php-format
+msgid "New user Sign Up on %s:"
+msgstr ""
+
+#: libs/users.php:19 libs/users.php:35 libs/users.php:268
+#, php-format
+msgid "Username: %s"
+msgstr ""
+
+#: libs/users.php:20
+#, php-format
+msgid "E-mail: %s"
+msgstr ""
+
+#: libs/users.php:26
+#, php-format
+msgid "[%s] New User Sign Up"
+msgstr ""
+
+#: libs/users.php:33
+#, php-format
+msgid "Welcome, %s!"
+msgstr ""
+
+#: libs/users.php:34
+msgid ""
+"Thank you for signing up with us. Your new account has been setup and you "
+"can now login using the details below."
+msgstr ""
+
+#: libs/users.php:36
+#, php-format
+msgid "Password: %s"
+msgstr ""
+
+#: libs/users.php:37
+msgid "Thank you,"
+msgstr ""
+
+#: libs/users.php:38
+#, php-format
+msgid "%s Team"
+msgstr ""
+
+#: libs/users.php:44
+#, php-format
+msgid "[%s] Your username and password"
+msgstr ""
+
+#: libs/users.php:90 libs/users.php:542 libs/users.php:547
+msgid "Required form fields are empty!"
+msgstr ""
+
+#: libs/users.php:94
+msgid "Username too short. Please enter at least 4 characters!"
+msgstr ""
+
+#: libs/users.php:98
+msgid "Username already exists!"
+msgstr ""
+
+#: libs/users.php:102
+msgid "Invalid Username!"
+msgstr ""
+
+#: libs/users.php:106 libs/users.php:552
+msgid "Invalid Email!"
+msgstr ""
+
+#: libs/users.php:111 libs/users.php:557
+msgid "Email already exists!"
+msgstr ""
+
+#: libs/users.php:115 libs/users.php:562
+msgid "Password too short. Please enter at least 6 characters!"
+msgstr ""
+
+#: libs/users.php:119
+msgid "Password is not correct!"
+msgstr ""
+
+#: libs/users.php:144 libs/users.php:377 libs/users.php:441
+msgid "Something went wrong!"
+msgstr ""
+
+#: libs/users.php:147
+msgid "Congratulations! You have successfully signed up."
+msgstr ""
+
+#: libs/users.php:164 libs/users.php:337 libs/users.php:399
+msgid "You are already signed in, redirecting..."
+msgstr ""
+
+#: libs/users.php:178 libs/users.php:197
+msgid "Invalid username or password!"
+msgstr ""
+
+#: libs/users.php:213 libs/users.php:384 libs/users.php:448
+msgid "Sign in successful, redirecting..."
+msgstr ""
+
+#: libs/users.php:232
+msgid "Email field is empty!"
+msgstr ""
+
+#: libs/users.php:241
+msgid "Invalid email address!"
+msgstr ""
+
+#: libs/users.php:247
+msgid "Invalid username!"
+msgstr ""
+
+#: libs/users.php:266
+msgid ""
+"Someone has asked to reset the password for the following site and username."
+msgstr ""
+
+#: libs/users.php:269
+#, php-format
+msgid "Security Code: %s"
+msgstr ""
+
+#: libs/users.php:270
+msgid ""
+"To reset your password visit the following address, otherwise just ignore "
+"this email and nothing will happen."
+msgstr ""
+
+#: libs/users.php:272
+#, php-format
+msgid "[%s] Request Password Reset"
+msgstr ""
+
+#: libs/users.php:277
+msgid "Email failed to send for some unknown reason."
+msgstr ""
+
+#: libs/users.php:280
+msgid "An email with password reset instructions was sent to you."
+msgstr ""
+
+#: libs/users.php:301
+msgid "Password field empty!"
+msgstr ""
+
+#: libs/users.php:309 libs/users.php:312
+msgid "Sorry, the link does not appear to be valid or is expired!"
+msgstr ""
+
+#: libs/users.php:318 libs/users.php:566
+msgid "The passwords do not match!"
+msgstr ""
+
+#: libs/users.php:322
+msgid "Your password has been reset."
+msgstr ""
+
+#: libs/users.php:657
+msgid "Your profile was successfully updated."
+msgstr ""
+
+#: libs/users.php:678
+msgid "Facebook publishing has changed successfully."
+msgstr ""
+
+#: libs/users.php:698
+msgid "Email notice has changed successfully."
+msgstr ""
+
+#: libs/widgets/contact_widget.php:33 user-account.php:154
+msgid "Organization"
+msgstr ""
+
+#: libs/widgets/contact_widget.php:53
+msgid "State/County"
+msgstr ""
+
+#: libs/widgets/contact_widget.php:57
+msgid "Zip code"
+msgstr ""
+
+#: libs/widgets/featured_petitions_widget.php:26
+#: libs/widgets/recent_petitions_widget.php:26
+msgid "Number of petitions to show"
+msgstr ""
+
+#: libs/widgets/featured_posts_widget.php:27
+#: libs/widgets/recent_posts_widget.php:27
+msgid "Number of posts to show"
+msgstr ""
+
+#: libs/widgets/featured_posts_widget.php:31
+#: libs/widgets/recent_posts_widget.php:31
+msgid "Only text link"
+msgstr ""
+
+#: libs/widgets/social_widget.php:47
+msgid "Instagram Link"
+msgstr ""
+
+#: libs/widgets/social_widget.php:51
+msgid "Youtube Link"
+msgstr ""
+
+#: my-petitions.php:275
+msgid "Pending approval!"
+msgstr ""
+
+#: organization-search.php:35 topics-search.php:35
+msgid "Not found topics."
+msgstr ""
+
+#: petitions-search-results.php:43 templates/app_header.php:24
+#: templates/home_header.php:27 templates/leftside_menu.php:16
+msgid "Search..."
+msgstr ""
+
+#: petitions-search-results.php:49 petitions-search.php:147
+msgid " results for "
+msgstr ""
+
+#: petitions-search-results.php:189 taxonomy-petition_category.php:231
+#: taxonomy-petition_topics.php:229
+msgid " Petitions"
+msgstr ""
+
+#: petitions-search-results.php:203
+msgid "Filter"
+msgstr ""
+
+#: petitions-search-results.php:211
+msgid "Select Topics"
+msgstr ""
+
+#: petitions-search-results.php:280
+msgid "Reset Filter"
+msgstr ""
+
+#: petitions-search.php:121
+msgid " supporters"
+msgstr ""
+
+#: petitions-search.php:147
+msgid "View "
+msgstr ""
+
+#: search.php:25
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: search.php:83
+msgid ""
+"Sorry, but nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: search.php:89
+msgid "Older Articles"
+msgstr ""
+
+#: search.php:90
+msgid "Newer Articles"
+msgstr ""
+
+#: sidebar.php:14
+msgid "Categories"
+msgstr ""
+
+#: single-petition.php:176
+msgid "Petition is pending approval!"
+msgstr ""
+
+#: single-petition.php:182
+msgid "Getting to"
+msgstr ""
+
+#: single-petition.php:182
+msgid "signatures makes your petition visible to the whole community"
+msgstr ""
+
+#: single-petition.php:218
+msgid "Story"
+msgstr ""
+
+#: single-petition.php:219
+msgid "Letter"
+msgstr ""
+
+#: single-petition.php:220 single-petition.php:338
+msgid "Updates"
+msgstr ""
+
+#: single-petition.php:310
+msgid "Letter to"
+msgstr ""
+
+#: single-petition.php:362
+msgid "Responsive"
+msgstr ""
+
+#: single-petition.php:362
+msgid "Post Update"
+msgstr ""
+
+#: single-petition.php:367
+msgid ""
+"This petition is sent to you, let you clearly respond the problems stated  "
+"in this petition for supporters of petition."
+msgstr ""
+
+#: single-petition.php:369
+msgid ""
+"Keep your supporters engaged with a news update. Every update you post will "
+"be sent as a separate email to signers of your petition."
+msgstr ""
+
+#: single-petition.php:379
+msgid "start this petition"
+msgstr ""
+
+#: single-petition.php:399 single-petition.php:775 single-update.php:232
+#: single-update.php:608
+msgid "Confirm Victory!"
+msgstr ""
+
+#: single-petition.php:405 single-petition.php:786 single-update.php:238
+#: single-update.php:619
+msgid "This petition won with"
+msgstr ""
+
+#: single-petition.php:409 single-petition.php:792 single-update.php:242
+#: single-update.php:625
+msgid "Petition closed"
+msgstr ""
+
+#: single-petition.php:415 single-petition.php:425 single-petition.php:803
+#: single-petition.php:820 single-update.php:248 single-update.php:258
+#: single-update.php:636 single-update.php:653
+msgid "needed to reach"
+msgstr ""
+
+#: single-petition.php:455 single-petition.php:610 single-petition.php:851
+#: single-petition.php:1088 single-update.php:288 single-update.php:443
+#: single-update.php:684 single-update.php:921 templates/guest_sign.php:40
+#: templates/guest_sign.php:91
+msgid "I am signing because..."
+msgstr ""
+
+#: single-petition.php:460 single-petition.php:615 single-update.php:293
+#: single-update.php:448
+msgid "Share with Facebook friends"
+msgstr ""
+
+#: single-petition.php:465 single-petition.php:620 single-petition.php:869
+#: single-petition.php:1015 single-update.php:298 single-update.php:453
+#: single-update.php:702 single-update.php:848
+msgid "Sign"
+msgstr ""
+
+#: single-petition.php:470 single-petition.php:625 single-update.php:303
+#: single-update.php:458 templates/guest_sign.php:55
+msgid "Notify me when new information"
+msgstr ""
+
+#: single-petition.php:481 single-petition.php:529 single-petition.php:636
+#: single-petition.php:684 single-petition.php:856 single-petition.php:935
+#: single-petition.php:1002 single-petition.php:1081 single-update.php:314
+#: single-update.php:362 single-update.php:469 single-update.php:517
+#: single-update.php:689 single-update.php:768 single-update.php:835
+#: single-update.php:914 single.php:145 templates/guest_sign.php:45
+#: templates/guest_sign.php:96
+msgid "Share on Facebook"
+msgstr ""
+
+#: single-petition.php:488 single-petition.php:643 single-petition.php:942
+#: single-petition.php:997 single-update.php:321 single-update.php:476
+#: single-update.php:775 single-update.php:830
+msgid "Add a personal message"
+msgstr ""
+
+#: single-petition.php:509 single-petition.php:664 single-petition.php:963
+#: single-petition.php:1109 single-update.php:342 single-update.php:497
+#: single-update.php:796 single-update.php:942
+msgid "Post to Facebook"
+msgstr ""
+
+#: single-petition.php:519 single-petition.php:674 single-petition.php:878
+#: single-petition.php:1024 single-update.php:352 single-update.php:507
+#: single-update.php:711 single-update.php:857 templates/page_caption.php:111
+msgid "Send an Email"
+msgstr ""
+
+#: single-petition.php:523 single-petition.php:525 single-petition.php:678
+#: single-petition.php:680 single-petition.php:882 single-petition.php:884
+#: single-petition.php:1028 single-petition.php:1030 single-update.php:356
+#: single-update.php:358 single-update.php:511 single-update.php:513
+#: single-update.php:715 single-update.php:717 single-update.php:861
+#: single-update.php:863
+msgid "Send a message"
+msgstr ""
+
+#: single-petition.php:534 single-petition.php:689 single-petition.php:890
+#: single-petition.php:1036 single-update.php:367 single-update.php:522
+#: single-update.php:723 single-update.php:869
+msgid "Share on Google+"
+msgstr ""
+
+#: single-petition.php:537 single-petition.php:692 single-petition.php:893
+#: single-petition.php:1039 single-update.php:370 single-update.php:525
+#: single-update.php:726 single-update.php:872 single.php:150
+msgid "Share on Twitter"
+msgstr ""
+
+#: single-petition.php:540 single-petition.php:695 single-petition.php:896
+#: single-petition.php:1042 single-update.php:373 single-update.php:528
+#: single-update.php:729 single-update.php:875 single.php:153
+msgid "More social"
+msgstr ""
+
+#: single-petition.php:546 single-petition.php:701 single-petition.php:902
+#: single-petition.php:1048 single-update.php:379 single-update.php:534
+#: single-update.php:735 single-update.php:881 single.php:167
+msgid "LinkedIn"
+msgstr ""
+
+#: single-petition.php:551 single-petition.php:706 single-petition.php:907
+#: single-petition.php:1053 single-update.php:384 single-update.php:539
+#: single-update.php:740 single-update.php:886 single.php:172
+msgid "Tumblr"
+msgstr ""
+
+#: single-petition.php:556 single-petition.php:711 single-petition.php:912
+#: single-petition.php:1058 single-update.php:389 single-update.php:544
+#: single-update.php:745 single-update.php:891 single.php:177
+msgid "Pinterest"
+msgstr ""
+
+#: single-petition.php:561 single-petition.php:716 single-petition.php:917
+#: single-petition.php:1063 single-update.php:394 single-update.php:549
+#: single-update.php:750 single-update.php:896 single.php:182
+msgid "Reddit"
+msgstr ""
+
+#: single-petition.php:566 single-petition.php:721 single-petition.php:922
+#: single-petition.php:1068 single-update.php:399 single-update.php:554
+#: single-update.php:755 single-update.php:901 single.php:187
+msgid "WordPress"
+msgstr ""
+
+#: single-petition.php:578 single-petition.php:733 single-update.php:411
+#: single-update.php:566
+msgid "Copy"
+msgstr ""
+
+#: single-petition.php:864 single-petition.php:1010 single-update.php:697
+#: single-update.php:843 templates/guest_sign.php:102
+msgid "Notify me when new update"
+msgstr ""
+
+#: single-petition.php:1134 single-petition.php:1140 single-petition.php:1146
+#: single-update.php:967 single-update.php:973 single-update.php:979
+msgid "Sign this Petition"
+msgstr ""
+
+#: single-petition.php:1136 single-petition.php:1142 single-update.php:969
+#: single-update.php:975
+msgid "Share this Petition"
+msgstr ""
+
+#: single-update.php:109 single-update.php:122
+msgid "Petition Update"
+msgstr ""
+
+#: single-update.php:112
+msgid "Featured on Press"
+msgstr ""
+
+#: single-update.php:115
+msgid "Decision maker Responsive"
+msgstr ""
+
+#: single-update.php:118
+msgid "Petition Victory"
+msgstr ""
+
+#: single-update.php:150
+msgid "by"
+msgstr ""
+
+#: single.php:137
+msgid "Send an SMS"
+msgstr ""
+
+#: single.php:141
+msgid "Send a Message"
+msgstr ""
+
+#: single.php:162
+msgid "Google+"
+msgstr ""
+
+#: single.php:200
+msgid "Previous post"
+msgstr ""
+
+#: single.php:207
+msgid "Next post"
+msgstr ""
+
+#: submit-petition.php:88
+msgid "Receiver"
+msgstr ""
+
+#: submit-petition.php:93
+msgid "Problem"
+msgstr ""
+
+#: submit-petition.php:98
+msgid "Photo"
+msgstr ""
+
+#: submit-petition.php:117
+msgid "Write your petition title"
+msgstr ""
+
+#: submit-petition.php:119
+msgid ""
+"This is the first thing people will see about your petition. Get their "
+"attention with a short title that focuses on the change you’d like them to "
+"support."
+msgstr ""
+
+#: submit-petition.php:132
+msgid "Goal"
+msgstr ""
+
+#: submit-petition.php:134
+msgid "Number of signature goal?"
+msgstr ""
+
+#: submit-petition.php:160
+msgid "How to write a great title?"
+msgstr ""
+
+#: submit-petition.php:167
+msgid "Keep it short and to the point"
+msgstr ""
+
+#: submit-petition.php:168
+msgid "Example: \"Buy organic, free-range eggs for your restaurants\"."
+msgstr ""
+
+#: submit-petition.php:173
+msgid "Focus on the solution"
+msgstr ""
+
+#: submit-petition.php:174
+msgid "Example: \"Raise the minimum wage in Minneapolis to $15 an hour\"."
+msgstr ""
+
+#: submit-petition.php:179
+msgid "Communicate urgency"
+msgstr ""
+
+#: submit-petition.php:180
+msgid ""
+"Example: \"Approve life-saving medication for my daughter’s insurance before "
+"it’s too late\"."
+msgstr ""
+
+#: submit-petition.php:195
+msgid ""
+"This is the person, organization, or group that can make a decision about "
+"your petition. We will send them updates on your petition and encourage a "
+"response."
+msgstr ""
+
+#: submit-petition.php:266
+msgid "How to find the right decision maker?"
+msgstr ""
+
+#: submit-petition.php:273
+msgid "Choose someone who can give you what you want"
+msgstr ""
+
+#: submit-petition.php:274
+msgid ""
+"You might need to do some research to find the right person who can make or "
+"influence the decision."
+msgstr ""
+
+#: submit-petition.php:279
+msgid "Do not go straight to the top"
+msgstr ""
+
+#: submit-petition.php:280
+msgid ""
+"You might see faster results if you choose a more junior person who is "
+"petitioned less often than more recognizable figures."
+msgstr ""
+
+#: submit-petition.php:285
+msgid "Choose someone you can work with"
+msgstr ""
+
+#: submit-petition.php:286
+msgid ""
+"Your petition is most likely to win by reaching an agreement with your "
+"decision maker."
+msgstr ""
+
+#: submit-petition.php:298
+msgid "Explain the problem"
+msgstr ""
+
+#: submit-petition.php:300
+msgid ""
+"People are more likely to support your petition if it’s clear why you care. "
+"Explain how this change will impact you, your family, or your community."
+msgstr ""
+
+#: submit-petition.php:339
+msgid "How to inspire your readers to action?"
+msgstr ""
+
+#: submit-petition.php:346
+msgid "Describe the people involved and the problem they are facing"
+msgstr ""
+
+#: submit-petition.php:347
+msgid ""
+"Readers are most likely to take action when they understand who is affected."
+msgstr ""
+
+#: submit-petition.php:352
+msgid "Describe the solution"
+msgstr ""
+
+#: submit-petition.php:353
+msgid ""
+"Explain what needs to happen and who can make the change. Make it clear what "
+"happens if you win or lose."
+msgstr ""
+
+#: submit-petition.php:358
+msgid "Make it personal"
+msgstr ""
+
+#: submit-petition.php:359
+msgid ""
+"Readers are more likely to sign and support your petition if it’s clear why "
+"you care."
+msgstr ""
+
+#: submit-petition.php:364
+msgid "Respect others"
+msgstr ""
+
+#: submit-petition.php:365
+msgid "Don’t bully, use hate speech, threaten violence or make things up."
+msgstr ""
+
+#: submit-petition.php:378
+msgid ""
+"Petitions with a photo or video receive six times more signatures than those "
+"without. Include one that captures the emotion of your story."
+msgstr ""
+
+#: submit-petition.php:389
+msgid "Tips for adding a photo or video"
+msgstr ""
+
+#: submit-petition.php:396
+msgid "Choose a photo that captures the emotion of your petition"
+msgstr ""
+
+#: submit-petition.php:397
+msgid "Photos of people or animals work well."
+msgstr ""
+
+#: submit-petition.php:402
+msgid "Try to upload photos that are 1600 x 900 pixels or larger"
+msgstr ""
+
+#: submit-petition.php:403
+msgid "Large photos look good on all screen sizes."
+msgstr ""
+
+#: submit-petition.php:408
+msgid "Keep it friendly for all audiences"
+msgstr ""
+
+#: submit-petition.php:409
+msgid ""
+"Make sure your photo doesn’t include graphic violence or sexual content."
+msgstr ""
+
+#: submit-petition.php:420 submit-petition.php:421 submit-petition.php:422
+msgid "Back"
+msgstr ""
+
+#: submit-petition.php:425 submit-petition.php:426 submit-petition.php:427
+msgid "Next"
+msgstr ""
+
+#: submit-petition.php:428
+msgid "Finish"
+msgstr ""
+
+#: templates/ajax_comments.php:42
+msgid "Older comments ..."
+msgstr ""
+
+#: templates/ajax_comments.php:93
+msgid "Hidden replies"
+msgstr ""
+
+#: templates/ajax_comments.php:148
+msgid "No comments yet"
+msgstr ""
+
+#: templates/ajax_comments.php:151
+msgid "Leaving the first to comment on this article."
+msgstr ""
+
+#: templates/ajax_comments.php:155
+#, php-format
+msgid "You need %1$s or %2$s account to post comment."
+msgstr ""
+
+#: templates/ajax_comments.php:170
+msgid "Add a comment"
+msgstr ""
+
+#: templates/app_header.php:50 templates/home_header.php:65
+msgid "Search"
+msgstr ""
+
+#: templates/app_header.php:81 templates/home_header.php:96
+msgid "Start a Petition"
+msgstr ""
+
+#: templates/app_user_menu.php:147 templates/user_menu.php:147
+msgid "Logout"
+msgstr ""
+
+#: templates/avatar_upload.php:37 templates/gallery_upload.php:23
+msgid "Browse Images"
+msgstr ""
+
+#: templates/gallery_upload.php:26
+msgid "Or"
+msgstr ""
+
+#: templates/gallery_upload.php:31
+msgid "Embed"
+msgstr ""
+
+#: templates/guest_sign.php:50 templates/guest_sign.php:107
+msgid "Sign this petition"
+msgstr ""
+
+#: templates/page_caption.php:81
+msgid "Send an email"
+msgstr ""
+
+#: templates/related_posts.php:25
+msgid "Related Articles"
+msgstr ""
+
+#: templates/similar_petitions.php:65
+msgid "Similar petitions"
+msgstr ""
+
+#: templates/similar_petitions.php:127
+msgid "by "
+msgstr ""
+
+#: templates/update_petition.php:167
+msgid "More updates..."
+msgstr ""
+
+#: templates/user_modals.php:25
+msgid "Full Name"
+msgstr ""
+
+#: templates/user_modals.php:27
+msgid "Enter your fullname"
+msgstr ""
+
+#: templates/user_modals.php:34
+msgid "Enter your e-mail"
+msgstr ""
+
+#: templates/user_modals.php:41 user-account.php:183
+msgid "Enter your address"
+msgstr ""
+
+#: templates/user_modals.php:46 templates/user_modals.php:85
+#: templates/user_modals.php:87
+msgid "Password"
+msgstr ""
+
+#: templates/user_modals.php:48
+msgid "Enter your password"
+msgstr ""
+
+#: templates/user_modals.php:53
+msgid "Repeat Password"
+msgstr ""
+
+#: templates/user_modals.php:55
+msgid "Repeat your password"
+msgstr ""
+
+#: templates/user_modals.php:80
+msgid "Username"
+msgstr ""
+
+#: templates/user_modals.php:97
+msgid "Remember me"
+msgstr ""
+
+#: templates/user_modals.php:106
+msgid "Forgot password?"
+msgstr ""
+
+#: templates/user_modals.php:124
+msgid "And"
+msgstr ""
+
+#: templates/user_modals.php:128
+msgid "Facebook"
+msgstr ""
+
+#: templates/user_modals.php:131
+msgid "Google"
+msgstr ""
+
+#: templates/user_modals.php:141
+msgid "Forgot Password"
+msgstr ""
+
+#: templates/user_modals.php:147 templates/user_modals.php:149
+msgid "Username or Email"
+msgstr ""
+
+#: templates/user_modals.php:169
+msgid "Security Code"
+msgstr ""
+
+#: templates/user_modals.php:175 user-account.php:212
+msgid "New Password"
+msgstr ""
+
+#: templates/user_modals.php:181
+msgid "Confirm Password"
+msgstr ""
+
+#: templates/user_modals.php:186
+msgid ""
+"Hint: The password should be at least seven characters long. To make it "
+"stronger, use upper and lower case letters, numbers, and symbols like ! \" ? "
+"$ % ^ & )."
+msgstr ""
+
+#: user-account.php:70
+msgid "Manage Profile"
+msgstr ""
+
+#: user-account.php:78
+msgid "Decision maker account confirmation is pending approval!"
+msgstr ""
+
+#: user-account.php:89
+msgid "Petitioner"
+msgstr ""
+
+#: user-account.php:95
+msgid "Decision Maker"
+msgstr ""
+
+#: user-account.php:102
+msgid "Display name"
+msgstr ""
+
+#: user-account.php:115
+msgid "Male"
+msgstr ""
+
+#: user-account.php:121
+msgid "Female"
+msgstr ""
+
+#: user-account.php:139
+msgid "Title or Position"
+msgstr ""
+
+#: user-account.php:150
+msgid "Office or Organization"
+msgstr ""
+
+#: user-account.php:167
+msgid "Enter your e-mail address"
+msgstr ""
+
+#: user-account.php:175
+msgid "Choose your birthday"
+msgstr ""
+
+#: user-account.php:193
+msgid "Website"
+msgstr ""
+
+#: user-account.php:196
+msgid "http://"
+msgstr ""
+
+#: user-account.php:200
+msgid "Biographical"
+msgstr ""
+
+#: user-account.php:201
+msgid "Introduce about yourself"
+msgstr ""
+
+#: user-account.php:204
+msgid "URL profile"
+msgstr ""
+
+#: user-account.php:207
+msgid "Enter your nickname"
+msgstr ""
+
+#: user-account.php:210
+msgid "Reset password"
+msgstr ""
+
+#: user-account.php:213
+msgid "Enter your new password"
+msgstr ""
+
+#: user-account.php:216
+msgid "Repeat New Password"
+msgstr ""
+
+#: user-account.php:217
+msgid "Repeat your new password"
+msgstr ""
+
+#: user-account.php:222
+msgid "Update Profile"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "Petition"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "https://www.conikal.com/petition"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Petition WP is a WordPress Premium Theme used to create petition platform, "
+"where anyone can be start a campaign, collect powerful from supporters to "
+"change the worlds"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Conikal | support@conikal.com"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.conikal.com/"
+msgstr ""

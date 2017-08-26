@@ -1,0 +1,598 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Petition Plugin\n"
+"POT-Creation-Date: 2017-05-26 19:54+0700\n"
+"PO-Revision-Date: 2017-05-26 19:54+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: petition.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: petition.php:43 petition.php:572 petition.php:591 petition.php:631
+#: petition.php:650 petition.php:690 petition.php:946 petition.php:1005
+#: petition.php:1052 petition.php:1121
+msgid "Browse..."
+msgstr ""
+
+#: petition.php:44 petition.php:394
+msgid "Delete"
+msgstr ""
+
+#: petition.php:55
+msgid "Petitions"
+msgstr ""
+
+#: petition.php:56
+msgid "Petition"
+msgstr ""
+
+#: petition.php:57
+msgid "Add New Petition"
+msgstr ""
+
+#: petition.php:58
+msgid "Add Petition"
+msgstr ""
+
+#: petition.php:59 petition.php:705 petition.php:877 petition.php:961
+#: petition.php:1067
+msgid "Edit"
+msgstr ""
+
+#: petition.php:60
+msgid "Edit Petition"
+msgstr ""
+
+#: petition.php:61
+msgid "New Petition"
+msgstr ""
+
+#: petition.php:62 petition.php:708 petition.php:880 petition.php:964
+#: petition.php:1070
+msgid "View"
+msgstr ""
+
+#: petition.php:63
+msgid "View Petition"
+msgstr ""
+
+#: petition.php:64
+msgid "Search Petition"
+msgstr ""
+
+#: petition.php:65
+msgid "No Petition found"
+msgstr ""
+
+#: petition.php:66
+msgid "No Petition found in Trash"
+msgstr ""
+
+#: petition.php:67
+msgid "Parent Petition"
+msgstr ""
+
+#: petition.php:82
+msgid "Petition Categories"
+msgstr ""
+
+#: petition.php:83
+msgid "Add New Petition Category"
+msgstr ""
+
+#: petition.php:84
+msgid "New Petition Category"
+msgstr ""
+
+#: petition.php:101
+msgid "Petition Topics"
+msgstr ""
+
+#: petition.php:102
+msgid "Add New Petition Topics"
+msgstr ""
+
+#: petition.php:103
+msgid "New Petition Topics"
+msgstr ""
+
+#: petition.php:130
+msgid "Location"
+msgstr ""
+
+#: petition.php:131 petition.php:729
+msgid "Details"
+msgstr ""
+
+#: petition.php:132
+msgid "Letter"
+msgstr ""
+
+#: petition.php:133 petition.php:702 petition.php:778
+msgid "Update"
+msgstr ""
+
+#: petition.php:134
+msgid "Video"
+msgstr ""
+
+#: petition.php:135
+msgid "Photo Gallery"
+msgstr ""
+
+#: petition.php:136 petition.php:730 petition.php:778
+msgid "Featured"
+msgstr ""
+
+#: petition.php:137
+msgid "Victory Featured"
+msgstr ""
+
+#: petition.php:150
+msgid "City"
+msgstr ""
+
+#: petition.php:151
+msgid "Enter a city name"
+msgstr ""
+
+#: petition.php:156
+msgid "Latitude"
+msgstr ""
+
+#: petition.php:162
+msgid "Longitude"
+msgstr ""
+
+#: petition.php:179
+msgid "Address"
+msgstr ""
+
+#: petition.php:180
+msgid "Enter address"
+msgstr ""
+
+#: petition.php:181
+msgid "Place pin by address"
+msgstr ""
+
+#: petition.php:186
+msgid "County/State"
+msgstr ""
+
+#: petition.php:187
+msgid "Enter county/state"
+msgstr ""
+
+#: petition.php:192
+msgid "Neighborhood"
+msgstr ""
+
+#: petition.php:193
+msgid "Enter neighborhood"
+msgstr ""
+
+#: petition.php:202
+msgid "Zip Code"
+msgstr ""
+
+#: petition.php:203
+msgid "Enter zip code"
+msgstr ""
+
+#: petition.php:208
+msgid "Country"
+msgstr ""
+
+#: petition.php:209
+msgid "Enter county"
+msgstr ""
+
+#: petition.php:236
+msgid "Goal"
+msgstr ""
+
+#: petition.php:242
+msgid "Signature"
+msgstr ""
+
+#: petition.php:248
+msgid "Decision makers (ID and Separated by commas)"
+msgstr ""
+
+#: petition.php:258
+msgid "Receivers (Separated by commas)"
+msgstr ""
+
+#: petition.php:259
+msgid "Enter Receiver"
+msgstr ""
+
+#: petition.php:264
+msgid "Positions (Separated by commas)"
+msgstr ""
+
+#: petition.php:265
+msgid "Enter Positions"
+msgstr ""
+
+#: petition.php:352
+msgid "Title"
+msgstr ""
+
+#: petition.php:353
+msgid "Comments"
+msgstr ""
+
+#: petition.php:354
+msgid "Date"
+msgstr ""
+
+#: petition.php:355
+msgid "Views"
+msgstr ""
+
+#: petition.php:374
+msgid "Video URL"
+msgstr ""
+
+#: petition.php:375
+msgid "Enter video URL"
+msgstr ""
+
+#: petition.php:398
+msgid "Add photo"
+msgstr ""
+
+#: petition.php:417 petition.php:813
+msgid "Set as Featured"
+msgstr ""
+
+#: petition.php:440
+msgid "Set as Victory Featured"
+msgstr ""
+
+#: petition.php:554
+msgid "Enter petition title here"
+msgstr ""
+
+#: petition.php:570 petition.php:588 petition.php:629 petition.php:647
+msgid "Image"
+msgstr ""
+
+#: petition.php:573 petition.php:592
+msgid "The background image show on category archive and shortcodes"
+msgstr ""
+
+#: petition.php:632 petition.php:651
+msgid "The background image show on topics archive and shortcodes"
+msgstr ""
+
+#: petition.php:701
+msgid "Updates"
+msgstr ""
+
+#: petition.php:703
+msgid "Add New Update"
+msgstr ""
+
+#: petition.php:704
+msgid "Add Update"
+msgstr ""
+
+#: petition.php:706
+msgid "Edit Update"
+msgstr ""
+
+#: petition.php:707
+msgid "New Update"
+msgstr ""
+
+#: petition.php:709
+msgid "View Update"
+msgstr ""
+
+#: petition.php:710
+msgid "Search Updates"
+msgstr ""
+
+#: petition.php:711
+msgid "No Updates found"
+msgstr ""
+
+#: petition.php:712
+msgid "No Updates found in Trash"
+msgstr ""
+
+#: petition.php:713
+msgid "Parent Update"
+msgstr ""
+
+#: petition.php:747
+msgid "Update type"
+msgstr ""
+
+#: petition.php:757
+msgid "Petition ID"
+msgstr ""
+
+#: petition.php:758
+msgid "Enter Petition Id"
+msgstr ""
+
+#: petition.php:767
+msgid "URL Meida"
+msgstr ""
+
+#: petition.php:768
+msgid "Enter URL for an article, image, or video"
+msgstr ""
+
+#: petition.php:778
+msgid "Responsive"
+msgstr ""
+
+#: petition.php:778
+msgid "Victory"
+msgstr ""
+
+#: petition.php:851
+msgid "Enter update name here"
+msgstr ""
+
+#: petition.php:873
+msgid "Decision Makers"
+msgstr ""
+
+#: petition.php:874
+msgid "Decision Maker"
+msgstr ""
+
+#: petition.php:875
+msgid "Add New Decision Maker"
+msgstr ""
+
+#: petition.php:876
+msgid "Add Decision Maker"
+msgstr ""
+
+#: petition.php:878
+msgid "Edit Decision Maker"
+msgstr ""
+
+#: petition.php:879
+msgid "New Decision Maker"
+msgstr ""
+
+#: petition.php:881
+msgid "View Decision Maker"
+msgstr ""
+
+#: petition.php:882
+msgid "Search Decision Makers"
+msgstr ""
+
+#: petition.php:883
+msgid "No Decision Makers found"
+msgstr ""
+
+#: petition.php:884
+msgid "No Decision Makers found in Trash"
+msgstr ""
+
+#: petition.php:885
+msgid "Parent Decision Maker"
+msgstr ""
+
+#: petition.php:899
+msgid "Decision Maker Title"
+msgstr ""
+
+#: petition.php:900
+msgid "Add New Title"
+msgstr ""
+
+#: petition.php:901
+msgid "New Title"
+msgstr ""
+
+#: petition.php:911
+msgid "Organization"
+msgstr ""
+
+#: petition.php:912
+msgid "Add New Organization"
+msgstr ""
+
+#: petition.php:913
+msgid "New Organization"
+msgstr ""
+
+#: petition.php:927
+msgid "Enter decision maker name here"
+msgstr ""
+
+#: petition.php:957
+msgid "Testimonials"
+msgstr ""
+
+#: petition.php:958
+msgid "Testimonial"
+msgstr ""
+
+#: petition.php:959
+msgid "Add New Testimonial"
+msgstr ""
+
+#: petition.php:960
+msgid "Add Testimonial"
+msgstr ""
+
+#: petition.php:962
+msgid "Edit Testimonial"
+msgstr ""
+
+#: petition.php:963
+msgid "New Testimonial"
+msgstr ""
+
+#: petition.php:965
+msgid "View Testimonial"
+msgstr ""
+
+#: petition.php:966
+msgid "Search Testimonials"
+msgstr ""
+
+#: petition.php:967
+msgid "No Testimonials found"
+msgstr ""
+
+#: petition.php:968
+msgid "No Testimonials found in Trash"
+msgstr ""
+
+#: petition.php:969
+msgid "Parent Testimonial"
+msgstr ""
+
+#: petition.php:986
+msgid "Job"
+msgstr ""
+
+#: petition.php:987 petition.php:1094
+msgid "Avatar"
+msgstr ""
+
+#: petition.php:1033
+msgid "Enter customer name here"
+msgstr ""
+
+#: petition.php:1063
+msgid "Team"
+msgstr ""
+
+#: petition.php:1064
+msgid "Member"
+msgstr ""
+
+#: petition.php:1065
+msgid "Add New Member"
+msgstr ""
+
+#: petition.php:1066
+msgid "Add Member"
+msgstr ""
+
+#: petition.php:1068
+msgid "Edit Member"
+msgstr ""
+
+#: petition.php:1069
+msgid "New Member"
+msgstr ""
+
+#: petition.php:1071
+msgid "View Member"
+msgstr ""
+
+#: petition.php:1072
+msgid "Search Member"
+msgstr ""
+
+#: petition.php:1073
+msgid "No Members found"
+msgstr ""
+
+#: petition.php:1074
+msgid "No Members found in Trash"
+msgstr ""
+
+#: petition.php:1075
+msgid "Parent Member"
+msgstr ""
+
+#: petition.php:1092
+msgid "Position"
+msgstr ""
+
+#: petition.php:1093
+msgid "Living"
+msgstr ""
+
+#: petition.php:1095
+msgid "Social Network"
+msgstr ""
+
+#: petition.php:1133
+msgid "Website"
+msgstr ""
+
+#: petition.php:1141
+msgid "Facebook"
+msgstr ""
+
+#: petition.php:1149
+msgid "Twitter"
+msgstr ""
+
+#: petition.php:1157
+msgid "Google+"
+msgstr ""
+
+#: petition.php:1165
+msgid "LinkedIn"
+msgstr ""
+
+#: petition.php:1217
+msgid "Enter member name here"
+msgstr ""
+
+#: shortcodes.php:508 shortcodes.php:568 shortcodes.php:581 shortcodes.php:732
+#: shortcodes.php:792 shortcodes.php:805 shortcodes.php:954 shortcodes.php:1015
+#: shortcodes.php:1028 shortcodes.php:1179 shortcodes.php:1238
+#: shortcodes.php:1251
+msgid "supporters"
+msgstr ""
+
+#: shortcodes.php:533 shortcodes.php:757 shortcodes.php:980 shortcodes.php:1203
+msgid "Petition to"
+msgstr ""
+
+#: shortcodes.php:569 shortcodes.php:793 shortcodes.php:1016
+#: shortcodes.php:1239
+msgid "comments"
+msgstr ""
+
+#: shortcodes.php:1448 shortcodes.php:1530
+#, php-format
+msgid "View all posts in %s"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Petition Plugin"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Creates shortcodes, register custom taxonomies and post types"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Conikal"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.conikal.com"
+msgstr ""
