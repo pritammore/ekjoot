@@ -43,6 +43,13 @@ $google_client_secret = isset($conikal_auth_settings['conikal_google_secret_fiel
                             </div>
                         </div>
                         <div class="required field">
+                            <label><?php _e('Pincode', 'petition') ?></label>
+                            <div class="ui right icon input">
+                                <input type="text" name="pincodeSignup" id="pincodeSignup" placeholder="<?php _e('Enter your pincode', 'petition') ?>">
+                                <i class="location arrow icon"></i>
+                            </div>
+                        </div>
+                        <div class="required field">
                             <label><?php _e('Password', 'petition') ?></label>
                             <div class="ui right icon input">
                                 <input type="password" name="passSignup" id="passSignup" placeholder="<?php _e('Enter your password', 'petition') ?>">

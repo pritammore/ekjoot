@@ -454,10 +454,31 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                         <div class="field">
                                             <div class="ui pointing below fluid basic label font large">
                                                 <textarea name="sign-comment" class="sign-comment" style="border: 0; font-weight: 400" rows="4" placeholder="<?php _e('I am signing because...', 'petition') ?>"></textarea>
+                                                <!-- Added by Pritam  -->
+                                                <div class="ui horizontal divider"><i class="share alternate icon"></i></div>
+                                                <div class="ui grid">
+                                                    <div class="four wide column">
+                                                        <?php if($gallery) {
+                                                            if (has_post_thumbnail()) { ?>
+                                                                <img class="ui fluid image" id="thumbnail-share" src="<?php echo esc_url(the_post_thumbnail_url('thumbnail')) ?>" alt="<?php echo esc_attr($title) ?>">
+                                                            <?php } else { ?>
+                                                                <img class="ui fluid image" id="gallery-share" src="<?php echo esc_url($images[1]) ?>" alt="<?php echo esc_attr($title) ?>">
+                                                            <?php } ?>
+                                                        <?php } elseif ($thumb) { ?>
+                                                            <img class="ui fluid image" src="<?php echo esc_url($thumb) ?>" alt="<?php echo esc_attr($title) ?>">
+                                                        <?php } else { ?>
+                                                            <img class="ui fluid image" src="<?php echo esc_url(get_template_directory_uri() . '/images/thumb.png') ?>" alt="<?php echo esc_attr($title) ?>">
+                                                        <?php } ?>
+                                                    </div>
+                                                    <div class="twelve wide column">
+                                                        <h4><?php echo esc_html($title) ?></h4>
+                                                    </div>
+                                                </div>
+                                                <!-- ENDS -->
                                             </div>
                                             <div class="ui message" style="margin-top: 0">
-                                                <div class="fb-publish ui toggle checkbox <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : ''); ?>">
-                                                    <input type="checkbox" name="fb-publish" class="hidden" <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : ''); ?>>
+                                                <div class="fb-publish ui toggle checkbox <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : 'checked'); ?>">
+                                                    <input type="checkbox" name="fb-publish" class="hidden" <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : 'checked'); ?> disabled="disabled" >
                                                     <label><i class="facebook icon"></i><?php _e('Share with Facebook friends', 'petition') ?></label>
                                                 </div>
                                             </div>

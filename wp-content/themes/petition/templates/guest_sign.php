@@ -26,6 +26,12 @@
             <i class="marker icon"></i>
         </div>
     </div>
+    <div class="field">
+        <div class="ui right icon large input">
+            <input type="text" name="pincodeSign" id="pincodeSign" placeholder="<?php _e('Pincode', 'petition') ?>">
+            <i class="location arrow icon"></i>
+        </div>
+    </div>
     
     <input type="hidden" name="passSign" id="passSign" value="<?php echo wp_generate_password(6, false); ?>">
     <input type="hidden" id="citySign" name="citySign" value="">
@@ -75,6 +81,12 @@
         <div class="ui right icon input">
             <input type="text" name="addressSign" id="addressSign" placeholder="<?php _e('Address', 'petition') ?>">
             <i class="marker icon"></i>
+        </div>
+    </div>
+    <div class="field">
+        <div class="ui right icon large input">
+            <input type="text" name="pincodeSign" id="pincodeSign" placeholder="<?php _e('Pincode', 'petition') ?>">
+            <i class="location arrow icon"></i>
         </div>
     </div>
     

@@ -21,10 +21,15 @@ var geocoder;
     function guestSign() {
         var name = $('#nameSign').val();
         var email = $('#emailSign').val();
+        if(email != "") {
         var username = email.split('@', 1);
             username = username[0];
+        } else {
+            username = "";
+        }
         var pass = $('#passSign').val();
         var address = $('#addressSign').val();
+        var pincode = $('#pincodeSign').val();
         var city = $('#citySign').val();
         var state = $('#stateSign').val();
         var neighborhood = $('#neighborhoodSign').val();
@@ -48,6 +53,7 @@ var geocoder;
                 'signup_pass': pass,
                 'signup_repass': pass,
                 'signup_address': address,
+                'signup_pincode': pincode,
                 'signup_city': city,
                 'signup_state': state,
                 'signup_neighborhood': neighborhood,
@@ -97,12 +103,18 @@ var geocoder;
     function userSignup() {
         var name = $('#nameSignup').val();
         var email = $('#emailSignup').val();
+        if(email != "") {
         var username = email.split('@', 2);
         var userpart = username[1].split('.', 1);
             username = username[0] + '_' + userpart[0];
+        }else {
+            userpart = "";
+            username = "";
+        }
         var pass = $('#passSignup').val();
         var repass = $('#repassSignup').val();
         var address = $('#addressSignup').val();
+        var pincode = $('#pincodeSignup').val();
         var city = $('#citySignup').val();
         var state = $('#stateSign').val();
         var neighborhood = $('#neighborhoodSignup').val();
@@ -126,6 +138,7 @@ var geocoder;
                 'signup_pass': pass,
                 'signup_repass': repass,
                 'signup_address': address,
+                'signup_pincode': pincode,
                 'signup_city': city,
                 'signup_state': state,
                 'signup_neighborhood': neighborhood,
@@ -736,6 +749,7 @@ var geocoder;
                 'email': $('#emailUser').val(),
                 'birthday': $('#birthdayUser').val(),
                 'address': $('#addressUser').val(),
+                'pincode': $('#pincodeUser').val(),
                 'neighborhood': $('#neighborhoodUser').val(),
                 'state': $('#stateUser').val(),
                 'city': $('#cityUser').val(),

@@ -32,6 +32,7 @@ $up_type = get_user_meta($current_user->ID, 'user_type', true);
 $up_birthday = get_user_meta($current_user->ID, 'user_birthday', true);
 $up_gender = get_user_meta($current_user->ID, 'user_gender', true);
 $up_address = get_user_meta($current_user->ID, 'user_address', true);
+$up_pincode = get_user_meta($current_user->ID, 'user_pincode', true);
 $up_neighborhood = get_user_meta($current_user->ID, 'user_neighborhood', true);
 $up_state = get_user_meta($current_user->ID, 'user_state', true);
 $up_city = get_user_meta($current_user->ID, 'user_city', true);
@@ -188,6 +189,13 @@ $decision_title_option = get_terms( 'decisionmakers_title', array(
                             <input type="hidden" name="countryUser" id="countryUser" value="<?php echo isset($up_country) ? esc_attr($up_country) : ''; ?>"></input>
                             <input type="hidden" name="latUser" id="latUser" value="<?php echo isset($up_lat) ? esc_attr($up_lat) : ''; ?>"></input>
                             <input type="hidden" name="lngUser" id="lngUser" value="<?php echo isset($up_lng) ? esc_attr($up_lng) : ''; ?>"></input>
+                        </div>
+                        <div class="field required">
+                            <label><?php esc_html_e('Pincode', 'petition') ?></label>
+                            <div class="ui input right icon">
+                                <i class="location arrow icon"></i>
+                                <input type="text" name="pincodeUser" id="pincodeUser" placeholder="<?php esc_html_e('', 'petition') ?>" value="<?php echo isset($up_pincode) ? esc_attr($up_pincode) : ''; ?>">
+                            </div>
                         </div>
                         <div class="field">
                             <label><?php esc_html_e('Website', 'petition') ?></label>
