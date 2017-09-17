@@ -85,7 +85,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                     </div>
                     <div class="disabled step" id="step-two">
                         <div class="content">
-                          <a href="#" class="title" data-tab="step-two"><?php _e('Receiver', 'petition') ?></a>
+                          <a href="#" class="title" data-tab="step-two"><?php _e('Invite Leader', 'petition') ?></a>
                         </div>
                     </div>
                     <div class="disabled step" id="step-three">
@@ -190,9 +190,9 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                     <!-- STEP TWO -->
                     <div class="ui tab step-two" data-tab="step-two">
                         <h2 class="ui header">
-                            <div class="content"><?php _e('Choose a decision maker', 'petition') ?>
+                            <div class="content"><?php _e('Choose a leader', 'petition') ?>
                                 <div class="sub header">
-                                    <p><?php _e('This is the person, organization, or group that can make a decision about your petition. We will send them updates on your petition and encourage a response.', 'petition') ?></p>
+                                    <p><?php _e('This is the person, organization, or group that can make a leader about your petition. We will send them updates on your petition and encourage a response.', 'petition') ?></p>
                                 </div>
                             </div>
                         </h2>
@@ -263,7 +263,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                             <div class="title">
                                 <h3 class="ui header">
                                 <i class="dropdown icon"></i>
-                                <?php _e('How to find the right decision maker?', 'petition') ?>
+                                <?php _e('How to find the right leader?', 'petition') ?>
                                 </h3>
                             </div>
                             <div class="content">
@@ -271,7 +271,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                                     <div class="item">
                                         <div class="content">
                                             <div class="header"><?php _e('Choose someone who can give you what you want', 'petition') ?></div>
-                                            <div class="description"><?php _e('You might need to do some research to find the right person who can make or influence the decision.', 'petition') ?></div>
+                                            <div class="description"><?php _e('You might need to do some research to find the right person who can make or influence the leader.', 'petition') ?></div>
                                         </div>
                                     </div>
                                     <div class="item">
@@ -283,7 +283,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                                     <div class="item">
                                         <div class="content">
                                             <div class="header"><?php _e('Choose someone you can work with', 'petition') ?></div>
-                                            <div class="description"><?php _e('Your petition is most likely to win by reaching an agreement with your decision maker.', 'petition') ?></div>
+                                            <div class="description"><?php _e('Your petition is most likely to win by reaching an agreement with your leader.', 'petition') ?></div>
                                         </div>
                                     </div>
                                 </div>

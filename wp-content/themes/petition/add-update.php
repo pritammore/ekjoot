@@ -52,6 +52,7 @@ get_header();
                 $status = get_post_meta($petition_id, 'petition_status', true);
                 $decisionmakers = get_post_meta($petition_id, 'petition_decisionmakers', true);
                 $decisionmakers = array_unique(explode(',', $decisionmakers));
+                $approvedleaders = get_post_meta($petition_id, 'lp_post_ids', true );
             }
         wp_reset_postdata();
         wp_reset_query();
@@ -62,13 +63,14 @@ get_header();
         $status = get_post_meta($petition_id, 'petition_status', true);
         $decisionmakers = get_post_meta($petition_id, 'petition_decisionmakers', true);
         $decisionmakers = array_unique(explode(',', $decisionmakers));
+        $approvedleaders = get_post_meta($petition_id, 'lp_post_ids', true );
     }
 
     $update_type = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : $type;
     $petition_status = isset($_GET['status']) ? $_GET['status'] : $status;
     $post_author_id = get_post_field( 'post_author', $petition_id );
 ?>
-<?php if ( $post_author_id == $current_user->ID || current_user_can('editor') || current_user_can('administrator') || in_array($current_user->ID, $decisionmakers)) { ?>
+<?php if ( $post_author_id == $current_user->ID || current_user_can('editor') || current_user_can('administrator') || in_array($current_user->ID, $decisionmakers) || (!empty($approvedleaders) && in_array($current_user->ID, $approvedleaders)) ) { ?>
     <div id="wrapper" class="wrapper">
         <div class="color silver">
             <div class="ui large secondary pointing grey menu" id="control-menu">
@@ -112,7 +114,9 @@ get_header();
                             wp_reset_postdata();
                             wp_reset_query();
                         ?>
+                        <?php if ( $post_author_id == $current_user->ID || current_user_can('administrator')) { ?>
                         <a href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Edit', 'petition') ?></a>
+                        <?php } ?>
                 </div>
             </div>
         </div>

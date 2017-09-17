@@ -2146,17 +2146,21 @@ var geocoder;
               image: 'avatar'
             },
             onSelect: function(result, response) {
+                console.log(result);
                 $(this).find('.decision-title').val(result.description)
                 $(this).find('.new_decisionmakers').val(result.author)
             }
         });
         $(this).find('.decision-title, .prompt').change(function() {
             var decisionmakers = $(this).next().val()
+            alert(decisionmakers);
             if (decisionmakers) { 
                 $(this).next().val('')
             }
         })
     });
+
+
 
     // SEARCH PETITION AUTOCOMPLETE
     var search_settings = $.parseJSON( services_vars.search_settings );
@@ -2504,4 +2508,46 @@ var geocoder;
     place_autocomplete('Signup');
     place_autocomplete('User');
 
+
+        
 })(jQuery);
+/*APPROVE DECISION MAKERS*/
+    function approve_decisionmakers(user_id,petition_id) {
+        
+        var ajaxURL = services_vars.admin_url + 'admin-ajax.php';
+        var security = jQuery('#securityInvitation').val();
+        
+        jQuery("#app_"+user_id).addClass('loading disabled');
+
+        jQuery.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: ajaxURL,
+            data: {
+                'action': 'approve_decisionmakers',
+                'user_id': user_id,
+                'petition_id': petition_id,
+                'security': security
+            },
+            success: function(data) {
+                jQuery("#app_"+user_id).removeClass('loading disabled');
+                jQuery("#col_app_"+user_id).remove();
+                if(jQuery('.app_leads .column').length<=0)
+                {
+                    jQuery('.app_leads').html('<div class="content"><div class="padding-15">No Approvals Pending.</div></div>');
+                }
+                var message = '';
+                console.log(data.message);
+                if (data.sent === true) {
+                    message = '<br><div class="ui success message" style="margin-top:5px;">' +
+                        '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
+                        '</div>';
+                } else {
+                    message = '<div class="ui error message" style="margin-top:5px;">' +
+                        '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
+                        '</div>';
+                }
+                jQuery('#approveinMessage').html(message);
+            }
+        });
+    }

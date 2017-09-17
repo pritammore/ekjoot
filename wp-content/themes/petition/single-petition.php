@@ -48,6 +48,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
     $lng = get_post_meta($petition_id, 'petition_lng', true);
     $decisionmakers = get_post_meta($petition_id, 'petition_decisionmakers', true);
     $decisionmakers = array_unique(explode(',', $decisionmakers));
+    $approvedleaders = get_post_meta($petition_id, 'lp_post_ids', true );
     $receiver = get_post_meta($petition_id, 'petition_receiver', true);
     $receiver = explode(',', $receiver);
     $position = get_post_meta($petition_id, 'petition_position', true);
@@ -101,7 +102,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
 ?>
 
 <div id="wrapper" class="wrapper read">
-    <?php if ( get_the_author_meta('ID') == $current_user->ID || current_user_can('administrator') ) { ?>
+    <?php if ( get_the_author_meta('ID') == $current_user->ID || current_user_can('administrator') || (!empty($approvedleaders) && in_array($current_user->ID, $approvedleaders)) ) { ?>
         <div class="color silver">
             <div class="ui large secondary pointing grey menu" id="control-menu">
                 <div class="ui container">
@@ -162,7 +163,9 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                             wp_reset_postdata();
                             wp_reset_query();
                         ?>
+                        <?php if ( get_the_author_meta('ID') == $current_user->ID || current_user_can('administrator')) { ?>
                         <a href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Edit', 'petition') ?></a>
+                        <?php } ?>
                 </div>
             </div>
         </div>
@@ -204,6 +207,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                     <?php if ($user_country || $user_state || $user_city) { ?>
                     <span class="text grey"><?php echo ' · ' . ($user_city ? esc_html($user_city) . ', ' : '') . ($user_state ? esc_html($user_state) . ', ' : '') . ($user_country ? esc_html($user_country) : '') ?></span>
                     <?php } ?>
+                    <?php echo $petition_id; ?>
                 </div>
             </div>
         </div>
@@ -281,7 +285,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                         <!-- MAIN CONTENT PETITION -->
                         <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                             <div class="entry-content">
-                                <?php the_content(); ?>
+                                <?php the_content(); ?>         <!-- Here is the main content of the post. Add Show more link -->
                                 <div class="clearfix"></div>
                                 <?php wp_link_pages( array(
                                     'before'      => '<div class="page-links">',
@@ -393,6 +397,11 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                     } ?>
             </div>
             <div class="six wide tablet six wide computer column tablet computer only" >
+                <!-- Here is the Leaders supporting this issue box must come. -->
+                <h2><i class="user icon"></i><span class="fav_no"></span><?php  _e('Leaders Supporting this petition', 'petition') ?></h2>
+                <?php the_widget( 'LP_Widget' ); //get_sidebar(); ?>
+                <br>
+
                 <!-- SIGN AND SHARE PETITION -->
                 <div class="ui sticky" id="sign-sticky">
                     <div class="ui basic vertical segment">

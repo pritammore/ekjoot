@@ -173,7 +173,9 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                             wp_reset_query();
                         ?>
                         <a href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Update', 'petition') ?></a>
+                        <?php if ( $post_author_id == $current_user->ID || current_user_can('administrator')) { ?>
                         <a href="#" class="active item"><?php _e('Edit', 'petition') ?></a>
+                        <?php } ?>
                 </div>
             </div>
         </div>

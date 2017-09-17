@@ -44,6 +44,33 @@ if( !function_exists('conikal_admin_petition_notification') ):
     }
 endif;
 
+/*
+** Generate UIC [ Unique Issue Code ] for Petition
+*  Pattern will be CityCode+PetitionID : UserFirstNameChar+UserLastNameChar+PetitionID : EK+PetitionID
+*/
+/*if( !function_exists('conikal_get_UIC') ): 
+    function conikal_get_UIC($petition_id, $user_id, $city) {
+
+        if ($city != ""){
+            echo $city.$petition_id;
+            break;
+        }
+        else {
+
+            $user = get_user_by( 'user_id', $user_id );
+            if (($user->first_name != '' && $user->last_name != ''){
+                echo strtoupper(substr($user->first_name, 0, 1)).strtoupper(substr($user->last_name, 0, 1)).$petition_id;
+                break;
+            }
+            else{
+                echo 'EK'.$petition_id;
+                break;
+            }
+
+        }
+    }
+endif;*/
+
 /**
  * Save petition
  */
@@ -196,10 +223,32 @@ if( !function_exists('conikal_save_petition') ):
         } else {
             $prop_id = wp_insert_post($prop);
             update_post_meta($prop_id, 'petition_letter', $title);
+
+            /* Setting UIC CODE */
+            /*if ($city != "") {
+                $UIC = strtoupper(substr($city, 0, 2)).$prop_id;
+            }
+            else 
+            {
+                $user = get_user_by( 'ID', $user_id );
+                if (($user->first_name != '') && ($user->last_name != ''))
+                {
+                    $UIC = strtoupper(substr($user->first_name, 0, 1)).strtoupper(substr($user->last_name, 0, 1)).$prop_id;
+                }
+                else
+                {
+                    $UIC = 'EK'.$prop_id;
+                }
+            }
+            $UIC = 'EK'.$prop_id;
+            update_post_meta($prop_id, 'petition_uic', $UIC);*/
+            /* ENDS */
+            
         }
+
         wp_set_object_terms($prop_id, array(intval($category)), 'petition_category');
         wp_set_object_terms($prop_id, $topics, 'petition_topics');
-        
+
         update_post_meta($prop_id, 'petition_city', $city);
         update_post_meta($prop_id, 'petition_lat', $lat);
         update_post_meta($prop_id, 'petition_lng', $lng);

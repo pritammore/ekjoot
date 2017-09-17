@@ -58,6 +58,15 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                 $lng = get_post_meta($edit_id, 'petition_lng', true);
                 $decisionmakers = get_post_meta($edit_id, 'petition_decisionmakers', true);
                 $decisionmakers = array_unique(explode(',', $decisionmakers));
+                $approvedleaders = get_post_meta($edit_id, 'lp_post_ids', true );
+                $approve_decisionmakers = get_post_meta( $edit_id, 'lp_approve_decisioners', true );
+                // echo "<pre>"; print_r($decisionmakers); echo "</pre>";
+                // echo "<pre>"; print_r($approve_decisionmakers); echo "</pre>";
+                if(!empty($approve_decisionmakers))
+                {
+                    $decisionmakers = array_values(array_diff($decisionmakers, $approve_decisionmakers));
+                }
+                // echo "<pre>"; print_r($decisionmakers); echo "</pre>";exit;
                 $receiver = get_post_meta($edit_id, 'petition_receiver', true);
                 $receiver = explode(',', $receiver);
                 $position = get_post_meta($edit_id, 'petition_position', true);
@@ -88,7 +97,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
     }
     $post_author_id = get_post_field( 'post_author', $edit_id );
 ?>
-<?php if ( $edit_id != '' && ($post_author_id == $current_user->ID || current_user_can('editor') || current_user_can('administrator')) ) { ?>
+<?php if ( $edit_id != '' && ($post_author_id == $current_user->ID || current_user_can('editor') || current_user_can('administrator')) || ( !empty($approvedleaders) && in_array($current_user->ID, $approvedleaders)) ) { ?>
     <div id="wrapper" class="wrapper">
         <div class="color silver">
             <div class="ui large secondary pointing grey menu" id="control-menu">
@@ -132,7 +141,9 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                             wp_reset_postdata();
                             wp_reset_query();
                         ?>
+                        <?php if ( $post_author_id == $current_user->ID || current_user_can('administrator')) { ?>
                         <a href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Edit', 'petition') ?></a>
+                        <?php } ?>
                 </div>
             </div>
         </div>
@@ -294,7 +305,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
             </div>
             <?php if( isset($decisionmakers[1]) ) { ?>
             <div class="ui segment">
-                <div class="ui dividing header widget-title"><?php esc_html_e('Decision Makers', 'petition'); ?></div>
+                <div class="ui dividing header widget-title"><?php esc_html_e('Invite Leaders', 'petition'); ?></div>
                 <div class="ui four column stackable grid">
                     <?php foreach ($decisionmakers as $id) { 
                         if ($id) {
@@ -345,7 +356,64 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                 </div>
             </div>
             <?php } ?>
+            <!-- APPROVE DECISION MAKERS -->
+            <div class="ui segment">
+                <div class="ui dividing header widget-title"><?php esc_html_e('Approve Leaders', 'petition'); ?></div>
+                <div class="ui four column stackable grid app_leads">
+                <?php if( isset($approve_decisionmakers[0]) ) { ?>
+                    <?php foreach ($approve_decisionmakers as $id) { 
+                        if ($id) {
+                            $user = get_userdata($id);
+                            $user_id = $user->ID;
+                            $user_name = $user->display_name;
+                            $user_email = $user->user_email;
+                            $user_address = get_user_meta($user_id, 'user_address', true);
+                            $user_neigborhood = get_user_meta($user_id, 'user_neigborhood', true);
+                            $user_city = get_user_meta($user_id, 'user_city', true);
+                            $user_state = get_user_meta($user_id, 'user_state', true);
+                            $user_country = get_user_meta($user_id, 'user_country', true);
+                            $user_lat = get_user_meta($user_id, 'user_lat', true);
+                            $user_lng = get_user_meta($user_id, 'user_lng', true);
+                            $user_gender = get_user_meta($user_id, 'user_gender', true);
+                            $user_birthday = get_user_meta($user_id, 'user_birthday', true);
+                            $user_avatar = $user->avatar;
 
+                            $user_decisionmakers = get_user_meta($user_id, 'user_decision', true);
+                            $decision_title =  wp_get_post_terms($user_decisionmakers, 'decisionmakers_title', true);
+                            $decision_title = ($decision_title ? $decision_title[0]->name : '');
+                            $organization =  wp_get_post_terms($user_decisionmakers, 'decisionmakers_organization', true);
+                            $organization = ($organization ? $organization[0]->name : '');
+                            
+                            if (!$user_avatar) {
+                                $user_avatar = get_template_directory_uri().'/images/avatar.svg';
+                            }
+                            $user_avatar = conikal_get_avatar_url( $user_id, array('size' => 35, 'default' => $user_avatar) );
+                    ?>
+                    <div class="column" id="col_app_<?php echo $user_id; ?>">
+                        <div class="ui fluid card">
+                            <div class="content">
+                                <img class="right floated mini ui image" src="<?php echo esc_attr($user_avatar) ?>">
+                                <div class="header">
+                                    <a href="<?php echo get_author_posts_url($user_id) ?>" data-bjax><?php echo esc_html($user_name) ?></a>
+                                </div>
+                                <div class="meta">
+                                    <?php echo esc_html($decision_title) . __(' of ', 'petition') . esc_html($organization) ?>
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <div class="ui primary small fluid button approve-responsive" id="app_<?php echo $user_id; ?>" onclick="approve_decisionmakers('<?php echo $user_id; ?>','<?php echo $edit_id; ?>');"><i class="send icon"></i><?php esc_html_e('Approve', 'petition') ?></div>
+                            </div>
+                      </div>
+                    </div>
+                    <?php }
+                    } ?>
+                 <?php } else { ?>
+                    <div class="content"><div class="padding-15">No Approvals Pending.</div></div>
+                 <?php } ?>
+                </div>
+                <div class="respon-message" id="approveinMessage" style="width: 24%;"></div>
+            </div>
+           
             <div class="ui grid">
                 <div class="sixteen wide mobile wide eight wide tablet eight wide computer column">
                     <div class="ui segment">

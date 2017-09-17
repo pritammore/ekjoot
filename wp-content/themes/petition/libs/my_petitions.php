@@ -173,4 +173,71 @@ endif;
 add_action( 'wp_ajax_nopriv_conikal_load_my_petitions', 'conikal_load_my_petitions' );
 add_action( 'wp_ajax_conikal_load_my_petitions', 'conikal_load_my_petitions' );
 
+
+if( !function_exists('approve_decisionmakers') ): 
+    function approve_decisionmakers() {
+        // check_ajax_referer('approve_decisionmakers_nonce', 'security');
+        $bErrorFound = true;
+        $petition_id = isset($_POST['petition_id']) ? sanitize_text_field($_POST['petition_id']) : '';
+        $user_id = isset($_POST['user_id']) ? sanitize_text_field($_POST['user_id']) : '';
+        $current_user_role = get_user_meta( wp_get_current_user()->ID,'user_type',true);
+
+        // Checking for current user if Current user is the Author of petition 
+        // OR Leader or decision maker or Admin then only proceed.
+        
+        global $current_user;
+        get_currentuserinfo();
+        $post_author_id = get_post_field( 'post_author', $petition_id );
+
+        if($petition_id != '' || $user_id != '') {
+            $bErrorFound = false;
+        }
+
+        if (($current_user->ID == $post_author_id) || $current_user_role == 'decisioner' || current_user_can('administrator'))  {
+            $bErrorFound = false;
+        }
+
+        if(!$bErrorFound) :
+            $sign_key = 'lp_post_ids';
+            if( get_post_meta( $petition_id, $sign_key, true ) !== null ) {
+                $value = get_post_meta( $petition_id, $sign_key, true );
+            }
+
+            if( $value ) {
+                $echo = $value;
+                array_push( $echo, $user_id);
+            }
+            else {
+                $echo = array( $user_id );
+            }
+            update_post_meta( $petition_id, $sign_key, $echo );
+
+            $sign_key = 'lp_approve_decisioners';
+            if( get_post_meta( $petition_id, $sign_key, true ) !== null ) {
+                $value = get_post_meta( $petition_id, $sign_key, true );
+            }
+
+            if( $value ) {
+                if(($key = array_search($user_id, $value))!==false)
+                {
+                    unset($value[$key]);
+                    $echo = array_values($value);
+                    if(!empty($echo))
+                        update_post_meta( $petition_id, 'lp_approve_decisioners', $echo );
+                    else
+                        delete_post_meta( $petition_id, 'lp_approve_decisioners' );
+                }
+            }
+            else {
+                $echo = array( $user_id );
+                delete_post_meta( $petition_id, 'lp_approve_decisioners', $echo );
+            }
+            
+            echo json_encode(array('sent'=>true, 'message' => 'Leader Approved Successfully.'));
+        endif;
+        die();
+    }
+endif;
+add_action( 'wp_ajax_nopriv_approve_decisionmakers', 'approve_decisionmakers' );
+add_action( 'wp_ajax_approve_decisionmakers', 'approve_decisionmakers' );
 ?>
