@@ -76,7 +76,14 @@ $decision_title_option = get_terms( 'decisionmakers_title', array(
                         <div id="decision_status">
                             <div class="ui warning message">
                                 <i class="warning icon"></i>
-                                <?php _e('Decision maker account confirmation is pending approval!', 'petition') ?>
+                                <?php _e('Leader account confirmation is pending approval!', 'petition') ?>
+                            </div>
+                        </div>
+                    <?php } else if ($decision_status == 'trash') { ?>
+                        <div id="decision_status">
+                            <div class="ui warning message">
+                                <i class="warning icon"></i>
+                                <?php _e('Leader account confirmation is Rejected!', 'petition') ?>
                             </div>
                         </div>
                     <?php } ?>
@@ -93,7 +100,7 @@ $decision_title_option = get_terms( 'decisionmakers_title', array(
                             <div class="eight wide field">
                                 <div class="typeUser ui radio checkbox fluid <?php echo (isset($up_type) && $up_type == 'decisioner' ? 'primary' : 'grey'); ?> button" id="decisioner">
                                     <input type="radio" name="typeUser" tabindex="0" class="hidden" value="decisioner" <?php echo (isset($up_type) && $up_type == 'decisioner' ? 'checked' : ''); ?>>
-                                    <label style="color: #fff"><?php esc_html_e('Decision Maker', 'petition') ?></label>
+                                    <label style="color: #fff"><?php esc_html_e('Leader', 'petition') ?></label>
                                 </div>
                             </div>
                         </div>

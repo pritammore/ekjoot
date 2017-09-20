@@ -81,8 +81,15 @@ class LP_Widget extends WP_Widget {
 	    echo "</div></div></div>";
 
 	    $html = "";
+	    $petition_id = get_the_ID();
 		$um_user_role = get_user_meta( wp_get_current_user()->ID,'user_type',true);
-		if( is_user_logged_in() && get_post_type() == "petition" && ($um_user_role == 'decisioner' || current_user_can('administrator'))) {
+		$status = get_post_meta($petition_id, 'petition_status', true);
+		$goal = get_post_meta($petition_id, 'petition_goal', true);
+    	$sign_num = get_post_meta($petition_id, 'petition_sign', true);
+    	$sign_num = isset($sign_num) ? intval($sign_num) : 0;
+
+		if( is_user_logged_in() && get_post_type() == "petition" && ( $status == 0 ) && ( $sign_num < $goal ) ) {
+
 			$lp_post_ids = get_post_meta(get_the_id(), 'lp_post_ids', true );
 			$ids = $lp_post_ids;
 			// echo "<pre>"; echo "IDS:"; print_r($ids); echo "<pre>"; echo "lp_approve_decisioners: "; print_r($lp_approve_decisioners); echo "</pre>"; echo "Current:  ". wp_get_current_user()->ID; 
