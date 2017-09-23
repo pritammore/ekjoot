@@ -192,9 +192,9 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
 
         <!-- TITLE AND AUTHOR OF PETITION -->
         <div class="ui basic padded vertical segment petition-title-block">
-            <div class="ui center aligned header petition-title">
+            <div class="ui left aligned header petition-title">
                 <div class="content">
-                    <div class="sub header"><i class="send icon"></i><?php _e('Petition to', 'petition') ?> <strong><?php echo esc_html($receiver[0]) ?></strong></div>
+                    <!-- <div class="sub header"><i class="send icon"></i><?php //_e('Petition to', 'petition') ?> <strong><?php //echo esc_html($receiver[0]) ?></strong></div> -->
                     <?php echo esc_html($title) ?>
                 </div>
             </div>
@@ -207,7 +207,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                     <?php if ($user_country || $user_state || $user_city) { ?>
                     <span class="text grey"><?php echo ' · ' . ($user_city ? esc_html($user_city) . ', ' : '') . ($user_state ? esc_html($user_state) . ', ' : '') . ($user_country ? esc_html($user_country) : '') ?></span>
                     <?php } ?>
-                    <?php echo $petition_id; ?>
+                    <?php //echo $petition_id; ?>
                 </div>
             </div>
         </div>
