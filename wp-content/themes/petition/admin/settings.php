@@ -2579,7 +2579,7 @@ if( !function_exists('conikal_settings_page') ):
 
         <div class="petition-wrapper">
             <div class="petition-leftSide">
-                <div class="petition-logo"><img src="<?php echo get_template_directory_uri() . '/admin/images/logo.svg'; ?>" /></div>
+                <div class="petition-logo"><img src="<?php echo get_template_directory_uri() . '/admin/images/logo.png'; ?>" /></div>
                 <ul class="petition-tabs">
                     <li class="<?php echo ($active_tab == 'general_settings' ? esc_html('petition-tab-active') : '') ?>">
                         <a href="themes.php?page=admin/settings.php&tab=general_settings">
