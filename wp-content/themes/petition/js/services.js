@@ -2153,7 +2153,6 @@ var geocoder;
         });
         $(this).find('.decision-title, .prompt').change(function() {
             var decisionmakers = $(this).next().val()
-            alert(decisionmakers);
             if (decisionmakers) { 
                 $(this).next().val('')
             }
