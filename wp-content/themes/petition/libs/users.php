@@ -484,7 +484,7 @@ if( !function_exists('conikal_social_signup') ):
                 update_user_meta($user_id, 'user_birthday', $birthday);
                 update_user_meta($user_id, 'user_gender', $gender);
                 update_user_meta($user_id, 'user_cover', $cover);
-
+                update_user_meta($user_id, 'user_type', 'petitioner');
                 if(is_wp_error($user_id)) {
                     // social user signup failed
                 }
@@ -497,7 +497,7 @@ if( !function_exists('conikal_social_signup') ):
                 update_user_meta($user_id, 'user_birthday', $birthday);
                 update_user_meta($user_id, 'user_gender', $gender);
                 update_user_meta($user_id, 'user_cover', $cover);
-
+                update_user_meta($user_id, 'user_type', 'petitioner');
                 if(is_wp_error($user_id)) {
                     // social user signup failed
                 }
