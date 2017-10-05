@@ -1800,7 +1800,7 @@ var geocoder;
                             '<div class="sixteen wide column">' +
                             '<div class="ui header list-petition-title">' +
                             '<div class="content">' +
-                            '<div class="sub header truncate"><i class="send icon"></i>' + services_vars.petition_to + ' ' + petition.receiver + '</div>' +
+                            '<div class="sub header truncate"><i class="filter icon"><a href="' + petition.link + '" data-bjax></i>' + ' ' + 'EK' + petition.id + '</a></div>' +
                             '<a href="' + petition.link + '" data-bjax>' + petition.title + '</a>' +
                             '</div>' +
                             '</div>' +
