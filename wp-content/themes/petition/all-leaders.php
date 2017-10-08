@@ -175,12 +175,12 @@ if($decisionmakers->have_posts()) {
                     <div class="ui segments petition-list-card">
                         <div class="ui segment">
                             <div class="ui grid">
-                                <div class="sixteen wide mobile six wide tablet six wide computer column" style="width:25% !important;">
+                                <div class="sixteen wide mobile six wide tablet six wide computer column" style="width:30% !important;float: left">
                                     <a class="ui fluid" href="<?php echo esc_url($up_link) ?>" target="_blank" data-bjax>
                                         <img class="ui fluid image" src="<?php echo esc_url($avatar) ?>" alt="<?php echo esc_attr($title) ?>">
                                     </a>
                                 </div>
-                                <div class="sixteen wide mobile ten wide tablet ten wide computer column">
+                                <div class="sixteen wide mobile ten wide tablet ten wide computer column" style="width:70% !important;float: left">
                                     <div class="petition-content">
                                         <div class="ui grid">
                                             <div class="sixteen wide column">
