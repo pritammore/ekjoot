@@ -16,6 +16,7 @@ $fb_app_id = isset($conikal_auth_settings['conikal_fb_id_field']) ? $conikal_aut
         !is_page_template('signed-petitions.php') && 
         !is_page_template('bookmark-petitions.php') && 
         !is_page_template('homepage.php') && 
+        !is_page_template('all-issues.php') && 
         !is_author() ) { 
         get_template_part('templates/app_footer');
     }
