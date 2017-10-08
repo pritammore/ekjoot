@@ -94,6 +94,7 @@ $users = get_users();
                         $thumb = get_post_meta($id, 'petition_thumb', true);
                         $thumb = conikal_video_thumbnail($thumb);
                         $status = get_post_meta($id, 'petition_status', true);
+                        $petition_uic = get_post_meta($id, 'petition_uic', true);
 
                         $user_avatar = get_the_author_meta('avatar' , $author_id);
                         if($user_avatar != '') {
@@ -129,7 +130,7 @@ $users = get_users();
                                             <div class="sixteen wide column">
                                                 <div class="ui header list-petition-title">
                                                     <div class="content">
-                                                        <div class="sub header truncate"><i class="filter icon"></i><a href="<?php echo esc_url($link) ?>" data-bjax> <?php echo esc_html('EK'.$id) ?></a></div>
+                                                        <div class="sub header truncate"><i class="filter icon"></i><a href="<?php echo esc_url($link) ?>" data-bjax> <?php echo esc_html($petition_uic) ?></a></div>
                                                         <a href="<?php echo esc_url($link) ?>" data-bjax><?php echo esc_html($title) ?></a>
                                                     </div>
                                                 </div>

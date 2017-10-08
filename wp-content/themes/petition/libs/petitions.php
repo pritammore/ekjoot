@@ -110,6 +110,8 @@ if( !function_exists('conikal_load_recent_petitions') ):
                 $thumb = get_post_meta($id, 'petition_thumb', true);
                 $thumb = conikal_video_thumbnail($thumb);
                 $status = get_post_meta($id, 'petition_status', true);
+                $petition_uic = get_post_meta($id, 'petition_uic', true);
+
                 $author_link = get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ));
 
                 $user_avatar = get_the_author_meta('avatar' , get_the_author_meta('ID'));
@@ -160,7 +162,8 @@ if( !function_exists('conikal_load_recent_petitions') ):
                         'author_link' => $author_link,
                         'sign' => $sign,
                         'sign_fomated' => $sign_fomated,
-                        'sign_compact' => $sign_compact
+                        'sign_compact' => $sign_compact,
+                        'uic' => $petition_uic
                     );
 
                 $arrayPetition = (object) $arrayPetition;
