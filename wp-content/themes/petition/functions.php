@@ -586,6 +586,30 @@ if( !function_exists('conikal_get_excerpt_by_id') ):
 endif;
 
 
+// CUSTOM EXCERTP LENGTH
+if( !function_exists('conikal_custom_biographical_length') ): 
+    function conikal_custom_biographical_length( $length ) {
+        return 30;
+    }
+endif;
+add_filter( 'biographical_length', 'conikal_custom_biographical_length', 999 );
+
+if( !function_exists('conikal_get_biographical_by_id') ): 
+    function conikal_get_biographical_by_id($user_id, $biographical_length = 30) {
+        $the_biographical = get_user_meta($user_id, 'description', true);
+        $the_biographical = strip_tags(strip_shortcodes($the_biographical));
+        $words = explode(' ', $the_biographical, $biographical_length + 1);
+
+        if(count($words) > $biographical_length) :
+            array_pop($words);
+            array_push($words, '...');
+            $the_biographical = implode(' ', $words);
+        endif;
+
+        return $the_biographical;
+    }
+endif;
+
 // SORT ARRAY BY VALUE
 function conikal_array_sort($array, $sortby, $direction='asc') {
      
