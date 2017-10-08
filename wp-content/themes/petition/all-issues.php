@@ -28,17 +28,7 @@ $users = get_users();
     <div class="page-content"> -->
 <br/><br/><br/>
 <div class="ui container mobile-full">
-    <div class="ui centered grid">
-            <div class="sixteen wide mobile sixteen wide computer column">
-                <div class="field left"><label>Search by UIC / Title / Author / Catergories / Tags</label></div>
-                <div class="ui hidden divider"></div>
-                <div class="ui fluid category search petitions-search focus">
-                    <div class="ui icon fluid input">
-                      <input class="prompt search-input" type="text" placeholder="<?php esc_html_e('UIC Code / Title', 'petition') ?>">
-                      <i class="search link icon"></i>
-                    </div>
-                </div>
-        </div>
+    <div class="ui grid">    
     <br/>
     <div class="ui grid mobile-full">
         <?php if($sidebar_position == 'left') { ?>
@@ -46,8 +36,22 @@ $users = get_users();
             <?php get_sidebar(); ?>
         </div>
         <?php } ?>
+
+        <div class="sixteen wide mobile sixteen wide computer column">
+            <div class="ui hidden divider"></div>
+            <div class="field left"><h3 class="ui header widget-title">Support an Issue. Enter the Unique Issue Code here.</h3></div>
+            <!-- <div class="ui hidden divider"></div> -->
+            <div class="ui fluid category search petitions-search focus">
+                <div class="ui icon fluid input">
+                  <input class="prompt search-input" type="text" placeholder="<?php esc_html_e('UIC Code / Title / Catergory', 'petition') ?>">
+                  <i class="search link icon"></i>
+                </div>
+            </div>
+            <!-- <div class="ui hidden divider"></div> -->
+        </div>
+
         <div class="sixteen wide mobile eleven wide computer column mobile-full" id="main-content">
-            <div class="ui sticky" id="tab-sticky">
+            <div class="ui sticky" id="tab-sticky" style="margin-top: 0px;">
                 <div class="ui pointing secondary menu" id="petition-tab">
                     <a class="item active" data-tab="newsfeed" id="newsfeed"><?php echo ( !is_user_logged_in() ? '<i class="fire icon"></i>' . __('Featured', 'petition') : '<i class="newspaper icon"></i>' . __('Feed', 'petition') ) ?></a>
                     <a class="item" data-tab="trending" id="trending"><i class="lightning icon"></i><?php _e('Trending', 'petition') ?></a>
