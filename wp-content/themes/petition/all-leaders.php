@@ -212,7 +212,7 @@ if($decisionmakers->have_posts()) {
                                                     <div class="col-sm-6">
                                                         <div class="">
                                                             <strong>
-                                                                <?php esc_html_e('Organization', 'Organization') ?> : 
+                                                                <?php esc_html_e('Title', 'Title') ?> : 
                                                                 <?php echo ($decision_title ? esc_html($decision_title):''); ?>
                                                             </strong>
                                                         </div>
@@ -222,7 +222,7 @@ if($decisionmakers->have_posts()) {
                                                     <div class="col-sm-6">
                                                         <div class="">
                                                             <strong>
-                                                                <?php esc_html_e('Title', 'Title') ?> : 
+                                                                <?php esc_html_e('Organization', 'Organization') ?> : 
                                                                 <?php echo ($decision_organization ? esc_html($decision_organization):''); ?>
                                                             </strong>
                                                         </div>
