@@ -538,22 +538,26 @@ if( !function_exists('conikal_update_user_profile') ):
         $re_password = isset($_POST['re_password']) ? sanitize_text_field($_POST['re_password']) : '';
         $avatar = isset($_POST['avatar']) ? sanitize_text_field($_POST['avatar']) : '';
         $avatar_id = isset($_POST['avatar_id']) ? sanitize_text_field($_POST['avatar_id']) : '';
+        $mobile = isset($_POST['mobile']) ? sanitize_text_field($_POST['mobile']) : '';
+        $hidemobile = isset($_POST['hidemobile']) ? sanitize_text_field($_POST['hidemobile']) : '';
         $user_data = get_userdata($user_id);
         $current_email = $user_data->user_email;
 
         $decision_maker = isset($_POST['decision_id']) ? sanitize_text_field($_POST['decision_id']) : '';
         $decision_title = isset($_POST['decision_title']) ? sanitize_text_field($_POST['decision_title']) : '';
         $decision_organization = isset($_POST['decision_organization']) ? sanitize_text_field($_POST['decision_organization']) : '';
+        $ekwhomi = isset($_POST['ekwhomi']) ? sanitize_text_field($_POST['ekwhomi']) : '';
+        $ekorganizationname = isset($_POST['ekorganizationname']) ? sanitize_text_field($_POST['ekorganizationname']) : '';
 
-        if(empty($first_name) || empty($last_name) || empty($gender) || empty($email) || empty($birthday) || empty($address) || empty($pincode)) {
+        if(empty($first_name) || empty($last_name) || empty($gender) || empty($email) || empty($birthday) || empty($address) || empty($pincode) || empty($bio) || empty($mobile)) {
             echo json_encode(array('signedup'=>false, 'message'=>__('Required form fields are empty!','petition')));
             exit();
         }
         if($user_type == 'decisioner') {
-          if(empty($decision_title) || empty($decision_organization)) {
+          if(empty($decision_title) || empty($decision_organization) || empty($ekwhomi) || empty($ekorganizationname)) {
             echo json_encode(array('signedup'=>false, 'message'=>__('Required form fields are empty!','petition')));
             exit();
-          } 
+          }
         }
         if(!is_email($email)) {
             echo json_encode(array('signedup'=>false, 'message'=>__('Invalid Email!','petition')));
@@ -579,6 +583,14 @@ if( !function_exists('conikal_update_user_profile') ):
         }
         if($password != '' && $password != $re_password) {
             echo json_encode(array('reset'=>false, 'message'=>__('The passwords do not match!','petition')));
+            exit();
+        }
+        if($bio != '' && strlen($bio) >= 1000) {
+            echo json_encode(array('signedup'=>false, 'message'=>__('Biographical info must not exceed 1000 Characters! You have written ' . strlen($bio) . ' characters','petition')));
+            exit();
+        }
+        if (filter_var($mobile, FILTER_VALIDATE_INT, $options) == FALSE) {
+            echo json_encode(array('signedup'=>false, 'message'=>__('Invalid Mobile Number!','petition')));
             exit();
         }
         $images = array('', '');
@@ -630,6 +642,8 @@ if( !function_exists('conikal_update_user_profile') ):
 
             wp_set_object_terms($decision_id, array(intval($decision_title)), 'decisionmakers_title');
             wp_set_object_terms($decision_id, $decision_organization, 'decisionmakers_organization');
+            update_user_meta($user_id, 'user_ekwhomi', $ekwhomi);
+            update_user_meta($user_id, 'user_ekorganizationname', $ekorganizationname);
         } else {
             wp_delete_post($decision_maker);
         }
@@ -661,6 +675,8 @@ if( !function_exists('conikal_update_user_profile') ):
         update_user_meta($user_id, 'user_country', $country);
         update_user_meta($user_id, 'user_lat', $lat);
         update_user_meta($user_id, 'user_lng', $lng);
+        update_user_meta($user_id, 'user_mobile', $mobile);
+        update_user_meta($user_id, 'user_hidemobile', $hidemobile);
 
         wp_update_user($user_data);
 

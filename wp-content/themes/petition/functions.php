@@ -147,7 +147,8 @@ if( !function_exists('petition_scripts') ):
         }
         //wp_enqueue_script('conikal-services', get_template_directory_uri().'/js/services.min.js',array('jquery'), '1.0', true);
         wp_enqueue_script('conikal-services', get_template_directory_uri().'/js/services.js',array('jquery'), '1.0', true);
-        wp_enqueue_script('conikal-theming', get_template_directory_uri().'/js/theming.min.js',array('jquery'), '1.0', true);
+        //wp_enqueue_script('conikal-theming', get_template_directory_uri().'/js/theming.min.js',array('jquery'), '1.0', true);
+        wp_enqueue_script('conikal-theming', get_template_directory_uri().'/js/theming.js',array('jquery'), '1.0', true);
         $search_country = isset($_GET['search_country']) ? sanitize_text_field($_GET['search_country']) : '';
         $search_state = isset($_GET['search_state']) ? sanitize_text_field($_GET['search_state']) : '';
         $search_city = isset($_GET['search_city']) ? sanitize_text_field($_GET['search_city']) : '';

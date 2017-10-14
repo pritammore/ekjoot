@@ -730,6 +730,8 @@ var geocoder;
         var ajaxURL = services_vars.admin_url + 'admin-ajax.php';
         var security = $('#securityUserProfile').val();
         var typeUser = $('input[name="typeUser"]:checked').val();
+        var hidemobile = $('input[name="hidemobile"]:checked').val();
+        var ekwhomi = $('input[name="ekwhomi"]:checked').val();
         $('#up_response').empty();
         $('#updateProfileBtn').addClass('loading disabled');
 
@@ -765,6 +767,10 @@ var geocoder;
                 'decision_id': $('#decision_id').val(),
                 'decision_title': $('#titleUser').val(),
                 'decision_organization': $('#organizationUser').val(),
+                'mobile': $('#mobile').val(),
+                'hidemobile': hidemobile,
+                'ekwhomi': ekwhomi,
+                'ekorganizationname': $('#ekorganizationname').val(),
                 'security': security
             },
             success: function(data) {

@@ -39,6 +39,12 @@ $up_city = get_user_meta($current_user->ID, 'user_city', true);
 $up_country = get_user_meta($current_user->ID, 'user_country', true);
 $up_lat = get_user_meta($current_user->ID, 'user_lat', true);
 $up_lng = get_user_meta($current_user->ID, 'user_lng', true);
+$up_mobile = get_user_meta($current_user->ID, 'user_mobile', true);
+$up_hidemobile = get_user_meta($current_user->ID, 'user_hidemobile', true);
+if($up_hidemobile == '') $up_hidemobile = 'yes';
+$up_ekwhomi = get_user_meta($current_user->ID, 'user_ekwhomi', true);
+if($up_ekwhomi == '') $up_ekwhomi = 'individual';
+$up_ekorganizationname = get_user_meta($current_user->ID, 'user_ekorganizationname', true);
 $avatar_default = get_template_directory_uri().'/images/avatar.svg';
 $up_avatar = isset($user_meta['avatar']) ? $user_meta['avatar'] : $avatar_default;
 
@@ -155,7 +161,7 @@ $decision_title_option = get_terms( 'decisionmakers_title', array(
                                 <?php } ?>
                             </div>
                             <div class="eight wide field required">
-                                <label><?php _e('Office or Organization', 'petition'); ?></label>
+                                <label><?php _e('Office or Organization Category', 'petition'); ?></label>
                                 <div class="ui fluid multiple search selection dropdown" id="organization-search">
                                     <input name="organizationUser" id="organizationUser" type="hidden">
                                     <i class="dropdown icon"></i>
@@ -166,6 +172,32 @@ $decision_title_option = get_terms( 'decisionmakers_title', array(
                                 <?php if(isset($decision_organization)) { ?>
                                     <input type="hidden" id="decision_organization_name" value="<?php echo isset($decision_organization) ? esc_attr($decision_organization) : ''; ?>">
                                 <?php } ?>
+                            </div>
+                        </div>
+                        <div class="fields ui info <?php echo isset($decision_status) && $decision_status == 'publish' ? 'info' : 'warning'; ?> message"  id="decision-custom-fields" style="padding: 0.8em 0.3em; <?php echo (isset($up_type) && $up_type == 'decisioner' ? 'display: flex' : 'display: none'); ?>">
+                            <div class="seven wide field required">
+                                <label><?php esc_html_e('I am / We are ', 'petition'); ?></label>
+                                <div class="ui fields" style="padding-top: 10px;">
+                                    <div class="seven wide field">
+                                        <div class="ui radio checkbox">
+                                            <input type="radio" name="ekwhomi" tabindex="0" class="hidden" value="individual" <?php echo (isset($up_ekwhomi) && $up_ekwhomi == 'individual' ? 'checked' : ''); ?>>
+                                            <label><?php esc_html_e('Individual', 'petition') ?></label>
+                                        </div>
+                                    </div>
+                                    <div class="seven wide field">
+                                        <div class="ui radio checkbox">
+                                            <input type="radio" name="ekwhomi" tabindex="0" class="hidden" value="organization" <?php echo (isset($up_ekwhomi) && $up_ekwhomi == 'organization' ? 'checked' : ''); ?>>
+                                            <label><?php esc_html_e('Organization', 'petition') ?></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="nine wide field required">
+                                <label><?php esc_html_e('Organization Name', 'petition'); ?></label>
+                                <div class="ui field input right icon">
+                                    <i class="users icon"></i>
+                                    <input type="text" id="ekorganizationname" name="ekorganizationname" placeholder="<?php esc_html_e('Enter organization you represent', 'petition'); ?>" value="<?php echo isset($up_ekorganizationname) ? esc_attr($up_ekorganizationname) : ''; ?>">
+                                </div>
                             </div>
                         </div>
                         <div class="field required">
@@ -204,6 +236,32 @@ $decision_title_option = get_terms( 'decisionmakers_title', array(
                                 <input type="text" name="pincodeUser" id="pincodeUser" placeholder="<?php esc_html_e('', 'petition') ?>" value="<?php echo isset($up_pincode) ? esc_attr($up_pincode) : ''; ?>">
                             </div>
                         </div>
+                        <div class="fields">
+                            <div class="eight wide field required">
+                                <label><?php esc_html_e('Mobile', 'petition') ?></label>
+                                <div class="ui input right icon">
+                                    <i class="call icon"></i>
+                                    <input type="text" name="mobile" id="mobile" placeholder="<?php esc_html_e('Mobile', 'petition') ?>" value="<?php echo isset($up_mobile) ? esc_attr($up_mobile) : ''; ?>">
+                                </div>
+                            </div>
+                            <div class="six wide field required">
+                                <label><?php esc_html_e('Hide Mobile No. from visitors', 'petition') ?></label>
+                                <div class="fields" style="padding-top: 10px;">
+                                    <div class="eight wide field">
+                                        <div class="ui radio checkbox">
+                                            <input type="radio" name="hidemobile" tabindex="0" class="hidden" value="yes" <?php echo (isset($up_hidemobile) && $up_hidemobile == 'yes' ? 'checked' : ''); ?>>
+                                            <label><?php esc_html_e('Yes', 'petition') ?></label>
+                                        </div>
+                                    </div>
+                                    <div class="eight wide field">
+                                        <div class="ui radio checkbox">
+                                            <input type="radio" name="hidemobile" tabindex="0" class="hidden" value="no" <?php echo (isset($up_hidemobile) && $up_hidemobile == 'no' ? 'checked' : ''); ?>>
+                                            <label><?php esc_html_e('No', 'petition') ?></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="field">
                             <label><?php esc_html_e('Website', 'petition') ?></label>
                             <div class="ui input right icon">
@@ -211,9 +269,9 @@ $decision_title_option = get_terms( 'decisionmakers_title', array(
                                 <input type="text" name="websiteUser" id="websiteUser" placeholder="<?php esc_html_e('http://', 'petition') ?>" value="<?php echo isset($up_website) ? esc_url($up_website) : ''; ?>">
                             </div>
                         </div>
-                        <div class="field">
-                            <label><?php esc_html_e('Biographical', 'petition') ?></label>
-                            <textarea id="bioUser" rows="5" placeholder="<?php esc_html_e('Introduce about yourself', 'petition'); ?>"><?php echo isset($up_bio) ? $up_bio : ''; ?></textarea>
+                        <div class="field required">
+                            <label><?php esc_html_e('Biographical', 'petition') ?> <span style="float: right;"><?php esc_html_e('Max 1000 Characters') ?></span></label>
+                            <textarea id="bioUser" rows="8" placeholder="<?php esc_html_e('Introduce about yourself', 'petition'); ?>"><?php echo isset($up_bio) ? $up_bio : ''; ?></textarea>
                         </div>
                         <div class="field required">
                             <label><?php esc_html_e('URL profile', 'petition'); ?></label>

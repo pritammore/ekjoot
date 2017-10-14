@@ -34,10 +34,12 @@
         var typeUser = $("input[name='typeUser']:checked").val()
         if ( typeUser == 'decisioner' ) {
             $('#decision-fields').css('display','none')
+            $('#decision-custom-fields').css('display','none')
             $('#petitioner').removeClass('grey button').addClass('primary button')
             $('#decisioner').removeClass('primary button').addClass('grey button')
         } else {
             $('#decision-fields').css('display','flex')
+            $('#decision-custom-fields').css('display','flex')
             $('#decisioner').removeClass('grey button').addClass('primary button')
             $('#petitioner').removeClass('primary button').addClass('grey button')
         }
@@ -286,6 +288,9 @@
         $('#close-confirm').modal('show')
     });
     $('#contact-btn').on('click', function() {
+        $('#contact-user').modal('show')
+    });
+    $('#invite-leader-to-lead-btn').on('click', function() {
         $('#contact-user').modal('show')
     });
     $('.invite-responsive').on('click', function() {
