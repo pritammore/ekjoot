@@ -6,9 +6,13 @@
 
 
 $current_user = wp_get_current_user();
-    $orig_post = $post;
+$orig_post = $post;
 $conikal_general_settings = get_option('conikal_general_settings','');
-$minimum_signature = isset($conikal_general_settings['conikal_minimum_signature_field']) ? $conikal_general_settings['conikal_minimum_signature_field'] : '';
+$conikal_appearance_settings = get_option('conikal_appearance_settings','');
+$view_counter = isset($conikal_appearance_settings['conikal_view_counter_field']) ? $conikal_appearance_settings['conikal_view_counter_field'] : '';
+$similar_base = isset($conikal_appearance_settings['conikal_similar_base_field']) ? $conikal_appearance_settings['conikal_similar_base_field'] : 'both';
+$similar_per_page = isset($conikal_appearance_settings['conikal_similar_related_per_page_field']) ? $conikal_appearance_settings['conikal_similar_related_per_page_field'] : 4;
+$minimum_signature = isset($conikal_general_settings['conikal_minimum_signature_field']) ? $conikal_general_settings['conikal_minimum_signature_field'] : 2;
 ?>
 
     <?php
@@ -17,26 +21,48 @@ $minimum_signature = isset($conikal_general_settings['conikal_minimum_signature_
 
     $exclude_ids = array($post->ID);
     $args = array(
-        'posts_per_page' => 4,
+        'posts_per_page' => $similar_per_page,
         'post_type' => 'petition',
         'post_status' => 'publish',
         'post__not_in' => $exclude_ids
     );
 
-    if($orig_topics && $orig_categorys) {
-        $args['tax_query'] = array(
-            'relation' => 'OR',
-            array(
-                'taxonomy' => 'petition_category',
-                'field'    => 'id',
-                'terms'    => $orig_categorys,
-            ),
-            array(
-                'taxonomy' => 'petition_topics',
-                'field'    => 'id',
-                'terms'    => $orig_topics,
-            ),
-        );
+    if ($similar_base === 'topics') {
+        if($orig_topics) {
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'petition_topics',
+                    'field'    => 'id',
+                    'terms'    => $orig_topics,
+                ),
+            );
+        }
+    } elseif ($similar_base === 'category') {
+        if($orig_categorys) {
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'petition_category',
+                    'field'    => 'id',
+                    'terms'    => $orig_categorys,
+                )
+            );
+        }
+    } else {
+        if($orig_topics && $orig_categorys) {
+            $args['tax_query'] = array(
+                'relation' => 'OR',
+                array(
+                    'taxonomy' => 'petition_category',
+                    'field'    => 'id',
+                    'terms'    => $orig_categorys,
+                ),
+                array(
+                    'taxonomy' => 'petition_topics',
+                    'field'    => 'id',
+                    'terms'    => $orig_topics,
+                )
+            );
+        }
     }
 
     $args['meta_query'] = array('relation' => 'AND');
@@ -73,6 +99,7 @@ $minimum_signature = isset($conikal_general_settings['conikal_minimum_signature_
             $category =  wp_get_post_terms($id, 'petition_category', true);
             $excerpt = conikal_get_excerpt_by_id($id);
             $comments = wp_count_comments($id);
+            $view = conikal_format_number('%!,0i', (int) conikal_get_post_views($id), true);
             $gallery = get_post_meta($id, 'petition_gallery', true);
             $images = explode("~~~", $gallery);
             $address = get_post_meta($id, 'petition_address', true);
@@ -104,22 +131,36 @@ $minimum_signature = isset($conikal_general_settings['conikal_minimum_signature_
         <div class="card petition-card">
             <?php if ($sign >= $goal || $status == '1') { ?>
                 <div class="ui primary right corner large label victory-label">
-                    <i class="flag icon"></i>
+                    <?php echo conikal_custom_icon('victory') ?>
                 </div>
             <?php } ?>
-            <div class="image">
-                <a href="<?php echo esc_url($link) ?>" data-bjax>
-                    <?php if(has_post_thumbnail()) { ?>
-                        <img class="ui fluid image" src="<?php echo esc_url(the_post_thumbnail_url('petition-thumbnail')) ?>" alt="<?php echo esc_attr($title) ?>">
-                    <?php } elseif ($gallery) { ?>
-                        <img class="ui fluid image" src="<?php echo esc_url($images[1]) ?>" alt="<?php echo esc_attr($title) ?>">
-                    <?php } elseif ($thumb) { ?>
-                        <img class="ui fluid image" src="<?php echo esc_url($thumb) ?>" alt="<?php echo esc_attr($title) ?>">
-                    <?php } else { ?>
-                        <img class="ui fluid image" src="<?php echo esc_url(get_template_directory_uri() . '/images/thumbnail.svg') ?>" alt="<?php echo esc_attr($title) ?>">
-                    <?php } ?>
-                </a>
-            </div>
+            <a href="<?php echo esc_url($link) ?>" class="image blurring" target="_blank" data-bjax>
+                <div class="ui dimmer">
+                    <div class="content">
+                        <div class="center">
+                            <div class="ui icon inverted circular button"><i class="external icon"></i></div>
+                        </div>
+                        <?php if ($country || $state) { ?>
+                            <div class="petition-location"><i class="marker icon"></i><?php echo ($state ? esc_html($state) . ', ' : '') . ($country ? esc_html($country) : '') ?></div>
+                        <?php } ?>
+                        <?php if ($view_counter != '') { ?>
+                        <div class="view-counter">
+                            <i class="eye icon"></i>
+                            <?php echo esc_html($view); ?>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
+                <?php if(has_post_thumbnail()) { ?>
+                    <img class="ui fluid image" src="<?php echo esc_url(the_post_thumbnail_url('petition-thumbnail')) ?>" alt="<?php echo esc_attr($title) ?>">
+                <?php } elseif ($gallery) { ?>
+                    <img class="ui fluid image" src="<?php echo esc_url($images[1]) ?>" alt="<?php echo esc_attr($title) ?>">
+                <?php } elseif ($thumb) { ?>
+                    <img class="ui fluid image" src="<?php echo esc_url($thumb) ?>" alt="<?php echo esc_attr($title) ?>">
+                <?php } else { ?>
+                    <img class="ui fluid image" src="<?php echo esc_url(get_template_directory_uri() . '/images/thumbnail.svg') ?>" alt="<?php echo esc_attr($title) ?>">
+                <?php } ?>
+            </a>
             <div class="content similar-content">
                 <div class="header card-petition-title">
                     <a href="<?php echo esc_url($link) ?>" data-bjax><?php echo esc_html($title) ?></a>
@@ -132,16 +173,17 @@ $minimum_signature = isset($conikal_general_settings['conikal_minimum_signature_
                 </div>
             </div>
             <div class="extra content">
+                <span class="ui primary label">
+                <?php echo conikal_custom_icon('supporter') ?>
+                   <?php echo conikal_format_number('%!,0i', $sign) . ' ' . __('supporters', 'petition') ?>
+                </span>
             <?php if($comments->approved != 0) { ?>
-                <span class="right floated">
+                <span class="ui label">
                     <i class="comments icon"></i>
                     <?php echo conikal_format_number('%!,0i', $comments->approved, true) ?>
                 </span>
             <?php } ?>
-                <span>
-                <i class="user icon"></i>
-                   <?php echo conikal_format_number('%!,0i', $sign) . ' ' . __('supporters', 'petition') ?>
-                </span>
+                
             </div>
             <div class="ui bottom attached indicating primary progress petition-goal" data-value="<?php echo esc_html($sign) ?>" data-total="<?php echo esc_html($goal) ?>">
                 <div class="bar">

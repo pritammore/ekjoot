@@ -18,6 +18,7 @@ get_header();
 $conikal_appearance_settings = get_option('conikal_appearance_settings','');
 $sidebar_position = isset($conikal_appearance_settings['conikal_sidebar_field']) ? $conikal_appearance_settings['conikal_sidebar_field'] : '';
 $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $conikal_appearance_settings['conikal_breadcrumbs_field'] : '';
+$view_counter = isset($conikal_appearance_settings['conikal_view_counter_field']) ? $conikal_appearance_settings['conikal_view_counter_field'] : '';
 $posts_per_page_setting = isset($conikal_appearance_settings['conikal_petitions_per_page_field']) ? $conikal_appearance_settings['conikal_petitions_per_page_field'] : '';
 $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
 $signed_posts = conikal_signed_petitions($current_user->ID);
@@ -53,6 +54,7 @@ $users = get_users();
                         $category =  wp_get_post_terms($id, 'petition_category', true);
                         $excerpt = conikal_get_excerpt_by_id($id);
                         $comments = wp_count_comments($id);
+                        $view = conikal_format_number('%!,0i', (int) conikal_get_post_views($id), true);
                         $gallery = get_post_meta($id, 'petition_gallery', true);
                         $images = explode("~~~", $gallery);
                         $address = get_post_meta($id, 'petition_address', true);
@@ -82,11 +84,11 @@ $users = get_users();
                         }
                         $avatar = conikal_get_avatar_url( get_the_author_meta('ID'), array('size' => 28, 'default' => $avatar) );
                     ?>
-                    <div class="ui segments">
+                    <div class="ui segments petition-list-card">
                         <div class="ui segment">
                             <?php if ($sign >= $goal || $status == '1') { ?>
                                 <div class="ui primary right corner large label victory-label">
-                                        <i class="flag icon"></i>
+                                        <?php echo conikal_custom_icon('victory') ?>
                                 </div>
                             <?php } ?>
                             <div class="ui grid">
@@ -122,7 +124,20 @@ $users = get_users();
                                     </div>
                                 </div>
                                 <div class="sixteen wide mobile six wide tablet six wide computer column">
-                                    <a class="ui fluid image" href="<?php echo esc_url($link) ?>" data-bjax>
+                                    <a class="ui fluid image blurring" href="<?php echo esc_url($link) ?>" data-bjax>
+                                        <div class="ui dimmer">
+                                            <div class="content">
+                                                <div class="center">
+                                                    <div class="ui icon inverted circular large button"><i class="external icon"></i></div>
+                                                </div>
+                                                <div class="view-counter">
+                                                <?php if ($view_counter != '') { ?>
+                                                    <i class="eye icon"></i>
+                                                    <?php echo esc_html($view); ?>
+                                                <?php } ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <?php if(has_post_thumbnail()) { ?>
                                             <img class="ui fluid image" src="<?php echo esc_url(the_post_thumbnail_url('petition-thumbnail')) ?>" alt="<?php echo esc_attr($title) ?>">
                                         <?php } elseif ($gallery) { ?>
@@ -140,7 +155,7 @@ $users = get_users();
                             <div class="ui grid">
                                 <div class="ten wide tablet ten wide computer column tablet computer only">
                                     <span class="ui primary label">
-                                        <i class="user icon"></i><?php echo conikal_format_number('%!,0i', $sign) . ' ' . __('supporters', 'petition') ?>
+                                        <?php echo conikal_custom_icon('supporter') ?><?php echo conikal_format_number('%!,0i', $sign) . ' ' . __('supporters', 'petition') ?>
                                     </span>
                                     <span class="ui label">
                                         <i class="comments icon"></i><?php echo conikal_format_number('%!,0i', $comments->approved, true) . ' ' . __('comments', 'petition'); ?>
@@ -160,7 +175,7 @@ $users = get_users();
 
                                 <div class="thirteen wide column mobile only">
                                     <span class="ui primary label">
-                                        <i class="user icon"></i><?php echo conikal_format_number('%!,0i', $sign, true) . ' ' . __('supporters', 'petition') ?>
+                                        <?php echo conikal_custom_icon('supporter') ?><?php echo conikal_format_number('%!,0i', $sign, true) . ' ' . __('supporters', 'petition') ?>
                                     </span>
                                     <span class="ui label">
                                         <i class="comments icon"></i><?php echo conikal_format_number('%!,0i', $comments->approved, true); ?>

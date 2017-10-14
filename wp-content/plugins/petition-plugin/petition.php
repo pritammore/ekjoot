@@ -5,17 +5,17 @@
 /*
 * Plugin Name: Petition Plugin
 * Description: Creates shortcodes, register custom taxonomies and post types
-* Version: 1.5.0
+* Version: 1.6.3
 * Author: Conikal
 * Author URI: https://www.conikal.com
 */
-
 
 add_action( 'plugins_loaded', 'conikal_load_textdomain' );
 function conikal_load_textdomain() {
     load_plugin_textdomain( 'petition', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 
+require_once 'social_meta.php';
 require_once 'shortcodes.php';
 
 
@@ -33,7 +33,7 @@ if( !function_exists('conikal_register_petition_type_init') ):
         wp_enqueue_style('conikal_plugin_style', plugins_url( '/css/style.css', __FILE__ ), false, '1.0', 'all');
         $conikal_auth_settings = get_option('conikal_auth_settings','');
         $gmaps_key = (isset($conikal_auth_settings['conikal_gmaps_key_field']) && $conikal_auth_settings['conikal_gmaps_key_field'] !='') ? $conikal_auth_settings['conikal_gmaps_key_field'] : 'AIzaSyAUYuX_iOuWgl5b5gSdmaL1QeLgbmxbBnU';
-        wp_enqueue_script('gmaps', 'https://maps.googleapis.com/maps/api/js?key='.$gmaps_key.'&amp;libraries=geometry&amp;libraries=places&amp;language=en',array('jquery'), '1.0', true);
+        wp_enqueue_script('gmaps', 'https://maps.googleapis.com/maps/api/js?key='.$gmaps_key.'&amp;libraries=geometry&amp;libraries=places&amp;language='.get_locale(),array('jquery'), '1.0', true);
         wp_enqueue_script('petition', plugins_url( '/js/petition.js', __FILE__ ), false, '1.0', true);
 
         wp_localize_script('petition', 'petition_vars', 
@@ -225,12 +225,11 @@ if( !function_exists('conikal_petition_details_render') ):
         $conikal_general_settings = get_option('conikal_general_settings');
 
         $goal = (esc_html(get_post_meta($post->ID, 'petition_goal', true)) != '') ? esc_html(get_post_meta($post->ID, 'petition_goal', true)) : 0;
-
         $sign = (esc_html(get_post_meta($post->ID, 'petition_sign', true)) != '') ? esc_html(get_post_meta($post->ID, 'petition_sign', true)) : 0;
-
-        $decisionmakers = (esc_html(get_post_meta($post->ID, 'petition_decisionmakers', true)) != '') ? esc_html(get_post_meta($post->ID, 'petition_decisionmakers', true)) : 0;
-
-        $receiver = (esc_html(get_post_meta($post->ID, 'petition_receiver', true)) != '') ? esc_html(get_post_meta($post->ID, 'petition_receiver', true)) : 0;
+        $sendinblue_list = (esc_html(get_post_meta($post->ID, 'petition_sendinblue_list', true)) != '') ? esc_html(get_post_meta($post->ID, 'petition_sendinblue_list', true)) : '';
+        $decisionmakers = (esc_html(get_post_meta($post->ID, 'petition_decisionmakers', true)) != '') ? esc_html(get_post_meta($post->ID, 'petition_decisionmakers', true)) : '';
+        $receiver = (esc_html(get_post_meta($post->ID, 'petition_receiver', true)) != '') ? esc_html(get_post_meta($post->ID, 'petition_receiver', true)) : '';
+        $position = (esc_html(get_post_meta($post->ID, 'petition_position', true)) != '') ? esc_html(get_post_meta($post->ID, 'petition_position', true)) : '';
 
         print '
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -249,24 +248,30 @@ if( !function_exists('conikal_petition_details_render') ):
                     </td>
                     <td width="33%" valign="top" align="left">
                         <div class="adminField">
-                            <label for="petition_decisionmakers">' . __('Decision makers (ID and Separated by commas)', 'petition') . '</label><br />
-                            <input type="text" class="formInput" id="petition_decisionmakers" name="petition_decisionmakers" value="' . esc_attr($decisionmakers) . '" />
+                            <label for="petition_sendinblue_list">' . __('SendinBlue List ID', 'petition') . '</label><br />
+                            <input type="number" class="formInput" id="petition_sendinblue_list" name="petition_sendinblue_list" value="' . esc_attr($sendinblue_list) . '" />
                         </div>
                     </td>
                 </tr>
             </table>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td width="50%" valign="top" align="left">
+                    <td width="33%" valign="top" align="left">
                         <div class="adminField">
                             <label for="petition_receiver">' . __('Receivers (Separated by commas)', 'petition') . '</label><br />
                             <input type="text" class="formInput" id="petition_receiver" name="petition_receiver" placeholder="' . __('Enter Receiver', 'petition') . '" value="' . esc_attr($receiver) . '" />
                         </div>
                     </td>
-                    <td width="50%" valign="top" align="left">
+                    <td width="33%" valign="top" align="left">
                         <div class="adminField">
                             <label for="petition_position">' . __('Positions (Separated by commas)', 'petition') . '</label><br />
-                            <input type="text" class="formInput" id="petition_position" name="petition_position" placeholder="' . __('Enter Positions', 'petition') . '" value="' . esc_attr(get_post_meta($post->ID, 'petition_position', true)) . '" />
+                            <input type="text" class="formInput" id="petition_position" name="petition_position" placeholder="' . __('Enter Positions', 'petition') . '" value="' . esc_attr($position) . '" />
+                        </div>
+                    </td>
+                    <td width="33%" valign="top" align="left">
+                        <div class="adminField">
+                            <label for="petition_decisionmakers">' . __('Decision makers (ID and Separated by commas)', 'petition') . '</label><br />
+                            <input type="text" class="formInput" id="petition_decisionmakers" name="petition_decisionmakers" value="' . esc_attr($decisionmakers) . '" />
                         </div>
                     </td>
                 </tr>
@@ -491,6 +496,9 @@ if( !function_exists('conikal_petition_meta_save') ):
         }
         if(isset($_POST['petition_decisionmakers'])) {
             update_post_meta($post_id, 'petition_decisionmakers', sanitize_text_field($_POST['petition_decisionmakers']));
+        }
+        if(isset($_POST['petition_sendinblue_list'])) {
+            update_post_meta($post_id, 'petition_sendinblue_list', sanitize_text_field($_POST['petition_sendinblue_list']));
         }
         if(isset($_POST['petition_receiver'])) {
             update_post_meta($post_id, 'petition_receiver', sanitize_text_field($_POST['petition_receiver']));
@@ -1224,4 +1232,55 @@ if( !function_exists('conikal_change_team_default_title') ):
     }
 endif;
 add_filter('enter_title_here', 'conikal_change_team_default_title');
+
+
+/********************************
+ * Add type of Sidebar option
+ ********************************/
+add_action( 'add_meta_boxes', 'meta_box_sidebar_add' );
+function meta_box_sidebar_add()
+{
+    add_meta_box( 'meta-box-sidebar', 'Sidebar', 'meta_box_sidebar_callback', 'page', 'normal', 'high' );
+}
+
+function meta_box_sidebar_callback( $post )
+{
+    $values = get_post_custom( $post->ID );
+    $options = array('none' => 'No Sidebar', 'center' => 'Center', 'left' => 'Left Sidebar', 'right' => 'Right Sidebar');
+    $selected = isset( $values['meta_box_sidebar'] ) ? $values['meta_box_sidebar'][0] : '';
+
+    wp_nonce_field( 'conikal_meta_box_sidebar_nonce', 'meta_box_sidebar_nonce' );
+
+    $select = '<select id="meta_box_sidebar" name="meta_box_sidebar">';
+    foreach ($options as $option => $label) {
+        $select .= '<option value="' . esc_attr($option) . '"';
+            if ($selected == $option) {
+                $select .= 'selected="selected"';
+        }
+        $select .= '>' . esc_html($label) . '</option>';
+    }
+    $select .='</select>';
+
+    print $select; 
+}
+
+add_action( 'save_post', 'meta_box_sidebar_save' );
+function meta_box_sidebar_save( $post_id )
+{
+    // Bail if we're doing an auto save
+    if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+
+    // if our nonce isn't there, or we can't verify it, bail
+    if( !isset( $_POST['meta_box_sidebar_nonce'] ) || !wp_verify_nonce( $_POST['meta_box_sidebar_nonce'], 'conikal_meta_box_sidebar_nonce' ) ) return;
+
+    // if our current user can't edit this post, bail
+    if( !current_user_can( 'edit_post' ) ) return;
+
+    // Probably a good idea to make sure your data is set
+
+    if( isset( $_POST['meta_box_sidebar'] ) )
+        update_post_meta( $post_id, 'meta_box_sidebar', $_POST['meta_box_sidebar'] );
+
+}
+
 ?>

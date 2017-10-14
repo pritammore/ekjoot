@@ -78,8 +78,8 @@ $users = get_users();
                                 </div>
                             </div>
                         <?php } ?>
-                        <div class="ui center aligned huge icon header">
-                            <i class="circular green flag icon"></i>
+                        <div class="ui center aligned huge icon header victory-update-title">
+                            <?php echo conikal_custom_icon('victory_inverse') ?>
                             <div class="content">
                                 <a href="<?php echo esc_url($link) ?>" data-bjax><?php echo esc_html($title) ?></a>
                                 <div class="sub header"><?php echo esc_html($date) ?></div>
@@ -111,7 +111,8 @@ $users = get_users();
                                         while($query->have_posts()) {
                                             $query->the_post();
                                             $page_id = get_the_ID();
-                                            $page_link = get_permalink($page_id). '?edit_id=' . $update_id;
+                                            $page_link = get_permalink($page_id);
+                                            $page_link = add_query_arg(array('edit_id' => $update_id), $page_link);
                                         }
                                         wp_reset_postdata();
                                         wp_reset_query();

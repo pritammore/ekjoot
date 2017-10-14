@@ -89,6 +89,18 @@ if( !function_exists('conikal_setup') ):
 
         // general settings default values
         $conikal_general_settings = get_option('conikal_general_settings');
+        if (!isset($conikal_general_settings['conikal_victory_icon_field']) || ( isset($conikal_general_settings['conikal_victory_icon_field']) && $conikal_general_settings['conikal_victory_icon_field'] == '') ) {
+            $conikal_general_settings['conikal_victory_icon_field'] = 'flag icon';
+        }
+        if (!isset($conikal_general_settings['conikal_victory_inverse_icon_field']) || ( isset($conikal_general_settings['conikal_victory_inverse_icon_field']) && $conikal_general_settings['conikal_victory_inverse_icon_field'] == '') ) {
+            $conikal_general_settings['conikal_victory_inverse_icon_field'] = 'flag icon';
+        }
+        if (!isset($conikal_general_settings['conikal_sign_button_icon_field']) || ( isset($conikal_general_settings['conikal_sign_button_icon_field']) && $conikal_general_settings['conikal_sign_button_icon_field'] == '') ) {
+            $conikal_general_settings['conikal_sign_button_icon_field'] = 'write icon';
+        }
+        if (!isset($conikal_general_settings['conikal_supporter_icon_field']) || ( isset($conikal_general_settings['conikal_supporter_icon_field']) && $conikal_general_settings['conikal_supporter_icon_field'] == '') ) {
+            $conikal_general_settings['conikal_supporter_icon_field'] = 'user icon';
+        }
         if (!isset($conikal_general_settings['conikal_country_field']) || ( isset($conikal_general_settings['conikal_country_field']) && $conikal_general_settings['conikal_country_field'] == '') ) {
             $conikal_general_settings['conikal_country_field'] = 'US';
         }
@@ -141,27 +153,36 @@ if( !function_exists('conikal_setup') ):
         if (!isset($conikal_appearance_settings['conikal_sidebar_field']) || ( isset($conikal_appearance_settings['conikal_sidebar_field']) && $conikal_appearance_settings['conikal_sidebar_field'] == '') ) {
             $conikal_appearance_settings['conikal_sidebar_field'] = 'right';
         }
-
         if (!isset($conikal_appearance_settings['conikal_ajax_comment_field']) || ( isset($conikal_appearance_settings['conikal_ajax_comment_field']) && $conikal_appearance_settings['conikal_ajax_comment_field'] == '') ) {
             $conikal_appearance_settings['conikal_ajax_comment_field'] = 'enabled';
         }
-        
+        if (!isset($conikal_appearance_settings['conikal_action_after_sign_field']) || ( isset($conikal_appearance_settings['conikal_action_after_sign_field']) && $conikal_appearance_settings['conikal_action_after_sign_field'] == '') ) {
+            $conikal_appearance_settings['conikal_action_after_sign_field'] = 'none';
+        }
+        if (!isset($conikal_appearance_settings['conikal_default_accordion_sign_field']) || ( isset($conikal_appearance_settings['conikal_default_accordion_sign_field']) && $conikal_appearance_settings['conikal_default_accordion_sign_field'] == '') ) {
+            $conikal_appearance_settings['conikal_default_accordion_sign_field'] = 'share';
+        }
+        if (!isset($conikal_appearance_settings['conikal_similar_base_field']) || ( isset($conikal_appearance_settings['conikal_similar_base_field']) && $conikal_appearance_settings['conikal_similar_base_field'] == '') ) {
+            $conikal_appearance_settings['conikal_similar_base_field'] = 'both';
+        }
+        if (!isset($conikal_appearance_settings['conikal_similar_related_per_page_field']) || ( isset($conikal_appearance_settings['conikal_similar_related_per_page_field']) && $conikal_appearance_settings['conikal_similar_related_per_page_field'] == '') ) {
+            $conikal_appearance_settings['conikal_similar_related_per_page_field'] = 4;
+        }
         if (!isset($conikal_appearance_settings['conikal_petitions_per_page_field']) || ( isset($conikal_appearance_settings['conikal_petitions_per_page_field']) && $conikal_appearance_settings['conikal_petitions_per_page_field'] == '') ) {
             $conikal_appearance_settings['conikal_petitions_per_page_field'] = 10;
         }
-
         if (!isset($conikal_appearance_settings['conikal_updates_per_page_field']) || ( isset($conikal_appearance_settings['conikal_updates_per_page_field']) && $conikal_appearance_settings['conikal_updates_per_page_field'] == '') ) {
             $conikal_appearance_settings['conikal_updates_per_page_field'] = 5;
         }
-
         if (!isset($conikal_appearance_settings['conikal_comments_per_page_field']) || ( isset($conikal_appearance_settings['conikal_comments_per_page_field']) && $conikal_appearance_settings['conikal_comments_per_page_field'] == '') ) {
             $conikal_appearance_settings['conikal_comments_per_page_field'] = 10;
         }
-
         if (!isset($conikal_appearance_settings['conikal_reply_per_comment_field']) || ( isset($conikal_appearance_settings['conikal_reply_per_comment_field']) && $conikal_appearance_settings['conikal_reply_per_comment_field'] == '') ) {
             $conikal_appearance_settings['conikal_reply_per_comment_field'] = 2;
         }
-
+        if (!isset($conikal_appearance_settings['conikal_supporter_per_page_field']) || ( isset($conikal_appearance_settings['conikal_supporter_per_page_field']) && $conikal_appearance_settings['conikal_supporter_per_page_field'] == '') ) {
+            $conikal_appearance_settings['conikal_supporter_per_page_field'] = 12;
+        }
         if (!isset($conikal_appearance_settings['conikal_copyright_field']) || ( isset($conikal_appearance_settings['conikal_copyright_field']) && $conikal_appearance_settings['conikal_copyright_field'] == '') ) {
             $conikal_appearance_settings['conikal_copyright_field'] = 'Copyright © 2017 Conikal.com';
         }
@@ -171,21 +192,17 @@ if( !function_exists('conikal_setup') ):
         // homepage settings default values
         $conikal_home_settings = get_option('conikal_home_settings');
         if (!isset($conikal_home_settings['conikal_home_header_field']) || ( isset($conikal_home_settings['conikal_home_header_field']) && $conikal_home_settings['conikal_home_header_field'] == '') ) {
-            $conikal_home_settings['conikal_home_header_field'] = 'none';
+            $conikal_home_settings['conikal_home_header_field'] = 'slideshow';
         }
-
         if (!isset($conikal_home_settings['conikal_shadow_opacity_field']) || ( isset($conikal_home_settings['conikal_shadow_opacity_field']) && $conikal_home_settings['conikal_shadow_opacity_field'] == '') ) {
             $conikal_home_settings['conikal_shadow_opacity_field'] = 70;
         }
-
         if (!isset($conikal_home_settings['conikal_hight_slideshow_field']) || ( isset($conikal_home_settings['conikal_hight_slideshow_field']) && $conikal_home_settings['conikal_hight_slideshow_field'] == '') ) {
             $conikal_home_settings['conikal_hight_slideshow_field'] = '675';
         }
-
         if (!isset($conikal_home_settings['conikal_home_caption_top_field']) || ( isset($conikal_home_settings['conikal_home_caption_top_field']) && $conikal_home_settings['conikal_home_caption_top_field'] == '') ) {
             $conikal_home_settings['conikal_home_caption_top_field'] = '225';
         }
-
         if (!isset($conikal_home_settings['conikal_home_caption_cta_size_field']) || ( isset($conikal_home_settings['conikal_home_caption_cta_size_field']) && $conikal_home_settings['conikal_home_caption_cta_size_field'] == '') ) {
             $conikal_home_settings['conikal_home_caption_cta_size_field'] = 'medium';
         }
@@ -197,7 +214,7 @@ if( !function_exists('conikal_setup') ):
         $conikal_colors_settings = get_option('conikal_colors_settings');
         $default_colors = array(
             'conikal_main_color_field' => '#11ce7c',
-            'conikal_background_color_field' => '#f5f5f5',
+            'conikal_background_color_field' => '#f8f8f8',
             'conikal_body_text_color_field' => '#565656',
             'conikal_text_link_color_field' => '#565656',
             'conikal_home_caption_color_field' => '#ffffff',
@@ -205,10 +222,12 @@ if( !function_exists('conikal_setup') ):
             'conikal_opacity_hero_page_color_field' => '#2C3E50',
             'conikal_header_menu_color_field' => '#ffffff',
             'conikal_header_menu_text_color_field' => '#565656',
+            'conikal_home_menu_text_color_field' => '#ffffff',
             'conikal_victory_color_field' => '#2ecc71',
             'conikal_signup_button_color_field' => '#f39c12',
             'conikal_victory_label_color_field' => '#2ecc71',
             'conikal_sign_petition_button_color_field' => '#11ce7c',
+            'conikal_submit_petition_button_color_field' => '#11ce7c',
             'conikal_mobile_menu_bg_color_field' => '#ffffff',
             'conikal_mobile_menu_text_link_color_field' => '#565656',
             'conikal_post_overlay_primary_color_field' => '#2C3E50',
@@ -225,10 +244,12 @@ if( !function_exists('conikal_setup') ):
             $conikal_colors_settings['conikal_opacity_hero_page_color_field'] == '' && 
             $conikal_colors_settings['conikal_header_menu_color_field'] == '' && 
             $conikal_colors_settings['conikal_header_menu_text_color_field'] == '' && 
+            $conikal_colors_settings['conikal_home_menu_text_color_field'] == '' && 
             $conikal_colors_settings['conikal_victory_color_field'] == '' && 
             $conikal_colors_settings['conikal_signup_button_color_field'] == '' && 
             $conikal_colors_settings['conikal_victory_label_color_field'] == '' && 
             $conikal_colors_settings['conikal_sign_petition_button_color_field'] == '' && 
+            $conikal_colors_settings['conikal_submit_petition_button_color_field'] == '' && 
             $conikal_colors_settings['conikal_mobile_menu_bg_color_field'] == '' && 
             $conikal_colors_settings['conikal_mobile_menu_text_link_color_field'] == '' && 
             $conikal_colors_settings['conikal_post_overlay_primary_color_field'] == '' && 
@@ -306,27 +327,21 @@ if( !function_exists('conikal_setup') ):
         if (!isset($conikal_search_settings['conikal_s_min_characters_field']) || ( isset($conikal_search_settings['conikal_s_min_characters_field']) && $conikal_search_settings['conikal_s_min_characters_field'] == '') ) {
             $conikal_search_settings['conikal_s_min_characters_field'] = 3;
         }
-
         if (!isset($conikal_search_settings['conikal_s_max_results_field']) || ( isset($conikal_search_settings['conikal_s_max_results_field']) && $conikal_search_settings['conikal_s_max_results_field'] == '') ) {
             $conikal_search_settings['conikal_s_max_results_field'] = 7;
         }
-
         if (!isset($conikal_search_settings['conikal_s_type_field']) || ( isset($conikal_search_settings['conikal_s_type_field']) && $conikal_search_settings['conikal_s_type_field'] == '') ) {
             $conikal_search_settings['conikal_s_type_field'] = 'category';
         }
-
         if (!isset($conikal_search_settings['conikal_s_link_field']) || ( isset($conikal_search_settings['conikal_s_link_field']) && $conikal_search_settings['conikal_s_link_field'] == '') ) {
             $conikal_search_settings['conikal_s_link_field'] = 'enabled';
         }
-
         if (!isset($conikal_search_settings['conikal_s_description_field']) || ( isset($conikal_search_settings['conikal_s_description_field']) && $conikal_search_settings['conikal_s_description_field'] == '') ) {
             $conikal_search_settings['conikal_s_description_field'] = 'enabled';
         }
-
         if (!isset($conikal_search_settings['conikal_s_image_field']) || ( isset($conikal_search_settings['conikal_s_image_field']) && $conikal_search_settings['conikal_s_image_field'] == '') ) {
             $conikal_search_settings['conikal_s_image_field'] = 'enabled';
         }
-
         if (!isset($conikal_search_settings['conikal_s_supporters_field']) || ( isset($conikal_search_settings['conikal_s_supporters_field']) && $conikal_search_settings['conikal_s_supporters_field'] == '') ) {
             $conikal_search_settings['conikal_s_supporters_field'] = 'enabled';
         }
@@ -338,23 +353,18 @@ if( !function_exists('conikal_setup') ):
         if (!isset($conikal_filter_settings['conikal_f_category_field']) || ( isset($conikal_filter_settings['conikal_f_category_field']) && $conikal_filter_settings['conikal_f_category_field'] == '') ) {
             $conikal_filter_settings['conikal_f_category_field'] = 'enabled';
         }
-
         if (!isset($conikal_filter_settings['conikal_f_topic_field']) || ( isset($conikal_filter_settings['conikal_f_topic_field']) && $conikal_filter_settings['conikal_f_topic_field'] == '') ) {
             $conikal_filter_settings['conikal_f_topic_field'] = 'enabled';
         }
-
         if (!isset($conikal_filter_settings['conikal_f_country_field']) || ( isset($conikal_filter_settings['conikal_f_country_field']) && $conikal_filter_settings['conikal_f_country_field'] == '') ) {
             $conikal_filter_settings['conikal_f_country_field'] = 'enabled';
         }
-
         if (!isset($conikal_filter_settings['conikal_f_state_field']) || ( isset($conikal_filter_settings['conikal_f_state_field']) && $conikal_filter_settings['conikal_f_state_field'] == '') ) {
             $conikal_filter_settings['conikal_f_state_field'] = 'enabled';
         }
-
         if (!isset($conikal_filter_settings['conikal_f_city_field']) || ( isset($conikal_filter_settings['conikal_f_city_field']) && $conikal_filter_settings['conikal_f_city_field'] == '') ) {
             $conikal_filter_settings['conikal_f_city_field'] = 'enabled';
         }
-
         if (!isset($conikal_filter_settings['conikal_f_neighborhood_field']) || ( isset($conikal_filter_settings['conikal_f_neighborhood_field']) && $conikal_filter_settings['conikal_f_neighborhood_field'] == '') ) {
             $conikal_filter_settings['conikal_f_neighborhood_field'] = 'enabled';
         }
@@ -366,71 +376,67 @@ if( !function_exists('conikal_setup') ):
         if (!isset($conikal_petition_fields_settings['conikal_p_category_field']) || ( isset($conikal_petition_fields_settings['conikal_p_category_field']) && $conikal_petition_fields_settings['conikal_p_category_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_category_field'] = 'enabled';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_category_r_field']) || ( isset($conikal_petition_fields_settings['conikal_p_category_r_field']) && $conikal_petition_fields_settings['conikal_p_category_r_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_category_r_field'] = 'required';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_topics_field']) || ( isset($conikal_petition_fields_settings['conikal_p_topics_field']) && $conikal_petition_fields_settings['conikal_p_topics_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_topics_field'] = 'enabled';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_topics_r_field']) || ( isset($conikal_petition_fields_settings['conikal_p_topics_r_field']) && $conikal_petition_fields_settings['conikal_p_topics_r_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_topics_r_field'] = 'required';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_address_field']) || ( isset($conikal_petition_fields_settings['conikal_p_address_field']) && $conikal_petition_fields_settings['conikal_p_address_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_address_field'] = 'enabled';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_city_field']) || ( isset($conikal_petition_fields_settings['conikal_p_city_field']) && $conikal_petition_fields_settings['conikal_p_city_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_city_field'] = 'enabled';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_coordinates_field']) || ( isset($conikal_petition_fields_settings['conikal_p_coordinates_field']) && $conikal_petition_fields_settings['conikal_p_coordinates_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_coordinates_field'] = 'enabled';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_neighborhood_field']) || ( isset($conikal_petition_fields_settings['conikal_p_neighborhood_field']) && $conikal_petition_fields_settings['conikal_p_neighborhood_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_neighborhood_field'] = 'enabled';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_zip_field']) || ( isset($conikal_petition_fields_settings['conikal_p_zip_field']) && $conikal_petition_fields_settings['conikal_p_zip_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_zip_field'] = 'enabled';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_state_field']) || ( isset($conikal_petition_fields_settings['conikal_p_state_field']) && $conikal_petition_fields_settings['conikal_p_state_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_state_field'] = 'enabled';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_country_field']) || ( isset($conikal_petition_fields_settings['conikal_p_country_field']) && $conikal_petition_fields_settings['conikal_p_country_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_country_field'] = 'enabled';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_receiver_field']) || ( isset($conikal_petition_fields_settings['conikal_p_receiver_field']) && $conikal_petition_fields_settings['conikal_p_receiver_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_receiver_field'] = 'enabled';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_receiver_r_field']) || ( isset($conikal_petition_fields_settings['conikal_p_receiver_r_field']) && $conikal_petition_fields_settings['conikal_p_receiver_r_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_receiver_r_field'] = 'required';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_position_field']) || ( isset($conikal_petition_fields_settings['conikal_p_position_field']) && $conikal_petition_fields_settings['conikal_p_position_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_position_field'] = 'enabled';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_goal_field']) || ( isset($conikal_petition_fields_settings['conikal_p_goal_field']) && $conikal_petition_fields_settings['conikal_p_goal_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_goal_field'] = 'disabled';
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_goal_default_field']) || ( isset($conikal_petition_fields_settings['conikal_p_goal_default_field']) && $conikal_petition_fields_settings['conikal_p_goal_default_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_goal_default_field'] = 100;
         }
-
         if (!isset($conikal_petition_fields_settings['conikal_p_video_field']) || ( isset($conikal_petition_fields_settings['conikal_p_video_field']) && $conikal_petition_fields_settings['conikal_p_video_field'] == '') ) {
             $conikal_petition_fields_settings['conikal_p_video_field'] = 'enabled';
         }
         update_option('conikal_petition_fields_settings', $conikal_petition_fields_settings);
+        
+
+
+
+        $conikal_auth_settings = get_option('conikal_auth_settings');
+        if (!isset($conikal_auth_settings['conikal_sendinblue_name_field']) || ( isset($conikal_auth_settings['conikal_sendinblue_name_field']) && $conikal_auth_settings['conikal_sendinblue_name_field'] == '') ) {
+            $conikal_auth_settings['conikal_sendinblue_name_field'] = 'NAME';
+        }
+        if (!isset($conikal_auth_settings['conikal_sendinblue_firstname_field']) || ( isset($conikal_auth_settings['conikal_sendinblue_firstname_field']) && $conikal_auth_settings['conikal_sendinblue_firstname_field'] == '') ) {
+            $conikal_auth_settings['conikal_sendinblue_firstname_field'] = 'FIRSTNAME';
+        }
+        update_option('conikal_auth_settings', $conikal_auth_settings);
     }
 endif;
 add_action( 'after_setup_theme', 'conikal_setup' );

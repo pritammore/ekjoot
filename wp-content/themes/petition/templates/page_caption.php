@@ -20,13 +20,23 @@
 	    } elseif ($curauth->avatar != '') {
 	    	$avatar = $curauth->avatar;
 	    } else {
-	        $avatar = get_template_directory_uri().'/images/avatar-lg.png';
+	        $avatar = get_template_directory_uri().'/images/avatar.svg';
 	    }
 	    $avatar = conikal_get_avatar_url( $curauth->ID, array('size' => 116, 'default' => $avatar) );
 
 	    // follow user
 	    $user = wp_get_current_user();
 	    $follow_user = get_user_meta($user->ID, 'follow_user', true);
+
+
+	    $conikal_colors_settings = get_option('conikal_colors_settings');
+		$opacity_hero_page_color = isset($conikal_colors_settings['conikal_opacity_hero_page_color_field']) ? $conikal_colors_settings['conikal_opacity_hero_page_color_field'] : '';
+
+		if ($opacity_hero_page_color == '#ffffff') {
+		    $button_classes = 'primary';
+		} else {
+		    $button_classes = 'inverted';
+		}
 ?>
 
 	<div class="ui grid">
@@ -35,7 +45,7 @@
 		</div>
 		<div class="twelve wide mobile thirteen wide tablet fourteen wide computer column">
 			<div class="ui basic vertical segment">
-				<div class="ui inverted header petition-title">
+				<div class="ui inverted header <?php echo ($opacity_hero_page_color == '#ffffff' ? 'profile-title' : 'petition-title') ?>">
 					<div class="content">
 						<?php echo esc_html($curauth->display_name) ?>
 						<div class="sub header">
@@ -49,18 +59,18 @@
 				<?php if(is_user_logged_in()) {
                 	if($follow_user != '') {
 						if(in_array($curauth->ID, $follow_user) === false) { ?>
-							<a href="javascript:void(0)" id="follow-user-<?php echo esc_attr($curauth->ID); ?>" class="ui tiny inverted circular button follow-profile follow" data-id="<?php echo esc_attr($curauth->ID); ?>"><i class="plus icon"></i><?php _e('Follow', 'petition') ?></a>
+							<a href="javascript:void(0)" id="follow-user-<?php echo esc_attr($curauth->ID); ?>" class="ui tiny circular <?php echo esc_attr($button_classes) ?> button follow-profile follow" data-id="<?php echo esc_attr($curauth->ID); ?>"><i class="plus icon"></i><?php _e('Follow', 'petition') ?></a>
 						<?php } else { ?>
-							<a href="javascript:void(0)" id="follow-user-<?php echo esc_attr($curauth->ID); ?>" class="ui tiny primary circular button follow-profile following" data-id="<?php echo esc_attr($curauth->ID); ?>"><i class="checkmark icon"></i><?php _e('Following', 'petition') ?></a>
+							<a href="javascript:void(0)" id="follow-user-<?php echo esc_attr($curauth->ID); ?>" class="ui tiny circular <?php echo esc_attr($button_classes) ?> button follow-profile following" data-id="<?php echo esc_attr($curauth->ID); ?>"><i class="checkmark icon"></i><?php _e('Following', 'petition') ?></a>
 					<?php } 
 						} else { ?>
-						<a href="javascript:void(0)" id="follow-user-<?php echo esc_attr($curauth->ID); ?>" class="ui tiny inverted circular button signin-btn follow-topic follow"><i class="plus icon"></i><?php _e('Follow', 'petition') ?></a>
+						<a href="javascript:void(0)" id="follow-user-<?php echo esc_attr($curauth->ID); ?>" class="ui tiny circular <?php echo esc_attr($button_classes) ?> button signin-btn follow-topic follow"><i class="plus icon"></i><?php _e('Follow', 'petition') ?></a>
 					<?php }
 					wp_nonce_field('follow_ajax_nonce', 'securityFollow', true);
 				} else { ?>
-					<a href="javascript:void(0)" class="ui tiny inverted circular button signin-btn"><i class="plus icon"></i><?php _e('Follow', 'petition') ?></a>
+					<a href="javascript:void(0)" class="ui tiny circular <?php echo esc_attr($button_classes) ?> button signin-btn"><i class="plus icon"></i><?php _e('Follow', 'petition') ?></a>
 				<?php } ?>
-				<button class="ui tiny inverted circular button" id="contact-btn"><i class="mail outline icon"></i><?php _e('Contact', 'petition') ?></button>
+				<button class="ui tiny circular <?php echo esc_attr($button_classes) ?> button" id="contact-btn"><i class="mail outline icon"></i><?php _e('Contact', 'petition') ?></button>
 			</div>
 		</div>
 	</div>
@@ -75,8 +85,11 @@
 		$current_user = wp_get_current_user();
 		$follow_topics = get_user_meta($current_user->ID, 'follow_topics', true); 
 	?>
+	
 	<div class="page-title"><?php single_term_title(); ?>
+		<?php if ($term->taxonomy === 'petition_category') { ?>
 		<p class="font small text white"><?php echo esc_html($term->count) . ' ' . __('petitions', 'petition') ?></p>
+		<?php } ?>
 	</div>
 	<?php if ($term->taxonomy === 'petition_topics') { ?>
 	<div class="ui center aligned basic segment">

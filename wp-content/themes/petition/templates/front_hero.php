@@ -39,6 +39,8 @@ if ( ($home_header != 'none') && ($home_header_hide_logined != '') ) {
     $home_header_class = 'hero-container';
     $home_header_masthead = 'masthead';
     $hight_slideshow = $home_header_hight . 'px';
+} else if (is_home()) {
+    $hight_slideshow = $home_header_hight . 'px';
 }
 ?>
 
@@ -46,7 +48,7 @@ if ( ($home_header != 'none') && ($home_header_hide_logined != '') ) {
     <?php if($home_header == 'slideshow') { ?>
         <?php if ($home_header_hide_logined != '') { 
             if (!is_user_logged_in()) { ?>
-                <div id="slideshow" style="height: <?php echo ($home_header != 'none' && $hight_slideshow ? esc_attr($hight_slideshow) . 'px' : '') ?>">
+                <div id="slideshow" style="height: <?php echo ($home_header != 'none' && $hight_slideshow ? esc_attr($hight_slideshow) : '') ?>">
                     <?php 
                         $images = conikal_get_slideshow_images();
                         foreach ($images as $image) {
@@ -59,7 +61,7 @@ if ( ($home_header != 'none') && ($home_header_hide_logined != '') ) {
                 <div class="none-slideshow"></div>
             <?php }
         } else { ?>
-            <div id="slideshow" style="height: <?php echo ($home_header != 'none' && $hight_slideshow ? esc_attr($hight_slideshow) . 'px' : '') ?>">
+            <div id="slideshow" style="height: <?php echo ($home_header != 'none' && $hight_slideshow ? esc_attr($hight_slideshow) : '') ?>">
                 <?php 
                     $images = conikal_get_slideshow_images();
                     foreach ($images as $image) {

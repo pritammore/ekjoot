@@ -1,1028 +1,1612 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Project-Id-Version: Petition\n"
-"POT-Creation-Date: 2017-06-26 18:40+0700\n"
-"PO-Revision-Date: 2017-06-26 18:41+0700\n"
+"POT-Creation-Date: 2017-09-21 14:24+0700\n"
+"PO-Revision-Date: 2017-09-21 14:32+0700\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.2\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.0.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: style.css\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"Last-Translator: \n"
-"Language: fr\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: 404.php:17
 msgid "Sorry, we have a broken link!"
-msgstr ""
+msgstr "Désolé, le lien est rompu !"
 
 #: 404.php:18
 msgid ""
 "The page you are looking for was moved, removed, renamed, or might never "
 "existed."
 msgstr ""
+"La page que vous recherchez a été déplacée, supprimée, renommée ou peut-être "
+"jamais existé."
 
 #: 404.php:19
 msgid "Go Home"
-msgstr ""
+msgstr "Retourner à l'accueil"
 
-#: add-update.php:83 dashboard-petition.php:94 edit-petition.php:144
-#: single-petition.php:107
+#: add-update.php:77 contribute.php:71 dashboard-petition.php:97
+#: edit-petition.php:138 single-petition.php:120
 msgid "Campaign"
-msgstr ""
+msgstr "Campagne"
 
-#: add-update.php:102 dashboard-petition.php:95 edit-petition.php:163
-#: single-petition.php:126
+#: add-update.php:99 contribute.php:93 dashboard-petition.php:100
+#: edit-petition.php:160 single-petition.php:142
 msgid "Dashboard"
-msgstr ""
+msgstr "Tableau de bord"
 
-#: add-update.php:103 dashboard-petition.php:114 edit-petition.php:182
-#: single-petition.php:145
+#: add-update.php:102 contribute.php:115 dashboard-petition.php:122
+#: edit-petition.php:182 single-petition.php:164
 msgid "Update"
-msgstr ""
+msgstr "Mettre à jour"
 
-#: add-update.php:122 comments.php:77 comments.php:131
-#: dashboard-petition.php:133 edit-petition.php:183 functions.php:196
-#: single-petition.php:164 templates/update_petition.php:75
-#: templates/update_petition.php:119
+#: add-update.php:124 contribute.php:53 contribute.php:118
+#: dashboard-petition.php:144 edit-petition.php:204 single-petition.php:186
+msgid "Contribute"
+msgstr "Contribuer"
+
+#: add-update.php:148 contribute.php:140 dashboard-petition.php:166
+#: edit-petition.php:207 functions.php:219 functions.php:1157
+#: single-petition.php:208 templates/ajax_comments.php:76
+#: templates/ajax_comments.php:130 templates/update_petition.php:75
+#: templates/update_petition.php:120
 msgid "Edit"
-msgstr ""
+msgstr "Modifier"
 
-#: add-update.php:141 edit-petition.php:207 libs/widgets/contact_widget.php:29
+#: add-update.php:167 contribute.php:227 edit-petition.php:229
+#: libs/widgets/contact_widget.php:29
 #: libs/widgets/featured_petitions_widget.php:22
 #: libs/widgets/featured_posts_widget.php:23
 #: libs/widgets/recent_petitions_widget.php:22
 #: libs/widgets/recent_posts_widget.php:23 libs/widgets/social_widget.php:27
-#: submit-petition.php:85 submit-petition.php:126
+#: libs/widgets/topic_cards_widget.php:27 submit-petition.php:95
+#: submit-petition.php:136
 msgid "Title"
-msgstr ""
+msgstr "Titre"
 
-#: add-update.php:143 single-petition.php:399 single-petition.php:775
-#: single-update.php:232 single-update.php:608
-#: templates/victory_petitions.php:94
+#: add-update.php:169 single-petition.php:562 single-petition.php:962
+#: single-update.php:240 single-update.php:640
+#: templates/victory_petitions.php:107
 msgid "Victory!"
-msgstr ""
+msgstr "Victoire !"
 
-#: add-update.php:147
+#: add-update.php:173
 msgid "Your latest development"
-msgstr ""
+msgstr "Derniers développements"
 
-#: add-update.php:164
+#: add-update.php:190
 msgid "URL for an article"
-msgstr ""
+msgstr "pour un article"
 
-#: add-update.php:170 edit-petition.php:366 submit-petition.php:378
+#: add-update.php:196 edit-petition.php:388 submit-petition.php:388
 msgid "Add a photo or video"
-msgstr ""
+msgstr "Ajoutez une photo ou une vidéo"
 
-#: add-update.php:176
+#: add-update.php:202
 msgid "Post update"
-msgstr ""
+msgstr "Publier une note"
+
+#: admin/settings.php:32
+msgid "Add new"
+msgstr "Ajouter"
 
 #: admin/settings.php:34
-msgid "Add new"
-msgstr ""
-
-#: admin/settings.php:36
 msgid "Text"
-msgstr ""
+msgstr "Texte"
+
+#: admin/settings.php:35
+msgid "Numeric"
+msgstr "Numérique"
+
+#: admin/settings.php:36 download-csv.php:17
+msgid "Date"
+msgstr "Date"
 
 #: admin/settings.php:37
-msgid "Numeric"
-msgstr ""
-
-#: admin/settings.php:38
-msgid "Date"
-msgstr ""
-
-#: admin/settings.php:39
 msgid "No"
-msgstr ""
+msgstr "Non"
 
-#: admin/settings.php:40 dashboard-petition.php:536 dashboard-petition.php:546
-#: dashboard-petition.php:556
+#: admin/settings.php:38 dashboard-petition.php:622 dashboard-petition.php:632
+#: dashboard-petition.php:642
 msgid "Yes"
-msgstr ""
+msgstr "Oui"
 
-#: admin/settings.php:41 comments.php:78 comments.php:132 functions.php:197
-#: functions.php:257 templates/gallery_upload.php:14
-#: templates/update_petition.php:76 templates/update_petition.php:120
+#: admin/settings.php:39 functions.php:220 functions.php:285 functions.php:1158
+#: templates/ajax_comments.php:77 templates/ajax_comments.php:131
+#: templates/gallery_upload.php:14 templates/update_petition.php:76
+#: templates/update_petition.php:121
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
-#: admin/settings.php:62 admin/settings.php:2404
+#: admin/settings.php:60 admin/settings.php:2793
 msgid "General Settings"
-msgstr ""
+msgstr "Réglages généraux"
+
+#: admin/settings.php:61
+msgid "Logo"
+msgstr "Logo"
+
+#: admin/settings.php:62
+#, fuzzy
+#| msgid "Logo inverted"
+msgid "Logo inverse"
+msgstr "Logo inversé"
 
 #: admin/settings.php:63
-msgid "Logo"
+msgid "Victory icon (class name or URL)"
 msgstr ""
 
 #: admin/settings.php:64
-msgid "Logo inverted"
+msgid "Victory inverse icon (class name or URL)"
 msgstr ""
 
-#: admin/settings.php:65 admin/settings.php:176 admin/settings.php:204
-#: libs/widgets/contact_widget.php:61 petitions-search-results.php:274
-msgid "Country"
-msgstr ""
+#: admin/settings.php:65
+#, fuzzy
+msgid "Sign button icon (class name or URL)"
+msgstr "Signer la couleur du bouton"
 
 #: admin/settings.php:66
-msgid "Minimum of signature to display"
+msgid "Supporter icon (class name or URL)"
 msgstr ""
 
-#: admin/settings.php:67
-msgid "Number signature to change goal"
-msgstr ""
+#: admin/settings.php:67 admin/settings.php:200 admin/settings.php:228
+#: all-petitions.php:259 download-csv.php:25 libs/widgets/contact_widget.php:61
+#: petitions-search-results.php:275
+msgid "Country"
+msgstr "Pays"
 
 #: admin/settings.php:68
-msgid "Smooth scroll"
-msgstr ""
+msgid "Minimum of signature to display"
+msgstr "Minimum de signature pour afficher"
 
 #: admin/settings.php:69
-msgid "Ajax pages"
-msgstr ""
+msgid "Number signature to change goal"
+msgstr "Numéro signature pour changer d’objectif"
 
 #: admin/settings.php:70
-msgid "Type of ajax preloader"
-msgstr ""
+msgid "Days of Trending Petition"
+msgstr "Jours de pétition tendance"
 
 #: admin/settings.php:71
-msgid "Front-end petition publish without admin approval"
-msgstr ""
+msgid "Smooth scroll"
+msgstr "La taille originale est de %s pixels"
 
 #: admin/settings.php:72
-msgid "Decision Maker publish without admin approval"
-msgstr ""
+msgid "Ajax pages"
+msgstr "Pages Ajax"
 
 #: admin/settings.php:73
+msgid "Type of ajax preloader"
+msgstr "Type de preloader ajax"
+
+#: admin/settings.php:74
+msgid "Admin submit petition only"
+msgstr "Pétition de soumettre admin uniquement"
+
+#: admin/settings.php:75
+msgid "Front-end petition publish without admin approval"
+msgstr "Diffusion d'annonce par un membre sans validation de l'administrateur"
+
+#: admin/settings.php:76
+msgid "Decision Maker publish without admin approval"
+msgstr "Décideur publier sans l’approbation de l’admin"
+
+#: admin/settings.php:77
+msgid "Contribute & donation publish without admin approval"
+msgstr "Contribuer & Don publier sans l’approbation de l’admin"
+
+#: admin/settings.php:78
 msgid "Google Analytics Code"
-msgstr ""
+msgstr "Code Google Analytics"
 
-#: admin/settings.php:79 admin/settings.php:2409
+#: admin/settings.php:84 admin/settings.php:2798
 msgid "Homepage"
-msgstr ""
-
-#: admin/settings.php:80
-msgid "Homepage header type"
-msgstr ""
-
-#: admin/settings.php:81
-msgid "Homepage header video"
-msgstr ""
-
-#: admin/settings.php:82
-msgid "Enable video sound"
-msgstr ""
-
-#: admin/settings.php:83
-msgid "Header image shadow opacity"
-msgstr ""
-
-#: admin/settings.php:84
-msgid "Show homepage caption"
-msgstr ""
+msgstr "Accueil"
 
 #: admin/settings.php:85
-msgid "Homepage caption alignment"
-msgstr ""
+msgid "Homepage header type"
+msgstr "Type de l'en-tête de la page d’accueil"
 
 #: admin/settings.php:86
-msgid "Homepage caption title"
-msgstr ""
+msgid "Homepage header video"
+msgstr "Page d’accueil-tête vidéo"
 
 #: admin/settings.php:87
-msgid "Homepage caption subtitle"
-msgstr ""
+#, fuzzy
+msgid "Enable video sound"
+msgstr "Activer le son vidéo"
 
 #: admin/settings.php:88
-msgid "Show homepage caption cta button"
-msgstr ""
+#, fuzzy
+msgid "Hidden slideshow after login"
+msgstr "Diaporama caché après la connexion"
 
-#: admin/settings.php:89 admin/settings.php:91
-msgid "Homepage caption cta button text"
-msgstr ""
+#: admin/settings.php:89
+#, fuzzy
+msgid "Header image shadow opacity"
+msgstr "Opacité de l’image de l’entête"
 
-#: admin/settings.php:90 admin/settings.php:92
-msgid "Homepage caption cta button link"
-msgstr ""
+#: admin/settings.php:90
+#, fuzzy
+msgid "Hight of Slideshow (px)"
+msgstr "Hauteur du diaporama (px)"
+
+#: admin/settings.php:91
+msgid "Home Caption Top (px)"
+msgstr "Top maison Caption (px)"
+
+#: admin/settings.php:92
+#, fuzzy
+msgid "Show homepage caption"
+msgstr "Montrer la légende de la page d’accueil"
 
 #: admin/settings.php:93
-msgid "Show homepage spotlight section"
-msgstr ""
+#, fuzzy
+msgid "Homepage caption alignment"
+msgstr "Alignement de la légende de la page d'accueil"
 
 #: admin/settings.php:94
-msgid "Homepage spotlight section title"
-msgstr ""
+#, fuzzy
+msgid "Homepage caption title"
+msgstr "Titre de la légende de la page d’accueil"
 
 #: admin/settings.php:95
-msgid "Homepage spotlight section text"
-msgstr ""
+#, fuzzy
+msgid "Homepage caption subtitle"
+msgstr "Sous-titre de la légende de la page d’accueil"
 
 #: admin/settings.php:96
-msgid "Show homepage victory section"
-msgstr ""
+#, fuzzy
+msgid "Show homepage cta button"
+msgstr "Afficher le bouton cta de la page d’accueil"
 
-#: admin/settings.php:102 admin/settings.php:2414
-msgid "Header"
-msgstr ""
+#: admin/settings.php:97
+#, fuzzy
+msgid "Homepage cta button text 1"
+msgstr "Page d'accueil cta bouton texte 1"
+
+#: admin/settings.php:98
+#, fuzzy
+msgid "Homepage cta button link 1"
+msgstr "Homepage cta button link 1"
+
+#: admin/settings.php:99
+#, fuzzy
+msgid "Homepage cta button text 2"
+msgstr "Page d'accueil cta bouton texte 2"
+
+#: admin/settings.php:100
+#, fuzzy
+msgid "Homepage cta button link 2"
+msgstr "Homepage cta button link 2"
+
+#: admin/settings.php:101
+#, fuzzy
+msgid "Homepage cta button size"
+msgstr "Page d'accueil cta taille du bouton"
+
+#: admin/settings.php:102
+#, fuzzy
+msgid "Show homepage spotlight section"
+msgstr "Afficher la section vedette page d’accueil"
 
 #: admin/settings.php:103
-msgid "Show user menu in header"
-msgstr ""
+#, fuzzy
+msgid "Hidden spotlight after login"
+msgstr "Spot caché après la connexion"
 
 #: admin/settings.php:104
-msgid "Show submit button"
-msgstr ""
+#, fuzzy
+msgid "Homepage spotlight section title"
+msgstr "Titre de la section vedette page d’accueil"
 
 #: admin/settings.php:105
-msgid "Display name on user menu"
-msgstr ""
+#, fuzzy
+msgid "Homepage spotlight section text"
+msgstr "Page d’accueil spotlight section texte"
 
 #: admin/settings.php:106
-msgid "Type of header menu"
-msgstr ""
+#, fuzzy
+msgid "Show homepage victory section"
+msgstr "Afficher la page d'accueil de la page d'accueil"
 
 #: admin/settings.php:107
-msgid "Mobile menu animation"
-msgstr ""
+#, fuzzy
+msgid "Hidden victory section after login"
+msgstr "Section de victoire cachée après la connexion"
 
-#: admin/settings.php:113 admin/settings.php:2419
-msgid "Appearance"
-msgstr ""
+#: admin/settings.php:113 admin/settings.php:2803
+#, fuzzy
+msgid "Header"
+msgstr "Entête"
 
 #: admin/settings.php:114
-msgid "Sidebar position"
-msgstr ""
+#, fuzzy
+msgid "Show user menu in header"
+msgstr "Afficher le menu utilisateur dans l’entête"
 
 #: admin/settings.php:115
-msgid "Show related articles on blog post"
-msgstr ""
+#, fuzzy
+msgid "Show submit button"
+msgstr "Bouton soumettre"
 
 #: admin/settings.php:116
-msgid "Show similar petitions on petition page"
-msgstr ""
+msgid "Display name on user menu"
+msgstr "Nom d’affichage dans menu utilisateur"
 
 #: admin/settings.php:117
-msgid "Number of petitions per page"
-msgstr ""
+#, fuzzy
+msgid "Style of header menu"
+msgstr "Menu Style de l'en-tête"
 
 #: admin/settings.php:118
-msgid "Number of updates per page"
-msgstr ""
+#, fuzzy
+msgid "Type of header menu"
+msgstr "Type de menu de l’en-tête"
 
 #: admin/settings.php:119
-msgid "Number of comments per page"
-msgstr ""
+#, fuzzy
+msgid "Mobile menu animation"
+msgstr "Animation de menu mobile"
 
 #: admin/settings.php:120
-msgid "Number of reply per comment"
-msgstr ""
+#, fuzzy
+msgid "Page header opacity"
+msgstr "En-tête"
 
 #: admin/settings.php:121
-msgid "Show breadcrumbs on pages"
-msgstr ""
+#, fuzzy
+msgid "Post header opacity"
+msgstr "Opacité de l'après en-tête"
 
-#: admin/settings.php:122
-msgid "Copyright text"
-msgstr ""
+#: admin/settings.php:127 admin/settings.php:2808
+#, fuzzy
+msgid "Appearance"
+msgstr "Apparence"
 
-#: admin/settings.php:128 admin/settings.php:2424
-msgid "Colors"
-msgstr ""
+#: admin/settings.php:128
+#, fuzzy
+msgid "Sidebar position"
+msgstr "Position de la barre latérale"
 
 #: admin/settings.php:129
-msgid "Main color"
-msgstr ""
+#, fuzzy
+msgid "Use ajax comments"
+msgstr "Commentaires Ajax"
 
 #: admin/settings.php:130
-msgid "Background color"
-msgstr ""
+#, fuzzy
+msgid "Action after sign petition"
+msgstr "Action après la pétition des signatures"
 
 #: admin/settings.php:131
-msgid "Body text color"
-msgstr ""
+#, fuzzy
+msgid "Default accourdion after sign"
+msgstr "L'accoutrement par défaut après le signe"
 
 #: admin/settings.php:132
-msgid "Text link color"
-msgstr ""
+#, fuzzy
+msgid "Show related articles on blog post"
+msgstr "Afficher les articles liés sur le blog"
 
 #: admin/settings.php:133
-msgid "Preloader progress color"
-msgstr ""
+#, fuzzy
+msgid "Show similar petitions on petition page"
+msgstr "Afficher des pétitions similaires sur la page de pétition"
 
 #: admin/settings.php:134
-msgid "Opacity hero page color"
-msgstr ""
+#, fuzzy
+msgid "Show similar petitions base on"
+msgstr "Afficher des pétitions similaires sur la page de pétition"
 
 #: admin/settings.php:135
-msgid "Header menu"
-msgstr ""
+#, fuzzy
+msgid "Similar petitions & related posts per page"
+msgstr "Afficher des pétitions similaires sur la page de pétition"
 
 #: admin/settings.php:136
-msgid "Header menu text color"
-msgstr ""
+#, fuzzy
+msgid "Number of petitions per page"
+msgstr "Nombre de pétitions par page"
 
 #: admin/settings.php:137
-msgid "Text and Progress Victory color"
-msgstr ""
+#, fuzzy
+msgid "Number of updates per page"
+msgstr "Nombre de mises à jour par page"
 
 #: admin/settings.php:138
-msgid "Sign up button color"
-msgstr ""
+#, fuzzy
+msgid "Number of comments per page"
+msgstr "Nombre de commentaires par page"
 
 #: admin/settings.php:139
-msgid "Victory label color"
-msgstr ""
+#, fuzzy
+msgid "Number of reply per comment"
+msgstr "Nombre de réponses par commentaire"
 
 #: admin/settings.php:140
-msgid "Sign petition button color"
-msgstr ""
+#, fuzzy
+msgid "Number of supporter per page"
+msgstr "Nombre de mises à jour par page"
 
 #: admin/settings.php:141
-msgid "Mobile menu background color"
-msgstr ""
+#, fuzzy
+msgid "Show breadcrumbs on pages"
+msgstr "Voir le fil d'ariane sur les pages"
 
 #: admin/settings.php:142
-msgid "Mobile menu text link color"
-msgstr ""
+#, fuzzy
+msgid "Show Supporters section"
+msgstr "Afficher la section vedette page d’accueil"
 
 #: admin/settings.php:143
-msgid "Posts overlay primary color"
-msgstr ""
+#, fuzzy
+msgid "Show Donors section"
+msgstr "Afficher la page d'accueil de la page d'accueil"
 
 #: admin/settings.php:144
-msgid "Posts overlay secondary color"
-msgstr ""
+#, fuzzy
+msgid "Copyright text"
+msgstr "Copyright &copy;"
 
-#: admin/settings.php:145
-msgid "Footer background color"
-msgstr ""
+#: admin/settings.php:150 admin/settings.php:2813
+#, fuzzy
+msgid "Colors"
+msgstr "Couleurs"
 
-#: admin/settings.php:146
-msgid "Footer text color"
-msgstr ""
+#: admin/settings.php:151
+#, fuzzy
+msgid "Main color"
+msgstr "Couleur principale"
 
-#: admin/settings.php:152 admin/settings.php:2429
-msgid "Typography"
-msgstr ""
+#: admin/settings.php:152
+#, fuzzy
+msgid "Background color"
+msgstr "Couleur de fond"
 
 #: admin/settings.php:153
-msgid "Body Font"
-msgstr ""
+#, fuzzy
+msgid "Body text color"
+msgstr "Couleur du corps de texte"
 
 #: admin/settings.php:154
-msgid "Home Heading Font"
-msgstr ""
+#, fuzzy
+msgid "Text link color"
+msgstr "Couleur du lien du texte"
 
 #: admin/settings.php:155
-msgid "Home Sub-Heading Font"
-msgstr ""
+#, fuzzy
+msgid "Home caption color"
+msgstr "Couleur de la légende"
 
 #: admin/settings.php:156
-msgid "Heading Font"
-msgstr ""
+#, fuzzy
+msgid "Preloader progress color"
+msgstr "Couleur de barre de progrès Preloader"
 
 #: admin/settings.php:157
-msgid "Page Heading Font"
-msgstr ""
+#, fuzzy
+msgid "Opacity hero page color"
+msgstr "Couleur de page d'héroïne d'opacité"
 
 #: admin/settings.php:158
-msgid "Widget Title Font"
-msgstr ""
+#, fuzzy
+msgid "Header menu"
+msgstr "Menu du header"
 
 #: admin/settings.php:159
-msgid "Posts Title Font"
-msgstr ""
+#, fuzzy
+msgid "Header menu text color"
+msgstr "Couleur du texte de l’en-tête."
 
 #: admin/settings.php:160
-msgid "Posts Content Font"
-msgstr ""
+#, fuzzy
+msgid "Home menu text color"
+msgstr "Couleur de texte du sous-menu"
 
 #: admin/settings.php:161
-msgid "Button Font"
-msgstr ""
+#, fuzzy
+msgid "Text and Progress Victory color"
+msgstr "Texte et progrès Couleur de la victoire"
+
+#: admin/settings.php:162
+#, fuzzy
+msgid "Sign up button color"
+msgstr "Signer la couleur du bouton"
+
+#: admin/settings.php:163
+#, fuzzy
+msgid "Victory label color"
+msgstr "Couleur de l'étiquette de la victoire"
+
+#: admin/settings.php:164
+#, fuzzy
+msgid "Sign petition button color"
+msgstr "Signer la couleur du bouton de requête"
+
+#: admin/settings.php:165
+#, fuzzy
+msgid "Mobile menu background color"
+msgstr "Couleur d'arrière-plan du menu mobile"
+
+#: admin/settings.php:166
+#, fuzzy
+msgid "Mobile menu text link color"
+msgstr "Menu Mobile, la Couleur du Texte"
 
 #: admin/settings.php:167
+#, fuzzy
+msgid "Posts overlay primary color"
+msgstr "Posts overlay primary color"
+
+#: admin/settings.php:168
+#, fuzzy
+msgid "Posts overlay secondary color"
+msgstr "Postes superposés couleur secondaire"
+
+#: admin/settings.php:169
+#, fuzzy
+msgid "Footer background color"
+msgstr "Couleur d'arrière-plan du pied de page"
+
+#: admin/settings.php:170
+#, fuzzy
+msgid "Footer text color"
+msgstr "Couleur du texte du pied de page"
+
+#: admin/settings.php:176 admin/settings.php:2818
+#, fuzzy
+msgid "Typography"
+msgstr "Typographie"
+
+#: admin/settings.php:177
+#, fuzzy
+msgid "Body Font"
+msgstr "Police du corps de page"
+
+#: admin/settings.php:178
+#, fuzzy
+msgid "Home Heading Font"
+msgstr "Police du titre du site"
+
+#: admin/settings.php:179
+#, fuzzy
+msgid "Home Sub-Heading Font"
+msgstr "Home Sub-Heading Font"
+
+#: admin/settings.php:180
+#, fuzzy
+msgid "Heading Font"
+msgstr "Police du titre du site"
+
+#: admin/settings.php:181
+#, fuzzy
+msgid "Page Heading Font"
+msgstr "Police Entête des titres de Page"
+
+#: admin/settings.php:182
+#, fuzzy
+msgid "Widget Title Font"
+msgstr "Titres des widgets"
+
+#: admin/settings.php:183
+#, fuzzy
+msgid "Posts Title Font"
+msgstr "Entrée Titre Police"
+
+#: admin/settings.php:184
+#, fuzzy
+msgid "Posts Content Font"
+msgstr "Contenu des articles"
+
+#: admin/settings.php:185
+#, fuzzy
+msgid "Button Font"
+msgstr "Police pour les Boutons"
+
+#: admin/settings.php:191
+#, fuzzy
 msgid "Petition Fiels"
-msgstr ""
+msgstr "Pétition Féroé"
 
-#: admin/settings.php:168 admin/settings.php:202 edit-petition.php:214
-#: petitions-search-results.php:222 submit-petition.php:144
+#: admin/settings.php:192 admin/settings.php:226 all-petitions.php:208
+#: edit-petition.php:236 functions.php:872 functions.php:902 functions.php:914
+#: petitions-search-results.php:223 submit-petition.php:154
+#, fuzzy
 msgid "Category"
-msgstr ""
+msgstr "Catégorie"
 
-#: admin/settings.php:169 petitions-search-results.php:207
+#: admin/settings.php:193 all-petitions.php:192 functions.php:910
+#: petitions-search-results.php:208
+#, fuzzy
 msgid "Topics"
-msgstr ""
+msgstr "Sujets"
 
-#: admin/settings.php:170 admin/settings.php:219
+#: admin/settings.php:194 admin/settings.php:243
 #: libs/widgets/contact_widget.php:45 templates/guest_sign.php:25
 #: templates/guest_sign.php:76 templates/user_modals.php:39
 #: user-account.php:180
+#, fuzzy
 msgid "Address"
-msgstr ""
+msgstr "Adresse"
 
-#: admin/settings.php:171 admin/settings.php:206
-#: libs/widgets/contact_widget.php:49 petitions-search-results.php:248
+#: admin/settings.php:195 admin/settings.php:230 all-petitions.php:235
+#: download-csv.php:23 libs/widgets/contact_widget.php:49
+#: petitions-search-results.php:249
+#, fuzzy
 msgid "City"
-msgstr ""
+msgstr "Ville"
 
-#: admin/settings.php:172
+#: admin/settings.php:196
+#, fuzzy
 msgid "Coordinates"
-msgstr ""
+msgstr "Coordonnées"
 
-#: admin/settings.php:173 admin/settings.php:207
-#: petitions-search-results.php:235
+#: admin/settings.php:197 admin/settings.php:231 all-petitions.php:223
+#: petitions-search-results.php:236
+#, fuzzy
 msgid "Neighborhood"
-msgstr ""
+msgstr "Quartiers"
 
-#: admin/settings.php:174
+#: admin/settings.php:198
+#, fuzzy
 msgid "Zip Code"
-msgstr ""
+msgstr "Code postal"
 
-#: admin/settings.php:175 admin/settings.php:205
+#: admin/settings.php:199 admin/settings.php:229
+#, fuzzy
 msgid "County/State"
-msgstr ""
-
-#: admin/settings.php:177
-msgid "Receiver name"
-msgstr ""
-
-#: admin/settings.php:178
-msgid "Position"
-msgstr ""
-
-#: admin/settings.php:179
-msgid "Goal sign"
-msgstr ""
-
-#: admin/settings.php:180
-msgid "Goal default"
-msgstr ""
-
-#: admin/settings.php:181
-msgid "Video"
-msgstr ""
-
-#: admin/settings.php:182
-msgid "Media Upload"
-msgstr ""
-
-#: admin/settings.php:188 admin/settings.php:2439
-msgid "Search Suggestion"
-msgstr ""
-
-#: admin/settings.php:189
-msgid "Minimun Characters"
-msgstr ""
-
-#: admin/settings.php:190
-msgid "Maxinum Results"
-msgstr ""
-
-#: admin/settings.php:191 libs/class-tgm-plugin-activation.php:1390
-msgid "Type"
-msgstr ""
-
-#: admin/settings.php:192
-msgid "Link"
-msgstr ""
-
-#: admin/settings.php:193
-msgid "Description"
-msgstr ""
-
-#: admin/settings.php:194
-msgid "Image"
-msgstr ""
-
-#: admin/settings.php:195 dashboard-petition.php:155 dashboard-petition.php:571
-#: single-petition.php:419 single-petition.php:809 single-update.php:252
-#: single-update.php:642
-msgid "Supporters"
-msgstr ""
+msgstr "Région/Pays"
 
 #: admin/settings.php:201
-msgid "Search Filter Fields"
-msgstr ""
+#, fuzzy
+msgid "Receiver name"
+msgstr "Nom du destinataire"
+
+#: admin/settings.php:202
+#, fuzzy
+msgid "Position"
+msgstr "Position"
 
 #: admin/settings.php:203
-msgid "Topic"
-msgstr ""
+#, fuzzy
+msgid "Goal sign"
+msgstr "Signe de l'objectif"
 
-#: admin/settings.php:213 templates/page_caption.php:60
-msgid "Contact"
-msgstr ""
+#: admin/settings.php:204
+#, fuzzy
+msgid "Goal default"
+msgstr "Objectif par défaut"
+
+#: admin/settings.php:205
+#, fuzzy
+msgid "Video"
+msgstr "Vidéo"
+
+#: admin/settings.php:206
+#, fuzzy
+msgid "Media Upload"
+msgstr "Charger des fichiers"
+
+#: admin/settings.php:212 admin/settings.php:2828
+#, fuzzy
+msgid "Search Suggestion"
+msgstr "Recherche suggestion :"
+
+#: admin/settings.php:213
+#, fuzzy
+msgid "Minimun Characters"
+msgstr "Minimun Personnages"
 
 #: admin/settings.php:214
-msgid "Company Name"
-msgstr ""
+#, fuzzy
+msgid "Maxinum Results"
+msgstr "Résultats Maxinum"
 
-#: admin/settings.php:215 single.php:157 user-account.php:164
-msgid "E-mail"
-msgstr ""
+#: admin/settings.php:215 libs/class-tgm-plugin-activation.php:1390
+#, fuzzy
+msgid "Type"
+msgstr "Type"
 
-#: admin/settings.php:216 libs/widgets/contact_widget.php:37
-msgid "Phone"
-msgstr ""
+#: admin/settings.php:216
+#, fuzzy
+msgid "Link"
+msgstr "Ajouter lien vers admin bar"
 
 #: admin/settings.php:217
-msgid "Mobile"
-msgstr ""
+#, fuzzy
+msgid "Description"
+msgstr "Description"
 
 #: admin/settings.php:218
+#, fuzzy
+msgid "Image"
+msgstr "Image"
+
+#: admin/settings.php:219 dashboard-petition.php:188 dashboard-petition.php:657
+#: single-petition.php:352 single-petition.php:582 single-petition.php:996
+#: single-update.php:260 single-update.php:674 supporters-list.php:40
+#, fuzzy
+msgid "Supporters"
+msgstr "Soutiens"
+
+#: admin/settings.php:225
+#, fuzzy
+msgid "Search Filter Fields"
+msgstr "Rechercher les champs de filtrage"
+
+#: admin/settings.php:227
+#, fuzzy
+msgid "Topic"
+msgstr "Sujet"
+
+#: admin/settings.php:237 templates/page_caption.php:63
+#, fuzzy
+msgid "Contact"
+msgstr "Contact"
+
+#: admin/settings.php:238
+#, fuzzy
+msgid "Company Name"
+msgstr "Nom de ma fac, ou école"
+
+#: admin/settings.php:239 single.php:158 user-account.php:164
+#, fuzzy
+msgid "E-mail"
+msgstr "Email"
+
+#: admin/settings.php:240 libs/widgets/contact_widget.php:37
+#, fuzzy
+msgid "Phone"
+msgstr "Téléphone"
+
+#: admin/settings.php:241
+#, fuzzy
+msgid "Mobile"
+msgstr "Portable"
+
+#: admin/settings.php:242
+#, fuzzy
 msgid "Skype"
-msgstr ""
+msgstr "Skype"
 
-#: admin/settings.php:220 libs/widgets/social_widget.php:31
+#: admin/settings.php:244 libs/widgets/social_widget.php:31
+#, fuzzy
 msgid "Facebook Link"
-msgstr ""
+msgstr "Lien Facebook"
 
-#: admin/settings.php:221 libs/widgets/social_widget.php:35
+#: admin/settings.php:245 libs/widgets/social_widget.php:35
+#, fuzzy
 msgid "Twitter Link"
-msgstr ""
+msgstr "Lien Twitter"
 
-#: admin/settings.php:222 libs/widgets/social_widget.php:39
+#: admin/settings.php:246 libs/widgets/social_widget.php:39
+#, fuzzy
 msgid "Google+ Link"
-msgstr ""
+msgstr "Lien Google +"
 
-#: admin/settings.php:223 libs/widgets/social_widget.php:43
+#: admin/settings.php:247 libs/widgets/social_widget.php:43
+#, fuzzy
 msgid "LinkedIn Link"
-msgstr ""
+msgstr "Lien Linkedin"
 
-#: admin/settings.php:229 admin/settings.php:2454
+#: admin/settings.php:253 admin/settings.php:2843
+#, fuzzy
 msgid "Authentication"
-msgstr ""
+msgstr "Connexion"
 
-#: admin/settings.php:230
+#: admin/settings.php:254
+#, fuzzy
 msgid "Allow Facebook Login"
-msgstr ""
+msgstr "Autoriser la connexion via Facebook"
 
-#: admin/settings.php:231
+#: admin/settings.php:255
+#, fuzzy
 msgid "Facebook App ID"
-msgstr ""
+msgstr "ID de l’application Facebook"
 
-#: admin/settings.php:232
+#: admin/settings.php:256
+#, fuzzy
 msgid "Facebook App Secret"
-msgstr ""
+msgstr "App secrète Facebook"
 
-#: admin/settings.php:233
+#: admin/settings.php:257
+#, fuzzy
 msgid "Allow Google Signin"
-msgstr ""
+msgstr "Autoriser la Connexion via Google"
 
-#: admin/settings.php:234
+#: admin/settings.php:258
+#, fuzzy
 msgid "Google Client ID"
-msgstr ""
+msgstr "Gogle ID client"
 
-#: admin/settings.php:235
+#: admin/settings.php:259
+#, fuzzy
 msgid "Google Client Secret"
-msgstr ""
+msgstr "Clé secrète Client Google"
 
-#: admin/settings.php:236
+#: admin/settings.php:260
+#, fuzzy
 msgid "Google Map API key"
-msgstr ""
+msgstr "Google Map API key"
 
-#: admin/settings.php:253 admin/settings.php:267 admin/settings.php:436
+#: admin/settings.php:278 admin/settings.php:294 admin/settings.php:310
+#: admin/settings.php:326 admin/settings.php:343 admin/settings.php:359
+#: admin/settings.php:557
+#, fuzzy
 msgid "Browse..."
+msgstr "Parcourir..."
+
+#: admin/settings.php:813 admin/settings.php:854
+msgid "None"
 msgstr ""
 
-#: admin/settings.php:1481 admin/settings.php:1516 admin/settings.php:1551
-#: admin/settings.php:1586 admin/settings.php:1621 admin/settings.php:1656
-#: admin/settings.php:1691 admin/settings.php:1726 admin/settings.php:1761
-#: admin/settings.php:1796 admin/settings.php:1831 admin/settings.php:1866
+#: admin/settings.php:813
+#, fuzzy
+msgid "First name"
+msgstr "Prénom"
+
+#: admin/settings.php:813
+#, fuzzy
+msgid "Last name"
+msgstr "Nom"
+
+#: admin/settings.php:813 edit-petition.php:260 submit-petition.php:216
+#: templates/guest_sign.php:13 templates/guest_sign.php:64
+#, fuzzy
+msgid "Full name"
+msgstr "Nom complet"
+
+#: admin/settings.php:813
+msgid "Nick name"
+msgstr ""
+
+#: admin/settings.php:833
+msgid "Boxed"
+msgstr ""
+
+#: admin/settings.php:833
+msgid "Wide"
+msgstr ""
+
+#: admin/settings.php:854
+msgid "Fixed"
+msgstr ""
+
+#: admin/settings.php:854
+#, fuzzy
+#| msgid "Smooth scroll"
+msgid "Scroll"
+msgstr "La taille originale est de %s pixels"
+
+#: admin/settings.php:875
+msgid "Overlay"
+msgstr ""
+
+#: admin/settings.php:875
+msgid "Push"
+msgstr ""
+
+#: admin/settings.php:875
+msgid "Scale Down"
+msgstr ""
+
+#: admin/settings.php:982
+msgid "None action"
+msgstr ""
+
+#: admin/settings.php:982
+msgid "Refresh current page"
+msgstr ""
+
+#: admin/settings.php:982
+msgid "Redirect to success page"
+msgstr ""
+
+#: admin/settings.php:982
+#, fuzzy
+msgid "Show modal"
+msgstr "Afficher Objectif:"
+
+#: admin/settings.php:1004 sign-successful.php:115 sign-successful.php:159
+#: single-petition.php:656 single-petition.php:702 single-petition.php:823
+#: single-petition.php:869 single-petition.php:1043 single-petition.php:1134
+#: single-petition.php:1201 single-petition.php:1292 single-petition.php:1422
+#: single-petition.php:1468 single-petition.php:1582 single-petition.php:1628
+#: single-update.php:334 single-update.php:380 single-update.php:501
+#: single-update.php:547 single-update.php:721 single-update.php:812
+#: single-update.php:879 single-update.php:970 single-update.php:1100
+#: single-update.php:1146 single-update.php:1259 single-update.php:1305
+#: single.php:28 single.php:146 templates/guest_sign.php:45
+#: templates/guest_sign.php:96
+#, fuzzy
+msgid "Share on Facebook"
+msgstr "Partager sur Facebook"
+
+#: admin/settings.php:1004
+#, fuzzy
+msgid "Contribute & Donation"
+msgstr "Contribute & Donation est en attente d'approbation!"
+
+#: admin/settings.php:1044
+msgid "Both Category & Topics"
+msgstr ""
+
+#: admin/settings.php:1044
+#, fuzzy
+msgid "Base on Category"
+msgstr "Catégorie"
+
+#: admin/settings.php:1044
+#, fuzzy
+msgid "Base on Topics"
+msgstr "Sujets"
+
+#: admin/settings.php:1870 admin/settings.php:1905 admin/settings.php:1940
+#: admin/settings.php:1975 admin/settings.php:2010 admin/settings.php:2045
+#: admin/settings.php:2080 admin/settings.php:2115 admin/settings.php:2150
+#: admin/settings.php:2185 admin/settings.php:2220 admin/settings.php:2255
+#, fuzzy
 msgid "not required"
-msgstr ""
+msgstr "non obligatoire"
 
-#: admin/settings.php:1961
+#: admin/settings.php:2350
+#, fuzzy
 msgid "category"
-msgstr ""
+msgstr "catégorie"
 
-#: admin/settings.php:1961
+#: admin/settings.php:2350
+#, fuzzy
 msgid "standard"
-msgstr ""
+msgstr "standard"
 
-#: admin/settings.php:2434
+#: admin/settings.php:2823
+#, fuzzy
 msgid "Petition Fields"
-msgstr ""
+msgstr "Champs de pétition"
 
-#: admin/settings.php:2444
+#: admin/settings.php:2833
+#, fuzzy
 msgid "Search Filter"
-msgstr ""
+msgstr "Filtre de recherche"
 
-#: admin/settings.php:2449 contact-page.php:45
+#: admin/settings.php:2838 contact-page.php:45
+#, fuzzy
 msgid "Contact Details"
-msgstr ""
+msgstr "Détails du contact"
 
-#: admin/settings.php:2459
+#: admin/settings.php:2848
+#, fuzzy
 msgid "Documentation"
-msgstr ""
+msgstr "Consulter la documentation"
 
-#: archive.php:98 category.php:98 index.php:80 search.php:66
-#: templates/blog_featured.php:60 templates/related_posts.php:64
-#, php-format
-msgid "View all posts in %s"
-msgstr ""
-
-#: archive.php:124 category.php:124 index.php:106
-msgid "No posts found."
-msgstr ""
-
-#: author.php:67 author.php:147 my-petitions.php:73 my-petitions.php:153
-msgid "About"
-msgstr ""
-
-#: author.php:87 author.php:167 my-petitions.php:93 my-petitions.php:173
-msgid "Born on "
-msgstr ""
-
-#: author.php:93 author.php:173 my-petitions.php:99 my-petitions.php:179
-msgid "Joined "
-msgstr ""
-
-#: author.php:99 author.php:179 my-petitions.php:105 my-petitions.php:185
-msgid "Who is following?"
-msgstr ""
-
-#: author.php:120 author.php:200 my-petitions.php:126 my-petitions.php:206
-msgid "Petitions"
-msgstr ""
-
-#: author.php:126 author.php:206 my-petitions.php:132 my-petitions.php:212
-msgid "Followers"
-msgstr ""
-
-#: author.php:132 author.php:212 functions.php:194 my-petitions.php:138
-#: my-petitions.php:218 single.php:87 templates/page_caption.php:53
-msgid "Following"
-msgstr ""
-
-#: author.php:272 bookmark-petitions.php:98 functions.php:208 homepage.php:94
-#: my-petitions.php:294 petitions-search-results.php:139
-#: signed-petitions.php:98 single-petition.php:193
-#: taxonomy-petition_category.php:136 taxonomy-petition_topics.php:134
-#: templates/victory_petitions.php:118
+#: all-petitions.php:133 author.php:274 bookmark-petitions.php:99
+#: functions.php:231 homepage.php:114 my-petitions.php:295
+#: petitions-search-results.php:140 signed-petitions.php:99
+#: single-petition.php:237 taxonomy-petition_category.php:137
+#: taxonomy-petition_topics.php:135 templates/victory_petitions.php:131
+#, fuzzy
 msgid "Petition to"
-msgstr ""
+msgstr "Diffusion d'annonce par un membre sans validation de l'administrateur"
 
-#: author.php:316 author.php:336 bookmark-petitions.php:142
-#: bookmark-petitions.php:162 functions.php:209 homepage.php:138
-#: homepage.php:158 libs/widgets/featured_petitions_widget.php:149
-#: libs/widgets/recent_petitions_widget.php:146 my-petitions.php:338
-#: my-petitions.php:358 petitions-search-results.php:152
-#: petitions-search-results.php:165 signed-petitions.php:142
-#: signed-petitions.php:162 single-petition.php:405 single-petition.php:786
-#: single-update.php:151 single-update.php:238 single-update.php:619
-#: taxonomy-petition_category.php:180 taxonomy-petition_category.php:200
-#: taxonomy-petition_topics.php:178 taxonomy-petition_topics.php:198
-#: templates/similar_petitions.php:142 templates/victory_petitions.php:141
+#: all-petitions.php:148 author.php:325 author.php:345
+#: bookmark-petitions.php:150 bookmark-petitions.php:170 functions.php:232
+#: homepage.php:157 homepage.php:177
+#: libs/widgets/featured_petitions_widget.php:150
+#: libs/widgets/recent_petitions_widget.php:147 my-petitions.php:346
+#: my-petitions.php:366 petitions-search-results.php:153
+#: petitions-search-results.php:166 signed-petitions.php:143
+#: signed-petitions.php:163 single-petition.php:568 single-petition.php:973
+#: single-update.php:159 single-update.php:246 single-update.php:651
+#: taxonomy-petition_category.php:188 taxonomy-petition_category.php:208
+#: taxonomy-petition_topics.php:186 taxonomy-petition_topics.php:206
+#: templates/similar_petitions.php:167 templates/victory_petitions.php:154
+#, fuzzy
 msgid "supporters"
-msgstr ""
+msgstr "participants"
 
-#: author.php:319 bookmark-petitions.php:145 functions.php:198 homepage.php:141
-#: my-petitions.php:341 petitions-search-results.php:153
-#: signed-petitions.php:145 taxonomy-petition_category.php:183
-#: taxonomy-petition_topics.php:181 templates/update_petition.php:153
+#: all-petitions.php:176 dashboard-petition.php:369
+#: decision-makers-search.php:56 index.php:119 petitions-search-results.php:190
+#: supporters-list.php:158 taxonomy-petition_category.php:239
+#: taxonomy-petition_topics.php:237
+#, fuzzy
+msgid " of "
+msgstr " des "
+
+#: all-petitions.php:176 petitions-search-results.php:190
+#: supporters-list.php:158 taxonomy-petition_category.php:239
+#: taxonomy-petition_topics.php:237
+#, fuzzy
+msgid " Petitions"
+msgstr "PÉTITIONS"
+
+#: all-petitions.php:185 petitions-search-results.php:204
+#, fuzzy
+msgid "Filter"
+msgstr "Filtre"
+
+#: all-petitions.php:196 petitions-search-results.php:212
+#, fuzzy
+msgid "Select Topics"
+msgstr "Sélectionnez les sujets"
+
+#: all-petitions.php:210
+#, fuzzy
+msgid "Select Category"
+msgstr "Sélectionnez une catégorie"
+
+#: all-petitions.php:225
+#, fuzzy
+msgid "Select Neighborhood"
+msgstr "Quartiers"
+
+#: all-petitions.php:237
+#, fuzzy
+msgid "Select City"
+msgstr "Sélectionnez les sujets"
+
+#: all-petitions.php:247 download-csv.php:24 petitions-search-results.php:262
+#, fuzzy
+msgid "State"
+msgstr "État"
+
+#: all-petitions.php:249
+#, fuzzy
+msgid "Select State"
+msgstr "Sélectionnez une catégorie"
+
+#: all-petitions.php:267 petitions-search-results.php:281
+#, fuzzy
+msgid "Reset Filter"
+msgstr "Aucun filtre"
+
+#: archive.php:98 category.php:98 index.php:86 search.php:66
+#: templates/blog_featured.php:61 templates/related_posts.php:67
+#, fuzzy, php-format
+msgid "View all posts in %s"
+msgstr "Voir tous les articles dans %s"
+
+#: archive.php:124 category.php:124 index.php:109
+#, fuzzy
+msgid "No posts found."
+msgstr "Aucun article trouvé."
+
+#: author.php:68 author.php:148 my-petitions.php:74 my-petitions.php:154
+#, fuzzy
+msgid "About"
+msgstr "À propos"
+
+#: author.php:100 author.php:180 my-petitions.php:106 my-petitions.php:186
+#, fuzzy
+msgid "Who is following?"
+msgstr "Qui suit?"
+
+#: author.php:121 author.php:201 my-petitions.php:127 my-petitions.php:207
+#, fuzzy
+msgid "Petitions"
+msgstr "PÉTITIONS"
+
+#: author.php:127 author.php:207 my-petitions.php:133 my-petitions.php:213
+#, fuzzy
+msgid "Followers"
+msgstr "Followers"
+
+#: author.php:133 author.php:213 functions.php:217
+#: libs/widgets/topic_cards_widget.php:210 my-petitions.php:139
+#: my-petitions.php:219 single.php:215 single.php:239 supporters-list.php:129
+#: templates/page_caption.php:54 templates/page_caption.php:88
+#, fuzzy
+msgid "Following"
+msgstr "Blogues suivis"
+
+#: author.php:328 bookmark-petitions.php:153 functions.php:221 homepage.php:160
+#: my-petitions.php:349 petitions-search-results.php:154
+#: signed-petitions.php:146 taxonomy-petition_category.php:191
+#: taxonomy-petition_topics.php:189 templates/update_petition.php:154
+#, fuzzy
 msgid "comments"
-msgstr ""
+msgstr "&larr; Commentaires plus anciens"
 
-#: author.php:355 bookmark-petitions.php:181 homepage.php:182 homepage.php:189
-#: index.php:116 my-petitions.php:376 signed-petitions.php:181
+#: author.php:364 bookmark-petitions.php:189 homepage.php:201 homepage.php:208
+#: homepage.php:215 index.php:119 my-petitions.php:384 signed-petitions.php:182
+#, fuzzy
 msgid "Load more..."
-msgstr ""
+msgstr "Charger plus…"
 
-#: author.php:358 bookmark-petitions.php:184 homepage.php:175
-#: my-petitions.php:379 petitions-search-results.php:196
-#: signed-petitions.php:184 taxonomy-petition_category.php:238
-#: taxonomy-petition_topics.php:236
+#: author.php:367 bookmark-petitions.php:192 homepage.php:194
+#: my-petitions.php:387 petitions-search-results.php:197
+#: signed-petitions.php:185 taxonomy-petition_category.php:246
+#: taxonomy-petition_topics.php:244
+#, fuzzy
 msgid "No petitions found."
-msgstr ""
+msgstr "Aucune pétition n'a été trouvée."
 
-#: comments.php:37 dashboard-petition.php:163 single-petition.php:221
+#: comments.php:30 dashboard-petition.php:196 single-petition.php:265
+#: templates/ajax_comments.php:36
+#, fuzzy
 msgid "Comments"
-msgstr ""
+msgstr "&larr; Commentaires plus anciens"
 
-#: comments.php:42
-msgid "Older comments ..."
-msgstr ""
+#: comments.php:47
+#, fuzzy
+msgid "Comments are closed."
+msgstr "Les commentaires sont fermés."
 
-#: comments.php:62 comments.php:116 functions.php:202
-msgid "like"
-msgstr ""
+#: comments.php:56 contact-page.php:96 libs/widgets/topic_cards_widget.php:23
+#: templates/page_caption.php:116
+#, fuzzy
+msgid "Name"
+msgstr "Nom"
 
-#: comments.php:70 comments.php:124 functions.php:204
-msgid "Unlike"
-msgstr ""
+#: comments.php:61 contact-page.php:100 libs/widgets/contact_widget.php:41
+#: templates/guest_sign.php:19 templates/guest_sign.php:70
+#: templates/page_caption.php:120 templates/user_modals.php:32
+#: templates/user_modals.php:78
+#, fuzzy
+msgid "Email"
+msgstr "E-mail "
 
-#: comments.php:72 comments.php:126 functions.php:203
-msgid "Like"
-msgstr ""
+#: comments.php:66 user-account.php:193
+#, fuzzy
+msgid "Website"
+msgstr "Site Internet"
 
-#: comments.php:75 comments.php:129 functions.php:199
-msgid "Reply"
-msgstr ""
+#: comments.php:74 contribute.php:285
+#, fuzzy
+msgid "Submit"
+msgstr "Envoyer"
 
-#: comments.php:93
-msgid "Hidden replies"
-msgstr ""
+#: comments.php:76
+#, fuzzy
+msgid "Write a Reply or Comment"
+msgstr "Rédiger une réponse ou un commentaire"
 
-#: comments.php:148
-msgid "No comments yet"
-msgstr ""
+#: comments.php:78
+#, fuzzy
+msgid "Your email address will not be published."
+msgstr "Votre adresse email ne sera pas publiée."
 
-#: comments.php:151
-msgid "Leaving the first to comment on this article."
-msgstr ""
+#: comments.php:78
+#, fuzzy
+msgid "Required fields are marked *"
+msgstr "Les champs requis sont indiques *"
 
-#: comments.php:153 functions.php:180 templates/app_user_menu.php:158
-#: templates/app_user_menu.php:165 templates/user_menu.php:158
-#: templates/user_menu.php:165 templates/user_modals.php:64
-#: templates/user_modals.php:103 templates/user_modals.php:119
-msgid "Sign In"
-msgstr ""
-
-#: comments.php:154 functions.php:179 templates/app_user_menu.php:156
-#: templates/app_user_menu.php:166 templates/user_menu.php:156
-#: templates/user_menu.php:166 templates/user_modals.php:61
-#: templates/user_modals.php:115
-msgid "Sign Up"
-msgstr ""
-
-#: comments.php:155
-#, php-format
-msgid "You need %1$s or %2$s account to post comment."
-msgstr ""
-
-#: comments.php:170
-msgid "Add a comment"
-msgstr ""
+#: comments.php:81
+#, fuzzy
+msgid "Comment"
+msgstr "Commentaire"
 
 #: contact-page.php:66
+#, fuzzy
 msgid "Follow Us"
-msgstr ""
+msgstr "Suivez nous"
 
 #: contact-page.php:92
+#, fuzzy
 msgid "Send Us a Message"
-msgstr ""
+msgstr "Envoyez-nous un message"
 
-#: contact-page.php:96 templates/page_caption.php:90
-msgid "Name"
-msgstr ""
-
-#: contact-page.php:97 templates/page_caption.php:91
+#: contact-page.php:97 templates/page_caption.php:117
+#, fuzzy
 msgid "Enter your name"
-msgstr ""
+msgstr "Entrer votre nom"
 
-#: contact-page.php:100 libs/widgets/contact_widget.php:41
-#: templates/guest_sign.php:19 templates/guest_sign.php:70
-#: templates/page_caption.php:94 templates/user_modals.php:32
-#: templates/user_modals.php:78
-msgid "Email"
-msgstr ""
-
-#: contact-page.php:101 templates/page_caption.php:95
+#: contact-page.php:101 templates/page_caption.php:121
+#, fuzzy
 msgid "Enter your email"
-msgstr ""
+msgstr "Votre e-mail"
 
-#: contact-page.php:105 templates/page_caption.php:103
+#: contact-page.php:105 templates/page_caption.php:129
+#, fuzzy
 msgid "Subject"
-msgstr ""
+msgstr "Sujet"
 
-#: contact-page.php:106 templates/page_caption.php:104
+#: contact-page.php:106 templates/page_caption.php:130
+#, fuzzy
 msgid "Enter the subject"
-msgstr ""
+msgstr "Saisissez le Sujet"
 
-#: contact-page.php:109 templates/page_caption.php:107
+#: contact-page.php:109 templates/page_caption.php:133
+#, fuzzy
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
-#: contact-page.php:110 templates/page_caption.php:108
+#: contact-page.php:110 templates/page_caption.php:134
+#, fuzzy
 msgid "Type your message"
-msgstr ""
+msgstr "Entrez votre message"
 
 #: contact-page.php:113
+#, fuzzy
 msgid "Send Message"
-msgstr ""
+msgstr "Envoyer le message"
 
-#: dashboard-petition.php:147 functions.php:616
-msgid "Views"
-msgstr ""
+#: contribute.php:52 contribute.php:217
+#, fuzzy
+msgid "Amount"
+msgstr "Montant"
 
-#: dashboard-petition.php:172
-msgid "Set new goals"
-msgstr ""
+#: contribute.php:52
+#, fuzzy
+msgid "Percentage"
+msgstr "Pourcentage"
 
-#: dashboard-petition.php:174
-msgid "Enter a new goal"
-msgstr ""
+#: contribute.php:53
+#, fuzzy
+msgid "Donate"
+msgstr "Donner"
 
-#: dashboard-petition.php:175 edit-petition.php:375 functions.php:226
-#: single-petition.php:330
-msgid "Save"
-msgstr ""
+#: contribute.php:53
+#, fuzzy
+msgid "Support"
+msgstr "Support technique"
 
-#: dashboard-petition.php:200
-msgid "Declare victory"
-msgstr ""
+#: contribute.php:54
+#, fuzzy
+msgid "Enable"
+msgstr "Activer"
 
-#: dashboard-petition.php:201
-msgid "Close petition"
-msgstr ""
+#: contribute.php:54
+#, fuzzy
+msgid "Disable"
+msgstr "Désactiver"
 
-#: dashboard-petition.php:203
-msgid "Reopen Petition"
-msgstr ""
+#: contribute.php:155
+#, fuzzy
+msgid "Contribute & Donation is pending approval!"
+msgstr "Contribute & Donation est en attente d'approbation!"
 
-#: dashboard-petition.php:253
-msgid "Decision Makers"
-msgstr ""
+#: contribute.php:168
+#, fuzzy
+msgid "Show Goal"
+msgstr "Afficher Objectif:"
 
-#: dashboard-petition.php:290 decision-makers-search.php:55 index.php:116
-#: petitions-search-results.php:189 taxonomy-petition_category.php:231
-#: taxonomy-petition_topics.php:229
-msgid " of "
-msgstr ""
+#: contribute.php:175 submit-petition.php:144
+#, fuzzy
+msgid "Goal"
+msgstr "Notre objectif"
 
-#: dashboard-petition.php:294
-msgid "Invite Response"
-msgstr ""
+#: contribute.php:182
+#, fuzzy
+msgid "Goal format"
+msgstr "Format Objectif"
 
-#: dashboard-petition.php:307 petitions-search.php:121
-msgid " supporters"
-msgstr ""
+#: contribute.php:193
+#, fuzzy
+msgid "Button label"
+msgstr "Etquette du bouton"
 
-#: dashboard-petition.php:407
-msgid "Geography"
-msgstr ""
+#: contribute.php:201
+#, fuzzy
+msgid "Close when met goal"
+msgstr "Close when met goal"
 
-#: dashboard-petition.php:498
-msgid "Invitation letter"
-msgstr ""
+#: contribute.php:211
+#, fuzzy
+msgid "Contribute level"
+msgstr "Niveau de contribution"
 
-#: dashboard-petition.php:506
-msgid "Dear \n"
-msgstr ""
+#: contribute.php:220 functions.php:250
+msgid "Amount of level"
+msgstr "Montant de niveau"
 
-#: dashboard-petition.php:522 dashboard-petition.php:535
-#: dashboard-petition.php:545 dashboard-petition.php:555 functions.php:227
-msgid "Cancel"
-msgstr ""
+#: contribute.php:230 functions.php:251
+#, fuzzy
+msgid "Level name"
+msgstr "Nom du pack"
 
-#: dashboard-petition.php:523
-msgid "Send"
-msgstr ""
-
-#: dashboard-petition.php:532
-msgid "Are you sure change the goal is"
-msgstr ""
-
-#: dashboard-petition.php:532
-msgid "signatures"
-msgstr ""
-
-#: dashboard-petition.php:542
-msgid "Are you sure reopen this petition"
-msgstr ""
-
-#: dashboard-petition.php:552
-msgid "Are you sure close this petition"
-msgstr ""
-
-#: dashboard-petition.php:596
-msgid "Gender (%)"
-msgstr ""
-
-#: dashboard-petition.php:605
-msgid "Famale (%)"
-msgstr ""
-
-#: dashboard-petition.php:606
-msgid "Male (%)"
-msgstr ""
-
-#: dashboard-petition.php:607
-msgid "Unknown (%)"
-msgstr ""
-
-#: dashboard-petition.php:627
-msgid "Age (%)"
-msgstr ""
-
-#: decision-makers-search.php:67 functions.php:1100
-#: libs/author_petitions.php:175 libs/bookmark_petitions.php:238
-#: libs/my_petitions.php:161 libs/petitions.php:171
-#: libs/search_petitions.php:337 libs/sign_petitions.php:308
-#: libs/trending_petitions.php:358 petitions-search.php:147
-msgid "Petitions was loaded successfully."
-msgstr ""
-
-#: decision-makers-search.php:70 functions.php:1103
-#: libs/author_petitions.php:178 libs/bookmark_petitions.php:241
-#: libs/my_petitions.php:164 libs/petitions.php:174
-#: libs/search_petitions.php:340 libs/sign_petitions.php:311
-#: libs/trending_petitions.php:361 petitions-search.php:150
-msgid "Something went wrong. Not found petitions."
-msgstr ""
-
-#: edit-petition.php:209 submit-petition.php:128
-msgid "What do you want to achieve?"
-msgstr ""
-
-#: edit-petition.php:216 submit-petition.php:146
-msgid "Select a category"
-msgstr ""
-
-#: edit-petition.php:231 submit-petition.php:195
-msgid "Choose a decision maker"
-msgstr ""
-
-#: edit-petition.php:238 submit-petition.php:206 templates/guest_sign.php:13
-#: templates/guest_sign.php:64
-msgid "Full name"
-msgstr ""
-
-#: edit-petition.php:240 edit-petition.php:268 functions.php:222
-#: submit-petition.php:208
-msgid "Who can make this happen?"
-msgstr ""
-
-#: edit-petition.php:250 submit-petition.php:218
-msgid "Title or organization"
-msgstr ""
-
-#: edit-petition.php:253 edit-petition.php:276 functions.php:223
-#: submit-petition.php:221
-msgid "What is their position?"
-msgstr ""
-
-#: edit-petition.php:288 submit-petition.php:230
+#: contribute.php:263 edit-petition.php:310 submit-petition.php:240
+#, fuzzy
 msgid "Add"
-msgstr ""
+msgstr "Ajoutez une photo ou une vidéo"
 
-#: edit-petition.php:293 submit-petition.php:235
+#: contribute.php:267
+#, fuzzy
+msgid "Minimum"
+msgstr "Minimum"
+
+#: contribute.php:275
+#, fuzzy
+msgid "Goal Achieved Message"
+msgstr "Message reçu par l'objectif"
+
+#: contribute.php:276
+#, fuzzy
+msgid "Thank you to all our donors, we have met our fundraising goal."
+msgstr ""
+"Nous vous remercions de tous nos donateurs, nous avons atteint notre "
+"objectif de collecte de fonds."
+
+#: contribute.php:280
+#, fuzzy
+msgid "Content or Tips"
+msgstr "Teneur ou indice de base"
+
+#: dashboard-petition.php:180 functions.php:655
+#, fuzzy
+msgid "Views"
+msgstr "Nombre de vues"
+
+#: dashboard-petition.php:205
+#, fuzzy
+msgid "Set new goals"
+msgstr "Fixer de nouveaux objectifs"
+
+#: dashboard-petition.php:207
+#, fuzzy
+msgid "Enter a new goal"
+msgstr "Entrez un nouvel objectif"
+
+#: dashboard-petition.php:208 edit-petition.php:397 functions.php:254
+#: single-petition.php:486
+#, fuzzy
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: dashboard-petition.php:235
+#, fuzzy
+msgid "Declare victory"
+msgstr "Déclarer la victoire"
+
+#: dashboard-petition.php:257 dashboard-petition.php:281
+#, fuzzy
+msgid "Download CSV"
+msgstr "Télécharger le fichier CSV"
+
+#: dashboard-petition.php:258
+#, fuzzy
+msgid "Close petition"
+msgstr "Fermer la pétition"
+
+#: dashboard-petition.php:260
+#, fuzzy
+msgid "Reopen Petition"
+msgstr "Répéter la pétition"
+
+#: dashboard-petition.php:331
+#, fuzzy
+msgid "Decision Makers"
+msgstr "DECIDEURS"
+
+#: dashboard-petition.php:373
+#, fuzzy
+msgid "Invite Response"
+msgstr "Réponse des invités"
+
+#: dashboard-petition.php:493
+#, fuzzy
+msgid "Geography"
+msgstr "Géographie"
+
+#: dashboard-petition.php:584
+#, fuzzy
+msgid "Invitation letter"
+msgstr "Lettre d&apos;invitation"
+
+#: dashboard-petition.php:592
+#, fuzzy
+msgid "Dear \n"
+msgstr "Cher/Chère"
+
+#: dashboard-petition.php:608 dashboard-petition.php:621
+#: dashboard-petition.php:631 dashboard-petition.php:641 functions.php:255
+#, fuzzy
+msgid "Cancel"
+msgstr "Annuler"
+
+#: dashboard-petition.php:609
+#, fuzzy
+msgid "Send"
+msgstr "Envoyer"
+
+#: dashboard-petition.php:618
+#, fuzzy
+msgid "Are you sure change the goal is"
+msgstr "Êtes-vous sûr de changer le but est"
+
+#: dashboard-petition.php:618
+#, fuzzy
+msgid "signatures"
+msgstr "Signatures"
+
+#: dashboard-petition.php:628
+#, fuzzy
+msgid "Are you sure reopen this petition"
+msgstr "Êtes-vous sûr de rouvrir cette pétition"
+
+#: dashboard-petition.php:638
+#, fuzzy
+msgid "Are you sure close this petition"
+msgstr "Êtes-vous sûr de fermer cette pétition"
+
+#: dashboard-petition.php:682
+#, fuzzy
+msgid "Gender (%)"
+msgstr "Sexe"
+
+#: dashboard-petition.php:691
+#, fuzzy
+msgid "Famale (%)"
+msgstr "Famale (%)"
+
+#: dashboard-petition.php:692
+#, fuzzy
+msgid "Male (%)"
+msgstr "Masculin"
+
+#: dashboard-petition.php:693
+#, fuzzy
+msgid "Unknown (%)"
+msgstr "Inconnu"
+
+#: dashboard-petition.php:713
+#, fuzzy
+msgid "Age (%)"
+msgstr "Age"
+
+#: decision-makers-search.php:68 functions.php:1259
+#: libs/author_petitions.php:176 libs/bookmark_petitions.php:239
+#: libs/featured_petitions.php:176 libs/my_petitions.php:162
+#: libs/newsfeed.php:212 libs/petitions.php:172 libs/search_petitions.php:338
+#: libs/sign_petitions.php:309 libs/trending_petitions.php:362
+#: petitions-search.php:148
+#, fuzzy
+msgid "Petitions was loaded successfully."
+msgstr "Les requêtes ont été chargées avec succès."
+
+#: decision-makers-search.php:71 functions.php:1262
+#: libs/author_petitions.php:179 libs/bookmark_petitions.php:242
+#: libs/featured_petitions.php:179 libs/my_petitions.php:165
+#: libs/newsfeed.php:215 libs/petitions.php:175 libs/search_petitions.php:341
+#: libs/sign_petitions.php:312 libs/trending_petitions.php:365
+#: petitions-search.php:151
+#, fuzzy
+msgid "Something went wrong. Not found petitions."
+msgstr "Quelque chose a mal tourné. Requêtes non trouvées."
+
+#: download-csv.php:16
+#, fuzzy
+msgid "User ID"
+msgstr "Identifiant de l'utilisateur"
+
+#: download-csv.php:18 user-account.php:129
+#, fuzzy
+msgid "First Name"
+msgstr "Prénom"
+
+#: download-csv.php:19 user-account.php:133
+#, fuzzy
+msgid "Last Name"
+msgstr "Nom"
+
+#: download-csv.php:20 user-account.php:110
+#, fuzzy
+msgid "Gender"
+msgstr "Sexe"
+
+#: download-csv.php:21 user-account.php:171
+#, fuzzy
+msgid "Birthday"
+msgstr "Date de naissance"
+
+#: download-csv.php:22
+#, fuzzy
+msgid "Neigborhood"
+msgstr "Neigborhood"
+
+#: download-csv.php:26
+#, fuzzy
+msgid "Reason"
+msgstr "Motif"
+
+#: edit-petition.php:231 submit-petition.php:138
+#, fuzzy
+msgid "What do you want to achieve?"
+msgstr "Que voulez-vous atteindre ?"
+
+#: edit-petition.php:238 submit-petition.php:156
+#, fuzzy
+msgid "Select a category"
+msgstr "Sélectionnez une catégorie"
+
+#: edit-petition.php:253 submit-petition.php:205
+#, fuzzy
+msgid "Choose a decision maker"
+msgstr "Choisissez un décideur"
+
+#: edit-petition.php:262 edit-petition.php:290 functions.php:248
+#: submit-petition.php:218
+#, fuzzy
+msgid "Who can make this happen?"
+msgstr "Qui peut y arriver?"
+
+#: edit-petition.php:272 submit-petition.php:228
+#, fuzzy
+msgid "Title or organization"
+msgstr "Titre ou organisation"
+
+#: edit-petition.php:275 edit-petition.php:298 functions.php:249
+#: submit-petition.php:231
+#, fuzzy
+msgid "What is their position?"
+msgstr "Quelle est leur position?"
+
+#: edit-petition.php:315 submit-petition.php:245
+#, fuzzy
 msgid "Add a place"
-msgstr ""
+msgstr "Ajouter un lieu"
 
-#: edit-petition.php:295 submit-petition.php:237
+#: edit-petition.php:317 submit-petition.php:247
+#, fuzzy
 msgid "Add a neighborhood, state, city or country"
-msgstr ""
+msgstr "Ajouter un quartier, un état, une ville ou un pays"
 
-#: edit-petition.php:325
+#: edit-petition.php:347
+#, fuzzy
 msgid "Explain the problem you want to solve"
-msgstr ""
+msgstr "Expliquez le problème que vous souhaitez résoudre"
 
-#: edit-petition.php:328 submit-petition.php:307
+#: edit-petition.php:350 submit-petition.php:317
+#, fuzzy
 msgid "Content"
-msgstr ""
+msgstr "Contenu"
 
-#: edit-petition.php:346 submit-petition.php:325
+#: edit-petition.php:368 submit-petition.php:335
+#, fuzzy
 msgid "Add topics"
-msgstr ""
+msgstr "Ajouter des sujets"
 
-#: edit-petition.php:350 submit-petition.php:329
+#: edit-petition.php:372 submit-petition.php:339
+#, fuzzy
 msgid "Keywords related this petition"
-msgstr ""
+msgstr "Les mots-clés ont concerné cette pétition"
 
-#: functions.php:56 libs/class-tgm-plugin-activation.php:161
+#: functions.php:80 libs/class-tgm-plugin-activation.php:161
+#, fuzzy
 msgid "Install Required Plugins"
-msgstr ""
+msgstr "Installer les extensions requises"
 
-#: functions.php:57 libs/class-tgm-plugin-activation.php:162
+#: functions.php:81 libs/class-tgm-plugin-activation.php:162
+#, fuzzy
 msgid "Install Plugins"
-msgstr ""
+msgstr "Installer les extensions"
 
-#: functions.php:58 libs/class-tgm-plugin-activation.php:163
-#, php-format
+#: functions.php:82 libs/class-tgm-plugin-activation.php:163
+#, fuzzy, php-format
 msgid "Installing Plugin: %s"
-msgstr ""
+msgstr "Installation de l'extension : %s"
 
-#: functions.php:59
+#: functions.php:83
+#, fuzzy
 msgid "Something went wrong with the plugin API."
-msgstr ""
+msgstr "Une erreur s'est produite avec l’API de l’extension."
 
-#: functions.php:60 libs/class-tgm-plugin-activation.php:165
+#: functions.php:84 libs/class-tgm-plugin-activation.php:165
 #, php-format
 msgid "This theme requires the following plugin: %1$s."
 msgid_plural "This theme requires the following plugins: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions.php:61 libs/class-tgm-plugin-activation.php:166
+#: functions.php:85 libs/class-tgm-plugin-activation.php:166
 #, php-format
 msgid "This theme recommends the following plugin: %1$s."
 msgid_plural "This theme recommends the following plugins: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions.php:62 libs/class-tgm-plugin-activation.php:167
+#: functions.php:86 libs/class-tgm-plugin-activation.php:167
 #, php-format
 msgid ""
 "Sorry, but you do not have the correct permissions to install the %s plugin. "
@@ -1035,21 +1619,21 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions.php:63 libs/class-tgm-plugin-activation.php:168
+#: functions.php:87 libs/class-tgm-plugin-activation.php:168
 #, php-format
 msgid "The following required plugin is currently inactive: %1$s."
 msgid_plural "The following required plugins are currently inactive: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions.php:64 libs/class-tgm-plugin-activation.php:169
+#: functions.php:88 libs/class-tgm-plugin-activation.php:169
 #, php-format
 msgid "The following recommended plugin is currently inactive: %1$s."
 msgid_plural "The following recommended plugins are currently inactive: %1$s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions.php:65 libs/class-tgm-plugin-activation.php:170
+#: functions.php:89 libs/class-tgm-plugin-activation.php:170
 #, php-format
 msgid ""
 "Sorry, but you do not have the correct permissions to activate the %s "
@@ -1062,7 +1646,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions.php:66 libs/class-tgm-plugin-activation.php:171
+#: functions.php:90 libs/class-tgm-plugin-activation.php:171
 #, php-format
 msgid ""
 "The following plugin needs to be updated to its latest version to ensure "
@@ -1073,7 +1657,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions.php:67 libs/class-tgm-plugin-activation.php:172
+#: functions.php:91 libs/class-tgm-plugin-activation.php:172
 #, php-format
 msgid ""
 "Sorry, but you do not have the correct permissions to update the %s plugin. "
@@ -1086,237 +1670,382 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions.php:68 libs/class-tgm-plugin-activation.php:173
+#: functions.php:92 libs/class-tgm-plugin-activation.php:173
 msgid "Begin installing plugin"
 msgid_plural "Begin installing plugins"
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions.php:69 libs/class-tgm-plugin-activation.php:174
+#: functions.php:93 libs/class-tgm-plugin-activation.php:174
 msgid "Begin activating plugin"
 msgid_plural "Begin activating plugins"
 msgstr[0] ""
 msgstr[1] ""
 
-#: functions.php:70 libs/class-tgm-plugin-activation.php:175
+#: functions.php:94 libs/class-tgm-plugin-activation.php:175
+#, fuzzy
 msgid "Return to Required Plugins Installer"
-msgstr ""
+msgstr "Retourner à l'installateur des extensions requises"
 
-#: functions.php:71 libs/class-tgm-plugin-activation.php:177
+#: functions.php:95 libs/class-tgm-plugin-activation.php:177
 #: libs/class-tgm-plugin-activation.php:1956
+#, fuzzy
 msgid "Plugin activated successfully."
-msgstr ""
+msgstr "Extension activée avec succès."
 
-#: functions.php:72
-#, php-format
+#: functions.php:96
+#, fuzzy, php-format
 msgid "All plugins installed and activated successfully. %s"
-msgstr ""
+msgstr "Tous les plugins sont installés et activés avec succès. %s"
 
-#: functions.php:181 templates/user_modals.php:154
+#: functions.php:203 templates/ajax_comments.php:173
+#: templates/app_user_menu.php:157 templates/app_user_menu.php:167
+#: templates/user_menu.php:243 templates/user_menu.php:253
+#: templates/user_modals.php:61 templates/user_modals.php:115
+#, fuzzy
+msgid "Sign Up"
+msgstr "S'inscrire"
+
+#: functions.php:204 templates/ajax_comments.php:172
+#: templates/app_user_menu.php:159 templates/app_user_menu.php:166
+#: templates/user_menu.php:245 templates/user_menu.php:252
+#: templates/user_modals.php:64 templates/user_modals.php:103
+#: templates/user_modals.php:119
+#, fuzzy
+msgid "Sign In"
+msgstr "Se connecter"
+
+#: functions.php:205 templates/user_modals.php:154
+#, fuzzy
 msgid "Get New Password"
-msgstr ""
+msgstr "Obtenir un nouveau mot de passe"
 
-#: functions.php:182 templates/user_modals.php:162
+#: functions.php:206 templates/user_modals.php:162
 #: templates/user_modals.php:188
+#, fuzzy
 msgid "Reset Password"
-msgstr ""
-
-#: functions.php:183
-msgid "Sign In with Facebook"
-msgstr ""
-
-#: functions.php:184
-msgid "Login cancelled or not fully authorized!"
-msgstr ""
-
-#: functions.php:185
-msgid "Sign In with Google"
-msgstr ""
-
-#: functions.php:186
-msgid "Signin cancelled or not fully authorized!"
-msgstr ""
-
-#: functions.php:187
-msgid "Hi, I just join the petition site"
-msgstr ""
-
-#: functions.php:193 single.php:85 single.php:90 templates/page_caption.php:51
-#: templates/page_caption.php:56
-msgid "Follow"
-msgstr ""
-
-#: functions.php:195
-msgid "Unfollow"
-msgstr ""
-
-#: functions.php:200
-msgid "Write comment here"
-msgstr ""
-
-#: functions.php:201
-msgid "Reply to"
-msgstr ""
-
-#: functions.php:205
-msgid "View all"
-msgstr ""
-
-#: functions.php:206
-msgid "replies"
-msgstr ""
+msgstr "Réinitialiser le mot de passe"
 
 #: functions.php:207
-msgid "Hide replies"
-msgstr ""
+#, fuzzy
+msgid "Sign In with Facebook"
+msgstr "Connectez-vous avec Facebook"
+
+#: functions.php:208
+#, fuzzy
+msgid "Login cancelled or not fully authorized!"
+msgstr "Connexion annulée ou pas entièrement autorisée !"
+
+#: functions.php:209
+#, fuzzy
+msgid "Sign In with Google"
+msgstr "Connectez-vous à l’aide de Google+"
+
+#: functions.php:210
+#, fuzzy
+msgid "Signin cancelled or not fully authorized!"
+msgstr "Connection annulée ou pas entièrement autorisée !"
+
+#: functions.php:216 libs/widgets/topic_cards_widget.php:208
+#: libs/widgets/topic_cards_widget.php:213
+#: libs/widgets/topic_cards_widget.php:216 single.php:213 single.php:218
+#: single.php:237 single.php:242 supporters-list.php:127
+#: templates/page_caption.php:52 templates/page_caption.php:57
+#: templates/page_caption.php:61 templates/page_caption.php:86
+#: templates/page_caption.php:91 templates/page_caption.php:94
+#, fuzzy
+msgid "Follow"
+msgstr "Suivre"
+
+#: functions.php:218
+#, fuzzy
+msgid "Unfollow"
+msgstr "Ne plus suivre"
+
+#: functions.php:222 templates/ajax_comments.php:74
+#: templates/ajax_comments.php:128
+#, fuzzy
+msgid "Reply"
+msgstr "Répondre"
+
+#: functions.php:223
+#, fuzzy
+msgid "Write comment here"
+msgstr "Saisissez votre commentaire"
 
 #: functions.php:224
+#, fuzzy
+msgid "Reply to"
+msgstr "Répondre à"
+
+#: functions.php:225 functions.php:1142 templates/ajax_comments.php:61
+#: templates/ajax_comments.php:115
+#, fuzzy
+msgid "like"
+msgstr "Exemple :"
+
+#: functions.php:226 functions.php:1152 templates/ajax_comments.php:71
+#: templates/ajax_comments.php:125
+#, fuzzy
+msgid "Like"
+msgstr "J'aime"
+
+#: functions.php:227 functions.php:1150 templates/ajax_comments.php:69
+#: templates/ajax_comments.php:123
+#, fuzzy
+msgid "Unlike"
+msgstr "Je n'aime plus"
+
+#: functions.php:228
+#, fuzzy
+msgid "View all"
+msgstr "Tout afficher"
+
+#: functions.php:229
+#, fuzzy
+msgid "replies"
+msgstr "réponses"
+
+#: functions.php:230
+#, fuzzy
+msgid "Hide replies"
+msgstr "Cacher"
+
+#: functions.php:252
+#, fuzzy
 msgid "Text copied to the clipboard."
-msgstr ""
+msgstr "Texte copié dans le presse-papiers."
 
-#: functions.php:225
+#: functions.php:253
 msgid "Copy not supported or blocked.  Press Ctrl+c to copy."
-msgstr ""
+msgstr "Copie non pris en charge ou bloqué.  Appuyez sur Ctrl + c pour copier."
 
-#: functions.php:256
+#: functions.php:284
+#, fuzzy
 msgid "Are you sure you want to delete this?"
-msgstr ""
+msgstr "Voulez-vous vraiment supprimer cet élément ?"
 
-#: functions.php:266
+#: functions.php:294
+#, fuzzy
 msgid "Allowed Files"
-msgstr ""
+msgstr "Fichiers autorisés"
 
-#: functions.php:353 functions.php:380
+#: functions.php:393 functions.php:420
+#, fuzzy
 msgid "Show in Slideshow"
-msgstr ""
+msgstr "Afficher en diaporama"
 
-#: functions.php:395
+#: functions.php:435
+#, fuzzy
 msgid "yes"
-msgstr ""
+msgstr "Oui"
 
-#: functions.php:397
+#: functions.php:437
+#, fuzzy
 msgid "no"
-msgstr ""
-
-#: functions.php:443
-msgid "Main Widget Area"
-msgstr ""
-
-#: functions.php:445
-msgid "The main widget area"
-msgstr ""
-
-#: functions.php:453
-msgid "Blog Widget Area"
-msgstr ""
-
-#: functions.php:455
-msgid "Blogs widget area"
-msgstr ""
-
-#: functions.php:463
-msgid "1st Footer Widget Area"
-msgstr ""
-
-#: functions.php:465
-msgid "The first footer widget area"
-msgstr ""
-
-#: functions.php:473
-msgid "2nd Footer Widget Area"
-msgstr ""
-
-#: functions.php:475
-msgid "The second footer widget area"
-msgstr ""
+msgstr "non"
 
 #: functions.php:483
-msgid "3rd Footer Widget Area"
-msgstr ""
+#, fuzzy
+msgid "Main Widget Area"
+msgstr "Zone de widgets principale"
 
 #: functions.php:485
-msgid "The third footer widget area"
-msgstr ""
+#, fuzzy
+msgid "The main widget area"
+msgstr "La zone de widgets principale"
 
 #: functions.php:493
-msgid "4th Footer Widget Area"
-msgstr ""
+#, fuzzy
+msgid "Blog Widget Area"
+msgstr "Zone d'extensions du blog"
 
 #: functions.php:495
+msgid "Blogs widget area"
+msgstr "Zone de widget Articles"
+
+#: functions.php:503
+#, fuzzy
+msgid "1st Footer Widget Area"
+msgstr "1st Footer Widget Area"
+
+#: functions.php:505
+#, fuzzy
+msgid "The first footer widget area"
+msgstr "La zone du premier widget de pied de page"
+
+#: functions.php:513
+#, fuzzy
+msgid "2nd Footer Widget Area"
+msgstr "2nd Footer Widget Area"
+
+#: functions.php:515
+#, fuzzy
+msgid "The second footer widget area"
+msgstr "La zone du second widget de pied de page"
+
+#: functions.php:523
+#, fuzzy
+msgid "3rd Footer Widget Area"
+msgstr "3e page zone widget"
+
+#: functions.php:525
+#, fuzzy
+msgid "The third footer widget area"
+msgstr "La zone du troisième widget de pied de page"
+
+#: functions.php:533
+#, fuzzy
+msgid "4th Footer Widget Area"
+msgstr "4th Footer Widget Area"
+
+#: functions.php:535
+#, fuzzy
 msgid "The fourth footer widget area"
-msgstr ""
+msgstr "La zone du quatrième widget de pied de page"
 
-#: functions.php:509
+#: functions.php:549 homepage.php:38
+#, fuzzy
 msgid "Featured"
-msgstr ""
+msgstr "En vedette"
 
-#: functions.php:536
+#: functions.php:576
+#, fuzzy
 msgid "Set as Featured"
-msgstr ""
+msgstr "Mettre en Offre Premium"
 
-#: functions.php:708
+#: functions.php:747
+#, fuzzy
 msgid "Sticky"
-msgstr ""
+msgstr "Menu collant"
 
-#: functions.php:713 functions.php:718
+#: functions.php:752 functions.php:757
+#, fuzzy
 msgid ", "
-msgstr ""
+msgstr ", "
 
-#: functions.php:726
-#, php-format
+#: functions.php:765
+#, fuzzy, php-format
 msgid "View all posts by %s"
-msgstr ""
+msgstr "Voir tous les articles de %s"
 
-#: functions.php:738
-#, php-format
+#: functions.php:777
+#, fuzzy, php-format
 msgctxt "1: post format name. 2: date"
 msgid "%1$s on %2$s"
-msgstr ""
+msgstr "%1$s à %2$s"
 
-#: functions.php:744
-#, php-format
+#: functions.php:783
+#, fuzzy, php-format
 msgid "Permalink to %s"
-msgstr ""
+msgstr "Lien permanent vers &nbsp; %s"
 
-#: functions.php:819
+#: functions.php:860
+#, fuzzy
 msgid "Home"
-msgstr ""
+msgstr "Top maison Caption (px)"
 
-#: functions.php:834
+#: functions.php:863 functions.php:881
+#, fuzzy
+msgid "Blog"
+msgstr "Blog"
+
+#: functions.php:866 functions.php:870 functions.php:877 functions.php:891
+#, fuzzy
+msgid "Shop"
+msgstr "Boutique"
+
+#: functions.php:879
+#, fuzzy
+msgid "Product"
+msgstr "Produit"
+
+#: functions.php:898
+#, fuzzy
+msgid "User"
+msgstr "Utilisateur"
+
+#: functions.php:900
+#, fuzzy
 msgid "Profile"
-msgstr ""
+msgstr "Présentation"
 
-#: functions.php:1123
+#: functions.php:906
+#, fuzzy
+msgid "Tag"
+msgstr "Mot-clé"
+
+#: functions.php:1086
+#, fuzzy
+msgid "Comment navigation"
+msgstr "Commenter la navigation"
+
+#: functions.php:1089
+#, fuzzy
+msgid "Older Comments"
+msgstr "Commentaires plus anciens"
+
+#: functions.php:1093
+#, fuzzy
+msgid "Newer Comments"
+msgstr "Commentaires plus récents"
+
+#: functions.php:1138 libs/comment_petition.php:315
+#: libs/comment_petition.php:410 libs/save_update.php:226
+#: single-petition.php:545 templates/update_petition.php:158
+#, fuzzy
+msgid " ago"
+msgstr " age"
+
+#: functions.php:1165
+#, fuzzy
+msgid "Your comment is awaiting moderation."
+msgstr "Votre commentaire est en attente de modération."
+
+#: functions.php:1282
+#, fuzzy
 msgid "K"
-msgstr ""
+msgstr "K"
 
-#: functions.php:1127
+#: functions.php:1286
+#, fuzzy
 msgid "M"
-msgstr ""
+msgstr "M"
 
-#: functions.php:1131
+#: functions.php:1290
+#, fuzzy
 msgid "B"
-msgstr ""
+msgstr "B"
 
-#: functions.php:1135
+#: functions.php:1294
+#, fuzzy
 msgid "T"
-msgstr ""
+msgstr "T"
 
-#: homepage.php:34
-msgid "Recently"
-msgstr ""
+#: homepage.php:38
+#, fuzzy
+msgid "Feed"
+msgstr "Flux"
 
-#: homepage.php:35
+#: homepage.php:39
+#, fuzzy
 msgid "Trending"
-msgstr ""
+msgstr "Tendance"
+
+#: homepage.php:40
+#, fuzzy
+msgid "Recent"
+msgstr "Récents"
 
 #: libs/class-tgm-plugin-activation.php:164
+#, fuzzy
 msgid "Something went wrong."
-msgstr ""
+msgstr "Une erreur s’est produite."
 
 #: libs/class-tgm-plugin-activation.php:176
+#, fuzzy
 msgid "Return to the dashboard"
-msgstr ""
+msgstr "Retourner sur le tableau de bord"
 
 #: libs/class-tgm-plugin-activation.php:178
 #: libs/class-tgm-plugin-activation.php:1644
@@ -1326,1395 +2055,1877 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: libs/class-tgm-plugin-activation.php:179
-#, php-format
+#, fuzzy, php-format
 msgid "All plugins installed and activated successfully. %1$s"
-msgstr ""
+msgstr "Toutes les extensions installées et activées avec succès. %1$s"
 
 #: libs/class-tgm-plugin-activation.php:180
+#, fuzzy
 msgid "Dismiss this notice"
-msgstr ""
+msgstr "Ignorer ce message"
 
 #: libs/class-tgm-plugin-activation.php:532
 #: libs/class-tgm-plugin-activation.php:2173
+#, fuzzy
 msgid "Return to the Dashboard"
-msgstr ""
+msgstr "Revenir au tableau de bord"
 
 #: libs/class-tgm-plugin-activation.php:1167
 #: libs/class-tgm-plugin-activation.php:1348
+#, fuzzy
 msgid "Private Repository"
-msgstr ""
+msgstr "Référentiel privé"
 
 #: libs/class-tgm-plugin-activation.php:1170
 #: libs/class-tgm-plugin-activation.php:1351
+#, fuzzy
 msgid "Pre-Packaged"
-msgstr ""
+msgstr "Pre-packagé"
 
 #: libs/class-tgm-plugin-activation.php:1175
+#, fuzzy
 msgid "WordPress Repository"
-msgstr ""
+msgstr "Dépôt WordPress"
 
 #: libs/class-tgm-plugin-activation.php:1178
+#, fuzzy
 msgid "Required"
-msgstr ""
+msgstr "Requis"
 
 #: libs/class-tgm-plugin-activation.php:1178
+#, fuzzy
 msgid "Recommended"
-msgstr ""
+msgstr "Recommandé"
 
 #: libs/class-tgm-plugin-activation.php:1181
+#, fuzzy
 msgid "Not Installed"
-msgstr ""
+msgstr "Non installé"
 
 #: libs/class-tgm-plugin-activation.php:1183
+#, fuzzy
 msgid "Installed But Not Activated"
-msgstr ""
+msgstr "Installé mais non activé"
 
 #: libs/class-tgm-plugin-activation.php:1288
 #: libs/class-tgm-plugin-activation.php:1409
+#, fuzzy
 msgid "Install"
-msgstr ""
+msgstr "Installer"
 
 #: libs/class-tgm-plugin-activation.php:1312
 #: libs/class-tgm-plugin-activation.php:1410
+#, fuzzy
 msgid "Activate"
-msgstr ""
+msgstr "Activer"
 
 #: libs/class-tgm-plugin-activation.php:1372
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the "
 "Dashboard\">Return to the Dashboard</a>"
 msgstr ""
+"Aucun plugin à installer ou à activer. <a href=\"%1$s\" title=\"Retourner au "
+"tableau de bord”>Retourner au tableau de bord</a>"
 
 #: libs/class-tgm-plugin-activation.php:1388
+#, fuzzy
 msgid "Plugin"
-msgstr ""
+msgstr "Extension"
 
 #: libs/class-tgm-plugin-activation.php:1389
+#, fuzzy
 msgid "Source"
-msgstr ""
+msgstr "Adresse web source"
 
 #: libs/class-tgm-plugin-activation.php:1391
+#, fuzzy
 msgid "Status"
-msgstr ""
+msgstr "Statut"
 
 #: libs/class-tgm-plugin-activation.php:1939
+#, fuzzy
 msgid "Install package not available."
-msgstr ""
+msgstr "Archive d’installation non disponible."
 
 #: libs/class-tgm-plugin-activation.php:1940
-#, php-format
+#, fuzzy, php-format
 msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
 msgstr ""
+"Téléchargement de l’archive d’installation depuis <span class=\"code\">%s</"
+"span>&#8230;"
 
 #: libs/class-tgm-plugin-activation.php:1941
+#, fuzzy
 msgid "Unpacking the package&#8230;"
-msgstr ""
+msgstr "Décompression l’archive &#8230;"
 
 #: libs/class-tgm-plugin-activation.php:1942
+#, fuzzy
 msgid "Installing the plugin&#8230;"
-msgstr ""
+msgstr "Installation du plugin &#8230;"
 
 #: libs/class-tgm-plugin-activation.php:1943
+#, fuzzy
 msgid "Plugin install failed."
-msgstr ""
+msgstr "L'installation du plugin a échoué."
 
 #: libs/class-tgm-plugin-activation.php:1944
+#, fuzzy
 msgid "Plugin installed successfully."
-msgstr ""
+msgstr "Installation du plugin réussie."
 
 #: libs/class-tgm-plugin-activation.php:1955
+#, fuzzy
 msgid "Plugin activation failed."
-msgstr ""
+msgstr "L’activation de l’extension a échouée."
 
 #: libs/class-tgm-plugin-activation.php:2069
+#, fuzzy
 msgid ""
 "The installation and activation process is starting. This process may take a "
 "while on some hosts, so please be patient."
 msgstr ""
+"Le processus d’installation et d’activation a démarré. Ce processus peut "
+"prendre un certain temps chez certains hébergeurs, alors soyez patient svp."
 
 #: libs/class-tgm-plugin-activation.php:2070
-#, php-format
+#, fuzzy, php-format
 msgid "%1$s installed and activated successfully."
-msgstr ""
+msgstr "%1$s installation et activation réussis."
 
 #: libs/class-tgm-plugin-activation.php:2070
 #: libs/class-tgm-plugin-activation.php:2079
+#, fuzzy
 msgid "Show Details"
-msgstr ""
+msgstr "Afficher les détails"
 
 #: libs/class-tgm-plugin-activation.php:2070
 #: libs/class-tgm-plugin-activation.php:2079
+#, fuzzy
 msgid "Hide Details"
-msgstr ""
+msgstr "Cacher les détails"
 
 #: libs/class-tgm-plugin-activation.php:2071
+#, fuzzy
 msgid "All installations and activations have been completed."
-msgstr ""
+msgstr "Toutes les installations et activations ont été effectuées."
 
 #: libs/class-tgm-plugin-activation.php:2072
-#, php-format
+#, fuzzy, php-format
 msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
-msgstr ""
+msgstr "Installation et activation de l’extension %1$s (%2$d/%3$d)"
 
 #: libs/class-tgm-plugin-activation.php:2076
+#, fuzzy
 msgid ""
 "The installation process is starting. This process may take a while on some "
 "hosts, so please be patient."
 msgstr ""
+"Le processus d’installation commence. Ce processus peut prendre un certain "
+"temps chez certains hébergeurs, alors soyez patient svp."
 
 #: libs/class-tgm-plugin-activation.php:2077
-#, php-format
+#, fuzzy, php-format
 msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
 msgstr ""
+"Une erreur s’est produite lors de l’installation de %1$s : <strong>%2$s</"
+"strong>."
 
 #: libs/class-tgm-plugin-activation.php:2078
-#, php-format
+#, fuzzy, php-format
 msgid "The installation of %1$s failed."
-msgstr ""
+msgstr "L’installation de %1$s a échoué."
 
 #: libs/class-tgm-plugin-activation.php:2079
-#, php-format
+#, fuzzy, php-format
 msgid "%1$s installed successfully."
-msgstr ""
+msgstr "%1$s installés avec succès."
 
 #: libs/class-tgm-plugin-activation.php:2080
+#, fuzzy
 msgid "All installations have been completed."
-msgstr ""
+msgstr "Toutes les installations sont terminées."
 
 #: libs/class-tgm-plugin-activation.php:2081
-#, php-format
+#, fuzzy, php-format
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
-msgstr ""
+msgstr "Installation de l’extension %1$s (%2$d/%3$d)"
 
-#: libs/comment_petition.php:46 libs/comment_petition.php:156
+#: libs/comment_petition.php:46 libs/comment_petition.php:158
+#, fuzzy
 msgid "Comment content is required!"
-msgstr ""
+msgstr "Le contenu du commentaire est requis!"
 
-#: libs/comment_petition.php:86
+#: libs/comment_petition.php:88
+#, fuzzy
 msgid " just now"
-msgstr ""
+msgstr "maintenant"
 
-#: libs/comment_petition.php:86
+#: libs/comment_petition.php:88
+#, fuzzy
 msgid "The comment was successfuly saved"
-msgstr ""
+msgstr "Le commentaire a été sauvegardé avec succès"
 
-#: libs/comment_petition.php:89
+#: libs/comment_petition.php:91
+#, fuzzy
 msgid "Something went wrong. The comment was not saved."
-msgstr ""
+msgstr "Quelque chose a mal tourné. Le commentaire n'a pas été enregistré."
 
-#: libs/comment_petition.php:167
+#: libs/comment_petition.php:171
+#, fuzzy
 msgid "Update comment successfuly."
-msgstr ""
+msgstr "Mettre à jour le commentaire avec succès."
 
-#: libs/comment_petition.php:169 libs/comment_petition.php:194
+#: libs/comment_petition.php:173 libs/comment_petition.php:198
+#, fuzzy
 msgid "Something went wrong. Comment is not update."
-msgstr ""
+msgstr "Quelque chose a mal tourné. Le commentaire n'est pas mis à jour."
 
-#: libs/comment_petition.php:192
+#: libs/comment_petition.php:196
+#, fuzzy
 msgid "The comment was deleted successfuly."
-msgstr ""
+msgstr "Le commentaire a été supprimé avec succès."
 
-#: libs/comment_petition.php:215
+#: libs/comment_petition.php:219
+#, fuzzy
 msgid "Comement content is required!"
-msgstr ""
+msgstr "Le contenu de Comement est requis!"
 
-#: libs/comment_petition.php:309 libs/comment_petition.php:403
-#: libs/save_update.php:226 single-petition.php:382
-#: templates/update_petition.php:157
-msgid " ago"
-msgstr ""
-
-#: libs/comment_petition.php:454
+#: libs/comment_petition.php:461
+#, fuzzy
 msgid "Comments was loaded successfully"
-msgstr ""
+msgstr "Les commentaires ont été téléchargés avec succès"
 
-#: libs/comment_petition.php:457
+#: libs/comment_petition.php:464
+#, fuzzy
 msgid "Something went wrong. Not found comments."
-msgstr ""
+msgstr "Quelque chose a mal tourné. Commentaires non trouvés."
 
 #: libs/contact_company.php:21 libs/contact_user.php:22
 #: libs/contact_user.php:68
+#, fuzzy
 msgid "Your message failed to be sent. Please check your fields."
 msgstr ""
+"Votre message n'a pas pu être envoyé. S'il vous plaît vérifier tous les "
+"champs."
 
 #: libs/contact_company.php:30
-#, php-format
+#, fuzzy, php-format
 msgid "[%s Contact] %s"
-msgstr ""
+msgstr "[%s Contact]%s"
 
 #: libs/contact_company.php:36 libs/contact_user.php:38
 #: libs/contact_user.php:84
+#, fuzzy
 msgid "Your message was successfully sent."
-msgstr ""
+msgstr "Votre message a été envoyé avec succès."
 
 #: libs/contact_company.php:39 libs/contact_user.php:41
 #: libs/contact_user.php:87
+#, fuzzy
 msgid "Your message failed to be sent."
-msgstr ""
+msgstr "Votre message n’a pas pu être envoyé."
 
 #: libs/contact_user.php:29
-#, php-format
+#, fuzzy, php-format
 msgid "%s send a message to you:"
-msgstr ""
+msgstr "%s vous envoie un message:"
 
 #: libs/contact_user.php:32
-#, php-format
+#, fuzzy, php-format
 msgid "[%s Message] %s"
-msgstr ""
+msgstr "[Message%s]%s"
 
 #: libs/contact_user.php:75
-#, php-format
+#, fuzzy, php-format
 msgid "%s send a invitation to you:"
-msgstr ""
+msgstr "%s vous envoie une invitation:"
 
 #: libs/contact_user.php:78
-#, php-format
+#, fuzzy, php-format
 msgid "[%s Invitation Response] %s"
+msgstr "[%s Réponse de l'invitation]%s"
+
+#: libs/give.php:17
+#, fuzzy, php-format
+msgid "A new contribute was submitted on %s:"
+msgstr "Une nouvelle contribution a été soumise sur%s:"
+
+#: libs/give.php:18 libs/give.php:32 libs/save_petition.php:17
+#: libs/save_petition.php:31
+#, fuzzy, php-format
+msgid "Petition title: %s"
+msgstr "Titre de la pétition:%s"
+
+#: libs/give.php:19 libs/give.php:33 libs/save_petition.php:18
+#: libs/save_petition.php:32
+#, fuzzy, php-format
+msgid "Petition link: %s"
+msgstr "Lien de pétition:%s"
+
+#: libs/give.php:20 libs/give.php:34 libs/save_petition.php:19
+#: libs/save_petition.php:33 libs/save_update.php:30
+#, fuzzy, php-format
+msgid "User: %s"
+msgstr "Utilisateur #%s"
+
+#: libs/give.php:26
+#, fuzzy, php-format
+msgid "[Contribute Submitted] %s"
+msgstr "[Contribution soumise]%s"
+
+#: libs/give.php:31
+#, fuzzy, php-format
+msgid "A contribute was updated on %s:"
+msgstr "Une contribution a été mise à jour sur%s:"
+
+#: libs/give.php:40
+#, fuzzy, php-format
+msgid "[Contribute Updated] %s"
+msgstr "[Contribuer mis à jour]%s"
+
+#: libs/give.php:81
+#, fuzzy
+msgid "Custom"
+msgstr "Personnalisation"
+
+#: libs/give.php:201
+#, fuzzy
+msgid "The contribute was successfully saved and published."
+msgstr "La contribution a été enregistrée et publiée avec succès."
+
+#: libs/give.php:204
+#, fuzzy
+msgid "The contribute was successfully saved and pending for approval."
 msgstr ""
+"La propriété a été enregistré avec succès et dans l'attente d'approbation."
+
+#: libs/give.php:208
+#, fuzzy
+msgid "Something went wrong. The contribute was not saved."
+msgstr "Quelque chose a mal tourné. La contribution n'a pas été enregistrée."
 
 #: libs/save_petition.php:16
-#, php-format
+#, fuzzy, php-format
 msgid "A new petition was submitted on %s:"
-msgstr ""
-
-#: libs/save_petition.php:17 libs/save_petition.php:31
-#, php-format
-msgid "Petition title: %s"
-msgstr ""
-
-#: libs/save_petition.php:18 libs/save_petition.php:32
-#, php-format
-msgid "Petition link: %s"
-msgstr ""
-
-#: libs/save_petition.php:19 libs/save_petition.php:33 libs/save_update.php:30
-#, php-format
-msgid "User: %s"
-msgstr ""
+msgstr "Une nouvelle pétition a été présentée sur%s:"
 
 #: libs/save_petition.php:25
-#, php-format
+#, fuzzy, php-format
 msgid "[Petition Submitted] %s"
-msgstr ""
+msgstr "[Requête soumise]%s"
 
 #: libs/save_petition.php:30
-#, php-format
+#, fuzzy, php-format
 msgid "A petition was updated on %s:"
-msgstr ""
+msgstr "Une pétition a été mise à jour sur%s:"
 
 #: libs/save_petition.php:39
-#, php-format
+#, fuzzy, php-format
 msgid "[Petition Updated] %s"
-msgstr ""
+msgstr "[Pétition mise à jour]%s"
 
 #: libs/save_petition.php:131 libs/save_update.php:79
+#, fuzzy
 msgid "Title field is mandatory."
-msgstr ""
+msgstr "Le Titre est obligatoire."
 
 #: libs/save_petition.php:135 libs/save_update.php:83
+#, fuzzy
 msgid "Content field is mandatory."
-msgstr ""
+msgstr "Le champ de contenu est obligatoire."
 
 #: libs/save_petition.php:139
+#, fuzzy
 msgid "Category field is mandatory."
-msgstr ""
+msgstr "La Catégorie est obligatoire."
 
 #: libs/save_petition.php:143
+#, fuzzy
 msgid "Topics field is mandatory."
-msgstr ""
+msgstr "Le champ Thèmes est obligatoire."
 
 #: libs/save_petition.php:147
+#, fuzzy
 msgid "Coordinates fields are mandatory."
-msgstr ""
+msgstr "Les Coordonnées sont obligatoires."
 
 #: libs/save_petition.php:151
+#, fuzzy
 msgid "Address field is mandatory."
-msgstr ""
+msgstr "La saisie de l'adresse est obligatoire."
 
 #: libs/save_petition.php:155
+#, fuzzy
 msgid "Neighborhood field is mandatory."
-msgstr ""
+msgstr "La saisie du quartier est obligatoire."
 
 #: libs/save_petition.php:159
+#, fuzzy
 msgid "Zip Code field is mandatory."
-msgstr ""
+msgstr "Le Code postal est obligatoire."
 
 #: libs/save_petition.php:163
+#, fuzzy
 msgid "County/State field is mandatory."
-msgstr ""
+msgstr "La région/département est obligatoire."
 
 #: libs/save_petition.php:167
+#, fuzzy
 msgid "Country field is mandatory."
-msgstr ""
+msgstr "Le Pays est obligatoire."
 
 #: libs/save_petition.php:171
+#, fuzzy
 msgid "Receiver field is mandatory."
-msgstr ""
+msgstr "Le champ du récepteur est obligatoire."
 
 #: libs/save_petition.php:176
+#, fuzzy
 msgid "Position field is mandatory."
-msgstr ""
+msgstr "Le champ de position est obligatoire."
 
-#: libs/save_petition.php:181 libs/save_petition.php:303
+#: libs/save_petition.php:181 libs/save_petition.php:305
+#, fuzzy
 msgid "Goal field is mandatory."
-msgstr ""
+msgstr "La ligne d’adresse 1 est obligatoire."
 
 #: libs/save_petition.php:186
+#, fuzzy
 msgid "Upload at least 1 image in gallery."
-msgstr ""
+msgstr "Merci de charger au minimum 1 photo dans la galerie."
 
 #: libs/save_petition.php:249
+#, fuzzy
 msgid "The petition was successfully saved and published."
-msgstr ""
+msgstr "La pétition a été enregistrée et publiée avec succès."
 
 #: libs/save_petition.php:252
+#, fuzzy
 msgid "The petition was successfully saved and pending for approval."
 msgstr ""
+"La propriété a été enregistré avec succès et dans l'attente d'approbation."
 
 #: libs/save_petition.php:256
+#, fuzzy
 msgid "Something went wrong. The petition was not saved."
-msgstr ""
+msgstr "Quelque chose a mal tourné. La pétition n'a pas été sauvée."
 
-#: libs/save_petition.php:277
+#: libs/save_petition.php:278
+#, fuzzy
 msgid "Letter field is mandatory."
-msgstr ""
+msgstr "Le champ Lettre est obligatoire."
 
-#: libs/save_petition.php:352
+#: libs/save_petition.php:354
+#, fuzzy
 msgid "The petition was successfully deleted. Redirecting..."
-msgstr ""
+msgstr "La requête a été supprimée avec succès. Redirection ..."
 
-#: libs/save_petition.php:355
+#: libs/save_petition.php:357
+#, fuzzy
 msgid "Something went wrong. The petition was not deleted."
-msgstr ""
+msgstr "Quelque chose a mal tourné. La pétition n'a pas été supprimée."
 
 #: libs/save_update.php:27
-#, php-format
+#, fuzzy, php-format
 msgid "A new update on %s:"
-msgstr ""
+msgstr "Une nouvelle mise à jour sur%s:"
 
 #: libs/save_update.php:28
-#, php-format
+#, fuzzy, php-format
 msgid "Update title: %s"
-msgstr ""
+msgstr "Titre de la mise à jour:%s"
 
 #: libs/save_update.php:29
-#, php-format
+#, fuzzy, php-format
 msgid "Update link: %s"
-msgstr ""
+msgstr "Lien de mise à jour:%s"
 
 #: libs/save_update.php:36
-#, php-format
+#, fuzzy, php-format
 msgid "[Petition New Update] %s"
-msgstr ""
+msgstr "[Pétition nouvelle mise à jour]%s"
 
 #: libs/save_update.php:87
+#, fuzzy
 msgid "Petition id field is mandatory."
-msgstr ""
+msgstr "Le champ d'identification de la pétition est obligatoire."
 
 #: libs/save_update.php:112
+#, fuzzy
 msgid "The update was successfully saved."
-msgstr ""
+msgstr "La mise à jour a été enregistrée avec succès."
 
 #: libs/save_update.php:115
+#, fuzzy
 msgid "Something went wrong. The update was not saved."
-msgstr ""
+msgstr "Quelque chose a mal tourné. La mise à jour n'a pas été enregistrée."
 
 #: libs/save_update.php:263
+#, fuzzy
 msgid "The updates was loaded successfully."
-msgstr ""
+msgstr "Les mises à jour ont été chargées avec succès."
 
 #: libs/save_update.php:266
+#, fuzzy
 msgid "Not found updates."
-msgstr ""
+msgstr "Mises à jour non trouvées."
 
 #: libs/save_update.php:288
+#, fuzzy
 msgid "The update was successfully deleted."
-msgstr ""
+msgstr "La mise à jour a été supprimée avec succès."
 
 #: libs/save_update.php:291
+#, fuzzy
 msgid "Something went wrong. The update was not deleted."
-msgstr ""
+msgstr "Quelque chose a mal tourné. La mise à jour n'a pas été supprimée."
 
-#: libs/theme_setup.php:73
+#: libs/theme_setup.php:84
+#, fuzzy
 msgid "Top primary menu"
-msgstr ""
+msgstr "Menu principal"
 
-#: libs/theme_setup.php:74
+#: libs/theme_setup.php:85
+#, fuzzy
 msgid "Category menu"
-msgstr ""
+msgstr "Menu de catégorie"
 
-#: libs/theme_setup.php:75
+#: libs/theme_setup.php:86
+#, fuzzy
 msgid "Footer menu"
-msgstr ""
+msgstr "Menu du pied de page"
 
 #: libs/users.php:18
-#, php-format
+#, fuzzy, php-format
 msgid "New user Sign Up on %s:"
-msgstr ""
+msgstr "Nouvel utilisateur inscrit %s:"
 
 #: libs/users.php:19 libs/users.php:35 libs/users.php:268
-#, php-format
+#, fuzzy, php-format
 msgid "Username: %s"
-msgstr ""
+msgstr "Nom d'utilisateur : %s"
 
 #: libs/users.php:20
-#, php-format
+#, fuzzy, php-format
 msgid "E-mail: %s"
-msgstr ""
+msgstr "Adresse email : %s"
 
 #: libs/users.php:26
-#, php-format
+#, fuzzy, php-format
 msgid "[%s] New User Sign Up"
-msgstr ""
+msgstr "[%s] Inscription d'un nouveau utilisateur"
 
 #: libs/users.php:33
-#, php-format
+#, fuzzy, php-format
 msgid "Welcome, %s!"
-msgstr ""
+msgstr "Bienvenue, %s!"
 
 #: libs/users.php:34
+#, fuzzy
 msgid ""
 "Thank you for signing up with us. Your new account has been setup and you "
 "can now login using the details below."
 msgstr ""
+"Nous vous remercions pour votre inscription. Votre compte est prêt et peut "
+"être utilisé avec les informations ci-dessous."
 
 #: libs/users.php:36
-#, php-format
+#, fuzzy, php-format
 msgid "Password: %s"
-msgstr ""
+msgstr "Mot de passe : %s"
 
 #: libs/users.php:37
+#, fuzzy
 msgid "Thank you,"
-msgstr ""
+msgstr "Merci,"
 
 #: libs/users.php:38
-#, php-format
+#, fuzzy, php-format
 msgid "%s Team"
-msgstr ""
+msgstr "%s L'équipe"
 
 #: libs/users.php:44
-#, php-format
+#, fuzzy, php-format
 msgid "[%s] Your username and password"
-msgstr ""
+msgstr "[%s] Votre nom d'utilisateur et mot de passe"
 
-#: libs/users.php:90 libs/users.php:542 libs/users.php:547
+#: libs/users.php:90 libs/users.php:541 libs/users.php:546
+#, fuzzy
 msgid "Required form fields are empty!"
-msgstr ""
+msgstr "Des champs requis sont manquants!"
 
 #: libs/users.php:94
+#, fuzzy
 msgid "Username too short. Please enter at least 4 characters!"
-msgstr ""
+msgstr "Votre nom d'utilisateur est trop court. Il faut au moins 4 caractères!"
 
 #: libs/users.php:98
+#, fuzzy
 msgid "Username already exists!"
-msgstr ""
+msgstr "Ce nom d'utilisateur existe déjà!"
 
 #: libs/users.php:102
+#, fuzzy
 msgid "Invalid Username!"
-msgstr ""
+msgstr "Nom d'utilisateur incorrect!"
 
-#: libs/users.php:106 libs/users.php:552
+#: libs/users.php:106 libs/users.php:551
+#, fuzzy
 msgid "Invalid Email!"
-msgstr ""
+msgstr "Adresse email invalide!"
 
-#: libs/users.php:111 libs/users.php:557
+#: libs/users.php:111 libs/users.php:556
+#, fuzzy
 msgid "Email already exists!"
-msgstr ""
+msgstr "Cet e-mail est déjà enregistré!"
 
-#: libs/users.php:115 libs/users.php:562
+#: libs/users.php:115 libs/users.php:561
+#, fuzzy
 msgid "Password too short. Please enter at least 6 characters!"
-msgstr ""
+msgstr "Mot de passe trop court. S’il vous plaît entrer au moins 6 caractères."
 
 #: libs/users.php:119
+#, fuzzy
 msgid "Password is not correct!"
-msgstr ""
+msgstr "L'ancien mot de passe n'est pas correct"
 
 #: libs/users.php:144 libs/users.php:377 libs/users.php:441
+#, fuzzy
 msgid "Something went wrong!"
-msgstr ""
+msgstr "Un problème s’est produit !"
 
 #: libs/users.php:147
+#, fuzzy
 msgid "Congratulations! You have successfully signed up."
-msgstr ""
+msgstr "Félicitations ! Votre inscription est complète."
 
 #: libs/users.php:164 libs/users.php:337 libs/users.php:399
+#, fuzzy
 msgid "You are already signed in, redirecting..."
-msgstr ""
+msgstr "Vous êtes déjà connecté, redirection..."
 
 #: libs/users.php:178 libs/users.php:197
+#, fuzzy
 msgid "Invalid username or password!"
-msgstr ""
+msgstr "Nom d’utilisateur ou mot de passe invalide."
 
 #: libs/users.php:213 libs/users.php:384 libs/users.php:448
+#, fuzzy
 msgid "Sign in successful, redirecting..."
-msgstr ""
+msgstr "Connection réussie, nous vous redirigeons automatiquement..."
 
 #: libs/users.php:232
+#, fuzzy
 msgid "Email field is empty!"
-msgstr ""
+msgstr "Le champ email est vide !"
 
 #: libs/users.php:241
+#, fuzzy
 msgid "Invalid email address!"
-msgstr ""
+msgstr "Adresse email non valide."
 
 #: libs/users.php:247
+#, fuzzy
 msgid "Invalid username!"
-msgstr ""
+msgstr "Le nom d'utilisateur est invalide."
 
 #: libs/users.php:266
+#, fuzzy
 msgid ""
 "Someone has asked to reset the password for the following site and username."
 msgstr ""
+"Quelqu'un a demandé de réinitialiser le mot de passe pour le site et le nom "
+"d'utilisateur suivants."
 
 #: libs/users.php:269
-#, php-format
+#, fuzzy, php-format
 msgid "Security Code: %s"
-msgstr ""
+msgstr "Code de sécurité:%s"
 
 #: libs/users.php:270
+#, fuzzy
 msgid ""
 "To reset your password visit the following address, otherwise just ignore "
 "this email and nothing will happen."
 msgstr ""
+"Pour réinitialiser votre mot de passe, visitez l'adresse suivante, sinon "
+"ignorez ce courriel et rien ne se produira."
 
 #: libs/users.php:272
-#, php-format
+#, fuzzy, php-format
 msgid "[%s] Request Password Reset"
-msgstr ""
+msgstr "﻿Demande Password Reset"
 
 #: libs/users.php:277
+#, fuzzy
 msgid "Email failed to send for some unknown reason."
-msgstr ""
+msgstr "L'envoi de l'email a échoué pour une raison inconnue."
 
 #: libs/users.php:280
+#, fuzzy
 msgid "An email with password reset instructions was sent to you."
 msgstr ""
+"Un e-mail avec des instructions de réinitialisation de mot de passe vous a "
+"été envoyé."
 
 #: libs/users.php:301
+#, fuzzy
 msgid "Password field empty!"
-msgstr ""
+msgstr "Le champ \"mot de passe\" est vide."
 
 #: libs/users.php:309 libs/users.php:312
+#, fuzzy
 msgid "Sorry, the link does not appear to be valid or is expired!"
-msgstr ""
+msgstr "Désolé, le lien ne semble pas être valide ou est expiré."
 
-#: libs/users.php:318 libs/users.php:566
+#: libs/users.php:318 libs/users.php:565
+#, fuzzy
 msgid "The passwords do not match!"
-msgstr ""
+msgstr "Le mots de passe ne correspondent pas."
 
 #: libs/users.php:322
+#, fuzzy
 msgid "Your password has been reset."
-msgstr ""
+msgstr "Votre mot de passe a été réinitialisé."
 
-#: libs/users.php:657
+#: libs/users.php:656
+#, fuzzy
 msgid "Your profile was successfully updated."
-msgstr ""
+msgstr "Votre profil a été mis à jour avec succès ."
 
-#: libs/users.php:678
+#: libs/users.php:677
 msgid "Facebook publishing has changed successfully."
-msgstr ""
+msgstr "La publication de Facebook a changé avec succès."
 
-#: libs/users.php:698
+#: libs/users.php:697
+#, fuzzy
 msgid "Email notice has changed successfully."
-msgstr ""
+msgstr "L'avis de courrier électronique a changé avec succès."
 
 #: libs/widgets/contact_widget.php:33 user-account.php:154
+#, fuzzy
 msgid "Organization"
-msgstr ""
+msgstr "Organizace"
 
 #: libs/widgets/contact_widget.php:53
+#, fuzzy
 msgid "State/County"
-msgstr ""
+msgstr "État/ Département"
 
 #: libs/widgets/contact_widget.php:57
+#, fuzzy
 msgid "Zip code"
-msgstr ""
+msgstr "Code postal"
 
 #: libs/widgets/featured_petitions_widget.php:26
 #: libs/widgets/recent_petitions_widget.php:26
+#, fuzzy
 msgid "Number of petitions to show"
-msgstr ""
+msgstr "Nombre de pétitions à présenter"
 
 #: libs/widgets/featured_posts_widget.php:27
 #: libs/widgets/recent_posts_widget.php:27
+#, fuzzy
 msgid "Number of posts to show"
-msgstr ""
+msgstr "Nombre d'articles à afficher"
 
 #: libs/widgets/featured_posts_widget.php:31
 #: libs/widgets/recent_posts_widget.php:31
+#, fuzzy
 msgid "Only text link"
-msgstr ""
+msgstr "Seulement le lien de texte"
 
 #: libs/widgets/social_widget.php:47
+#, fuzzy
 msgid "Instagram Link"
-msgstr ""
+msgstr "Lien Instagram"
 
 #: libs/widgets/social_widget.php:51
+#, fuzzy
 msgid "Youtube Link"
-msgstr ""
+msgstr "Lien Youtube"
 
-#: my-petitions.php:275
+#: libs/widgets/topic_cards_widget.php:23
+#, fuzzy
+msgid "ID"
+msgstr "Réf."
+
+#: libs/widgets/topic_cards_widget.php:23
+#, fuzzy
+msgid "Count"
+msgstr "Quantité"
+
+#: libs/widgets/topic_cards_widget.php:24
+#, fuzzy
+msgid "Descending"
+msgstr "Décroissant"
+
+#: libs/widgets/topic_cards_widget.php:24
+#, fuzzy
+msgid "Ascending"
+msgstr "Ascendant"
+
+#: libs/widgets/topic_cards_widget.php:24
+#, fuzzy
+msgid "Random"
+msgstr "Aléatoire"
+
+#: libs/widgets/topic_cards_widget.php:31
+#, fuzzy
+msgid "Topics (id or slug, separate by commas)"
+msgstr "Sujets (id ou slug, séparés par des virgules)"
+
+#: libs/widgets/topic_cards_widget.php:35
+#, fuzzy
+msgid "Order by"
+msgstr "Classer par"
+
+#: libs/widgets/topic_cards_widget.php:44
+#, fuzzy
+msgid "Order"
+msgstr "Commander"
+
+#: libs/widgets/topic_cards_widget.php:53
+#, fuzzy
+msgid "Number of cards to show"
+msgstr "Nombre de cartes à afficher"
+
+#: my-petitions.php:276
+#, fuzzy
 msgid "Pending approval!"
-msgstr ""
+msgstr "En attente d'approbation"
 
 #: organization-search.php:35 topics-search.php:35
+#, fuzzy
 msgid "Not found topics."
-msgstr ""
+msgstr "Sujets non trouvés."
 
-#: petitions-search-results.php:43 templates/app_header.php:24
-#: templates/home_header.php:27 templates/leftside_menu.php:16
+#: petitions-search-results.php:43 templates/app_header.php:25
+#: templates/home_header.php:37 templates/leftside_menu.php:16
+#, fuzzy
 msgid "Search..."
-msgstr ""
+msgstr "Recherche..."
 
-#: petitions-search-results.php:49 petitions-search.php:147
+#: petitions-search-results.php:49 petitions-search.php:148
+#, fuzzy
 msgid " results for "
-msgstr ""
+msgstr "résultats pour"
 
-#: petitions-search-results.php:189 taxonomy-petition_category.php:231
-#: taxonomy-petition_topics.php:229
-msgid " Petitions"
-msgstr ""
+#: petitions-search.php:122
+#, fuzzy
+msgid " supporters"
+msgstr "participants"
 
-#: petitions-search-results.php:203
-msgid "Filter"
-msgstr ""
-
-#: petitions-search-results.php:211
-msgid "Select Topics"
-msgstr ""
-
-#: petitions-search-results.php:261
-msgid "State"
-msgstr ""
-
-#: petitions-search-results.php:280
-msgid "Reset Filter"
-msgstr ""
-
-#: petitions-search.php:147
+#: petitions-search.php:148
+#, fuzzy
 msgid "View "
-msgstr ""
+msgstr "Voir "
 
 #: search.php:25
-#, php-format
+#, fuzzy, php-format
 msgid "Search Results for: %s"
-msgstr ""
+msgstr "Resultat de recherche pour: %s"
 
 #: search.php:83
+#, fuzzy
 msgid ""
 "Sorry, but nothing matched your search criteria. Please try again with some "
 "different keywords."
 msgstr ""
+"Nous n'avions rien trouvé. Veuillez réessayer en modifiant les termes de "
+"recherche."
 
 #: search.php:89
+#, fuzzy
 msgid "Older Articles"
-msgstr ""
+msgstr "Anciens articles"
 
 #: search.php:90
+#, fuzzy
 msgid "Newer Articles"
-msgstr ""
+msgstr "Nouveaux articles"
 
 #: sidebar.php:14
+#, fuzzy
 msgid "Categories"
-msgstr ""
+msgstr "Catégories"
 
-#: single-petition.php:176
+#: sign-successful.php:104 single-petition.php:1395 single-petition.php:1555
+#: single-update.php:1073 single-update.php:1232
+msgid "You are signed Successfully!"
+msgstr "Vous êtes connecté avec succès !"
+
+#: sign-successful.php:107 single-petition.php:1398 single-petition.php:1558
+#: single-update.php:1076 single-update.php:1235
+#, fuzzy, php-format
+msgid ""
+"You’re one of %2$s people to sign this petition. Now help find %1$s more "
+"people to reach the goal."
+msgstr ""
+"Vous êtes l'un des %2$s personnes à signer cette pétition. Maintenant, aidez "
+"à trouver plus de 1% de personnes pour atteindre le but."
+
+#: sign-successful.php:120 single-petition.php:663 single-petition.php:830
+#: single-petition.php:1141 single-petition.php:1196 single-petition.php:1429
+#: single-petition.php:1589 single-update.php:341 single-update.php:508
+#: single-update.php:819 single-update.php:874 single-update.php:1107
+#: single-update.php:1266
+#, fuzzy
+msgid "Add a personal message"
+msgstr "Ajouter un message personnel"
+
+#: sign-successful.php:141 single-petition.php:684 single-petition.php:851
+#: single-petition.php:1162 single-petition.php:1320 single-petition.php:1450
+#: single-petition.php:1610 single-update.php:362 single-update.php:529
+#: single-update.php:840 single-update.php:998 single-update.php:1128
+#: single-update.php:1287
+#, fuzzy
+msgid "Post to Facebook"
+msgstr "Publier à nouveau sur facebook"
+
+#: sign-successful.php:149 single-petition.php:692 single-petition.php:859
+#: single-petition.php:1065 single-petition.php:1223 single-petition.php:1458
+#: single-petition.php:1618 single-update.php:370 single-update.php:537
+#: single-update.php:743 single-update.php:901 single-update.php:1136
+#: single-update.php:1295 templates/page_caption.php:137
+#, fuzzy
+msgid "Send an Email"
+msgstr "Envoyer un e-mail"
+
+#: sign-successful.php:153 sign-successful.php:155 single-petition.php:696
+#: single-petition.php:698 single-petition.php:863 single-petition.php:865
+#: single-petition.php:1069 single-petition.php:1071 single-petition.php:1227
+#: single-petition.php:1229 single-petition.php:1462 single-petition.php:1464
+#: single-petition.php:1622 single-petition.php:1624 single-update.php:374
+#: single-update.php:376 single-update.php:541 single-update.php:543
+#: single-update.php:747 single-update.php:749 single-update.php:905
+#: single-update.php:907 single-update.php:1140 single-update.php:1142
+#: single-update.php:1299 single-update.php:1301
+#, fuzzy
+msgid "Send a message"
+msgstr "Envoyer un message"
+
+#: sign-successful.php:164 single-petition.php:707 single-petition.php:874
+#: single-petition.php:1077 single-petition.php:1235 single-petition.php:1473
+#: single-petition.php:1633 single-update.php:385 single-update.php:552
+#: single-update.php:755 single-update.php:913 single-update.php:1151
+#: single-update.php:1310 single.php:38
+#, fuzzy
+msgid "Share on Google+"
+msgstr "Partager sur Google+"
+
+#: sign-successful.php:167 single-petition.php:710 single-petition.php:877
+#: single-petition.php:1080 single-petition.php:1238 single-petition.php:1476
+#: single-petition.php:1636 single-update.php:388 single-update.php:555
+#: single-update.php:758 single-update.php:916 single-update.php:1154
+#: single-update.php:1313 single.php:33 single.php:151
+#, fuzzy
+msgid "Share on Twitter"
+msgstr "Partager sur Twitter"
+
+#: sign-successful.php:172
+#, fuzzy
+msgid "Share on LinkedIn"
+msgstr "Partager sur LinkedIn"
+
+#: sign-successful.php:177 single-petition.php:713 single-petition.php:880
+#: single-petition.php:1083 single-petition.php:1241 single-petition.php:1479
+#: single-petition.php:1639 single-update.php:391 single-update.php:558
+#: single-update.php:761 single-update.php:919 single-update.php:1157
+#: single-update.php:1316 single.php:154
+#, fuzzy
+msgid "More social"
+msgstr "Plus social"
+
+#: sign-successful.php:183 single-petition.php:724 single-petition.php:891
+#: single-petition.php:1094 single-petition.php:1252 single-petition.php:1490
+#: single-petition.php:1650 single-update.php:402 single-update.php:569
+#: single-update.php:772 single-update.php:930 single-update.php:1168
+#: single-update.php:1327 single.php:173
+#, fuzzy
+msgid "Tumblr"
+msgstr "Tumblr"
+
+#: sign-successful.php:188 single-petition.php:729 single-petition.php:896
+#: single-petition.php:1099 single-petition.php:1257 single-petition.php:1495
+#: single-petition.php:1655 single-update.php:407 single-update.php:574
+#: single-update.php:777 single-update.php:935 single-update.php:1173
+#: single-update.php:1332 single.php:178
+#, fuzzy
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: sign-successful.php:193 single-petition.php:734 single-petition.php:901
+#: single-petition.php:1104 single-petition.php:1262 single-petition.php:1500
+#: single-petition.php:1660 single-update.php:412 single-update.php:579
+#: single-update.php:782 single-update.php:940 single-update.php:1178
+#: single-update.php:1337 single.php:183
+#, fuzzy
+msgid "Reddit"
+msgstr "Reddit"
+
+#: sign-successful.php:198 single-petition.php:739 single-petition.php:906
+#: single-petition.php:1109 single-petition.php:1267 single-petition.php:1505
+#: single-petition.php:1665 single-update.php:417 single-update.php:584
+#: single-update.php:787 single-update.php:945 single-update.php:1183
+#: single-update.php:1342 single.php:188
+#, fuzzy
+msgid "WordPress"
+msgstr "WordPress"
+
+#: sign-successful.php:209 single-petition.php:645 single-petition.php:812
+#: single-petition.php:1123 single-petition.php:1281 single-petition.php:1411
+#: single-petition.php:1571 single-update.php:323 single-update.php:490
+#: single-update.php:801 single-update.php:959 single-update.php:1089
+#: single-update.php:1248
+#, fuzzy
+msgid " for Campaign"
+msgstr "Campagne"
+
+#: sign-successful.php:219
+#, fuzzy
+msgid "Back to Petition"
+msgstr "Retour à la pétition"
+
+#: sign-successful.php:220
+#, fuzzy
+msgid "Go to Homepage"
+msgstr "Retourner à l'accueil"
+
+#: single-petition.php:220
+#, fuzzy
 msgid "Petition is pending approval!"
-msgstr ""
+msgstr "La pétition est en attente d'approbation!"
 
-#: single-petition.php:182
+#: single-petition.php:226
+#, fuzzy
 msgid "Getting to"
-msgstr ""
+msgstr "Parvenir à un accord avec l’Iran"
 
-#: single-petition.php:182
+#: single-petition.php:226
+#, fuzzy
 msgid "signatures makes your petition visible to the whole community"
 msgstr ""
+"les signatures rendent votre pétition visible à l'ensemble de la communauté"
 
-#: single-petition.php:218
+#: single-petition.php:262
+#, fuzzy
 msgid "Story"
-msgstr ""
+msgstr "Histoire"
 
-#: single-petition.php:219
+#: single-petition.php:263
+#, fuzzy
 msgid "Letter"
-msgstr ""
+msgstr "Lettre"
 
-#: single-petition.php:220 single-petition.php:338
+#: single-petition.php:264 single-petition.php:494
+#, fuzzy
 msgid "Updates"
+msgstr "Mises à Jour"
+
+#: single-petition.php:372 single-petition.php:432
+#, fuzzy
+msgid "See more..."
+msgstr "Charger plus…"
+
+#: single-petition.php:412 supporters-list.php:42
+msgid "Donors"
 msgstr ""
 
-#: single-petition.php:310
+#: single-petition.php:466
+#, fuzzy
 msgid "Letter to"
-msgstr ""
+msgstr "Lettre à"
 
-#: single-petition.php:362
-msgid "Responsive"
-msgstr ""
+#: single-petition.php:525
+#, fuzzy
+msgid "Response"
+msgstr "Réponse"
 
-#: single-petition.php:362
+#: single-petition.php:525
+#, fuzzy
 msgid "Post Update"
-msgstr ""
+msgstr "Publier une note"
 
-#: single-petition.php:367
+#: single-petition.php:530
+#, fuzzy
 msgid ""
 "This petition is sent to you, let you clearly respond the problems stated  "
 "in this petition for supporters of petition."
 msgstr ""
+"Cette pétition vous est envoyée, vous permettent de répondre clairement aux "
+"problèmes énoncés dans cette pétition pour les partisans de la pétition."
 
-#: single-petition.php:369
+#: single-petition.php:532
+#, fuzzy
 msgid ""
 "Keep your supporters engaged with a news update. Every update you post will "
 "be sent as a separate email to signers of your petition."
 msgstr ""
+"Gardez vos partisans engagés dans une mise à jour des nouvelles. Toutes les "
+"mises à jour que vous publiez seront envoyées par courrier électronique "
+"séparé aux signataires de votre pétition."
 
-#: single-petition.php:379
+#: single-petition.php:542
+#, fuzzy
 msgid "start this petition"
-msgstr ""
+msgstr "commencer cette pétition"
 
-#: single-petition.php:399 single-petition.php:775 single-update.php:232
-#: single-update.php:608
+#: single-petition.php:562 single-petition.php:962 single-update.php:240
+#: single-update.php:640
+#, fuzzy
 msgid "Confirm Victory!"
-msgstr ""
+msgstr "Confirmer la victoire!"
 
-#: single-petition.php:405 single-petition.php:786 single-update.php:238
-#: single-update.php:619
+#: single-petition.php:568 single-petition.php:973 single-update.php:246
+#: single-update.php:651
+#, fuzzy
 msgid "This petition won with"
-msgstr ""
+msgstr "Cette pétition a gagné avec"
 
-#: single-petition.php:409 single-petition.php:792 single-update.php:242
-#: single-update.php:625
+#: single-petition.php:572 single-petition.php:979 single-update.php:250
+#: single-update.php:657
+#, fuzzy
 msgid "Petition closed"
-msgstr ""
+msgstr "Pétition fermée"
 
-#: single-petition.php:415 single-petition.php:425 single-petition.php:803
-#: single-petition.php:820 single-update.php:248 single-update.php:258
-#: single-update.php:636 single-update.php:653
+#: single-petition.php:578 single-petition.php:588 single-petition.php:990
+#: single-petition.php:1007 single-update.php:256 single-update.php:266
+#: single-update.php:668 single-update.php:685
+#, fuzzy
 msgid "needed to reach"
-msgstr ""
+msgstr "Nécessaire pour atteindre"
 
-#: single-petition.php:455 single-petition.php:610 single-petition.php:851
-#: single-petition.php:1088 single-update.php:288 single-update.php:443
-#: single-update.php:684 single-update.php:921 templates/guest_sign.php:40
+#: single-petition.php:618 single-petition.php:785 single-petition.php:1038
+#: single-petition.php:1299 single-update.php:296 single-update.php:463
+#: single-update.php:716 single-update.php:977 templates/guest_sign.php:40
 #: templates/guest_sign.php:91
+#, fuzzy
 msgid "I am signing because..."
-msgstr ""
+msgstr "Je signe parce que ..."
 
-#: single-petition.php:460 single-petition.php:615 single-update.php:293
-#: single-update.php:448
+#: single-petition.php:623 single-petition.php:790 single-update.php:301
+#: single-update.php:468
+#, fuzzy
 msgid "Share with Facebook friends"
-msgstr ""
+msgstr "Partager avec les amis de Facebook"
 
-#: single-petition.php:465 single-petition.php:620 single-petition.php:869
-#: single-petition.php:1015 single-update.php:298 single-update.php:453
-#: single-update.php:702 single-update.php:848
+#: single-petition.php:628 single-petition.php:795 single-petition.php:1056
+#: single-petition.php:1214 single-update.php:306 single-update.php:473
+#: single-update.php:734 single-update.php:892
+#, fuzzy
 msgid "Sign"
-msgstr ""
+msgstr "Signe"
 
-#: single-petition.php:470 single-petition.php:625 single-update.php:303
-#: single-update.php:458 templates/guest_sign.php:55
+#: single-petition.php:633 single-petition.php:800 single-update.php:311
+#: single-update.php:478 templates/guest_sign.php:55
+#, fuzzy
 msgid "Notify me when new information"
-msgstr ""
+msgstr "Prévenez-moi lorsque de nouvelles informations"
 
-#: single-petition.php:481 single-petition.php:529 single-petition.php:636
-#: single-petition.php:684 single-petition.php:856 single-petition.php:935
-#: single-petition.php:1002 single-petition.php:1081 single-update.php:314
-#: single-update.php:362 single-update.php:469 single-update.php:517
-#: single-update.php:689 single-update.php:768 single-update.php:835
-#: single-update.php:914 single.php:145 templates/guest_sign.php:45
-#: templates/guest_sign.php:96
-msgid "Share on Facebook"
-msgstr ""
-
-#: single-petition.php:488 single-petition.php:643 single-petition.php:942
-#: single-petition.php:997 single-update.php:321 single-update.php:476
-#: single-update.php:775 single-update.php:830
-msgid "Add a personal message"
-msgstr ""
-
-#: single-petition.php:509 single-petition.php:664 single-petition.php:963
-#: single-petition.php:1109 single-update.php:342 single-update.php:497
-#: single-update.php:796 single-update.php:942
-msgid "Post to Facebook"
-msgstr ""
-
-#: single-petition.php:519 single-petition.php:674 single-petition.php:878
-#: single-petition.php:1024 single-update.php:352 single-update.php:507
-#: single-update.php:711 single-update.php:857 templates/page_caption.php:111
-msgid "Send an Email"
-msgstr ""
-
-#: single-petition.php:523 single-petition.php:525 single-petition.php:678
-#: single-petition.php:680 single-petition.php:882 single-petition.php:884
-#: single-petition.php:1028 single-petition.php:1030 single-update.php:356
-#: single-update.php:358 single-update.php:511 single-update.php:513
-#: single-update.php:715 single-update.php:717 single-update.php:861
-#: single-update.php:863
-msgid "Send a message"
-msgstr ""
-
-#: single-petition.php:534 single-petition.php:689 single-petition.php:890
-#: single-petition.php:1036 single-update.php:367 single-update.php:522
-#: single-update.php:723 single-update.php:869
-msgid "Share on Google+"
-msgstr ""
-
-#: single-petition.php:537 single-petition.php:692 single-petition.php:893
-#: single-petition.php:1039 single-update.php:370 single-update.php:525
-#: single-update.php:726 single-update.php:872 single.php:150
-msgid "Share on Twitter"
-msgstr ""
-
-#: single-petition.php:540 single-petition.php:695 single-petition.php:896
-#: single-petition.php:1042 single-update.php:373 single-update.php:528
-#: single-update.php:729 single-update.php:875 single.php:153
-msgid "More social"
-msgstr ""
-
-#: single-petition.php:546 single-petition.php:701 single-petition.php:902
-#: single-petition.php:1048 single-update.php:379 single-update.php:534
-#: single-update.php:735 single-update.php:881 single.php:167
+#: single-petition.php:719 single-petition.php:886 single-petition.php:1089
+#: single-petition.php:1247 single-petition.php:1485 single-petition.php:1645
+#: single-update.php:397 single-update.php:564 single-update.php:767
+#: single-update.php:925 single-update.php:1163 single-update.php:1322
+#: single.php:168
+#, fuzzy
 msgid "LinkedIn"
-msgstr ""
+msgstr "Linkedin"
 
-#: single-petition.php:551 single-petition.php:706 single-petition.php:907
-#: single-petition.php:1053 single-update.php:384 single-update.php:539
-#: single-update.php:740 single-update.php:886 single.php:172
-msgid "Tumblr"
-msgstr ""
-
-#: single-petition.php:556 single-petition.php:711 single-petition.php:912
-#: single-petition.php:1058 single-update.php:389 single-update.php:544
-#: single-update.php:745 single-update.php:891 single.php:177
-msgid "Pinterest"
-msgstr ""
-
-#: single-petition.php:561 single-petition.php:716 single-petition.php:917
-#: single-petition.php:1063 single-update.php:394 single-update.php:549
-#: single-update.php:750 single-update.php:896 single.php:182
-msgid "Reddit"
-msgstr ""
-
-#: single-petition.php:566 single-petition.php:721 single-petition.php:922
-#: single-petition.php:1068 single-update.php:399 single-update.php:554
-#: single-update.php:755 single-update.php:901 single.php:187
-msgid "WordPress"
-msgstr ""
-
-#: single-petition.php:578 single-petition.php:733 single-update.php:411
-#: single-update.php:566
+#: single-petition.php:751 single-petition.php:918 single-petition.php:1517
+#: single-petition.php:1677 single-update.php:429 single-update.php:596
+#: single-update.php:1195 single-update.php:1354
+#, fuzzy
 msgid "Copy"
-msgstr ""
+msgstr "Copier"
 
-#: single-petition.php:864 single-petition.php:1010 single-update.php:697
-#: single-update.php:843 templates/guest_sign.php:102
+#: single-petition.php:1051 single-petition.php:1209 single-update.php:729
+#: single-update.php:887 templates/guest_sign.php:104
+#, fuzzy
 msgid "Notify me when new update"
-msgstr ""
+msgstr "Avertissez-moi quand une nouvelle mise à jour"
 
-#: single-petition.php:1134 single-petition.php:1140 single-petition.php:1146
-#: single-update.php:967 single-update.php:973 single-update.php:979
+#: single-petition.php:1345 single-petition.php:1351 single-petition.php:1357
+#: single-update.php:1023 single-update.php:1029 single-update.php:1035
+#, fuzzy
 msgid "Sign this Petition"
-msgstr ""
+msgstr "Signez cette pétition"
 
-#: single-petition.php:1136 single-petition.php:1142 single-update.php:969
-#: single-update.php:975
+#: single-petition.php:1347 single-petition.php:1353 single-update.php:1025
+#: single-update.php:1031
+#, fuzzy
 msgid "Share this Petition"
-msgstr ""
+msgstr "Partagez cette pétition"
 
-#: single-update.php:109 single-update.php:122
+#: single-petition.php:1401 single-petition.php:1561 single-update.php:1079
+#: single-update.php:1238
+#, fuzzy
+msgid "Skip this"
+msgstr "Sautez ceci"
+
+#: single-update.php:117 single-update.php:130
+#, fuzzy
 msgid "Petition Update"
-msgstr ""
+msgstr "Mise à jour de la pétition"
 
-#: single-update.php:112
+#: single-update.php:120
+#, fuzzy
 msgid "Featured on Press"
-msgstr ""
+msgstr "Présenté sur Presse"
 
-#: single-update.php:115
+#: single-update.php:123
+#, fuzzy
 msgid "Decision maker Responsive"
-msgstr ""
+msgstr "Décideur Responsive"
 
-#: single-update.php:118
+#: single-update.php:126
+#, fuzzy
 msgid "Petition Victory"
-msgstr ""
+msgstr "Pétition victoire"
 
-#: single-update.php:150
+#: single-update.php:158
+#, fuzzy
 msgid "by"
-msgstr ""
+msgstr "par"
 
-#: single.php:137
-msgid "Send an SMS"
-msgstr ""
-
-#: single.php:141
+#: single.php:25 single.php:142
+#, fuzzy
 msgid "Send a Message"
-msgstr ""
+msgstr "Envoyer un message"
 
-#: single.php:162
+#: single.php:93
+#, fuzzy
+msgid "Posted on "
+msgstr "Publié le "
+
+#: single.php:93
+#, fuzzy
+msgid " in "
+msgstr " dans "
+
+#: single.php:138
+#, fuzzy
+msgid "Send an SMS"
+msgstr "Envoyer un SMS"
+
+#: single.php:163
+#, fuzzy
 msgid "Google+"
-msgstr ""
+msgstr "Google+"
 
-#: single.php:200
+#: single.php:257
+#, fuzzy
 msgid "Previous post"
-msgstr ""
+msgstr "Article précedent"
 
-#: single.php:207
+#: single.php:264
+#, fuzzy
 msgid "Next post"
-msgstr ""
-
-#: submit-petition.php:90
-msgid "Receiver"
-msgstr ""
-
-#: submit-petition.php:95
-msgid "Problem"
-msgstr ""
+msgstr "Article suivant"
 
 #: submit-petition.php:100
+#, fuzzy
+msgid "Receiver"
+msgstr "Récepteur"
+
+#: submit-petition.php:105
+#, fuzzy
+msgid "Problem"
+msgstr "Problème"
+
+#: submit-petition.php:110
+#, fuzzy
 msgid "Photo"
-msgstr ""
+msgstr "Photo"
 
-#: submit-petition.php:119
+#: submit-petition.php:129
+#, fuzzy
 msgid "Write your petition title"
-msgstr ""
+msgstr "Écrivez votre titre de pétition"
 
-#: submit-petition.php:121
+#: submit-petition.php:131
+#, fuzzy
 msgid ""
 "This is the first thing people will see about your petition. Get their "
 "attention with a short title that focuses on the change you’d like them to "
 "support."
 msgstr ""
+"C'est la première chose que les gens verront à propos de votre pétition. "
+"Appelez leur attention avec un titre court qui met l'accent sur le "
+"changement que vous souhaitez qu'ils prennent en charge."
 
-#: submit-petition.php:134
-msgid "Goal"
-msgstr ""
-
-#: submit-petition.php:136
+#: submit-petition.php:146
 msgid "Number of signature goal?"
-msgstr ""
+msgstr "Numéro signature pour changer d’objectif"
 
-#: submit-petition.php:162
+#: submit-petition.php:172
 msgid "How to write a great title?"
-msgstr ""
+msgstr "Comment écrire un grand titre ?"
 
-#: submit-petition.php:169
+#: submit-petition.php:179
+#, fuzzy
 msgid "Keep it short and to the point"
-msgstr ""
+msgstr "Votre intervention ne doit pas dépasser 15 minutes."
 
-#: submit-petition.php:170
+#: submit-petition.php:180
 msgid "Example: \"Buy organic, free-range eggs for your restaurants\"."
-msgstr ""
+msgstr "Exemple : « acheter biologiques, fermier œufs pour vos restaurants »."
 
-#: submit-petition.php:175
+#: submit-petition.php:185
 msgid "Focus on the solution"
-msgstr ""
+msgstr "Se concentrer sur la solution"
 
-#: submit-petition.php:176
+#: submit-petition.php:186
+#, fuzzy
 msgid "Example: \"Raise the minimum wage in Minneapolis to $15 an hour\"."
-msgstr ""
+msgstr "Exemple: «Augmenter le salaire minimum à Minneapolis à 15 $ l'heure»."
 
-#: submit-petition.php:181
+#: submit-petition.php:191
+#, fuzzy
 msgid "Communicate urgency"
-msgstr ""
+msgstr "Communiquez l'urgence"
 
-#: submit-petition.php:182
+#: submit-petition.php:192
+#, fuzzy
 msgid ""
 "Example: \"Approve life-saving medication for my daughter’s insurance before "
 "it’s too late\"."
 msgstr ""
+"Exemple: «Apprenez à prendre soin de l'assurance de ma fille avant d'être "
+"trop tard»."
 
-#: submit-petition.php:197
+#: submit-petition.php:207
+#, fuzzy
 msgid ""
 "This is the person, organization, or group that can make a decision about "
 "your petition. We will send them updates on your petition and encourage a "
 "response."
 msgstr ""
+"C'est la personne, l'organisation ou le groupe qui peut prendre une décision "
+"concernant votre pétition. Nous vous enverrons des mises à jour sur votre "
+"pétition et encouragerons une réponse."
 
-#: submit-petition.php:268
+#: submit-petition.php:278
+#, fuzzy
 msgid "How to find the right decision maker?"
-msgstr ""
+msgstr "Comment trouver le bon décideur?"
 
-#: submit-petition.php:275
+#: submit-petition.php:285
+#, fuzzy
 msgid "Choose someone who can give you what you want"
-msgstr ""
+msgstr "Choisissez quelqu'un qui peut vous donner ce que vous voulez"
 
-#: submit-petition.php:276
+#: submit-petition.php:286
+#, fuzzy
 msgid ""
 "You might need to do some research to find the right person who can make or "
 "influence the decision."
 msgstr ""
+"Vous devrez peut-être faire des recherches pour trouver la bonne personne "
+"qui peut influencer ou influencer la décision."
 
-#: submit-petition.php:281
+#: submit-petition.php:291
+#, fuzzy
 msgid "Do not go straight to the top"
-msgstr ""
+msgstr "Ne pas aller directement au sommet"
 
-#: submit-petition.php:282
+#: submit-petition.php:292
+#, fuzzy
 msgid ""
 "You might see faster results if you choose a more junior person who is "
 "petitioned less often than more recognizable figures."
 msgstr ""
+"Vous pourriez voir des résultats plus rapides si vous choisissez une "
+"personne plus junior qui est soumise moins souvent que des chiffres plus "
+"reconnaissables."
 
-#: submit-petition.php:287
+#: submit-petition.php:297
+#, fuzzy
 msgid "Choose someone you can work with"
-msgstr ""
+msgstr "Choisissez avec qui vous pouvez travailler"
 
-#: submit-petition.php:288
+#: submit-petition.php:298
+#, fuzzy
 msgid ""
 "Your petition is most likely to win by reaching an agreement with your "
 "decision maker."
 msgstr ""
+"Votre pétition est susceptible de gagner en concluant un accord avec votre "
+"décideur."
 
-#: submit-petition.php:300
+#: submit-petition.php:310
+#, fuzzy
 msgid "Explain the problem"
-msgstr ""
+msgstr "Expliquer le problème"
 
-#: submit-petition.php:302
+#: submit-petition.php:312
+#, fuzzy
 msgid ""
 "People are more likely to support your petition if it’s clear why you care. "
 "Explain how this change will impact you, your family, or your community."
 msgstr ""
+"Les gens sont plus susceptibles de soutenir votre pétition si c'est clair "
+"pour quoi vous vous souciez. Expliquez comment ce changement aura un impact "
+"sur vous, votre famille ou votre communauté."
 
-#: submit-petition.php:341
+#: submit-petition.php:351
+#, fuzzy
 msgid "How to inspire your readers to action?"
-msgstr ""
+msgstr "Comment inspirer vos lecteurs à l'action?"
 
-#: submit-petition.php:348
+#: submit-petition.php:358
+#, fuzzy
 msgid "Describe the people involved and the problem they are facing"
-msgstr ""
+msgstr "Décrivez les personnes impliquées et le problème qu'elles rencontrent"
 
-#: submit-petition.php:349
+#: submit-petition.php:359
+#, fuzzy
 msgid ""
 "Readers are most likely to take action when they understand who is affected."
 msgstr ""
+"Les lecteurs sont les plus susceptibles de prendre des mesures lorsqu'ils "
+"comprennent qui est affecté."
 
-#: submit-petition.php:354
+#: submit-petition.php:364
+#, fuzzy
 msgid "Describe the solution"
-msgstr ""
+msgstr "Décrivez la solution"
 
-#: submit-petition.php:355
+#: submit-petition.php:365
+#, fuzzy
 msgid ""
 "Explain what needs to happen and who can make the change. Make it clear what "
 "happens if you win or lose."
 msgstr ""
+"Expliquez ce qui doit arriver et qui peut faire le changement. Indiquez "
+"clairement ce qui se passe si vous gagnez ou perdez."
 
-#: submit-petition.php:360
+#: submit-petition.php:370
+#, fuzzy
 msgid "Make it personal"
-msgstr ""
+msgstr "Rendez-le personnel"
 
-#: submit-petition.php:361
+#: submit-petition.php:371
+#, fuzzy
 msgid ""
 "Readers are more likely to sign and support your petition if it’s clear why "
 "you care."
 msgstr ""
+"Les lecteurs sont plus susceptibles de signer et de soutenir votre pétition "
+"si c'est clair pour quoi vous vous souciez."
 
-#: submit-petition.php:366
+#: submit-petition.php:376
+#, fuzzy
 msgid "Respect others"
-msgstr ""
+msgstr "Le respect de l'autre"
 
-#: submit-petition.php:367
+#: submit-petition.php:377
+#, fuzzy
 msgid "Don’t bully, use hate speech, threaten violence or make things up."
 msgstr ""
+"Ne pas intimider, utiliser les discours haineux, menacer la violence ou "
+"inventer les choses."
 
-#: submit-petition.php:380
+#: submit-petition.php:390
+#, fuzzy
 msgid ""
 "Petitions with a photo or video receive six times more signatures than those "
 "without. Include one that captures the emotion of your story."
 msgstr ""
+"Les pétitions avec une photo ou une vidéo reçoivent six fois plus de "
+"signatures que celles sans. Incluez celui qui capture l'émotion de votre "
+"histoire."
 
-#: submit-petition.php:391
+#: submit-petition.php:401
+#, fuzzy
 msgid "Tips for adding a photo or video"
-msgstr ""
+msgstr "Conseils pour ajouter une photo ou une vidéo"
 
-#: submit-petition.php:398
+#: submit-petition.php:408
+#, fuzzy
 msgid "Choose a photo that captures the emotion of your petition"
-msgstr ""
+msgstr "Choisissez une photo qui capture l'émotion de votre pétition"
 
-#: submit-petition.php:399
+#: submit-petition.php:409
+#, fuzzy
 msgid "Photos of people or animals work well."
-msgstr ""
+msgstr "Les photos de personnes ou d'animaux fonctionnent bien."
 
-#: submit-petition.php:404
+#: submit-petition.php:414
+#, fuzzy
 msgid "Try to upload photos that are 1600 x 900 pixels or larger"
-msgstr ""
+msgstr "Essayez de télécharger des photos de 1600 x 900 pixels ou plus"
 
-#: submit-petition.php:405
+#: submit-petition.php:415
+#, fuzzy
 msgid "Large photos look good on all screen sizes."
-msgstr ""
+msgstr "Les grandes photos sont bonnes sur toutes les tailles d'écran."
 
-#: submit-petition.php:410
+#: submit-petition.php:420
+#, fuzzy
 msgid "Keep it friendly for all audiences"
-msgstr ""
+msgstr "Gardez-le amical pour tous les publics"
 
-#: submit-petition.php:411
+#: submit-petition.php:421
+#, fuzzy
 msgid ""
 "Make sure your photo doesn’t include graphic violence or sexual content."
 msgstr ""
+"Assurez-vous que votre photo n'inclut pas de violence graphique ou de "
+"contenu sexuel."
 
-#: submit-petition.php:422 submit-petition.php:423 submit-petition.php:424
+#: submit-petition.php:432 submit-petition.php:433 submit-petition.php:434
+#, fuzzy
 msgid "Back"
-msgstr ""
+msgstr "Retour"
 
-#: submit-petition.php:427 submit-petition.php:428 submit-petition.php:429
+#: submit-petition.php:437 submit-petition.php:438 submit-petition.php:439
+#, fuzzy
 msgid "Next"
-msgstr ""
+msgstr "Suivant"
 
-#: submit-petition.php:430
+#: submit-petition.php:440
+#, fuzzy
 msgid "Finish"
-msgstr ""
+msgstr "Terminer"
 
-#: templates/app_header.php:50 templates/home_header.php:65
+#: templates/ajax_comments.php:41
+#, fuzzy
+msgid "Older comments ..."
+msgstr "Commentaires les plus anciens"
+
+#: templates/ajax_comments.php:92
+#, fuzzy
+msgid "Hidden replies"
+msgstr "Réponse masquées"
+
+#: templates/ajax_comments.php:147
+#, fuzzy
+msgid "No comments yet"
+msgstr "Encore aucun commentaire"
+
+#: templates/ajax_comments.php:149
+#, fuzzy
+msgid "Leaving the first to comment on this article."
+msgstr "Laisser le premier à commenter cet article."
+
+#: templates/ajax_comments.php:163
+#, fuzzy
+msgid "Add a comment"
+msgstr "Ajouter un commentaire"
+
+#: templates/ajax_comments.php:174
+#, fuzzy, php-format
+msgid "You need %1$s or %2$s account to post comment."
+msgstr "Vous avez besoin du compte%1$s ou%2$s pour poster un commentaire."
+
+#: templates/app_header.php:51 templates/home_header.php:75
+#, fuzzy
 msgid "Search"
-msgstr ""
+msgstr "Rechercher"
 
-#: templates/app_header.php:81 templates/home_header.php:96
+#: templates/app_header.php:82 templates/home_header.php:106
+#, fuzzy
 msgid "Start a Petition"
-msgstr ""
+msgstr "Démarrer une pétition"
 
-#: templates/app_user_menu.php:147 templates/user_menu.php:147
+#: templates/app_user_menu.php:148 templates/user_menu.php:234
+#, fuzzy
 msgid "Logout"
-msgstr ""
+msgstr "Se déconnecter"
 
 #: templates/avatar_upload.php:37 templates/gallery_upload.php:23
+#, fuzzy
 msgid "Browse Images"
-msgstr ""
+msgstr "Parcourir les images"
 
 #: templates/gallery_upload.php:26
+#, fuzzy
 msgid "Or"
-msgstr ""
+msgstr "Ou"
 
 #: templates/gallery_upload.php:31
+#, fuzzy
 msgid "Embed"
-msgstr ""
+msgstr "Intégration"
 
-#: templates/guest_sign.php:50 templates/guest_sign.php:107
+#: templates/guest_sign.php:50 templates/guest_sign.php:109
+#, fuzzy
 msgid "Sign this petition"
-msgstr ""
+msgstr "Signez cette pétition"
 
-#: templates/page_caption.php:81
+#: templates/page_caption.php:79
+#, fuzzy
+msgid "petitions"
+msgstr "PÉTITIONS"
+
+#: templates/page_caption.php:107
+#, fuzzy
 msgid "Send an email"
-msgstr ""
+msgstr "Envoyer un courriel test"
 
-#: templates/related_posts.php:25
+#: templates/related_posts.php:27
+#, fuzzy
 msgid "Related Articles"
-msgstr ""
+msgstr "Articles Liés"
 
-#: templates/similar_petitions.php:65
+#: templates/similar_petitions.php:90
+#, fuzzy
 msgid "Similar petitions"
-msgstr ""
+msgstr "Pétitions similaires"
 
-#: templates/similar_petitions.php:127
+#: templates/similar_petitions.php:158
+#, fuzzy
 msgid "by "
-msgstr ""
+msgstr "par "
 
-#: templates/update_petition.php:167
+#: templates/update_petition.php:170
+#, fuzzy
 msgid "More updates..."
-msgstr ""
+msgstr "Plus de mises à jour ..."
 
 #: templates/user_modals.php:25
+#, fuzzy
 msgid "Full Name"
-msgstr ""
+msgstr "Nom Complet"
 
 #: templates/user_modals.php:27
+#, fuzzy
 msgid "Enter your fullname"
-msgstr ""
+msgstr "Entrez votre nom complet"
 
 #: templates/user_modals.php:34
+#, fuzzy
 msgid "Enter your e-mail"
-msgstr ""
+msgstr "Entrez votre email"
 
 #: templates/user_modals.php:41 user-account.php:183
+#, fuzzy
 msgid "Enter your address"
-msgstr ""
+msgstr "Lieu de recherche"
 
 #: templates/user_modals.php:46 templates/user_modals.php:85
 #: templates/user_modals.php:87
+#, fuzzy
 msgid "Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: templates/user_modals.php:48
+#, fuzzy
 msgid "Enter your password"
-msgstr ""
+msgstr "Votre commentaire est en attente de validation."
 
 #: templates/user_modals.php:53
+#, fuzzy
 msgid "Repeat Password"
-msgstr ""
+msgstr "Répète le mot de passe"
 
 #: templates/user_modals.php:55
+#, fuzzy
 msgid "Repeat your password"
-msgstr ""
+msgstr "Répétez votre nouveau mot de passe"
 
 #: templates/user_modals.php:80
+#, fuzzy
 msgid "Username"
-msgstr ""
+msgstr "Identifiant"
 
 #: templates/user_modals.php:97
+#, fuzzy
 msgid "Remember me"
-msgstr ""
+msgstr "Souviens-toi de moi"
 
 #: templates/user_modals.php:106
+#, fuzzy
 msgid "Forgot password?"
-msgstr ""
+msgstr "Mot de passe oublié ?"
 
 #: templates/user_modals.php:124
+#, fuzzy
 msgid "And"
-msgstr ""
+msgstr "Et"
 
 #: templates/user_modals.php:128
+#, fuzzy
 msgid "Facebook"
-msgstr ""
+msgstr "Trombinoscope"
 
 #: templates/user_modals.php:131
+#, fuzzy
 msgid "Google"
-msgstr ""
+msgstr "Google"
 
 #: templates/user_modals.php:141
+#, fuzzy
 msgid "Forgot Password"
-msgstr ""
+msgstr "Mot de Passe Oublié"
 
 #: templates/user_modals.php:147 templates/user_modals.php:149
+#, fuzzy
 msgid "Username or Email"
-msgstr ""
+msgstr "Identifiant ou email"
 
 #: templates/user_modals.php:169
+#, fuzzy
 msgid "Security Code"
-msgstr ""
+msgstr "Code de sécurité"
 
 #: templates/user_modals.php:175 user-account.php:212
+#, fuzzy
 msgid "New Password"
-msgstr ""
+msgstr "nouveau mot de passe"
 
 #: templates/user_modals.php:181
+#, fuzzy
 msgid "Confirm Password"
-msgstr ""
+msgstr "Confirmez le mot de passe"
 
 #: templates/user_modals.php:186
+#, fuzzy
 msgid ""
 "Hint: The password should be at least seven characters long. To make it "
 "stronger, use upper and lower case letters, numbers, and symbols like ! \" ? "
 "$ % ^ & )."
 msgstr ""
+"Astuce : Le mot de passe doit être composé au moins de 7 caractères. Pour le "
+"rendre plus sécurisé, utiliser des lettres majuscules et minuscules, des "
+"chiffres et des symboles comme ! \" ? $ % ^ ) &."
 
 #: user-account.php:70
+#, fuzzy
 msgid "Manage Profile"
-msgstr ""
+msgstr "Gérer le profil"
 
 #: user-account.php:78
+#, fuzzy
 msgid "Decision maker account confirmation is pending approval!"
-msgstr ""
+msgstr "La confirmation du compte décideur est en attente d'approbation!"
 
 #: user-account.php:89
-msgid "Petitioner"
-msgstr ""
+#, fuzzy
+msgid "Activist"
+msgstr "Activiste"
 
 #: user-account.php:95
-msgid "Decision Maker"
-msgstr ""
+#, fuzzy
+msgid "Legislator"
+msgstr "Législateur"
 
 #: user-account.php:102
+#, fuzzy
 msgid "Display name"
-msgstr ""
-
-#: user-account.php:110
-msgid "Gender"
-msgstr ""
+msgstr "Nom affiché"
 
 #: user-account.php:115
+#, fuzzy
 msgid "Male"
-msgstr ""
+msgstr "Homme"
 
 #: user-account.php:121
+#, fuzzy
 msgid "Female"
-msgstr ""
-
-#: user-account.php:129
-msgid "First Name"
-msgstr ""
-
-#: user-account.php:133
-msgid "Last Name"
-msgstr ""
+msgstr "Femme"
 
 #: user-account.php:139
+#, fuzzy
 msgid "Title or Position"
-msgstr ""
+msgstr "Titre ou fonction"
 
 #: user-account.php:150
+#, fuzzy
 msgid "Office or Organization"
 msgstr ""
+"Architecte technique dans Office de la propriété la branche des services "
+"intellectuelle du Canada informatiques"
 
 #: user-account.php:167
+#, fuzzy
 msgid "Enter your e-mail address"
-msgstr ""
-
-#: user-account.php:171
-msgid "Birthday"
-msgstr ""
+msgstr "Entrez votre email"
 
 #: user-account.php:175
+#, fuzzy
 msgid "Choose your birthday"
-msgstr ""
-
-#: user-account.php:193
-msgid "Website"
-msgstr ""
+msgstr "Choisissez votre anniversaire"
 
 #: user-account.php:196
+#, fuzzy
 msgid "http://"
-msgstr ""
+msgstr "http://"
 
 #: user-account.php:200
+#, fuzzy
 msgid "Biographical"
-msgstr ""
+msgstr "Biographique"
 
 #: user-account.php:201
+#, fuzzy
 msgid "Introduce about yourself"
-msgstr ""
+msgstr "Présentez-vous sur vous-même"
 
 #: user-account.php:204
+#, fuzzy
 msgid "URL profile"
-msgstr ""
+msgstr "profil"
 
 #: user-account.php:207
+#, fuzzy
 msgid "Enter your nickname"
-msgstr ""
+msgstr "Entrez un nom d'utilisateur"
 
 #: user-account.php:210
+#, fuzzy
 msgid "Reset password"
-msgstr ""
+msgstr "Réinitialisation du mot de passe"
 
 #: user-account.php:213
+#, fuzzy
 msgid "Enter your new password"
-msgstr ""
+msgstr "Entrez votre nouveau mot de passe "
 
 #: user-account.php:216
+#, fuzzy
 msgid "Repeat New Password"
-msgstr ""
+msgstr "Répété le nouveau mot de passe"
 
 #: user-account.php:217
+#, fuzzy
 msgid "Repeat your new password"
-msgstr ""
+msgstr "Répétez votre nouveau mot de passe"
 
 #: user-account.php:222
+#, fuzzy
 msgid "Update Profile"
-msgstr ""
+msgstr "Mettre à jour profil"
 
 #. Theme Name of the plugin/theme
+#, fuzzy
 msgid "Petition"
-msgstr ""
+msgstr "Diffusion d'annonce par un membre sans validation de l'administrateur"
 
 #. Theme URI of the plugin/theme
+#, fuzzy
 msgid "https://www.conikal.com/petition"
-msgstr ""
+msgstr "https://www.conikal.com/petition"
 
 #. Description of the plugin/theme
 msgid ""
 "Petition WP is a WordPress Premium Theme used to create petition platform, "
-"where anyone can be start a campaign, collect powerful from supporters to "
-"change the worlds"
+"where anyone can be start a campaign, collect signature from supporters to "
+"change somethings"
 msgstr ""
+"Pétition WP est un thème Premium de WordPress utilisés pour la création "
+"plateforme de pétition, où n’importe qui peut être le début d’une campagne, "
+"recueillir la signature de partisans pour changer somethings"
 
 #. Author of the plugin/theme
+#, fuzzy
 msgid "Conikal | support@conikal.com"
-msgstr ""
+msgstr "Conikal | support@conikal.com"
 
 #. Author URI of the plugin/theme
+#, fuzzy
 msgid "https://www.conikal.com/"
-msgstr ""
+msgstr "https://www.conikal.com/"

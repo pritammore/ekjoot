@@ -5,7 +5,7 @@ v1.0.0 – Dec 12, 2016
 
 
 v1.0.1 – Feb 21, 2017
-- Add option show media upload on Admin Panel when submit a petition
+- Added option show media upload on Admin Panel when submit a petition
 - Fixed some small issue when user register
 - Fixed minor issue with parallax display on Firefox browser
 
@@ -16,15 +16,15 @@ v1.1.0 – Mar 25, 2017
 - Fixed neighborhood value on signup modal
 - Fixed edit/reply/delete comment displayed when not login
 - Change fullname input to display name selector in user profile edit page
-- Add firstname and lastname input in user profile edit page
+- Added firstname and lastname input in user profile edit page
 
 v1.2.0 – Apr 15, 2017
 - Fixed something wrong when working on PHP 7.x
 - Fixed decision makers segment showing when have no decision
 - Improve theme admin settings style
 - Improve design front-end of theme
-- Add reset button on search result page
-- Add typography settings, it can change the fonts
+- Added reset button on search result page
+- Added typography settings, it can change the fonts
 
 v1.2.1 – Apr 17, 2017
 - Change default language is english in Google Autocomplete
@@ -36,11 +36,11 @@ v1.3.0 – Apr 21, 2017
 - Fixed infinity load petition don't working
 - Fixed issue gender chart and age chart in dashboard
 - Improve button style in header menu when set home opacity
-- Add home Caption Alignment in home settings
-- Add option enable video sound in home settings
-- Add Recent & Featured Victory Shortcodes
-- Add link to petition below invitation email to decision maker
-- Add Victory Featured section in petition edit page
+- Added home Caption Alignment in home settings
+- Added option enable video sound in home settings
+- Added Recent & Featured Victory Shortcodes
+- Added link to petition below invitation email to decision maker
+- Added Victory Featured section in petition edit page
 - Change Victory Section order by Victory Featured field instead Featured field
 - Change all function name and setting fields name
 
@@ -60,22 +60,22 @@ v1.3.0 – Apr 21, 2017
 - Fixed sign comment don't update
 - Fixed email notification to admin when new petition
 - Fixed some missed text domain translation
-- Add email notification to supporters when have new update
-- Add checkbox email notification when sign petition
-- Add extend part of username with domain of email
-- Add more submenu up to 2 level on menu dropdown
+- Added email notification to supporters when have new update
+- Added checkbox email notification when sign petition
+- Added extend part of username with domain of email
+- Added more submenu up to 2 level on menu dropdown
 
 1.3.5 - June 13, 2017
 - Fixed whitespace issue on save update
 - Fixed typography load from google fonts
 - Change and add prefix some function name
-- Add download CSV button and page template
+- Added download CSV button and page template
 
 1.3.6 - June 20, 2017
-- Add default value Google Map API key if field is empty
-- Add only show spotlight for guest option on homepage settings
-- Add page & post header opacity option on header settings
-- Add home caption color option on color settings
+- Added default value Google Map API key if field is empty
+- Added only show spotlight for guest option on homepage settings
+- Added page & post header opacity option on header settings
+- Added home caption color option on color settings
 - Minify custom javascript and css files 
 
 1.3.7 - July 10, 2017
@@ -83,7 +83,7 @@ v1.3.0 – Apr 21, 2017
 - Fixed responsive button showing when user not login
 - Remove auto post to facebook when new user sign up
 - Support Gravatar, priority use Gravatar if no Gravatar use user's avatar
-- Add option use ajax comments or default comments on appearance settings
+- Added option use ajax comments or default comments on appearance settings
 
 1.5.0 - July 28, 2017
 - Fixed Google Signin doen't working
@@ -91,17 +91,78 @@ v1.3.0 – Apr 21, 2017
 - Fixed default setting post to FB and email notification
 - Fixed post images overlay content
 - Fixed download csv function issue
-- Add icon box and header shortcodes
-- Add view all button in blog posts shortcode
-- Add sticky share menu on blog post
-- Add none slideshow select on Home Header type option
-- Add custom height home slideshow and caption top option
-- Add header menu style option with boxed or wide
-- Add custom call to action button size option
-- Add google webfonts to server instead connect to google api
-- Add follow topic function and topic card widget
-- Add hidden slideshow, victory, spotlight after login option
-- Add hover effect on cards and petition list
-- Add days of trending petition option
-- Add newsfeed tab after login and featured tab before login
-- Change fonts weigt option value on typography settings
+- Added icon box and header shortcodes
+- Added view all button in blog posts shortcode
+- Added sticky share menu on blog post
+- Added none slideshow select on Home Header type option
+- Added custom height home slideshow and caption top option
+- Added header menu style option with boxed or wide
+- Added custom call to action button size option
+- Added google webfonts to server instead connect to google api
+- Added follow topic function and topic card widget
+- Added hidden slideshow, victory, spotlight after login option
+- Added hover effect on cards and petition list
+- Added days of trending petition option
+- Added newsfeed tab after login and featured tab before login
+- Changed fonts weigt option value on typography settings
+
+1.5.1 - Aug 25, 2017
+- Fixed bug topics card widget
+- Added metabox sidebar option page
+- Added option home header menu text color
+- Support Visual Composer
+- Support WooCommerce
+
+1.6.0 - Sep 18, 2017
+- Fixed issue home header menu color
+- Fixed issue params when using plain permalink
+- Fixed display letter and comment content
+- Fixed break the layout when hidden spotlight section
+- Added action after sign petition option
+- Added default accordion after sign option
+- Added admin submit petition only option
+- Added center option sidebar on custom page
+- Added category option field on shortcodes
+- Added type of similar petitions base on option
+- Added similar petition and related posts per page option
+- Added supporter and donor element on single petition page
+- Added show or hidden supporter and donor element option
+- Added supporter page, contributer page
+- Added supporter per page option
+- Changed username format when register
+- Removed Parallax shortcode
+- New feature Contribute & Donation integrated with Give plugin
+
+1.6.1 - Sep 30, 2017
+- Fixed submit contribute response
+- Fixed pending payment donor show
+- Added All Petition Page
+- Added custom icon option
+- Added format separate fullname option
+- Hidden Contribute & Donate section after complete payment
+- New feature save email to SendinBlue list
+
+1.6.2 - Oct 2, 2017
+- Fixed bugs when not install WooCommerce
+- Fixed bugs when not install SendinBlue
+- Added counter post view on post cards
+
+1.6.3 -
+- Fixed text in share on Facebook modal not appear
+- Fixed bug when user age is empty
+- Fixed bug category on all petition page and search petition
+- Fixed bug after sign modal for new user
+- Fixed signature number is not formated after sign
+- Fixed google place search not follow language site
+- Fixed social meta tag description when sharing
+- Fixed when don't allow comment and approve comment
+- Added view counter, location on cards and single page
+- Added show view counter option
+- Added SendinBlue name and firstname fields option
+- Added submit petition button color
+- Added container width option
+- Added disable unsign option
+- Changed image effect hover card to Blurring
+- Changed files name, theming.css to theme.css, theming.js to main.js
+- Remove address field on Signup and not require address field when sign
+- Included Children theme

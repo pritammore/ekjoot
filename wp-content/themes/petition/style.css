@@ -2,7 +2,7 @@
 Theme Name: Petition
 Theme URI: https://www.conikal.com/petition
 Description: Petition WP is a WordPress Premium Theme used to create petition platform, where anyone can be start a campaign, collect signature from supporters to change somethings
-Version: 1.5.0
+Version: 1.6.3
 Author: Conikal | support@conikal.com
 Author URI: https://www.conikal.com/
 Text Domain: petition
@@ -11,8 +11,7 @@ License: Envato License
 License URI: http://themeforest.net/licenses/terms/regular
 */
 
-/* import styles theme */
-@import url('css/theming.min.css');
+
 
 /* =WordPress Core
 -------------------------------------------------------------- */
@@ -254,6 +253,37 @@ blockquote span{
   margin-top:1em;
 }
 
+button, .give-btn {
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+    background: #e0e1e2 none;
+    color: rgba(0,0,0,.6);
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    margin: 0 .25em 0 0;
+    padding: .78571429em 1.5em .78571429em;
+    text-transform: none;
+    text-shadow: none;
+    font-weight: 700;
+    line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(34,36,38,.15) inset;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
+    transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
+    will-change: '';
+    -webkit-tap-highlight-color: transparent;
+}
+
 .alignnone {
     max-width: 100%;
     height: auto;
@@ -458,103 +488,4 @@ a img.aligncenter {
     position: relative;
     top: 5px;
     left: 3px;
-}
-
-.dimmed.dimmable > .ui.animating.dimmer,
-.dimmed.dimmable > .ui.visible.dimmer,
-.ui.active.dimmer {
-  display: block;
-  opacity: 1;
-  z-index:99999;
-}
-
-button.close {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-    border: 0 none;
-    cursor: pointer;
-    padding: 0;
-}
-.close {
-    color: #000;
-    float: right;
-    font-size: 21px;
-    font-weight: 700;
-    line-height: 1;
-    opacity: 0.2;
-    text-shadow: 0 1px 0 #fff;
-}
-
-.col-sm-6
-{
-    width: 50%;
-    float: left;
-}
-.col-sm-12
-{
-    width: 100%;
-    float: left;
-}
-.mar-top1
-{
-    margin-top:1px;
-}
-.mar-top2
-{
-    margin-top:2px;
-}
-.mar-top10
-{
-    margin-top:10px;
-}
-.mar-top20
-{
-    margin-top:20px;
-}
-.mar-top30
-{
-    margin-top:30px;
-}
-.mar-top40
-{
-    margin-top:40px;
-}
-.mar-top50
-{
-    margin-top:50px;
-}
-.mar-top60
-{
-    margin-top:60px;
-}
-.mar-bot1
-{
-    margin-bottom:1px;
-}
-.mar-bot2
-{
-    margin-bottom:2px !important;
-}
-.pad-top10
-{
-    padding-top:10px;
-}
-.pad-top20
-{
-    padding-top:20px;
-}
-.pad-top30
-{
-    padding-top:30px;
-}
-.pad-top40
-{
-    padding-top:40px;
-}
-.pad-top50
-{
-    padding-top:50px;
-}
-.pad-top60
-{
-    padding-top:60px;
 }

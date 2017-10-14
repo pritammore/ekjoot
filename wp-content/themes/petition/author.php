@@ -10,6 +10,7 @@ get_header();
 $conikal_appearance_settings = get_option('conikal_appearance_settings','');
 $sidebar_position = isset($conikal_appearance_settings['conikal_sidebar_field']) ? $conikal_appearance_settings['conikal_sidebar_field'] : '';
 $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $conikal_appearance_settings['conikal_breadcrumbs_field'] : '';
+$view_counter = isset($conikal_appearance_settings['conikal_view_counter_field']) ? $conikal_appearance_settings['conikal_view_counter_field'] : '';
 $posts_per_page_setting = isset($conikal_appearance_settings['conikal_petitions_per_page_field']) ? $conikal_appearance_settings['conikal_petitions_per_page_field'] : '';
 $copyright = isset($conikal_appearance_settings['conikal_copyright_field']) ? $conikal_appearance_settings['conikal_copyright_field'] : '';
 $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
@@ -58,21 +59,6 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                 array_push($followers, $follower);
             }
         }
-
-        $title =  wp_get_post_terms($curauth->ID, 'decisionmakers_title', true);
-        $title_name = ($title ? $title[0]->name : '');
-        $user_type = get_user_meta($curauth->ID, 'user_type', true);
-        if ($user_type == 'decisioner') $user_type = 'Leader';
-        $user_gender = get_user_meta($curauth->ID, 'user_gender', true);
-        $user_ekwhomi = get_user_meta($curauth->ID, 'user_ekwhomi', true);
-        $user_ekorganizationname = get_user_meta($curauth->ID, 'user_ekorganizationname', true);
-        $user_email = get_user_meta($curauth->ID, 'user_email', true);
-        $user_hidemobile = get_user_meta($curauth->ID, 'user_hidemobile', true);
-        if ($user_hidemobile != 'yes') 
-            $user_mobile = get_user_meta($curauth->ID, 'user_mobile', true);
-        if(wp_get_current_user()->roles[0] == 'administrator')
-            $user_mobile = get_user_meta($curauth->ID, 'user_mobile', true);
-        
     ?>
     <div class="ui grid mobile-full">
         <!-- RIGHT SIDEBAR -->
@@ -80,40 +66,9 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
             <div class="five wide column computer only">
                 <div class="ui sticky" id="about-sticky">
                     <div class="ui segment">
-                        <div class="ui header"><?php esc_html_e('About', 'petition') ?> <span style="float: right;"><?php echo esc_html( ucwords($user_type) ); ?></span></div>
+                        <div class="ui header"><?php esc_html_e('About', 'petition') ?></div>
                         <?php echo ($curauth->description) ? esc_html($curauth->description) : ''; ?>
                         <div class="ui list">
-                            <?php if ($user_ekwhomi) { ?>
-                            <div class="item"><i class="tag icon"></i>
-                                <div class="content">
-                                <?php echo esc_html('User type : ', 'petition') . esc_html( ucwords($user_ekwhomi) ); ?>
-                                </div>
-                            </div>
-                            <?php } ?>
-
-                            <?php if ($user_gender) { ?>
-                            <div class="item"><i class="user icon"></i>
-                                <div class="content">
-                                <?php echo esc_html('Gender : ', 'petition') . esc_html( ucwords($user_gender) ) ?>
-                                </div>
-                            </div>
-                            <?php } ?>
-
-                            <?php if ($title_name) { ?>
-                            <div class="item"><i class="tag icon"></i>
-                                <div class="content">
-                                <?php echo esc_html('Position : ', 'petition') . esc_html( ucwords($title_name) ) ?>
-                                </div>
-                            </div>
-                            <?php } ?>
-
-                            <?php if ($user_ekorganizationname) { ?>
-                            <div class="item"><i class="address book icon"></i>
-                                <div class="content">
-                                <?php echo esc_html('Organization : ', 'petition') . esc_html( ucwords($user_ekorganizationname) ) ?>
-                                </div>
-                            </div>
-                            <?php } ?>
                             <?php if ($curauth->user_country || $curauth->user_state || $curauth->user_city) { ?>
                                 <div class="item"><i class="marker icon"></i>
                                     <div class="content">
@@ -135,13 +90,11 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                                     </div>
                                 </div>
                             <?php } ?>
-                            <?php if($user_mobile) { ?>
-                                <div class="item"><i class="mobile icon"></i>
-                                    <div class="content">
-                                    <?php echo esc_html('Mobile ', 'petition') . esc_html( $user_mobile ) ?>
-                                    </div>
-                                </div>                                
-                            <?php } ?>
+                            <div class="item"><i class="calendar outline icon"></i>
+                                <div class="content">
+                                <?php echo esc_html('Joined ', 'petition') . esc_html( date('d F Y', strtotime($curauth->user_registered)) ) ?>
+                                </div>
+                            </div>
                         </div>
                         <?php if ($followers) { ?>
                             <div class="ui divider"></div>
@@ -181,11 +134,6 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                                 <div class="label" style="font-size: 11px;"><?php esc_html_e('Following', 'petition') ?></div>
                             </div>
                         </div>
-                        <?php if(get_current_user_id() != $curauth->ID) { ?>
-                        <div class="item" style="text-align: center;margin-top: 20px;">
-                            <a href="#" class="ui medium button home-cta-button" id="invite-leader-to-lead-btn">Invite Leader to Lead your Issue</a>
-                        </div>
-                        <?php } ?>
                     </div>
                     <div class="ui text small right menu">
                             <?php conikal_custom_menu('footer') ?>
@@ -198,40 +146,9 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
         <?php } else { ?>
             <div class="sixteen wide column mobile tablet only mobile-full">
                 <div class="ui segment">
-                    <div class="ui header"><?php esc_html_e('About', 'petition') ?> <span style="float: right;"><?php echo esc_html( ucwords($user_type) ); ?></span></div>
+                    <div class="ui header"><?php esc_html_e('About', 'petition') ?></div>
                     <?php echo ($curauth->description) ? esc_html($curauth->description) : ''; ?>
                     <div class="ui list">
-                        <?php if ($user_ekwhomi) { ?>
-                            <div class="item"><i class="tag icon"></i>
-                                <div class="content">
-                                <?php echo esc_html('User type : ', 'petition') . esc_html( ucwords($user_ekwhomi) ); ?>
-                                </div>
-                            </div>
-                            <?php } ?>
-
-                            <?php if ($user_gender) { ?>
-                            <div class="item"><i class="user icon"></i>
-                                <div class="content">
-                                <?php echo esc_html('Gender : ', 'petition') . esc_html( ucwords($user_gender) ) ?>
-                                </div>
-                            </div>
-                            <?php } ?>
-
-                            <?php if ($title_name) { ?>
-                            <div class="item"><i class="tag icon"></i>
-                                <div class="content">
-                                <?php echo esc_html('Position : ', 'petition') . esc_html( ucwords($title_name) ) ?>
-                                </div>
-                            </div>
-                            <?php } ?>
-
-                            <?php if ($user_ekorganizationname) { ?>
-                            <div class="item"><i class="address book icon"></i>
-                                <div class="content">
-                                <?php echo esc_html('Organization : ', 'petition') . esc_html( ucwords($user_ekorganizationname) ) ?>
-                                </div>
-                            </div>
-                            <?php } ?>
                         <?php if ($curauth->user_country || $curauth->user_state || $curauth->user_city) { ?>
                             <div class="item"><i class="marker icon"></i>
                                 <div class="content">
@@ -252,13 +169,6 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                                 <?php echo esc_html('Born on ', 'petition') . esc_html( date('d F Y', strtotime($curauth->user_birthday)) ) ?>
                                 </div>
                             </div>
-                        <?php } ?>
-                        <?php if($user_mobile) { ?>
-                            <div class="item"><i class="mobile icon"></i>
-                                <div class="content">
-                                <?php echo esc_html('Mobile ', 'petition') . esc_html( $user_mobile ) ?>
-                                </div>
-                            </div>                                
                         <?php } ?>
                         <div class="item"><i class="calendar outline icon"></i>
                             <div class="content">
@@ -303,13 +213,6 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                             </div>
                             <div class="label" style="font-size: 11px;"><?php esc_html_e('Following', 'petition') ?></div>
                         </div>
-                        <?php if(get_current_user_id() != $curauth->ID) { ?>
-                        <div class="statistic center">
-                            <div class="item" style="text-align: center;margin-top: 20px;">
-                                <a href="#" class="ui medium button home-cta-button" id="invite-leader-to-lead-btn">Invite Leader to Lead your Issue</a>
-                            </div>
-                        </div>
-                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -326,6 +229,7 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                     $category =  wp_get_post_terms($id, 'petition_category', true);
                     $excerpt = conikal_get_excerpt_by_id($id);
                     $comments = wp_count_comments($id);
+                    $view = conikal_format_number('%!,0i', (int) conikal_get_post_views($id), true);
                     $gallery = get_post_meta($id, 'petition_gallery', true);
                     $images = explode("~~~", $gallery);
                     $address = get_post_meta($id, 'petition_address', true);
@@ -346,7 +250,6 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                     $thumb = get_post_meta($id, 'petition_thumb', true);
                     $thumb = conikal_video_thumbnail($thumb);
                     $status = get_post_meta($id, 'petition_status', true);
-                    $petition_uic = get_post_meta($id, 'petition_uic', true);
 
                     $user_avatar = get_the_author_meta('avatar' , get_the_author_meta('ID'));
                     if($user_avatar != '') {
@@ -360,7 +263,7 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                     <div class="ui segment">
                         <?php if ($sign >= $goal || $status == '1') { ?>
                             <div class="ui primary right corner large label victory-label">
-                                <i class="flag icon"></i>
+                                <?php echo conikal_custom_icon('victory') ?>
                             </div>
                         <?php } ?>
                         <div class="ui grid">
@@ -370,7 +273,7 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                                         <div class="sixteen wide column">
                                             <div class="ui header list-petition-title">
                                                 <div class="content">
-                                                    <div class="sub header truncate"><i class="filter icon"></i><a href="<?php echo esc_url($link) ?>" data-bjax> <?php echo esc_html($petition_uic) ?></a></div>
+                                                    <div class="sub header truncate"><i class="send icon"></i><?php esc_html_e('Petition to', 'petition') ?> <?php echo esc_html($receiver[0]) ?></div>
                                                     <a href="<?php echo esc_url($link) ?>" data-bjax><?php echo esc_html($title) ?></a>
                                                 </div>
                                             </div>
@@ -396,12 +299,18 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                                 </div>
                             </div>
                             <div class="sixteen wide mobile six wide tablet six wide computer column">
-                                <a class="ui fluid image" href="<?php echo esc_url($link) ?>" target="_blank" data-bjax>
+                                <a class="ui fluid image blurring" href="<?php echo esc_url($link) ?>" target="_blank" data-bjax>
                                     <div class="ui dimmer">
                                         <div class="content">
-                                          <div class="center">
-                                            <div class="ui icon inverted circular large button"><i class="external icon"></i></div>
-                                          </div>
+                                            <div class="center">
+                                                <div class="ui icon inverted circular large button"><i class="external icon"></i></div>
+                                            </div>
+                                            <div class="view-counter">
+                                            <?php if ($view_counter != '') { ?>
+                                                <i class="eye icon"></i>
+                                                <?php echo esc_html($view); ?>
+                                            <?php } ?>
+                                            </div>
                                         </div>
                                     </div>
                                     <?php if(has_post_thumbnail()) { ?>
@@ -421,7 +330,7 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                         <div class="ui grid">
                             <div class="ten wide tablet ten wide computer column tablet computer only">
                                 <span class="ui primary label">
-                                    <i class="user icon"></i><?php echo esc_html(conikal_format_number('%!,0i', $sign)) . ' ' . __('supporters', 'petition') ?>
+                                    <?php echo conikal_custom_icon('supporter') ?><?php echo esc_html(conikal_format_number('%!,0i', $sign)) . ' ' . __('supporters', 'petition') ?>
                                 </span>
                                 <span class="ui label">
                                     <i class="comments icon"></i><?php echo esc_html(conikal_format_number('%!,0i', $comments->approved, true)) . ' ' . __('comments', 'petition'); ?>
@@ -441,7 +350,7 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
 
                             <div class="thirteen wide column mobile only">
                                 <span class="ui primary label">
-                                    <i class="user icon"></i><?php echo esc_html(conikal_format_number('%!,0i', $sign, true)) . ' ' . __('supporters', 'petition') ?>
+                                    <?php echo conikal_custom_icon('supporter') ?><?php echo esc_html(conikal_format_number('%!,0i', $sign, true)) . ' ' . __('supporters', 'petition') ?>
                                 </span>
                                 <span class="ui label">
                                     <i class="comments icon"></i><?php echo esc_html(conikal_format_number('%!,0i', $comments->approved, true)); ?>

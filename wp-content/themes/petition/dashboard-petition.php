@@ -58,15 +58,6 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                 $lng = get_post_meta($edit_id, 'petition_lng', true);
                 $decisionmakers = get_post_meta($edit_id, 'petition_decisionmakers', true);
                 $decisionmakers = array_unique(explode(',', $decisionmakers));
-                $approvedleaders = get_post_meta($edit_id, 'lp_post_ids', true );
-                $approve_decisionmakers = get_post_meta( $edit_id, 'lp_approve_decisioners', true );
-                // echo "<pre>"; print_r($decisionmakers); echo "</pre>";
-                // echo "<pre>"; print_r($approve_decisionmakers); echo "</pre>";
-                if(!empty($approve_decisionmakers))
-                {
-                    $decisionmakers = array_values(array_diff($decisionmakers, $approve_decisionmakers));
-                }
-                // echo "<pre>"; print_r($decisionmakers); echo "</pre>";exit;
                 $receiver = get_post_meta($edit_id, 'petition_receiver', true);
                 $receiver = explode(',', $receiver);
                 $position = get_post_meta($edit_id, 'petition_position', true);
@@ -97,13 +88,18 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
     }
     $post_author_id = get_post_field( 'post_author', $edit_id );
 ?>
-<?php if ( $edit_id != '' && ($post_author_id == $current_user->ID || current_user_can('editor') || current_user_can('administrator')) || ( !empty($approvedleaders) && in_array($current_user->ID, $approvedleaders)) ) { ?>
+<?php if ( $edit_id != '' && ($post_author_id == $current_user->ID || current_user_can('editor') || current_user_can('administrator')) ) { ?>
     <div id="wrapper" class="wrapper">
         <div class="color silver">
             <div class="ui large secondary pointing grey menu" id="control-menu">
                 <div class="ui container">
+                        <!-- Campaign link -->
                         <a href="<?php echo isset($link) ? $link : '' ?>" class="item" data-bjax><?php _e('Campaign', 'petition') ?></a>
+
+                         <!-- Dashboard link -->
                         <a href="#" class="active item"><?php _e('Dashboard', 'petition') ?></a>
+
+                         <!-- Update petition link -->
                         <?php
                             $args = array(
                                 'post_type' => 'page',
@@ -117,12 +113,37 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                             while($query->have_posts()) {
                                 $query->the_post();
                                 $page_id = get_the_ID();
-                                $page_link = get_permalink($page_id) . '?petition_id=' . $edit_id . '&type=update';
+                                $page_link = get_permalink($page_id);
+                                $page_link = add_query_arg(array('petition_id' => $edit_id, 'type' => 'update'), $page_link);
                             }
                             wp_reset_postdata();
                             wp_reset_query();
                         ?>
                         <a href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Update', 'petition') ?></a>
+
+                        <!-- Contribute link -->
+                        <?php
+                            $args = array(
+                                'post_type' => 'page',
+                                'post_status' => 'publish',
+                                'meta_key' => '_wp_page_template',
+                                'meta_value' => 'contribute.php'
+                            );
+
+                            $query = new WP_Query($args);
+
+                            while($query->have_posts()) {
+                                $query->the_post();
+                                $page_id = get_the_ID();
+                                $page_link = get_permalink($page_id);
+                                $page_link = add_query_arg(array('petition_id' => $edit_id), $page_link);
+                            }
+                            wp_reset_postdata();
+                            wp_reset_query();
+                        ?>
+                        <a href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Contribute', 'petition') ?></a>
+
+                         <!-- Edit petition link -->
                         <?php
                             $args = array(
                                 'post_type' => 'page',
@@ -136,14 +157,13 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                             while($query->have_posts()) {
                                 $query->the_post();
                                 $page_id = get_the_ID();
-                                $page_link = get_permalink($page_id) . '?edit_id=' . $edit_id;
+                                $page_link = get_permalink($page_id);
+                                $page_link = add_query_arg(array('edit_id' => $edit_id), $page_link);
                             }
                             wp_reset_postdata();
                             wp_reset_query();
                         ?>
-                        <?php if ( $post_author_id == $current_user->ID || current_user_can('administrator')) { ?>
                         <a href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Edit', 'petition') ?></a>
-                        <?php } ?>
                 </div>
             </div>
         </div>
@@ -154,7 +174,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                 <div class="ui three small statistics">
                     <div class="statistic">
                         <div class="value">
-                            <?php echo esc_html( conikal_format_number('%!,0i', esc_html(conikal_get_post_views($edit_id)), true) ); ?>
+                            <?php echo esc_html( conikal_format_number('%!,0i', conikal_get_post_views($edit_id), true) ); ?>
                         </div>
                         <div class="label">
                             <?php _e('Views', 'petition') ?>
@@ -162,7 +182,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                     </div>
                     <div class="statistic">
                         <div class="value">
-                            <?php echo esc_html( conikal_format_number('%!.0i', esc_html($sign), true) ); ?>
+                            <?php echo esc_html( conikal_format_number('%!.0i', $sign, true) ); ?>
                         </div>
                         <div class="label">
                             <?php _e('Supporters', 'petition') ?>
@@ -170,7 +190,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                     </div>
                     <div class="statistic">
                         <div class="value">
-                            <?php echo esc_html( conikal_format_number('%!.0i', esc_html($comments->approved), true) ); ?>
+                            <?php echo esc_html( conikal_format_number('%!.0i', $comments->approved, true) ); ?>
                         </div>
                         <div class="label">
                             <?php _e('Comments', 'petition') ?>
@@ -182,7 +202,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                     <div class="sixteen wide mobile eight wide tablet eight wide computer center aligned column">
                         <div class="ui form">
                             <div class="inline field">
-                                <label><?php esc_html_e('Set new goals', 'petition') ?></label>
+                                <label><?php _e('Set new goals', 'petition') ?></label>
                                 <div class="ui action <?php echo ($sign >= $number_sign_change_goal || current_user_can('editor') || current_user_can('administrator') ? '' : 'disabled ') ?>input">
                                   <input type="number" id="new-goal" placeholder="<?php _e('Enter a new goal', 'petition') ?>" value="<?php echo (isset($goal) ? esc_attr($goal) : '') ?>">  
                                   <button class="ui primary <?php echo ($sign >= $number_sign_change_goal || current_user_can('editor') || current_user_can('administrator') ? '' : 'disabled ') ?>button" id="set-goal"><?php _e('Save', 'petition') ?></button>
@@ -206,7 +226,8 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                                     while($query->have_posts()) {
                                         $query->the_post();
                                         $page_id = get_the_ID();
-                                        $page_link = get_permalink($page_id) . '?petition_id=' . $edit_id . '&type=victory' . '&status=1';
+                                        $page_link = get_permalink($page_id);
+                                        $page_link = add_query_arg(array('petition_id' => $edit_id, 'type' => 'victory', 'status' => '1'), $page_link);
                                     }
                                     wp_reset_postdata();
                                     wp_reset_query();
@@ -226,7 +247,8 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                                     while($query->have_posts()) {
                                         $query->the_post();
                                         $page_id = get_the_ID();
-                                        $page_link = get_permalink($page_id) . '?petition_id=' . $edit_id . '&download=signatures';
+                                        $page_link = get_permalink($page_id);
+                                        $page_link = add_query_arg(array('petition_id' => $edit_id, 'download' => 'signatures'), $page_link);
                                     }
                                     wp_reset_postdata();
                                     wp_reset_query();
@@ -249,7 +271,8 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                                     while($query->have_posts()) {
                                         $query->the_post();
                                         $page_id = get_the_ID();
-                                        $page_link = get_permalink($page_id) . '?petition_id=' . $edit_id . '&download=signatures';
+                                        $page_link = get_permalink($page_id) . '?petition_id=' . $edit_id;
+                                        $page_link = add_query_arg(array('petition_id' => $edit_id, 'download' => 'signatures'), $page_link);
                                     }
                                     wp_reset_postdata();
                                     wp_reset_query();
@@ -305,7 +328,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
             </div>
             <?php if( isset($decisionmakers[1]) ) { ?>
             <div class="ui segment">
-                <div class="ui dividing header widget-title"><?php esc_html_e('Invite Leaders', 'petition'); ?></div>
+                <div class="ui dividing header widget-title"><?php _e('Decision Makers', 'petition'); ?></div>
                 <div class="ui four column stackable grid">
                     <?php foreach ($decisionmakers as $id) { 
                         if ($id) {
@@ -338,7 +361,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                     <div class="column">
                         <div class="ui fluid card">
                             <div class="content">
-                                <img class="right floated mini ui image" src="<?php echo esc_attr($user_avatar) ?>">
+                                <img class="right floated mini ui circular image" src="<?php echo esc_attr($user_avatar) ?>">
                                 <div class="header">
                                     <a href="<?php echo get_author_posts_url($user_id) ?>" data-bjax><?php echo esc_html($user_name) ?></a>
                                 </div>
@@ -347,7 +370,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                                 </div>
                             </div>
                             <div class="extra content">
-                                <div class="ui primary small fluid button invite-responsive" data-email="<?php echo esc_attr($user_email) ?>"><i class="send icon"></i><?php esc_html_e('Invite Response', 'petition') ?></div>
+                                <div class="ui primary small fluid button invite-responsive" data-email="<?php echo esc_attr($user_email) ?>"><i class="send icon"></i><?php _e('Invite Response', 'petition') ?></div>
                             </div>
                       </div>
                     </div>
@@ -356,68 +379,11 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                 </div>
             </div>
             <?php } ?>
-            <!-- APPROVE DECISION MAKERS -->
-            <div class="ui segment">
-                <div class="ui dividing header widget-title"><?php esc_html_e('Approve Leaders', 'petition'); ?></div>
-                <div class="ui four column stackable grid app_leads">
-                <?php if( isset($approve_decisionmakers[0]) ) { ?>
-                    <?php foreach ($approve_decisionmakers as $id) { 
-                        if ($id) {
-                            $user = get_userdata($id);
-                            $user_id = $user->ID;
-                            $user_name = $user->display_name;
-                            $user_email = $user->user_email;
-                            $user_address = get_user_meta($user_id, 'user_address', true);
-                            $user_neigborhood = get_user_meta($user_id, 'user_neigborhood', true);
-                            $user_city = get_user_meta($user_id, 'user_city', true);
-                            $user_state = get_user_meta($user_id, 'user_state', true);
-                            $user_country = get_user_meta($user_id, 'user_country', true);
-                            $user_lat = get_user_meta($user_id, 'user_lat', true);
-                            $user_lng = get_user_meta($user_id, 'user_lng', true);
-                            $user_gender = get_user_meta($user_id, 'user_gender', true);
-                            $user_birthday = get_user_meta($user_id, 'user_birthday', true);
-                            $user_avatar = $user->avatar;
 
-                            $user_decisionmakers = get_user_meta($user_id, 'user_decision', true);
-                            $decision_title =  wp_get_post_terms($user_decisionmakers, 'decisionmakers_title', true);
-                            $decision_title = ($decision_title ? $decision_title[0]->name : '');
-                            $organization =  wp_get_post_terms($user_decisionmakers, 'decisionmakers_organization', true);
-                            $organization = ($organization ? $organization[0]->name : '');
-                            
-                            if (!$user_avatar) {
-                                $user_avatar = get_template_directory_uri().'/images/avatar.svg';
-                            }
-                            $user_avatar = conikal_get_avatar_url( $user_id, array('size' => 35, 'default' => $user_avatar) );
-                    ?>
-                    <div class="column" id="col_app_<?php echo $user_id; ?>">
-                        <div class="ui fluid card">
-                            <div class="content">
-                                <img class="right floated mini ui image" src="<?php echo esc_attr($user_avatar) ?>">
-                                <div class="header">
-                                    <a href="<?php echo get_author_posts_url($user_id) ?>" data-bjax><?php echo esc_html($user_name) ?></a>
-                                </div>
-                                <div class="meta">
-                                    <?php echo esc_html($decision_title) . __(' of ', 'petition') . esc_html($organization) ?>
-                                </div>
-                            </div>
-                            <div class="extra content">
-                                <div class="ui primary small fluid button approve-responsive" id="app_<?php echo $user_id; ?>" onclick="approve_decisionmakers('<?php echo $user_id; ?>','<?php echo $edit_id; ?>');"><i class="send icon"></i><?php esc_html_e('Approve', 'petition') ?></div>
-                            </div>
-                      </div>
-                    </div>
-                    <?php }
-                    } ?>
-                 <?php } else { ?>
-                    <div class="content"><div class="padding-15">No Approvals Pending.</div></div>
-                 <?php } ?>
-                </div>
-                <div class="respon-message" id="approveinMessage" style="width: 24%;"></div>
-            </div>
-           
             <div class="ui grid">
                 <div class="sixteen wide mobile wide eight wide tablet eight wide computer column">
                     <div class="ui segment">
-                    <h2 class="ui dividing header widget-title"><?php echo esc_html( conikal_format_number('%!.0i', $sign) ) . esc_html(' supporters', 'petition'); ?></h2>
+                    <h2 class="ui dividing header widget-title"><?php echo esc_html( conikal_format_number('%!.0i', $sign) ) . __(' supporters', 'petition'); ?></h2>
                         <div class="ui relaxed divided list" id="supporters-list" style="padding-right: 8px;">
                             <?php
                                 $users = get_users();
@@ -504,7 +470,13 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                                         <img class="ui avatar image" src="<?php echo esc_html($user_avatar); ?>" />
                                         <div class="content">
                                             <a href="<?php echo get_author_posts_url($user_id) ?>" class="header" data-bjax><?php echo esc_html($user_name) ?></a>
-                                            <span class="text grey"><?php echo esc_html( conikal_format_number('%!.0i', $followers, true) ) . ' ' . esc_html('followers', 'petition'); ?></span>
+                                            <span class="text grey">
+                                                <?php echo esc_html( conikal_format_number('%!.0i', $followers, true) ) . ' ' . __('followers', 'petition'); ?>
+                                                
+                                                <?php if ( ($user_country || $user_state || $user_city) && !wp_is_mobile() ) { ?>
+                                                <?php echo ' · ' . ($user_city ? $user_city . ', ' : '') . ($user_state ? $user_state . ', ' : '') . ($user_country ? $user_country : '') ?>
+                                                <?php } ?>
+                                            </span>
                                         </div>
                                     </div>
                                     <?php }  else {
@@ -518,7 +490,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                 </div>
                 <div class="sixteen wide mobile wide eight wide tablet eight wide computer column">
                     <div class="ui segment">
-                        <h2 class="ui dividing header widget-title"><?php esc_html_e('Geography', 'petition'); ?></h2>
+                        <h2 class="ui dividing header widget-title"><?php _e('Geography', 'petition'); ?></h2>
                         <div class="ui list" id="region-list" style="padding-right: 8px;">
                         <?php
                             $users_regions = array_count_values($users_regions);
@@ -585,8 +557,12 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                     $totalAge = $totalAge + $age;
                 }
                 foreach ($users_age as $age) {
-                    $percent = ($age / $totalAge) * 100;
-                    $percent = round($percent, 0);
+                    if ($age != 0) {
+                        $percent = ($age / $totalAge) * 100;
+                        $percent = round($percent, 0);
+                    } else {
+                        $percent = 0;
+                    }
                     array_push($ageData, $percent);
                 }
                 $ageData = json_encode($ageData);
@@ -609,7 +585,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
 
 <div class="ui small modal" id="invite-modal">
     <div class="content">
-        <div class="ui header"><?php esc_html_e('Invitation letter', 'petition') ?></div>
+        <div class="ui header"><?php _e('Invitation letter', 'petition') ?></div>
         <div id="invitation-response" class="respon-message"></div>
         <div class="ui form">
             <div class="field">
@@ -626,15 +602,15 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                     <?php echo (isset($letter) ? esc_attr(str_replace(array("<br />","<br>","<br/>"), "\n", $letter)) : esc_attr($title)) ?>
                 </textarea>
                 <textarea name="invite_link" id="invite_link" style="display:none;">
-                    <?php echo "\n\n" . esc_html('Go to the petition and response on:', 'petition') . "\n" . esc_url($link) ?>
+                    <?php echo "\n\n" . __('Go to the petition and response on:', 'petition') . "\n" . esc_url($link) ?>
                 </textarea>
             </div>
         </div>
         <div class="ui hidden divider"></div>
         <div class="ui grid">
             <div class="sixteen right aligned column">
-                <div class="ui cancel button" id="invita-cancel"><?php esc_html_e('Cancel', 'petition') ?></div>
-                <div class="ui positive right labeled icon button" id="send-invite" data-id="<?php echo esc_attr($edit_id) ?>"><?php esc_html_e('Send', 'petition') ?><i class="send icon"></i></div>
+                <div class="ui cancel button" id="invita-cancel"><?php _e('Cancel', 'petition') ?></div>
+                <div class="ui positive right labeled icon button" id="send-invite" data-id="<?php echo esc_attr($edit_id) ?>"><?php _e('Send', 'petition') ?><i class="send icon"></i></div>
             </div>
         </div>
     </div>
@@ -643,31 +619,31 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
 
 <div class="ui small modal" id="set-goal-confirm">
     <div class="content">
-        <div class="ui header"><?php esc_html_e('Are you sure change the goal is', 'petition') ?> <span id="goal-number"></span> <?php esc_html_e('signatures', 'petition') ?></div>
+        <div class="ui header"><?php _e('Are you sure change the goal is', 'petition') ?> <span id="goal-number"></span> <?php _e('signatures', 'petition') ?></div>
     </div>
     <div class="actions">
-        <div class="ui cancel button"><?php esc_html_e('Cancel', 'petition') ?></div>
-        <div class="ui positive right labeled icon button" id="approve-goal" data-id="<?php echo esc_attr($edit_id) ?>"><?php esc_html_e('Yes', 'petition') ?><i class="checkmark icon"></i></div>
+        <div class="ui cancel button"><?php _e('Cancel', 'petition') ?></div>
+        <div class="ui positive right labeled icon button" id="approve-goal" data-id="<?php echo esc_attr($edit_id) ?>"><?php _e('Yes', 'petition') ?><i class="checkmark icon"></i></div>
     </div>
 </div>
 
 <div class="ui small modal" id="reopen-confirm">
     <div class="content">
-        <div class="ui header"><?php esc_html_e('Are you sure reopen this petition', 'petition') ?></div>
+        <div class="ui header"><?php _e('Are you sure reopen this petition', 'petition') ?></div>
     </div>
     <div class="actions">
-        <div class="ui cancel button"><?php esc_html_e('Cancel', 'petition') ?></div>
-        <div class="ui positive right labeled icon button" id="approve-reopen" data-id="<?php echo esc_attr($edit_id) ?>"><?php esc_html_e('Yes', 'petition') ?><i class="checkmark icon"></i></div>
+        <div class="ui cancel button"><?php _e('Cancel', 'petition') ?></div>
+        <div class="ui positive right labeled icon button" id="approve-reopen" data-id="<?php echo esc_attr($edit_id) ?>"><?php _e('Yes', 'petition') ?><i class="checkmark icon"></i></div>
     </div>
 </div>
 
 <div class="ui small modal" id="close-confirm">
     <div class="content">
-        <div class="ui header"><?php esc_html_e('Are you sure close this petition', 'petition') ?></div>
+        <div class="ui header"><?php _e('Are you sure close this petition', 'petition') ?></div>
     </div>
     <div class="actions">
-        <div class="ui cancel button"><?php esc_html_e('Cancel', 'petition') ?></div>
-        <div class="ui positive right labeled icon button" id="approve-close" data-id="<?php echo esc_attr($edit_id) ?>"><?php esc_html_e('Yes', 'petition') ?><i class="checkmark icon"></i></div>
+        <div class="ui cancel button"><?php _e('Cancel', 'petition') ?></div>
+        <div class="ui positive right labeled icon button" id="approve-close" data-id="<?php echo esc_attr($edit_id) ?>"><?php _e('Yes', 'petition') ?><i class="checkmark icon"></i></div>
     </div>
 </div>
 <?php wp_nonce_field('dashboard_petition_ajax_nonce', 'securityDashboard', true); ?>
@@ -682,7 +658,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
         data: {
             labels: <?php print $chartDate ?>,
             datasets: [{
-                label: "<?php esc_html_e('Supporters', 'petition') ?>",
+                label: "<?php _e('Supporters', 'petition') ?>",
                 data: <?php print $chartData ?>,
                 fill: false,
                 lineTension: 0,
@@ -707,7 +683,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
         data: {
             datasets: [{
                 data: <?php print isset($genderData) ? $genderData : '[0,0,0]' ?>,
-                label: "<?php esc_html_e('Gender (%)', 'petition') ?>",
+                label: "<?php _e('Gender (%)', 'petition') ?>",
                 backgroundColor: [
                     "#EC407A",
                     "#42A5F5",
@@ -716,9 +692,9 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                 label: 'My dataset' // for legend
             }],
             labels: [
-                "<?php esc_html_e('Famale (%)', 'petition') ?>",
-                "<?php esc_html_e('Male (%)', 'petition') ?>",
-                "<?php esc_html_e('Unknown (%)', 'petition') ?>"
+                "<?php _e('Famale (%)', 'petition') ?>",
+                "<?php _e('Male (%)', 'petition') ?>",
+                "<?php _e('Unknown (%)', 'petition') ?>"
             ]
         },
         type: "pie",
@@ -738,7 +714,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
             datasets: [
                 {
                     data: <?php print isset($ageData) ? $ageData : '[0,0,0,0,0,0,0]' ?>,
-                    label: "<?php esc_html_e('Age (%)', 'petition') ?>",
+                    label: "<?php _e('Age (%)', 'petition') ?>",
                     backgroundColor: [
                         "<?php print $main_color ?>",
                         "<?php print $main_color ?>",

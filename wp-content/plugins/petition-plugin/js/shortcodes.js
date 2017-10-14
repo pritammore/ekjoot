@@ -19,6 +19,7 @@
     tinymce.PluginManager.add('style_container', tinymce.plugins.style_container);
 })();
 
+
 /**
  * Create spaces custom shortcode button
  */
@@ -385,109 +386,6 @@
     });
     tinymce.PluginManager.add('segment', tinymce.plugins.segment);
 })();
-
-
-/**
- * Create parallax custom shortcode button
- */
-(function() {
-    tinymce.create('tinymce.plugins.parallax', {
-        init: function(editor, url) {
-            editor.addButton('parallax', {
-                title: 'Parallax Background',
-                image: url + '/tinymce-icons/parallax-icon.png',
-                onclick: function() {
-                    editor.windowManager.open( {
-                        title: 'Insert Parallax Background',
-                        width: 600,
-                        height: 280,
-                        scrollbars: true,
-                        autoScroll: true,
-                        body: [
-                            {
-                                type: 'listbox',
-                                name: 'type',
-                                label: 'Type',
-                                'values': [
-                                    {text: 'Image', value: 'image'},
-                                    {text: 'Video', value: 'video'}
-                                ]
-                            },
-                            {
-                                type: 'listbox',
-                                name: 'style',
-                                label: 'Style',
-                                'values': [
-                                    {text: 'Scroll', value: 'scroll'},
-                                    {text: 'Scale', value: 'scale'},
-                                    {text: 'Opacity', value: 'opacity'},
-                                    {text: 'Scroll Opacity', value: 'scroll-opacity'},
-                                    {text: 'Scale Opacity', value: 'scale-opacity'},
-                                ]
-                            },
-                            {
-                                type: 'textbox',
-                                name: 'url',
-                                label: 'Image or Video URL',
-                                value: 'http://'
-                            },
-                            {
-                                type: 'textbox',
-                                name: 'height',
-                                label: 'Height (px)',
-                                value: ''
-                            },
-                            {
-                                type: 'textbox',
-                                name: 'speed',
-                                label: 'Speed (-1.0 to 2.0)',
-                                value: '0.5'
-                            },
-                            {
-                                type: 'colorbox',
-                                name: 'color',
-                                label: 'Color of Opacity',
-                                value: '#000000',
-                                onaction: createColorPickAction()
-                            },
-                            {
-                                type: 'listbox',
-                                name: 'opacity',
-                                label: 'Shadow Opacity Percent',
-                                'values': [
-                                    {text: '0%', value: '0.0'},
-                                    {text: '10%', value: '0.1'},
-                                    {text: '20%', value: '0.2'},
-                                    {text: '30%', value: '0.3'},                                
-                                    {text: '40%', value: '0.4'},
-                                    {text: '50%', value: '0.5'},
-                                    {text: '60%', value: '0.6'},
-                                    {text: '70%', value: '0.7'},
-                                    {text: '80%', value: '0.8'},
-                                    {text: '90%', value: '0.9'},
-                                    {text: '100%', value: '1'}
-                                ]
-                            }
-                        ],
-                        onsubmit: function(e) {
-                            editor.insertContent('[parallax type="' + e.data.type + '" style="' + e.data.style + '" url="' + e.data.url + '" height="' + e.data.height + '" speed="' + e.data.speed + '" color="' + e.data.color + '" opacity="' + e.data.opacity + '"] [/parallax]');
-                        }
-                    });
-                }
-            });
-        },
-        createControl: function(n, cm) {
-            return null;
-        }
-    });
-    tinymce.PluginManager.add('parallax', tinymce.plugins.parallax);
-})();
-
-tinymce.init({
-    selector: 'textarea',
-    plugins: 'colorpicker',
-    toolbar: 'parallax'
-});
 
 /**
  * Create grid custom shortcode button
@@ -940,7 +838,7 @@ tinymce.init({
 
 
 /**
- * Create recent properties custom shortcode button
+ * Create recent petition custom shortcode button
  */
 (function() {
     tinymce.create('tinymce.plugins.recent_petitions', {
@@ -967,6 +865,12 @@ tinymce.init({
                                 name: 'show',
                                 label: 'Number of Petitions',
                                 value: '4'
+                            },
+                            {
+                                type: 'textbox',
+                                name: 'category',
+                                label: 'Category IDs or Slugs (separated by comma)',
+                                value: ''
                             },
                             {
                                 type: 'listbox',
@@ -1000,7 +904,7 @@ tinymce.init({
                             }
                         ],
                         onsubmit: function(e) {
-                            editor.insertContent('[recent_petitions title="' + e.data.title + '" show="' + e.data.show + '" style="' + e.data.style + '" carousel="' + e.data.carousel + '" column="' + e.data.column + '"]');
+                            editor.insertContent('[recent_petitions title="' + e.data.title + '" show="' + e.data.show + '" category="' + e.data.category + '" style="' + e.data.style + '" carousel="' + e.data.carousel + '" column="' + e.data.column + '"]');
                         }
                     });
                 }
@@ -1043,6 +947,12 @@ tinymce.init({
                                 value: '4'
                             },
                             {
+                                type: 'textbox',
+                                name: 'category',
+                                label: 'Category IDs or Slugs (separated by comma)',
+                                value: ''
+                            },
+                            {
                                 type: 'listbox',
                                 name: 'style',
                                 label: 'View style',
@@ -1074,7 +984,7 @@ tinymce.init({
                             }
                         ],
                         onsubmit: function(e) {
-                            editor.insertContent('[featured_petitions title="' + e.data.title + '" show="' + e.data.show + '" style="' + e.data.style + '" carousel="' + e.data.carousel + '" column="' + e.data.column + '"]');
+                            editor.insertContent('[featured_petitions title="' + e.data.title + '" show="' + e.data.show + '" category="' + e.data.category + '" style="' + e.data.style + '" carousel="' + e.data.carousel + '" column="' + e.data.column + '"]');
                         }
                     });
                 }
@@ -1118,6 +1028,12 @@ tinymce.init({
                                 value: '4'
                             },
                             {
+                                type: 'textbox',
+                                name: 'category',
+                                label: 'Category IDs or Slugs (separated by comma)',
+                                value: ''
+                            },
+                            {
                                 type: 'listbox',
                                 name: 'style',
                                 label: 'View style',
@@ -1149,7 +1065,7 @@ tinymce.init({
                             }
                         ],
                         onsubmit: function(e) {
-                            editor.insertContent('[recent_victory title="' + e.data.title + '" show="' + e.data.show + '" style="' + e.data.style + '" carousel="' + e.data.carousel + '" column="' + e.data.column + '"]');
+                            editor.insertContent('[recent_victory title="' + e.data.title + '" show="' + e.data.show + '" category="' + e.data.category + '" style="' + e.data.style + '" carousel="' + e.data.carousel + '" column="' + e.data.column + '"]');
                         }
                     });
                 }
@@ -1192,6 +1108,12 @@ tinymce.init({
                                 value: '4'
                             },
                             {
+                                type: 'textbox',
+                                name: 'category',
+                                label: 'Category IDs or Slugs (separated by comma)',
+                                value: ''
+                            },
+                            {
                                 type: 'listbox',
                                 name: 'style',
                                 label: 'View style',
@@ -1223,7 +1145,7 @@ tinymce.init({
                             }
                         ],
                         onsubmit: function(e) {
-                            editor.insertContent('[featured_victory title="' + e.data.title + '" show="' + e.data.show + '" style="' + e.data.style + '" carousel="' + e.data.carousel + '" column="' + e.data.column + '"]');
+                            editor.insertContent('[featured_victory title="' + e.data.title + '" show="' + e.data.show + '" category="' + e.data.category + '" style="' + e.data.style + '" carousel="' + e.data.carousel + '" column="' + e.data.column + '"]');
                         }
                     });
                 }
@@ -1237,7 +1159,7 @@ tinymce.init({
 })();
 
 /**
- * Create featured agents custom shortcode button
+ * Create team custom shortcode button
  */
 (function() {
     tinymce.create('tinymce.plugins.team', {

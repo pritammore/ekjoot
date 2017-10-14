@@ -13,6 +13,7 @@ $fb_login = isset($conikal_auth_settings['conikal_fb_login_field']) ? $conikal_a
 $fb_app_id = isset($conikal_auth_settings['conikal_fb_id_field']) ? $conikal_auth_settings['conikal_fb_id_field'] : '';
 $sidebar_position = isset($conikal_appearance_settings['conikal_sidebar_field']) ? $conikal_appearance_settings['conikal_sidebar_field'] : '';
 $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $conikal_appearance_settings['conikal_breadcrumbs_field'] : '';
+$view_counter = isset($conikal_appearance_settings['conikal_view_counter_field']) ? $conikal_appearance_settings['conikal_view_counter_field'] : '';
 ?>
 
 <div class="wrapper read" style="padding-top: 20px">
@@ -22,9 +23,11 @@ $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $c
                 <!-- Sticy Menu Share -->
                 <div class="ui sticky" id="share-post">
                     <div class="ui icon vertical menu social-share">
-                        <a class="item text grey" href="<?php echo esc_url('mailto://?subject=' . esc_html($post->post_title) . '&body=' . esc_url(wp_get_shortlink())) ?>" id="send-mail" data-content="<?php _e('Send a Message' ,'petition') ?>" data-variation="small" data-position="left center">
+                        <a class="item text grey" href="<?php echo esc_url('mailto://?subject=' . esc_html($post->post_title) . '&body=' . esc_url(wp_get_shortlink())) ?>" id="send-mail" data-content="<?php _e('Send an Email' ,'petition') ?>" data-variation="small" data-position="left center">
                             <i class="mail icon"></i>
                         </a>
+                        <a class="item text grey send-message" href="javascript:void(0)" data-content="<?php _e('Send a Message' ,'petition') ?>" data-variation="small" data-position="left center">
+                            <i class="comment icon"></i>
                         <a class="item text grey share-facebook" href="javascript:void(0)" data-content="<?php _e('Share on Facebook' ,'petition') ?>" data-variation="small" data-position="left center">
                             <i class="facebook f icon"></i>
                         </a>
@@ -33,25 +36,22 @@ $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $c
                             target="_blank" data-content="<?php _e('Share on Twitter' ,'petition') ?>" data-variation="small" data-position="left center">
                             <i class="twitter icon"></i>
                         </a>
-                        <a class="item text grey" href="https://plus.google.com/share?url=<?php the_permalink(); ?>"
-                            onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;"
-                            target="_blank" data-content="<?php _e('Share on Google+' ,'petition') ?>" data-variation="small" data-position="left center">
-                            <i class="google plus square icon"></i>
-                        </a>
+
                     </div>
                 </div>
             </div>
-            <div class="sixteen wide mobile sixteen wide tablet eleven wide computer left aligned column" id="content">
+            <div class="sixteen wide mobile sixteen wide tablet ten wide computer left aligned column" id="content">
                 
-            <?php while(have_posts()) : the_post(); 
+            <?php while(have_posts()) : the_post();
+                $post_id = get_the_ID(); 
                 $post_title = get_the_title();
                 $post_date = get_the_date();
                 $post_category = get_the_category();
-                $post_id = get_the_ID();
                 $post_image = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'single-post-thumbnail' );
                 $post_excerpt = get_the_excerpt();
                 $post_tags = get_the_tags();
                 $post_url = get_permalink();
+                $post_view = conikal_format_number('%!,0i', (int) conikal_get_post_views($post_id), true);
 
                 $author_id = get_the_author_meta( 'ID' );
                 $author_name = get_the_author();
@@ -85,6 +85,9 @@ $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $c
                     }
                 }
                 $follow_user = get_user_meta($current_user->ID, 'follow_user', true);
+
+                // set view
+                conikal_set_post_views($post_id);
                 ?>
                 <!-- Date and Category -->
                 <div class="ui grid">
@@ -92,6 +95,9 @@ $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $c
                         <p class="font small">
                             <?php echo __('Posted on ', 'petition') . esc_html($post_date) . __(' in ', 'petition') ?>
                             <a class="ui label" href="<?php echo ($post_category ? get_category_link($post_category[0]->term_id) : '') ?>" data-bjax><?php echo esc_html($post_category[0]->name) ?></a>
+                            <?php if ($view_counter != '') { ?>
+                                <span class="ui label"><i class="eye icon"></i><?php echo esc_html($post_view) . __(' view', 'petition'); ?></span>
+                            <?php } ?>
                         </p>
                     </div>
                     <div class="six wide right aligned column tablet computer only">
@@ -271,7 +277,7 @@ $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $c
 
 
                 <!-- Comment -->
-                <?php if(comments_open() || get_comments_number()) {
+                <?php if(comments_open()) {
                     comments_template();
                 }
             endwhile; ?>

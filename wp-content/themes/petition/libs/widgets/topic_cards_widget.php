@@ -175,19 +175,25 @@ class Topic_Cards_Widget extends WP_Widget {
                 ));
             }
             $postslist = new WP_Query( $args );
-            $post = $postslist->posts[0];
+            
+            if ( $postslist->have_posts() ) {
+                $post = $postslist->posts[0];
+            }
             
             // display topics
             if ($term) {
                 $term_image = get_term_meta($term->term_id, $term_meta_image, true);
-                if ($term_image == '') {
+                if ($term_image == '' && $postslist->have_posts() ) {
                     $term_image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
                     if ($term_image) {
                         $term_image = $term_image[0];
                     } else {
                         $term_image = get_template_directory_uri().'/images/cover.svg';
                     }
+                } else {
+                    $term_image = get_template_directory_uri().'/images/cover.svg';
                 }
+
                 $term_link  = get_term_link($term->term_id, $taxonomy_name);
                 $display .= '<div class="topic-card snip">';
                 $display .= '<img src="' . ($term_image ? esc_url($term_image) : '') . '" alt="' . $term->name . '"/>';

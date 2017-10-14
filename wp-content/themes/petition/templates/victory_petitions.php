@@ -103,7 +103,7 @@ if ( ($home_header != 'none') && ($home_header_hide_logined != '') ) {
 			                        <a class="ui fluid image" href="<?php echo esc_url($link) ?>" data-bjax>
 			                        	<?php if ($sign >= $goal || $status == '1') { ?>
 				                        <div class="ui primary large ribbon label victory-label" style="z-index: 1; overflow: hidden;">
-				                                <i class="flag icon"></i>
+				                                <?php echo conikal_custom_icon('victory') ?>
 				                                <?php esc_html_e('Victory!', 'petition') ?>
 				                        </div>
 				                        <?php } ?>
@@ -150,7 +150,7 @@ if ( ($home_header != 'none') && ($home_header_hide_logined != '') ) {
 									            </div>
 									            <div class="sixteen wide">
 							                        <a class="ui large primary label" href="<?php echo esc_url($link) ?>" data-bjax>
-								                		<i class="user icon"></i><?php echo conikal_format_number('%!,0i', $sign) ?> 
+								                		<?php echo conikal_custom_icon('supporter') ?><?php echo conikal_format_number('%!,0i', $sign) ?> 
 						                        		<?php _e('supporters', 'petition') ?>
 					                        		</a>
 				                                	<span class="ui large label">

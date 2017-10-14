@@ -14,7 +14,7 @@ if( !function_exists('conikal_set_post_views') ):
         if($count == '') {
             $count = 0;
             delete_post_meta($post_id, $count_key);
-            add_post_meta($post_id, $count_key, '0');
+            add_post_meta($post_id, $count_key, $count);
         } else {
             $count++;
             update_post_meta($post_id, $count_key, $count);
@@ -30,9 +30,10 @@ if( !function_exists('conikal_get_post_views') ):
         $count_key = 'post_views_count';
         $count = get_post_meta($post_id, $count_key, true);
         if($count == '') {
+            $count = 0;
             delete_post_meta($post_id, $count_key);
-            add_post_meta($post_id, $count_key, '0');
-            return "0";
+            add_post_meta($post_id, $count_key, $count);
+            return $count;
         }
         return $count;
     }

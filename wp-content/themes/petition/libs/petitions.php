@@ -88,6 +88,7 @@ if( !function_exists('conikal_load_recent_petitions') ):
                 $excerpt = conikal_get_excerpt_by_id($id);
                 $comments = wp_count_comments($id);
                 $comments_fomated = conikal_format_number('%!,0i', $comments->approved, true);
+                $view = conikal_format_number('%!,0i', (int) conikal_get_post_views($id), true);
                 $gallery = get_post_meta($id, 'petition_gallery', true);
                 $images = explode("~~~", $gallery);
                 $address = get_post_meta($id, 'petition_address', true);
@@ -110,8 +111,6 @@ if( !function_exists('conikal_load_recent_petitions') ):
                 $thumb = get_post_meta($id, 'petition_thumb', true);
                 $thumb = conikal_video_thumbnail($thumb);
                 $status = get_post_meta($id, 'petition_status', true);
-                $petition_uic = get_post_meta($id, 'petition_uic', true);
-
                 $author_link = get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ));
 
                 $user_avatar = get_the_author_meta('avatar' , get_the_author_meta('ID'));
@@ -143,6 +142,7 @@ if( !function_exists('conikal_load_recent_petitions') ):
                         'excerpt' => $excerpt,
                         'comments' => $comments->approved,
                         'comments_fomated' => $comments_fomated,
+                        'view' => $view,
                         'address' => $address,
                         'city' => $city,
                         'state' => $state,
@@ -162,8 +162,7 @@ if( !function_exists('conikal_load_recent_petitions') ):
                         'author_link' => $author_link,
                         'sign' => $sign,
                         'sign_fomated' => $sign_fomated,
-                        'sign_compact' => $sign_compact,
-                        'uic' => $petition_uic
+                        'sign_compact' => $sign_compact
                     );
 
                 $arrayPetition = (object) $arrayPetition;

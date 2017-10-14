@@ -104,8 +104,10 @@ $search_topics = array();
                             array_push($search_neighborhoods, $neighborhood);
                         }
 
-                        if ( !in_array($category[0]->name, $search_categories) && $category) {
-                            $search_categories[$category[0]->term_id] = $category[0]->name;
+                        if ($category) {
+                            if ( !in_array($category[0]->name, $search_categories)) {
+                                $search_categories[$category[0]->term_id] = $category[0]->name;
+                            }
                         }
 
                         if ($topics) {
@@ -121,7 +123,7 @@ $search_topics = array();
                             <a href="<?php echo esc_url($link) ?>" class="image">
                                 <?php if ($sign >= $goal || $status == '1') { ?>
                                     <span class="ui primary left corner label victory-label">
-                                            <i class="flag icon"></i>
+                                            <?php echo conikal_custom_icon('victory') ?>
                                     </span>
                                 <?php } ?>
                                     <?php if(has_post_thumbnail()) { ?>
@@ -150,7 +152,7 @@ $search_topics = array();
                                                 <img class="ui avatar bordered image" src="<?php echo esc_url($avatar) ?>" alt="<?php the_author() ?>" />
                                             </a>
                                         </div>
-                                        <div class="ui primary label"><i class="user icon"></i><?php echo conikal_format_number('%!,0i', $sign) . ' ' . __('supporters', 'petition') ?></div>
+                                        <div class="ui primary label"><?php echo conikal_custom_icon('supporter') ?><?php echo conikal_format_number('%!,0i', $sign) . ' ' . __('supporters', 'petition') ?></div>
                                         <div class="ui label"><i class="comments icon"></i><?php echo conikal_format_number('%!,0i', $comments->approved, true) . ' ' . __('comments', 'petition'); ?></div>
                                         <?php if($category) { ?>
                                             <a class="ui label" href="<?php echo get_category_link($category[0]->term_id) ?>">
@@ -163,7 +165,7 @@ $search_topics = array();
                                                 <img class="ui avatar bordered image" src="<?php echo esc_url($avatar) ?>" alt="<?php the_author() ?>" />
                                             </a>
                                         </div>
-                                        <div class="ui primary label"><i class="user icon"></i><?php echo conikal_format_number('%!,0i', $sign) . ' ' . __('supporters', 'petition'); ?></div>
+                                        <div class="ui primary label"><?php echo conikal_custom_icon('supporter') ?><?php echo conikal_format_number('%!,0i', $sign) . ' ' . __('supporters', 'petition'); ?></div>
                                         <div class="ui label"><i class="comments icon"></i><?php echo conikal_format_number('%!,0i', $comments->approved, true) ?></div>
                                     <?php } ?>
                                 </div>

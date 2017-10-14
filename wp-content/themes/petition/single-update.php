@@ -7,11 +7,15 @@
 global $post;
 global $current_user;
 get_header();
-$conikal_appearance_settings = get_option('conikal_appearance_settings','');
+
 $conikal_auth_settings = get_option('conikal_auth_settings','');
 $fb_login = isset($conikal_auth_settings['conikal_fb_login_field']) ? $conikal_auth_settings['conikal_fb_login_field'] : false;
 $fb_app_id = isset($conikal_auth_settings['conikal_fb_id_field']) ? $conikal_auth_settings['conikal_fb_id_field'] : '';
+
+$conikal_appearance_settings = get_option('conikal_appearance_settings','');
 $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $conikal_appearance_settings['conikal_breadcrumbs_field'] : '';
+$action_after_sign = isset($conikal_appearance_settings['conikal_action_after_sign_field']) ? $conikal_appearance_settings['conikal_action_after_sign_field'] : '';
+$default_accordion = isset($conikal_appearance_settings['conikal_default_accordion_sign_field']) ? $conikal_appearance_settings['conikal_default_accordion_sign_field'] : '';
 $comments_per_page_setting = isset($conikal_appearance_settings['conikal_comments_per_page_field']) ? $conikal_appearance_settings['conikal_comments_per_page_field'] : '';
 $comments_per_page = $comments_per_page_setting != '' ? $comments_per_page_setting : 10;
 $reply_per_comment_setting = isset($conikal_appearance_settings['conikal_reply_per_comment_field']) ? $conikal_appearance_settings['conikal_reply_per_comment_field'] : '';
@@ -45,7 +49,6 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
     $category =  wp_get_post_terms($petition_id, 'petition_category');
     $topics =  wp_get_post_terms($petition_id, 'petition_topics');
     $date = get_the_date('', $petition_id);
-    $conikal_general_settings = get_option('conikal_general_settings');
     $address = get_post_meta($petition_id, 'petition_address', true);
     $city = get_post_meta($petition_id, 'petition_city', true);
     $state = get_post_meta($petition_id, 'petition_state', true);
@@ -75,8 +78,10 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
     $user_state = get_user_meta(get_the_author_meta( 'ID' ), 'user_state', true);
     $user_neighborhood = get_user_meta(get_the_author_meta( 'ID' ), 'user_neighborhood', true);
 
+    // set view
     conikal_set_post_views($update_id);
 
+    // get author avatar
     $user_avatar = get_the_author_meta('avatar' , get_the_author_meta('ID'));
     if($user_avatar != '') {
         $avatar = $user_avatar;
@@ -85,7 +90,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
     }
     $avatar = conikal_get_avatar_url( get_the_author_meta('ID'), array('size' => 35, 'default' => $avatar) );
 
-
+    // get sign number
     $user = wp_get_current_user();
     // delete_user_meta($user->ID, 'property_fav');
     $sign = get_user_meta($user->ID, 'petition_sign', true);
@@ -99,12 +104,39 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
         }
     }
 
+    // get current user avatar
     $current_user_avatar = $current_user->avatar;
     if (!$current_user_avatar) {
         $current_user_avatar = get_template_directory_uri().'/images/avatar.svg';
     }
     $current_user_avatar = conikal_get_avatar_url( $current_user->ID, array('size' => 35, 'default' => $current_user_avatar) );
 
+    // get form option
+    $form_id = get_post_meta($petition_id, 'petition_contribute', true);
+    $contribute_approve = get_post_status($form_id);
+    if ($contribute_approve != 'publish') {
+        $form_id = '';
+    }
+    $reveal_label = get_post_meta($form_id, '_give_reveal_label', true);
+
+    // check user has purchases
+    $args = array(
+        'give_forms' => array($form_id),
+        'order' => 'DESC'
+    );
+    $contributes = give_get_payments( $args );
+
+    $user_contribute = false;
+    foreach($contributes as $contribute) {
+        $customer_id = give_get_payment_donor_id( $contribute->ID );
+        $customer    = new Give_Customer( $customer_id );
+        $user = get_user_by('ID', $customer->user_id);
+        if ($user->ID == $current_user->ID) {
+            $user_contribute = true; 
+        }
+    }
+    
+    // get type title update
     switch ($update_type) {
         case 'update':
             $update_feed = __('Petition Update', 'petition');
@@ -171,7 +203,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
     <div class="ui hidden divider"></div>
 
     <div class="ui container">
-        <div class="ui grid">
+        <div class="ui relaxed grid">
             <div class="sixteen wide mobile ten wide tablet ten wide computer column" id="content">
                 <!-- PETITION CONTENT -->
                 <div id="main-petition">
@@ -220,7 +252,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                 </div>
 
                 <!-- COMMENT UPDATE -->
-                <?php if(comments_open() || get_comments_number()) {
+                <?php if(comments_open()) {
                         comments_template();
                     } ?>
 
@@ -230,7 +262,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                 <div class="ui sticky" id="sign-sticky">
                     <div class="ui basic vertical segment">
                         <?php if ($sign_num >= $goal || $status == '1') { ?>
-                            <h2 class="ui text victory"><i class="flag icon"></i><?php echo ( $status == '1' ? __('Confirm Victory!', 'petition') : __('Victory!', 'petition') ); ?></h2>
+                            <h2 class="ui text victory"><?php echo conikal_custom_icon('victory_inverse') ?><?php echo ( $status == '1' ? __('Confirm Victory!', 'petition') : __('Victory!', 'petition') ); ?></h2>
                             <div class="ui indicating small victory progress petition-goal" data-value="<?php echo esc_html($goal) ?>" data-total="<?php echo esc_html($goal) ?>">
                                 <div class="bar">
                                     <div class="progress"></div>
@@ -250,7 +282,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                 </div>
                             </div>
                         <?php } else { ?>
-                            <h2><i class="user icon"></i><span class="fav_no"><?php echo conikal_format_number('%!,0i', esc_html($sign_num)) ?></span> <?php  _e('Supporters', 'petition') ?></h2>
+                            <h2><?php echo conikal_custom_icon('supporter') ?><span class="fav_no"><?php echo conikal_format_number('%!,0i', esc_html($sign_num)) ?></span> <?php  _e('Supporters', 'petition') ?></h2>
                             <div class="ui indicating small primary progress petition-goal" data-value="<?php echo esc_html($sign_num) ?>" data-total="<?php echo esc_html($goal) ?>">
                                 <div class="bar">
                                     <div class="progress"></div>
@@ -295,8 +327,8 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                                 </div>
                                             </div>
                                         </div>
-                                       <div class="field">
-                                            <a href="javascript:void(0);" class="ui fluid primary big button signBtn signPetition"><i class="write icon"></i><?php _e('Sign', 'petition') ?></a>
+                                        <div class="field">
+                                            <a href="javascript:void(0);" class="ui fluid primary big button signBtn signPetition"><?php echo conikal_custom_icon('sign') ?><?php _e('Sign', 'petition') ?></a>
                                         </div>
                                         <div class="field">
                                             <div class="email-notice ui checkbox <?php echo ($current_user->notice == 'true' ? esc_attr('checked') : ''); ?>">
@@ -309,13 +341,25 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                     <!-- FACEBOOK SHARE -->
                                     <div class="ui fitted divider"></div>
                                     <div class="ui accordion">
-                                        <div class="title active">
+                                        <?php if (isset($form_id) && $form_id != '') { ?>
+                                        <div class="title<?php echo ($default_accordion === 'contribute' && $user_contribute == false ? ' active' : '') ?>">
+                                            <h3 class="ui header">
+                                            <i class="dropdown icon"></i>
+                                            <?php echo esc_html($reveal_label) . __(' for Campaign', 'petition') ?>
+                                            </h3>
+                                        </div>
+                                        <div class="content<?php echo ($default_accordion === 'contribute' && $user_contribute == false ? ' active' : '') ?>">
+                                            <?php echo do_shortcode('[give_form id="' . $form_id . '"]') ?>
+                                        </div>
+                                        <?php } ?>
+
+                                        <div class="title<?php echo ($default_accordion === 'share' || $form_id === '' || $user_contribute == true ? ' active' : '') ?>">
                                             <h3 class="ui header">
                                             <i class="dropdown icon"></i>
                                             <?php _e('Share on Facebook', 'petition') ?>
                                             </h3>
                                         </div>
-                                        <div class="content active">
+                                        <div class="content<?php echo ($default_accordion === 'share' || $form_id === '' || $user_contribute == true ? ' active' : '') ?>">
                                             <div class="ui form">
                                                 <div class="field">
                                                     <div class="ui pointing below fluid basic large label">
@@ -343,76 +387,76 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                                     <a href="javascript:void(0);" class="ui fluid facebook big button postFB"><i class="facebook f icon"></i><?php _e('Post to Facebook', 'petition') ?></a>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <br/>
 
-                                    <!-- SOCIAL SHARE BUTTON -->
-                                    <div class="ui six column grid social-share">
-                                        <div class="column">
-                                            <a href="mailto://?subject=<?php echo esc_html($title) ?>&body=<?php echo esc_url($link); ?>" class="ui basic icon button" id="send-email" data-content="<?php _e('Send an Email' ,'petition') ?>" data-variation="small" data-position="top center"><i class="mail outline icon"></i></a>
-                                        </div>
-                                        <div class="column">
-                                            <?php if (wp_is_mobile()) { ?>
-                                            <a href="<?php echo esc_url('sms://&body=' .$title . ' - ' . wp_get_shortlink()) ?>" id="send-sms" class="ui basic icon button" id="send-sms" data-content="<?php _e('Send a message' ,'petition') ?>" data-variation="small" data-position="top center"><i class="comment outline icon"></i></a>
-                                            <?php } else { ?>
-                                            <a href="javascript:void(0)" class="ui basic icon button send-message" data-content="<?php _e('Send a message' ,'petition') ?>" data-variation="small" data-position="top center"><i class="comment outline icon"></i></a>
-                                            <?php } ?>
-                                        </div>
-                                        <div class="column">
-                                            <a href="javascript:void(0)" class="ui basic icon button share-facebook" data-content="<?php _e('Share on Facebook' ,'petition') ?>" data-variation="small" data-position="top center"><i class="facebook f icon"></i></a>
-                                        </div>
-                                        <div class="column">
-                                            <a href="https://plus.google.com/share?url=<?php echo esc_url($link) ?>"
-                                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;"
-                                                target="_blank" class="ui basic icon button" id="share-google" data-content="<?php _e('Share on Google+' ,'petition') ?>" data-variation="small" data-position="top center"><i class="google plus icon"></i></a>
-                                        </div>
-                                        <div class="column">
-                                            <a href="https://twitter.com/share?url=<?php echo esc_url($link) ?>&text=<?php echo urlencode($title); ?>" target="_blank" class="ui basic icon button" id="tweet-twitter" data-content="<?php _e('Share on Twitter' ,'petition') ?>" data-variation="small" data-position="top center"><i class="twitter icon"></i></a>
-                                        </div>
-                                        <div class="column">
-                                            <div class="ui icon top right pointing dropdown basic icon button more-share" data-content="<?php _e('More social' ,'petition') ?>" data-variation="small" data-position="top center">
-                                                <i class="ellipsis horizontal icon"></i>
-                                                <div class="menu">
-                                                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo esc_url($link) ?>&title=<?php echo urlencode($title); ?>"
-                                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                                target="_blank" class="item">
-                                                        <i class="linkedin square icon"></i><?php esc_html_e('LinkedIn', 'petition') ?>
-                                                    </a>
-                                                    <a href="http://www.tumblr.com/share/link?url=<?php echo esc_url($link) ?>"
-                                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                                target="_blank" class="item">
-                                                        <i class="tumblr square icon"></i><?php esc_html_e('Tumblr', 'petition') ?>
-                                                    </a>
-                                                    <a href="https://pinterest.com/pin/create/bookmarklet/?media=<?php echo isset($images[1]) ? esc_url($images[1]) : esc_url($thumb_placeholder) ?>&url=<?php echo esc_url($link) ?>&description=<?php echo urlencode($title); ?>"
-                                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                                target="_blank" class="item">
-                                                        <i class="pinterest square icon"></i><?php esc_html_e('Pinterest', 'petition') ?>
-                                                    </a>
-                                                    <a href="http://reddit.com/submit?url=<?php echo esc_url($link) ?>&title=<?php echo urlencode($title); ?>"
-                                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                                target="_blank" class="item">
-                                                        <i class="reddit square icon"></i><?php esc_html_e('Reddit', 'petition') ?>
-                                                    </a>
-                                                    <a href="http://wordpress.com/press-this.php?u=<?php urlencode(urlencode($link)); ?>&t=<?php echo urlencode($title); ?>&s=<?php echo urlencode($excerpt); ?>&i=<?php echo urlencode($images[0]) ?>"
-                                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
-                                                target="_blank" class="item">
-                                                        <i class="wordpress square icon"></i><?php esc_html_e('WordPress', 'petition') ?>
-                                                    </a>
+                                            <div class="ui hidden divider"></div>
+                                            <!-- SOCIAL SHARE BUTTON -->
+                                            <div class="ui six column grid social-share">
+                                                <div class="column">
+                                                    <a href="mailto://?subject=<?php echo esc_html($title) ?>&body=<?php echo esc_url($link); ?>" class="ui basic icon button" id="send-email" data-content="<?php _e('Send an Email' ,'petition') ?>" data-variation="small" data-position="top center"><i class="mail outline icon"></i></a>
+                                                </div>
+                                                <div class="column">
+                                                    <?php if (wp_is_mobile()) { ?>
+                                                    <a href="<?php echo esc_url('sms://&body=' .$title . ' - ' . wp_get_shortlink()) ?>" id="send-sms" class="ui basic icon button" id="send-sms" data-content="<?php _e('Send a message' ,'petition') ?>" data-variation="small" data-position="top center"><i class="comment outline icon"></i></a>
+                                                    <?php } else { ?>
+                                                    <a href="javascript:void(0)" class="ui basic icon button send-message" data-content="<?php _e('Send a message' ,'petition') ?>" data-variation="small" data-position="top center"><i class="comment outline icon"></i></a>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="column">
+                                                    <a href="javascript:void(0)" class="ui basic icon button share-facebook" data-content="<?php _e('Share on Facebook' ,'petition') ?>" data-variation="small" data-position="top center"><i class="facebook f icon"></i></a>
+                                                </div>
+                                                <div class="column">
+                                                    <a href="https://plus.google.com/share?url=<?php echo esc_url($link) ?>"
+                                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;"
+                                                        target="_blank" class="ui basic icon button" id="share-google" data-content="<?php _e('Share on Google+' ,'petition') ?>" data-variation="small" data-position="top center"><i class="google plus icon"></i></a>
+                                                </div>
+                                                <div class="column">
+                                                    <a href="https://twitter.com/share?url=<?php echo esc_url($link) ?>&text=<?php echo urlencode($title); ?>" target="_blank" class="ui basic icon button" id="tweet-twitter" data-content="<?php _e('Share on Twitter' ,'petition') ?>" data-variation="small" data-position="top center"><i class="twitter icon"></i></a>
+                                                </div>
+                                                <div class="column">
+                                                    <div class="ui icon top right pointing dropdown basic icon button more-share" data-content="<?php _e('More social' ,'petition') ?>" data-variation="small" data-position="top center">
+                                                        <i class="ellipsis horizontal icon"></i>
+                                                        <div class="menu">
+                                                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo esc_url($link) ?>&title=<?php echo urlencode($title); ?>"
+                                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                                        target="_blank" class="item">
+                                                                <i class="linkedin square icon"></i><?php esc_html_e('LinkedIn', 'petition') ?>
+                                                            </a>
+                                                            <a href="http://www.tumblr.com/share/link?url=<?php echo esc_url($link) ?>"
+                                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                                        target="_blank" class="item">
+                                                                <i class="tumblr square icon"></i><?php esc_html_e('Tumblr', 'petition') ?>
+                                                            </a>
+                                                            <a href="https://pinterest.com/pin/create/bookmarklet/?media=<?php echo isset($images[1]) ? esc_url($images[1]) : esc_url($thumb_placeholder) ?>&url=<?php echo esc_url($link) ?>&description=<?php echo urlencode($title); ?>"
+                                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                                        target="_blank" class="item">
+                                                                <i class="pinterest square icon"></i><?php esc_html_e('Pinterest', 'petition') ?>
+                                                            </a>
+                                                            <a href="http://reddit.com/submit?url=<?php echo esc_url($link) ?>&title=<?php echo urlencode($title); ?>"
+                                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                                        target="_blank" class="item">
+                                                                <i class="reddit square icon"></i><?php esc_html_e('Reddit', 'petition') ?>
+                                                            </a>
+                                                            <a href="http://wordpress.com/press-this.php?u=<?php urlencode(urlencode($link)); ?>&t=<?php echo urlencode($title); ?>&s=<?php echo urlencode($excerpt); ?>&i=<?php echo urlencode($images[0]) ?>"
+                                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                                                        target="_blank" class="item">
+                                                                <i class="wordpress square icon"></i><?php esc_html_e('WordPress', 'petition') ?>
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
+
+                                            <!-- SHORT URL -->
+                                            <div class="ui divider"></div>
+                                            <div class="ui right action left icon fluid input">
+                                                <i class="linkify icon"></i>
+                                                <input type="text" id="short-link" value="<?php echo wp_get_shortlink($petition_id) ?>" readonly>
+                                                <button id="copy-link" class="ui basic button"><i class="copy icon"></i><?php _e('Copy', 'petition') ?></button>
+                                            </div>
+                                            <div id="msg-copy"></div>
+                                            <!--<a href="javascript:void(0);" class="ui fluid primary big button signBtn signedPetition"><i class="checkmark icon"></i></a>-->
                                         </div>
                                     </div>
-
-                                    <!-- SHORT URL -->
-                                    <div class="ui divider"></div>
-                                    <div class="ui right action left icon fluid input">
-                                        <i class="linkify icon"></i>
-                                        <input type="text" id="short-link" value="<?php echo wp_get_shortlink($petition_id) ?>" readonly>
-                                        <button id="copy-link" class="ui basic button"><i class="copy icon"></i><?php _e('Copy', 'petition') ?></button>
-                                    </div>
-                                    <div id="msg-copy"></div>
-                                    <!--<a href="javascript:void(0);" class="ui fluid primary big button signBtn signedPetition"><i class="checkmark icon"></i></a>-->
                                 <?php }
                             } else {
                                 get_template_part('templates/guest_sign');
@@ -451,7 +495,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                             </div>
                                         </div>
                                         <div class="field">
-                                            <a href="javascript:void(0);" class="ui fluid primary big button signBtn signPetition"><i class="write icon"></i><?php _e('Sign', 'petition') ?></a>
+                                            <a href="javascript:void(0);" class="ui fluid primary big button signBtn signPetition"><?php echo conikal_custom_icon('sign') ?><?php _e('Sign', 'petition') ?></a>
                                         </div>
                                         <div class="field">
                                             <div class="email-notice ui checkbox <?php echo ($current_user->notice == 'true' ? esc_attr('checked') : ''); ?>">
@@ -461,16 +505,28 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                         </div>
                                     </div>
                                 <?php } else { ?>
-                                    <!-- FACEBOOK SHATE -->
+                                    <!-- FACEBOOK SHARE -->
                                     <div class="ui fitted divider"></div>
                                     <div class="ui accordion">
-                                        <div class="title active">
+                                        <?php if (isset($form_id) && $form_id != '') { ?>
+                                        <div class="title<?php echo ($default_accordion === 'contribute' && $user_contribute == false ? ' active' : '') ?>">
+                                            <h3 class="ui header">
+                                            <i class="dropdown icon"></i>
+                                            <?php echo esc_html($reveal_label) . __(' for Campaign', 'petition') ?>
+                                            </h3>
+                                        </div>
+                                        <div class="content<?php echo ($default_accordion === 'contribute' && $user_contribute == false ? ' active' : '') ?>">
+                                            <?php echo do_shortcode('[give_form id="' . $form_id . '"]') ?>
+                                        </div>
+                                        <?php } ?>
+
+                                        <div class="title<?php echo ($default_accordion === 'share' || $form_id === '' || $user_contribute == true ? ' active' : '') ?>">
                                             <h3 class="ui header">
                                             <i class="dropdown icon"></i>
                                             <?php _e('Share on Facebook', 'petition') ?>
                                             </h3>
                                         </div>
-                                        <div class="content active">
+                                        <div class="content<?php echo ($default_accordion === 'share' || $form_id === '' || $user_contribute == true ? ' active' : '') ?>">
                                             <div class="ui form">
                                                 <div class="field">
                                                     <div class="ui pointing below fluid basic large label">
@@ -498,76 +554,76 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                                     <a href="javascript:void(0);" class="ui fluid facebook big button postFB"><i class="facebook f icon"></i><?php _e('Post to Facebook', 'petition') ?></a>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <br/>
+                                            <div class="ui hidden divider"></div>
 
-                                    <!-- SOCIAL SHARE BUTTON -->
-                                    <div class="ui six column grid social-share">
-                                        <div class="column">
-                                            <a href="mailto://?subject=<?php echo esc_html($title) ?>&body=<?php echo esc_url($link); ?>" class="ui basic icon button" id="send-email" data-content="<?php _e('Send an Email' ,'petition') ?>" data-variation="small" data-position="top center"><i class="mail outline icon"></i></a>
-                                        </div>
-                                        <div class="column">
-                                            <?php if (wp_is_mobile()) { ?>
-                                            <a href="<?php echo esc_url('sms://&body=' .$title . ' - ' . wp_get_shortlink()) ?>" id="send-sms" class="ui basic icon button" id="send-sms" data-content="<?php _e('Send a message' ,'petition') ?>" data-variation="small" data-position="top center"><i class="comment outline icon"></i></a>
-                                            <?php } else { ?>
-                                            <a href="javascript:void(0)" class="ui basic icon button send-message" data-content="<?php _e('Send a message' ,'petition') ?>" data-variation="small" data-position="top center"><i class="comment outline icon"></i></a>
-                                            <?php } ?>
-                                        </div>
-                                        <div class="column">
-                                            <a href="javascript:void(0)" class="ui basic icon button share-facebook" data-content="<?php _e('Share on Facebook' ,'petition') ?>" data-variation="small" data-position="top center"><i class="facebook f icon"></i></a>
-                                        </div>
-                                        <div class="column">
-                                            <a href="https://plus.google.com/share?url=<?php echo esc_url($link) ?>"
-                                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;"
-                                                target="_blank" class="ui basic icon button" id="share-google" data-content="<?php _e('Share on Google+' ,'petition') ?>" data-variation="small" data-position="top center"><i class="google plus icon"></i></a>
-                                        </div>
-                                        <div class="column">
-                                            <a href="https://twitter.com/share?url=<?php echo esc_url($link) ?>&text=<?php echo urlencode($title); ?>" target="_blank" class="ui basic icon button" id="tweet-twitter" data-content="<?php _e('Share on Twitter' ,'petition') ?>" data-variation="small" data-position="top center"><i class="twitter icon"></i></a>
-                                        </div>
-                                        <div class="column">
-                                            <div class="ui icon top right pointing dropdown basic icon button more-share" data-content="<?php _e('More social' ,'petition') ?>" data-variation="small" data-position="top center">
-                                                <i class="ellipsis horizontal icon"></i>
-                                                <div class="menu">
-                                                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo esc_url($link) ?>&title=<?php echo urlencode($title); ?>"
-                                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                                target="_blank" class="item">
-                                                        <i class="linkedin square icon"></i><?php esc_html_e('LinkedIn', 'petition') ?>
-                                                    </a>
-                                                    <a href="http://www.tumblr.com/share/link?url=<?php echo esc_url($link) ?>"
-                                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                                target="_blank" class="item">
-                                                        <i class="tumblr square icon"></i><?php esc_html_e('Tumblr', 'petition') ?>
-                                                    </a>
-                                                    <a href="https://pinterest.com/pin/create/bookmarklet/?media=<?php echo isset($images[1]) ? esc_url($images[1]) : esc_url($thumb_placeholder) ?>&url=<?php echo esc_url($link) ?>&description=<?php echo urlencode($title); ?>"
-                                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                                target="_blank" class="item">
-                                                        <i class="pinterest square icon"></i><?php esc_html_e('Pinterest', 'petition') ?>
-                                                    </a>
-                                                    <a href="http://reddit.com/submit?url=<?php echo esc_url($link) ?>&title=<?php echo urlencode($title); ?>"
-                                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                                target="_blank" class="item">
-                                                        <i class="reddit square icon"></i><?php esc_html_e('Reddit', 'petition') ?>
-                                                    </a>
-                                                    <a href="http://wordpress.com/press-this.php?u=<?php urlencode(urlencode($link)); ?>&t=<?php echo urlencode($title); ?>&s=<?php echo urlencode($excerpt); ?>&i=<?php echo urlencode($images[0]) ?>"
-                                                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
-                                                target="_blank" class="item">
-                                                        <i class="wordpress square icon"></i><?php esc_html_e('WordPress', 'petition') ?>
-                                                    </a>
+                                            <!-- SOCIAL SHARE BUTTON -->
+                                            <div class="ui six column grid social-share">
+                                                <div class="column">
+                                                    <a href="mailto://?subject=<?php echo esc_html($title) ?>&body=<?php echo esc_url($link); ?>" class="ui basic icon button" id="send-email" data-content="<?php _e('Send an Email' ,'petition') ?>" data-variation="small" data-position="top center"><i class="mail outline icon"></i></a>
+                                                </div>
+                                                <div class="column">
+                                                    <?php if (wp_is_mobile()) { ?>
+                                                    <a href="<?php echo esc_url('sms://&body=' .$title . ' - ' . wp_get_shortlink()) ?>" id="send-sms" class="ui basic icon button" id="send-sms" data-content="<?php _e('Send a message' ,'petition') ?>" data-variation="small" data-position="top center"><i class="comment outline icon"></i></a>
+                                                    <?php } else { ?>
+                                                    <a href="javascript:void(0)" class="ui basic icon button send-message" data-content="<?php _e('Send a message' ,'petition') ?>" data-variation="small" data-position="top center"><i class="comment outline icon"></i></a>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="column">
+                                                    <a href="javascript:void(0)" class="ui basic icon button share-facebook" data-content="<?php _e('Share on Facebook' ,'petition') ?>" data-variation="small" data-position="top center"><i class="facebook f icon"></i></a>
+                                                </div>
+                                                <div class="column">
+                                                    <a href="https://plus.google.com/share?url=<?php echo esc_url($link) ?>"
+                                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;"
+                                                        target="_blank" class="ui basic icon button" id="share-google" data-content="<?php _e('Share on Google+' ,'petition') ?>" data-variation="small" data-position="top center"><i class="google plus icon"></i></a>
+                                                </div>
+                                                <div class="column">
+                                                    <a href="https://twitter.com/share?url=<?php echo esc_url($link) ?>&text=<?php echo urlencode($title); ?>" target="_blank" class="ui basic icon button" id="tweet-twitter" data-content="<?php _e('Share on Twitter' ,'petition') ?>" data-variation="small" data-position="top center"><i class="twitter icon"></i></a>
+                                                </div>
+                                                <div class="column">
+                                                    <div class="ui icon top right pointing dropdown basic icon button more-share" data-content="<?php _e('More social' ,'petition') ?>" data-variation="small" data-position="top center">
+                                                        <i class="ellipsis horizontal icon"></i>
+                                                        <div class="menu">
+                                                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo esc_url($link) ?>&title=<?php echo urlencode($title); ?>"
+                                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                                        target="_blank" class="item">
+                                                                <i class="linkedin square icon"></i><?php esc_html_e('LinkedIn', 'petition') ?>
+                                                            </a>
+                                                            <a href="http://www.tumblr.com/share/link?url=<?php echo esc_url($link) ?>"
+                                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                                        target="_blank" class="item">
+                                                                <i class="tumblr square icon"></i><?php esc_html_e('Tumblr', 'petition') ?>
+                                                            </a>
+                                                            <a href="https://pinterest.com/pin/create/bookmarklet/?media=<?php echo isset($images[1]) ? esc_url($images[1]) : esc_url($thumb_placeholder) ?>&url=<?php echo esc_url($link) ?>&description=<?php echo urlencode($title); ?>"
+                                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                                        target="_blank" class="item">
+                                                                <i class="pinterest square icon"></i><?php esc_html_e('Pinterest', 'petition') ?>
+                                                            </a>
+                                                            <a href="http://reddit.com/submit?url=<?php echo esc_url($link) ?>&title=<?php echo urlencode($title); ?>"
+                                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                                        target="_blank" class="item">
+                                                                <i class="reddit square icon"></i><?php esc_html_e('Reddit', 'petition') ?>
+                                                            </a>
+                                                            <a href="http://wordpress.com/press-this.php?u=<?php urlencode(urlencode($link)); ?>&t=<?php echo urlencode($title); ?>&s=<?php echo urlencode($excerpt); ?>&i=<?php echo urlencode($images[0]) ?>"
+                                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                                                        target="_blank" class="item">
+                                                                <i class="wordpress square icon"></i><?php esc_html_e('WordPress', 'petition') ?>
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="ui divider"></div>
+
+                                            <!-- SHORT URL COPY -->
+                                            <div class="ui right action left icon fluid input">
+                                                <i class="linkify icon"></i>
+                                                <input type="text" id="short-link" value="<?php echo wp_get_shortlink($petition_id) ?>" readonly>
+                                                <button id="copy-link" class="ui basic button"><i class="copy icon"></i><?php _e('Copy', 'petition') ?></button>
+                                            </div>
+                                            <div id="msg-copy"></div>
+                                            <!--<a href="javascript:void(0);" class="ui fluid primary big button signBtn signedPetition"><i class="checkmark icon"></i></a>-->
                                         </div>
                                     </div>
-                                    <div class="ui divider"></div>
-
-                                    <!-- SHORT URL COPY -->
-                                    <div class="ui right action left icon fluid input">
-                                        <i class="linkify icon"></i>
-                                        <input type="text" id="short-link" value="<?php echo wp_get_shortlink($petition_id) ?>" readonly>
-                                        <button id="copy-link" class="ui basic button"><i class="copy icon"></i><?php _e('Copy', 'petition') ?></button>
-                                    </div>
-                                    <div id="msg-copy"></div>
-                                    <!--<a href="javascript:void(0);" class="ui fluid primary big button signBtn signedPetition"><i class="checkmark icon"></i></a>-->
                                 <?php }
                             } else {
                                 get_template_part('templates/guest_sign');
@@ -606,7 +662,7 @@ if($similar) { ?>
             <?php if ($sign_num >= $goal || $status == '1') { ?>
                 <div class="ui grid">
                     <div class="thirteen wide column">
-                        <h3 class="ui text victory"><i class="flag icon"></i><?php echo ( $status == '1' ? __('Confirm Victory!', 'petition') : __('Victory!', 'petition') ); ?></h3>
+                        <h3 class="ui text victory"><?php echo conikal_custom_icon('victory_inverse') ?><?php echo ( $status == '1' ? __('Confirm Victory!', 'petition') : __('Victory!', 'petition') ); ?></h3>
                     </div>
                     <div class="three wide right aligned column">
                         <a href="javascript:void(0)" class="font big" id="close-mobile-sign"><i class="angle down icon"></i></a>
@@ -640,7 +696,7 @@ if($similar) { ?>
             <?php } else { ?>
                 <div class="ui grid">
                     <div class="thirteen wide column">
-                        <h3><i class="user icon"></i><span class="fav_no"><?php echo conikal_format_number('%!,0i', esc_html($sign_num)) ?></span> <?php  _e('Supporters', 'petition') ?></h3>
+                        <h3><?php echo conikal_custom_icon('supporter') ?><span class="fav_no"><?php echo conikal_format_number('%!,0i', esc_html($sign_num)) ?></span> <?php  _e('Supporters', 'petition') ?></h3>
                     </div>
                     <div class="three wide right aligned column">
                         <a href="javascript:void(0)" class="font big" id="close-mobile-sign"><i class="angle down icon"></i></a>
@@ -700,7 +756,7 @@ if($similar) { ?>
                                 </div>
                             </div>
                             <div class="field">
-                                <a href="javascript:void(0);" class="ui fluid primary big button signBtn signPetition"><i class="write icon"></i><?php _e('Sign', 'petition') ?></a>
+                                <a href="javascript:void(0);" class="ui fluid primary big button signBtn signPetition"><?php echo conikal_custom_icon('sign') ?><?php _e('Sign', 'petition') ?></a>
                             </div>
                         </div>
                     <?php } else { ?>
@@ -763,13 +819,25 @@ if($similar) { ?>
 
                         <!-- FACEBOOK SHARE -->
                         <div class="ui accordion">
-                            <div class="title active">
+                            <?php if (isset($form_id) && $form_id != '') { ?>
+                            <div class="title<?php echo ($default_accordion === 'contribute' && $user_contribute == false ? ' active' : '') ?>">
+                                <h3 class="ui header">
+                                <i class="dropdown icon"></i>
+                                <?php echo esc_html($reveal_label) . __(' for Campaign', 'petition') ?>
+                                </h3>
+                            </div>
+                            <div class="content<?php echo ($default_accordion === 'contribute' && $user_contribute == false ? ' active' : '') ?>">
+                                <?php echo do_shortcode('[give_form id="' . $form_id . '"]') ?>
+                            </div>
+                            <?php } ?>
+
+                            <div class="title<?php echo ($default_accordion === 'share' || $form_id === '' || $user_contribute == true ? ' active' : '') ?>">
                                 <h3 class="ui header">
                                 <i class="dropdown icon"></i>
                                 <?php _e('Share on Facebook', 'petition') ?>
                                 </h3>
                             </div>
-                            <div class="content active">
+                            <div class="content<?php echo ($default_accordion === 'share' || $form_id === '' || $user_contribute == true ? ' active' : '') ?>">
                                 <div class="ui form">
                                     <div class="field">
                                         <div class="ui pointing below fluid basic large label">
@@ -845,8 +913,8 @@ if($similar) { ?>
                                     </div>
                                 </div>
                             </div>
-                           <div class="field">
-                                <a href="javascript:void(0);" class="ui fluid primary big button signBtn signPetition"><i class="write icon"></i><?php _e('Sign', 'petition') ?></a>
+                            <div class="field">
+                                <a href="javascript:void(0);" class="ui fluid primary big button signBtn signPetition"><?php echo conikal_custom_icon('sign') ?><?php _e('Sign', 'petition') ?></a>
                             </div>
                         </div>
                     <?php } else { ?>
@@ -909,13 +977,25 @@ if($similar) { ?>
 
                         <!-- FACEBOOK SHARE -->
                         <div class="ui accordion">
-                            <div class="title active">
+                            <?php if (isset($form_id) && $form_id != '') { ?>
+                            <div class="title<?php echo ($default_accordion === 'contribute' && $user_contribute == false ? ' active' : '') ?>">
+                                <h3 class="ui header">
+                                <i class="dropdown icon"></i>
+                                <?php echo esc_html($reveal_label) . __(' for Campaign', 'petition') ?>
+                                </h3>
+                            </div>
+                            <div class="content<?php echo ($default_accordion === 'contribute' && $user_contribute == false ? ' active' : '') ?>">
+                                <?php echo do_shortcode('[give_form id="' . $form_id . '"]') ?>
+                            </div>
+                            <?php } ?>
+
+                            <div class="title<?php echo ($default_accordion === 'share' || $form_id === '' || $user_contribute == true ? ' active' : '') ?>">
                                 <h3 class="ui header">
                                 <i class="dropdown icon"></i>
                                 <?php _e('Share on Facebook', 'petition') ?>
                                 </h3>
                             </div>
-                            <div class="content active">
+                            <div class="content<?php echo ($default_accordion === 'share' || $form_id === '' || $user_contribute == true ? ' active' : '') ?>">
                                 <div class="ui form">
                                     <div class="field">
                                         <div class="ui pointing below fluid basic large label">
@@ -965,24 +1045,349 @@ if($similar) { ?>
             <?php if(is_user_logged_in()) { ?>
                 <?php if ($sign != '') { 
                     if (in_array($petition_id, $sign) === false && $status == '0') { ?>
-                        <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('Sign this Petition', 'petition') ?></button>
+                        <button class="ui primary fluid button"><?php echo conikal_custom_icon('sign') ?><?php esc_html_e('Sign this Petition', 'petition') ?></button>
                     <?php } else { ?>
                         <button class="ui primary fluid button"><i class="share icon"></i><?php esc_html_e('Share this Petition', 'petition') ?></button>
                 <?php   }
                     } else {
                     if ($status == '0') { ?>
-                        <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('Sign this Petition', 'petition') ?></button>
+                        <button class="ui primary fluid button"><?php echo conikal_custom_icon('sign') ?><?php esc_html_e('Sign this Petition', 'petition') ?></button>
                     <?php } else { ?>
                         <button class="ui primary fluid button"><i class="share icon"></i><?php esc_html_e('Share this Petition', 'petition') ?></button>
                 <?php   }
                 } ?>
             <?php } else { ?>
-                <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('Sign this Petition', 'petition') ?></button>
+                <button class="ui primary fluid button"><?php echo conikal_custom_icon('sign') ?><?php esc_html_e('Sign this Petition', 'petition') ?></button>
             <?php } ?>
             </div>
         </div>
     </div>
 </div>
+<?php } ?>
+
+<!-- after sign action -->
+<?php if(is_user_logged_in()) { ?>
+    <?php if ($sign != '') {
+        if ($action_after_sign == 'redirect' && in_array($petition_id, $sign) === false && $status == '0') { 
+            $args = array(
+                'post_type' => 'page',
+                'post_status' => 'publish',
+                'meta_key' => '_wp_page_template',
+                'meta_value' => 'sign-successful.php'
+            );
+
+            $query = new WP_Query($args);
+
+            while($query->have_posts()) {
+                $query->the_post();
+                $page_id = get_the_ID();
+                $page_link = get_permalink($page_id);
+                $page_link = add_query_arg(array('petition_id' => $petition_id), $page_link);
+            }
+            wp_reset_postdata();
+            wp_reset_query();
+        ?>
+        <input type="hidden" id="sign-successful-url" value="<?php echo ($page_link ? $page_link : '') ?>">
+        <?php } elseif ($action_after_sign == 'modal' && in_array($petition_id, $sign) === false && $status == '0') { ?>
+        <div class="ui modal" id="sign-successful-modal">
+            <div class="ui centered grid">
+                <div class="sixteen wide mobile eight wide tablet eight wide computer left aligned column share-column">
+                    <div class="ui basic center aligned segment" style="padding-top: 50px;">
+                        <h2 class="ui icon green header">
+                            <i class="circular checkmark icon"></i>
+                            <?php _e('You are signed Successfully!' ,'petition') ?>
+                        </h2>
+                        <p class="font medium">
+                            <?php echo sprintf(__('You’re one of %2$s people to sign this petition. Now help find %1$s more people to reach the goal.', 'petition'), conikal_format_number('%!,0i', $goal - $sign_num), conikal_format_number('%!,0i', $sign_num)) ?>
+                        </p>
+                        <div class="ui hidden divider"></div>
+                        <button class="ui basic button" id="skip-after-sign"><?php _e('Skip this', 'petition') ?></button>
+                    </div>
+                </div>
+                <div class="sixteen wide mobile eight wide tablet eight wide computer left aligned column contribute-column">
+                    <!-- FACEBOOK SHARE -->
+                    <div class="ui accordion">
+                        <?php if (isset($form_id) && $form_id != '') { ?>
+                        <div class="title<?php echo ($default_accordion === 'contribute' && $user_contribute == false ? ' active' : '') ?>">
+                            <h3 class="ui header">
+                            <i class="dropdown icon"></i>
+                            <?php echo esc_html($reveal_label) . __(' for Campaign', 'petition') ?>
+                            </h3>
+                        </div>
+                        <div class="content<?php echo ($default_accordion === 'contribute' && $user_contribute == false ? ' active' : '') ?>">
+                            <?php echo do_shortcode('[give_form id="' . $form_id . '"]') ?>
+                        </div>
+                        <?php } ?>
+
+                        <div class="title<?php echo ($default_accordion === 'share' || $form_id === '' || $user_contribute == true ? ' active' : '') ?>">
+                            <h3 class="ui header">
+                            <i class="dropdown icon"></i>
+                            <?php _e('Share on Facebook', 'petition') ?>
+                            </h3>
+                        </div>
+                        <div class="content<?php echo ($default_accordion === 'share' || $form_id === '' || $user_contribute == true ? ' active' : '') ?>">
+                            <div class="ui form">
+                                <div class="field">
+                                    <div class="ui pointing below fluid basic large label">
+                                        <textarea name="sign-comment" class="fb-message-share" style="border: 0; font-weight: 400" rows="3" placeholder="<?php _e('Add a personal message', 'petition') ?>"></textarea>
+                                        <div class="ui horizontal divider"><i class="share alternate icon"></i></div>
+                                        <div class="ui grid">
+                                            <div class="four wide column">
+                                                <?php if($gallery) {
+                                                    if (has_post_thumbnail()) { ?>
+                                                        <img class="ui fluid image" id="thumbnail-share" src="<?php echo esc_url(the_post_thumbnail_url('thumbnail')) ?>" alt="<?php echo esc_attr($title) ?>">
+                                                    <?php } else { ?>
+                                                        <img class="ui fluid image" id="gallery-share" src="<?php echo esc_url($images[1]) ?>" alt="<?php echo esc_attr($title) ?>">
+                                                    <?php } ?>
+                                                <?php } elseif ($thumb) { ?>
+                                                    <img class="ui fluid image" src="<?php echo esc_url($thumb) ?>" alt="<?php echo esc_attr($title) ?>">
+                                                <?php } else { ?>
+                                                    <img class="ui fluid image" src="<?php echo esc_url(get_template_directory_uri() . '/images/thumb.png') ?>" alt="<?php echo esc_attr($title) ?>">
+                                                <?php } ?>
+                                            </div>
+                                            <div class="twelve wide column">
+                                                <h4><?php echo esc_html($title) ?></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0);" class="ui fluid facebook big button postFB"><i class="facebook f icon"></i><?php _e('Post to Facebook', 'petition') ?></a>
+                                </div>
+                            </div>
+
+                            <div class="ui hidden divider"></div>
+                            <!-- SOCIAL SHARE BUTTON -->
+                            <div class="ui six column grid social-share">
+                                <div class="column">
+                                    <a href="mailto://?subject=<?php echo esc_html($title) ?>&body=<?php echo esc_url($link); ?>" class="ui basic icon button" id="send-email" data-content="<?php _e('Send an Email' ,'petition') ?>" data-variation="small" data-position="top center"><i class="mail outline icon"></i></a>
+                                </div>
+                                <div class="column">
+                                    <?php if (wp_is_mobile()) { ?>
+                                    <a href="<?php echo esc_url('sms://&body=' .$title . ' - ' . wp_get_shortlink()) ?>" id="send-sms" class="ui basic icon button" id="send-sms" data-content="<?php _e('Send a message' ,'petition') ?>" data-variation="small" data-position="top center"><i class="comment outline icon"></i></a>
+                                    <?php } else { ?>
+                                    <a href="javascript:void(0)" class="ui basic icon button send-message" data-content="<?php _e('Send a message' ,'petition') ?>" data-variation="small" data-position="top center"><i class="comment outline icon"></i></a>
+                                    <?php } ?>
+                                </div>
+                                <div class="column">
+                                    <a href="javascript:void(0)" class="ui basic icon button share-facebook" data-content="<?php _e('Share on Facebook' ,'petition') ?>" data-variation="small" data-position="top center"><i class="facebook f icon"></i></a>
+                                </div>
+                                <div class="column">
+                                    <a href="https://plus.google.com/share?url=<?php echo esc_url($link) ?>"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;"
+                                        target="_blank" class="ui basic icon button" id="share-google" data-content="<?php _e('Share on Google+' ,'petition') ?>" data-variation="small" data-position="top center"><i class="google plus icon"></i></a>
+                                </div>
+                                <div class="column">
+                                    <a href="https://twitter.com/share?url=<?php echo esc_url($link) ?>&text=<?php echo urlencode($title); ?>" target="_blank" class="ui basic icon button" id="tweet-twitter" data-content="<?php _e('Share on Twitter' ,'petition') ?>" data-variation="small" data-position="top center"><i class="twitter icon"></i></a>
+                                </div>
+                                <div class="column">
+                                    <div class="ui icon top right pointing dropdown basic icon button more-share" data-content="<?php _e('More social' ,'petition') ?>" data-variation="small" data-position="top center">
+                                        <i class="ellipsis horizontal icon"></i>
+                                        <div class="menu">
+                                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo esc_url($link) ?>&title=<?php echo urlencode($title); ?>"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                        target="_blank" class="item">
+                                                <i class="linkedin square icon"></i><?php esc_html_e('LinkedIn', 'petition') ?>
+                                            </a>
+                                            <a href="http://www.tumblr.com/share/link?url=<?php echo esc_url($link) ?>"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                        target="_blank" class="item">
+                                                <i class="tumblr square icon"></i><?php esc_html_e('Tumblr', 'petition') ?>
+                                            </a>
+                                            <a href="https://pinterest.com/pin/create/bookmarklet/?media=<?php echo isset($images[1]) ? esc_url($images[1]) : esc_url($thumb_placeholder) ?>&url=<?php echo esc_url($link) ?>&description=<?php echo urlencode($title); ?>"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                        target="_blank" class="item">
+                                                <i class="pinterest square icon"></i><?php esc_html_e('Pinterest', 'petition') ?>
+                                            </a>
+                                            <a href="http://reddit.com/submit?url=<?php echo esc_url($link) ?>&title=<?php echo urlencode($title); ?>"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                        target="_blank" class="item">
+                                                <i class="reddit square icon"></i><?php esc_html_e('Reddit', 'petition') ?>
+                                            </a>
+                                            <a href="http://wordpress.com/press-this.php?u=<?php urlencode(urlencode($link)); ?>&t=<?php echo urlencode($title); ?>&s=<?php echo urlencode($excerpt); ?>&i=<?php echo urlencode($images[0]) ?>"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                                        target="_blank" class="item">
+                                                <i class="wordpress square icon"></i><?php esc_html_e('WordPress', 'petition') ?>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SHORT URL -->
+                            <div class="ui divider"></div>
+                            <div class="ui right action left icon fluid input">
+                                <i class="linkify icon"></i>
+                                <input type="text" id="short-link" value="<?php echo wp_get_shortlink($petition_id) ?>" readonly>
+                                <button id="copy-link" class="ui basic button"><i class="copy icon"></i><?php _e('Copy', 'petition') ?></button>
+                            </div>
+                            <div id="msg-copy"></div>
+                            <!--<a href="javascript:void(0);" class="ui fluid primary big button signBtn signedPetition"><i class="checkmark icon"></i></a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    <?php }
+    } else { 
+        if ($action_after_sign == 'redirect' && $status == '0') { 
+            $args = array(
+                'post_type' => 'page',
+                'post_status' => 'publish',
+                'meta_key' => '_wp_page_template',
+                'meta_value' => 'sign-successful.php'
+            );
+
+            $query = new WP_Query($args);
+
+            while($query->have_posts()) {
+                $query->the_post();
+                $page_id = get_the_ID();
+                $page_link = get_permalink($page_id);
+                $page_link = add_query_arg(array('petition_id' => $petition_id), $page_link);
+            }
+            wp_reset_postdata();
+            wp_reset_query();
+        ?>
+        <input type="hidden" id="sign-successful-url" value="<?php echo ($page_link ? $page_link : '') ?>">
+        <?php } elseif ($action_after_sign == 'modal' && $status == '0') { ?>
+        <div class="ui modal" id="sign-successful-modal">
+            <div class="ui centered grid">
+                <div class="sixteen wide mobile eight wide tablet eight wide computer left aligned column share-column">
+                    <div class="ui basic center aligned segment" style="padding-top: 70px;">
+                        <h2 class="ui icon green header">
+                            <i class="circular checkmark icon"></i>
+                            <?php _e('You are signed Successfully!' ,'petition') ?>
+                        </h2>
+                        <p class="font medium">
+                            <?php echo sprintf(__('You’re one of %2$s people to sign this petition. Now help find %1$s more people to reach the goal.', 'petition'), conikal_format_number('%!,0i', $goal - $sign_num), conikal_format_number('%!,0i', $sign_num)) ?>
+                        </p>
+                        <div class="ui hidden divider"></div>
+                        <button class="ui basic button" id="skip-after-sign"><?php _e('Skip this', 'petition') ?></button>
+                    </div>
+                </div>
+                <div class="sixteen wide mobile eight wide tablet eight wide computer left aligned column contribute-column">
+                    <!-- FACEBOOK SHARE -->
+                    <div class="ui accordion">
+                        <?php if (isset($form_id) && $form_id != '') { ?>
+                        <div class="title<?php echo ($default_accordion === 'contribute' && $user_contribute == false ? ' active' : '') ?>">
+                            <h3 class="ui header">
+                            <i class="dropdown icon"></i>
+                            <?php echo esc_html($reveal_label) . __(' for Campaign', 'petition') ?>
+                            </h3>
+                        </div>
+                        <div class="content<?php echo ($default_accordion === 'contribute' && $user_contribute == false ? ' active' : '') ?>">
+                            <?php echo do_shortcode('[give_form id="' . $form_id . '"]') ?>
+                        </div>
+                        <?php } ?>
+
+                        <div class="title<?php echo ($default_accordion === 'share' || $form_id === '' || $user_contribute == true ? ' active' : '') ?>">
+                            <h3 class="ui header">
+                            <i class="dropdown icon"></i>
+                            <?php _e('Share on Facebook', 'petition') ?>
+                            </h3>
+                        </div>
+                        <div class="content<?php echo ($default_accordion === 'share' || $form_id === '' || $user_contribute == true ? ' active' : '') ?>">
+                            <div class="ui form">
+                                <div class="field">
+                                    <div class="ui pointing below fluid basic large label">
+                                        <textarea name="sign-comment" class="fb-message-share" style="border: 0; font-weight: 400" rows="3" placeholder="<?php _e('Add a personal message', 'petition') ?>"></textarea>
+                                        <div class="ui horizontal divider"><i class="share alternate icon"></i></div>
+                                        <div class="ui grid">
+                                            <div class="four wide column">
+                                                <?php if($gallery) {
+                                                    if (has_post_thumbnail()) { ?>
+                                                        <img class="ui fluid image" id="thumbnail-share" src="<?php echo esc_url(the_post_thumbnail_url('thumbnail')) ?>" alt="<?php echo esc_attr($title) ?>">
+                                                    <?php } else { ?>
+                                                        <img class="ui fluid image" id="gallery-share" src="<?php echo esc_url($images[1]) ?>" alt="<?php echo esc_attr($title) ?>">
+                                                    <?php } ?>
+                                                <?php } elseif ($thumb) { ?>
+                                                    <img class="ui fluid image" src="<?php echo esc_url($thumb) ?>" alt="<?php echo esc_attr($title) ?>">
+                                                <?php } else { ?>
+                                                    <img class="ui fluid image" src="<?php echo esc_url(get_template_directory_uri() . '/images/thumb.png') ?>" alt="<?php echo esc_attr($title) ?>">
+                                                <?php } ?>
+                                            </div>
+                                            <div class="twelve wide column">
+                                                <h4><?php echo esc_html($title) ?></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0);" class="ui fluid facebook big button postFB"><i class="facebook f icon"></i><?php _e('Post to Facebook', 'petition') ?></a>
+                                </div>
+                            </div>
+
+                            <div class="ui hidden divider"></div>
+                            <!-- SOCIAL SHARE BUTTON -->
+                            <div class="ui six column grid social-share">
+                                <div class="column">
+                                    <a href="mailto://?subject=<?php echo esc_html($title) ?>&body=<?php echo esc_url($link); ?>" class="ui basic icon button" id="send-email" data-content="<?php _e('Send an Email' ,'petition') ?>" data-variation="small" data-position="top center"><i class="mail outline icon"></i></a>
+                                </div>
+                                <div class="column">
+                                    <?php if (wp_is_mobile()) { ?>
+                                    <a href="<?php echo esc_url('sms://&body=' .$title . ' - ' . wp_get_shortlink()) ?>" id="send-sms" class="ui basic icon button" id="send-sms" data-content="<?php _e('Send a message' ,'petition') ?>" data-variation="small" data-position="top center"><i class="comment outline icon"></i></a>
+                                    <?php } else { ?>
+                                    <a href="javascript:void(0)" class="ui basic icon button send-message" data-content="<?php _e('Send a message' ,'petition') ?>" data-variation="small" data-position="top center"><i class="comment outline icon"></i></a>
+                                    <?php } ?>
+                                </div>
+                                <div class="column">
+                                    <a href="javascript:void(0)" class="ui basic icon button share-facebook" data-content="<?php _e('Share on Facebook' ,'petition') ?>" data-variation="small" data-position="top center"><i class="facebook f icon"></i></a>
+                                </div>
+                                <div class="column">
+                                    <a href="https://plus.google.com/share?url=<?php echo esc_url($link) ?>"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;"
+                                        target="_blank" class="ui basic icon button" id="share-google" data-content="<?php _e('Share on Google+' ,'petition') ?>" data-variation="small" data-position="top center"><i class="google plus icon"></i></a>
+                                </div>
+                                <div class="column">
+                                    <a href="https://twitter.com/share?url=<?php echo esc_url($link) ?>&text=<?php echo urlencode($title); ?>" target="_blank" class="ui basic icon button" id="tweet-twitter" data-content="<?php _e('Share on Twitter' ,'petition') ?>" data-variation="small" data-position="top center"><i class="twitter icon"></i></a>
+                                </div>
+                                <div class="column">
+                                    <div class="ui icon top right pointing dropdown basic icon button more-share" data-content="<?php _e('More social' ,'petition') ?>" data-variation="small" data-position="top center">
+                                        <i class="ellipsis horizontal icon"></i>
+                                        <div class="menu">
+                                            <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo esc_url($link) ?>&title=<?php echo urlencode($title); ?>"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                        target="_blank" class="item">
+                                                <i class="linkedin square icon"></i><?php esc_html_e('LinkedIn', 'petition') ?>
+                                            </a>
+                                            <a href="http://www.tumblr.com/share/link?url=<?php echo esc_url($link) ?>"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                        target="_blank" class="item">
+                                                <i class="tumblr square icon"></i><?php esc_html_e('Tumblr', 'petition') ?>
+                                            </a>
+                                            <a href="https://pinterest.com/pin/create/bookmarklet/?media=<?php echo isset($images[1]) ? esc_url($images[1]) : esc_url($thumb_placeholder) ?>&url=<?php echo esc_url($link) ?>&description=<?php echo urlencode($title); ?>"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                        target="_blank" class="item">
+                                                <i class="pinterest square icon"></i><?php esc_html_e('Pinterest', 'petition') ?>
+                                            </a>
+                                            <a href="http://reddit.com/submit?url=<?php echo esc_url($link) ?>&title=<?php echo urlencode($title); ?>"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                        target="_blank" class="item">
+                                                <i class="reddit square icon"></i><?php esc_html_e('Reddit', 'petition') ?>
+                                            </a>
+                                            <a href="http://wordpress.com/press-this.php?u=<?php urlencode(urlencode($link)); ?>&t=<?php echo urlencode($title); ?>&s=<?php echo urlencode($excerpt); ?>&i=<?php echo urlencode($images[0]) ?>"
+                                        onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                                        target="_blank" class="item">
+                                                <i class="wordpress square icon"></i><?php esc_html_e('WordPress', 'petition') ?>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SHORT URL -->
+                            <div class="ui divider"></div>
+                            <div class="ui right action left icon fluid input">
+                                <i class="linkify icon"></i>
+                                <input type="text" id="short-link" value="<?php echo wp_get_shortlink($petition_id) ?>" readonly>
+                                <button id="copy-link" class="ui basic button"><i class="copy icon"></i><?php _e('Copy', 'petition') ?></button>
+                            </div>
+                            <div id="msg-copy"></div>
+                            <!--<a href="javascript:void(0);" class="ui fluid primary big button signBtn signedPetition"><i class="checkmark icon"></i></a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>       
+    <?php }
+    } ?>
 <?php } ?>
 
 <?php if($fb_login && is_user_logged_in()) { ?>

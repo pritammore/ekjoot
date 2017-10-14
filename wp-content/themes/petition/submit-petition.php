@@ -12,6 +12,17 @@ Template Name: Submit Petition
 $current_user = wp_get_current_user();
 if (!is_user_logged_in()) {
     wp_redirect(home_url());
+} else {
+    $conikal_general_settings = get_option('conikal_general_settings');
+    $admin_submit_petition_only = isset($conikal_general_settings['conikal_admin_submit_petition_only_field']) ? $conikal_general_settings['conikal_admin_submit_petition_only_field'] : '';
+
+    if ($admin_submit_petition_only != '') { 
+        if (current_user_can('editor') || current_user_can('administrator')) {
+            
+        } else {
+            wp_redirect(home_url());
+        }
+    }
 }
 
 global $post;
@@ -34,7 +45,8 @@ $type_args = array(
     'hide_empty'        => false
 );
 $type_terms = get_terms($type_taxonomies, $type_args);
-$conikal_general_settings = get_option('conikal_general_settings');
+
+// get petition fields option
 $conikal_petition_fields_settings = get_option('conikal_petition_fields_settings');
 $p_category = isset($conikal_petition_fields_settings['conikal_p_category_field']) ? $conikal_petition_fields_settings['conikal_p_category_field'] : 'enabled';
 $p_category_r = isset($conikal_petition_fields_settings['conikal_p_category_r_field']) ? $conikal_petition_fields_settings['conikal_p_category_r_field'] : 'required';
@@ -85,7 +97,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                     </div>
                     <div class="disabled step" id="step-two">
                         <div class="content">
-                          <a href="#" class="title" data-tab="step-two"><?php _e('Invite Leader', 'petition') ?></a>
+                          <a href="#" class="title" data-tab="step-two"><?php _e('Receiver', 'petition') ?></a>
                         </div>
                     </div>
                     <div class="disabled step" id="step-three">
@@ -110,6 +122,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                     <?php wp_nonce_field('submit_petition_ajax_nonce', 'securitySubmitPetition', true); ?>
                     <input type="hidden" id="current_user" name="current_user" value="<?php echo esc_attr($current_user->ID); ?>">
                     <input type="hidden" id="new_id" name="new_id" value="">
+                    <input type="hidden" id="sendinblue_list" name="sendinblue_list" value="">
                     <input type="hidden" name="new_status" id="new_status" value="0">
                     <!-- STEP ONE -->
                     <div class="ui active tab step-one" data-tab="step-one">
@@ -190,9 +203,9 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                     <!-- STEP TWO -->
                     <div class="ui tab step-two" data-tab="step-two">
                         <h2 class="ui header">
-                            <div class="content"><?php _e('Choose a leader', 'petition') ?>
+                            <div class="content"><?php _e('Choose a decision maker', 'petition') ?>
                                 <div class="sub header">
-                                    <p><?php _e('This is the person, organization, or group that can make a leader about your petition. We will send them updates on your petition and encourage a response.', 'petition') ?></p>
+                                    <p><?php _e('This is the person, organization, or group that can make a decision about your petition. We will send them updates on your petition and encourage a response.', 'petition') ?></p>
                                 </div>
                             </div>
                         </h2>
@@ -263,7 +276,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                             <div class="title">
                                 <h3 class="ui header">
                                 <i class="dropdown icon"></i>
-                                <?php _e('How to find the right leader?', 'petition') ?>
+                                <?php _e('How to find the right decision maker?', 'petition') ?>
                                 </h3>
                             </div>
                             <div class="content">
@@ -271,7 +284,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                                     <div class="item">
                                         <div class="content">
                                             <div class="header"><?php _e('Choose someone who can give you what you want', 'petition') ?></div>
-                                            <div class="description"><?php _e('You might need to do some research to find the right person who can make or influence the leader.', 'petition') ?></div>
+                                            <div class="description"><?php _e('You might need to do some research to find the right person who can make or influence the decision.', 'petition') ?></div>
                                         </div>
                                     </div>
                                     <div class="item">
@@ -283,7 +296,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                                     <div class="item">
                                         <div class="content">
                                             <div class="header"><?php _e('Choose someone you can work with', 'petition') ?></div>
-                                            <div class="description"><?php _e('Your petition is most likely to win by reaching an agreement with your leader.', 'petition') ?></div>
+                                            <div class="description"><?php _e('Your petition is most likely to win by reaching an agreement with your decision maker.', 'petition') ?></div>
                                         </div>
                                     </div>
                                 </div>

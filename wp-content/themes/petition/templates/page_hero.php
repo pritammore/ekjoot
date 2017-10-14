@@ -3,6 +3,8 @@
  * @package WordPress
  * @subpackage Petition
  */
+
+global $post;
 $current_user = wp_get_current_user();
 
 if ((is_author() || is_page_template('my-petitions.php')) && is_user_logged_in()) {

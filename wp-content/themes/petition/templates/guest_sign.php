@@ -26,12 +26,6 @@
             <i class="marker icon"></i>
         </div>
     </div>
-    <div class="field">
-        <div class="ui right icon large input">
-            <input type="text" name="pincodeSign" id="pincodeSign" placeholder="<?php _e('Pincode', 'petition') ?>">
-            <i class="location arrow icon"></i>
-        </div>
-    </div>
     
     <input type="hidden" name="passSign" id="passSign" value="<?php echo wp_generate_password(6, false); ?>">
     <input type="hidden" id="citySign" name="citySign" value="">
@@ -53,7 +47,7 @@
 		</div>
 	</div>
     <div class="field">
-        <button class="ui primary fluid big button submitSign"><i class="write icon"></i><?php _e('Sign this petition', 'petition') ?></button>
+        <button class="ui primary fluid big button submitSign"><?php echo conikal_custom_icon('sign') ?><?php _e('Sign this petition', 'petition') ?></button>
     </div>
     <div class="field">
         <div class="email-notice ui checkbox checked">
@@ -77,16 +71,10 @@
             <i class="mail icon"></i>
         </div>
     </div>
-    <div class="required field">
+    <div class="field">
         <div class="ui right icon input">
             <input type="text" name="addressSign" id="addressSign" placeholder="<?php _e('Address', 'petition') ?>">
             <i class="marker icon"></i>
-        </div>
-    </div>
-    <div class="field">
-        <div class="ui right icon large input">
-            <input type="text" name="pincodeSign" id="pincodeSign" placeholder="<?php _e('Pincode', 'petition') ?>">
-            <i class="location arrow icon"></i>
         </div>
     </div>
     
@@ -118,7 +106,7 @@
         </div>
     </div>
     <div class="field">
-        <a href="javascript:void(0);" class="ui primary fluid button submitSign"><i class="write icon"></i><?php _e('Sign this petition', 'petition') ?></a>
+        <a href="javascript:void(0);" class="ui primary fluid button submitSign"><?php echo conikal_custom_icon('sign') ?><?php _e('Sign this petition', 'petition') ?></a>
     </div>
 </div>
 <?php } ?>

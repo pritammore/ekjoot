@@ -14,6 +14,7 @@ if( !function_exists('conikal_add_to_signatures') ):
         $user_id = isset($_POST['user_id']) ? sanitize_text_field($_POST['user_id']) : '';
         $reason =  isset($_POST['reason']) ? sanitize_text_field($_POST['reason']) : '';
         $notice = isset($_POST['notice']) ? $_POST['notice'] : false;
+        $sendinblue_list = get_post_meta($post_id, 'petition_sendinblue_list', true);
 
         $sign_key = 'petition_sign';
         $sign_users_key = 'petition_users';
@@ -45,7 +46,10 @@ if( !function_exists('conikal_add_to_signatures') ):
         $sign_no = get_post_meta($post_id, $sign_key, true);
         $goal_no = get_post_meta($post_id, 'petition_goal', true);
         $need_no = ($goal_no - $sign_no);
-        echo json_encode(array('addsign'=>true, 'number' => $sign_no, 'need' => $need_no, 'sign'=>$sign, 'sign_users' => $sign_users));
+
+        $sendinblue = conikal_sendinblue_users_list($sendinblue_list, $user_id);
+
+        echo json_encode(array('addsign'=>true, 'number' => $sign_no, 'signature' => conikal_format_number('%!,0i', $sign_no), 'need' => conikal_format_number('%!,0i', $need_no), 'sendinblue' => array($sendinblue)));
 
         die();
     }
@@ -61,6 +65,7 @@ if( !function_exists('conikal_remove_from_signatures') ):
         check_ajax_referer('sign_ajax_nonce', 'security');
         $post_id = isset($_POST['post_id']) ? sanitize_text_field($_POST['post_id']) : '';
         $user_id = isset($_POST['user_id']) ? sanitize_text_field($_POST['user_id']) : '';
+        $sendinblue_list = get_post_meta($post_id, 'petition_sendinblue_list', true);
 
         $sign_key = 'petition_sign';
         $sign_users_key = 'petition_users';
@@ -79,7 +84,10 @@ if( !function_exists('conikal_remove_from_signatures') ):
         $sign_no = get_post_meta($post_id, $sign_key, true);
         $goal_no = get_post_meta($post_id, 'petition_goal', true);
         $need_no = ($goal_no - $sign_no);
-        echo json_encode(array('removesign'=>true, 'number' => $sign_no, 'need' => $need_no, 'sign'=>$sign,  'sign_users' => $sign_users));
+
+        $sendinblue = conikal_sendinblue_users_list($sendinblue_list, $user_id, 'remove');
+
+        echo json_encode(array('removesign'=>true, 'number' => $sign_no, 'signature' => conikal_format_number('%!,0i', $sign_no), 'need' => conikal_format_number('%!,0i', $need_no), 'sendinblue' => array($sendinblue)));
 
         die();
     }
@@ -100,6 +108,7 @@ if( !function_exists('conikal_add_to_signatures_plus') ):
         $sign_number = get_post_meta($post_id, $sign_key, true);
         $sign_users = get_post_meta($post_id, $sign_users_key, true);
         $arrUser = array('user_id' => $user_id, 'date' => current_time('mysql'), 'reason' => $reason, 'notice' => $notice);
+        $sendinblue_list = get_post_meta($post_id, 'petition_sendinblue_list', true);
     
         if($sign == '') {
             $sign = array();
@@ -120,6 +129,8 @@ if( !function_exists('conikal_add_to_signatures_plus') ):
             update_post_meta($post_id, $sign_key, $sign_number);
             update_post_meta($post_id, $sign_users_key, $sign_users);
         }
+
+        conikal_sendinblue_users_list($sendinblue_list, $user_id);
 
         return true;
 
@@ -225,6 +236,7 @@ if( !function_exists('conikal_load_signed_petitions') ):
                 $excerpt = conikal_get_excerpt_by_id($id);
                 $comments = wp_count_comments($id);
                 $comments_fomated = conikal_format_number('%!,0i', $comments->approved, true);
+                $view = conikal_format_number('%!,0i', (int) conikal_get_post_views($id), true);
                 $gallery = get_post_meta($id, 'petition_gallery', true);
                 $images = explode("~~~", $gallery);
                 $address = get_post_meta($id, 'petition_address', true);
@@ -278,6 +290,7 @@ if( !function_exists('conikal_load_signed_petitions') ):
                         'excerpt' => $excerpt,
                         'comments' => $comments->approved,
                         'comments_fomated' => $comments_fomated,
+                        'view' => $view,
                         'address' => $address,
                         'city' => $city,
                         'state' => $state,

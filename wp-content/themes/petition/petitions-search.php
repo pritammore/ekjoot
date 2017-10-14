@@ -95,8 +95,8 @@ if($petitions->have_posts()) {
                 'id' => $id, 
                 'link' => $link,
                 'title' => $title,
-                'category_name' => $category[0]->name,
-                'category_link' => get_category_link($category[0]->term_id),
+                'category_name' => ($category ? $category[0]->name : ''),
+                'category_link' => ($category ? get_category_link($category[0]->term_id) : ''),
                 'excerpt' => $excerpt,
                 'comments' => $comments->approved,
                 'comments_fomated' => $comments_fomated,
@@ -139,8 +139,10 @@ $query = new WP_Query($args);
 while($query->have_posts()) {
     $query->the_post();
     $page_id = get_the_ID();
-    $page_link = get_permalink($page_id) . '?q=' . $keyword;
+    $page_link = get_permalink($page_id);
+    $page_link = add_query_arg(array('q' => $keyword), $page_link);
 }
+
 wp_reset_postdata();
 wp_reset_query();
 

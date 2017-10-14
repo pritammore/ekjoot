@@ -1,13 +1,13 @@
 === Petition WP ===
 
-Author: Conical Hat | contact@conicalhat.net
+Author: Conikal | contact@conikal.com
 Tags: black, white, light, four-columns, responsive-layout, custom-colors, custom-header, custom-menu, featured-image-header, full-width-template, sticky-post, theme-options, translation-ready, threaded-comments
 High Resolution: Yes
 Widget Ready: Yes
 Compatible: Browsers IE11, Firefox, Safari, Opera, Chrome, Edge
-Compatible With: Facebook, Semantic UI
-Software Version:   WordPress 4.7.x, WordPress 4.6.1, WordPress 4.6, WordPress 4.5.x, WordPress 4.5.2, WordPress 4.5.1, WordPress 4.5, WordPress 4.4.2, WordPress 4.4.1, WordPress 4.4
-Files Included: PHP Files, HTML Files, CSS Files, JS Files
+Compatible With: Facebook, Google, Visual Composer, WooCommerce
+Software Version:    WordPress 4.8.x, WordPress 4.7.x, WordPress 4.6.x, WordPress 4.5.x, WordPress 4.4
+Files Included: PHP Files, HTML Files, CSS Files, JS Files, XML Files, JSON Files
 Columns: 2+
 Layout: Responsive
 
@@ -51,10 +51,15 @@ Petition WP is a WordPress premium petition theme with a modern, clean, intuitiv
 * Set homepage spotlight area
 * Add testimonials
 * Custom colors
+* Custom typography
+* Follow user & topics
+* Newsfeed Tab
+* Trending Tab
 * Useful Shortcodes
     * Container
     * Divider
     * Button
+    * Iconbox
     * Segment
     * Spaces
     * Parallax
@@ -64,6 +69,8 @@ Petition WP is a WordPress premium petition theme with a modern, clean, intuitiv
     * Testimonials
     * Recent Petition
     * Featured Petition
+    * Victory Recent Petition
+    * Victory Featured Petition
     * Recent blog post
     * Featured blog post
     * Category
@@ -74,6 +81,7 @@ Petition WP is a WordPress premium petition theme with a modern, clean, intuitiv
     * Petition WP Post Recently
     * Petition WP Post Featured
     * Petition WP Social Networks
+    * Petition WP Topic Cards
 * Custom Page Templates
     * Contact Page
     * Submit Petition

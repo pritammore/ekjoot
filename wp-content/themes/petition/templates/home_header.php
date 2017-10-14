@@ -10,9 +10,18 @@ $conikal_colors_settings = get_option('conikal_colors_settings');
 $conikal_home_settings = get_option('conikal_home_settings');
 $shadow_opacity = isset($conikal_home_settings['conikal_shadow_opacity_field']) ? $conikal_home_settings['conikal_shadow_opacity_field'] : '';
 $header_menu_color = isset($conikal_colors_settings['conikal_header_menu_color_field']) ? $conikal_colors_settings['conikal_header_menu_color_field'] : '';
+$home_menu_text_color = isset($conikal_colors_settings['conikal_home_menu_text_color_field']) ? $conikal_colors_settings['conikal_home_menu_text_color_field'] : '';
 $user_menu = isset($conikal_header_settings['conikal_user_menu_field']) ? $conikal_header_settings['conikal_user_menu_field'] : false;
 $submit_button = isset($conikal_header_settings['conikal_submit_button_field']) ? $conikal_header_settings['conikal_submit_button_field'] : false;
 $style_menu = isset($conikal_header_settings['conikal_style_header_menu_field']) ? $conikal_header_settings['conikal_style_header_menu_field'] : 'boxed';
+
+if ($home_menu_text_color != '#ffffff') {
+    $button_classes = 'primary button submit-petition-btn';
+} else if ($shadow_opacity >= 90 || $shadow_opacity == 0) {
+    $button_classes = 'inverted button';
+} else {
+    $button_classes = 'primary button submit-petition-btn';
+}
 ?>
 
 <div class="home-header">
@@ -36,7 +45,7 @@ $style_menu = isset($conikal_header_settings['conikal_style_header_menu_field'])
 
         <!-- menu link -->
         <div class="sixteen wide column computer only" style="padding: 0">
-            <div class="ui menu-home secondary inverted menu" style="margin: auto 0">
+            <div class="ui menu-home secondary menu home-menu" style="margin: auto 0">
                 <?php echo ($style_menu === 'boxed' ? '<div class="ui container">' : '') ?>
                     <div class="item" style="padding: 5px 0 0 0">
                         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" data-bjax>
@@ -44,7 +53,7 @@ $style_menu = isset($conikal_header_settings['conikal_style_header_menu_field'])
                         <?php
                         $inverted_logo = isset($conikal_general_settings['conikal_inverted_logo_field']) ? $conikal_general_settings['conikal_inverted_logo_field'] : '';
                         if($inverted_logo != '') {
-                            print '<img src="' . esc_url($inverted_logo) . '" alt="' . esc_attr(get_bloginfo('name')) . '" height="45"/>';
+                            print '<img src="' . esc_url($inverted_logo) . '" alt="' . esc_attr(get_bloginfo('name')) . '"/>';
                         } else {
                             print '<div class="ui inverted header">' . esc_html(get_bloginfo('name')) . '</div>';
                         }
@@ -54,7 +63,7 @@ $style_menu = isset($conikal_header_settings['conikal_style_header_menu_field'])
                         <?php
                         $logo = isset($conikal_general_settings['conikal_logo_field']) ? $conikal_general_settings['conikal_logo_field'] : '';
                         if($logo != '') {
-                            print '<img src="' . esc_url($logo) . '" alt="' . esc_attr(get_bloginfo('name')) . '" height="45"/>';
+                            print '<img src="' . esc_url($logo) . '" alt="' . esc_attr(get_bloginfo('name')) . '"/>';
                         } else {
                             print '<div class="ui header">' . esc_html(get_bloginfo('name')) . '</div>';
                         }
@@ -87,14 +96,14 @@ $style_menu = isset($conikal_header_settings['conikal_style_header_menu_field'])
                             wp_reset_query();
 
                                 if ($submit_button) { ?>
-                                    <div class="item">
-                                        <a href="<?php echo esc_url($page_link); ?>" class="ui labeled icon <?php echo ($header_menu_color != '#ffffff' || $shadow_opacity >= 90 || $shadow_opacity == 0 ? 'inverted ' : 'primary ') ?>button" id="add-petition-btn" data-bjax><i class="write icon"></i> <?php echo esc_html($page_title); ?></a>
-                                    </div>
+                                    <form action="<?php echo esc_url($page_link); ?>" class="item">
+                                        <button class="ui labeled icon <?php echo esc_attr($button_classes) ?>" id="add-petition-btn" data-bjax><i class="write icon"></i> <?php echo esc_html($page_title); ?></button>
+                                    </form>
                                 <?php } 
                             } else { 
                                 if ($submit_button) { ?>
                                     <div class="item">
-                                        <a href="#" class="ui labeled icon <?php echo ($header_menu_color != '#ffffff' || $shadow_opacity >= 90 || $shadow_opacity == 0 ? 'inverted ' : 'primary ') ?>button signin-btn" id="add-petition-btn"><i class="write icon"></i> <?php esc_html_e('Start a Petition', 'petition'); ?></a>
+                                        <button class="submit-signin-btn ui labeled icon <?php echo esc_attr($button_classes) ?>" id="add-petition-btn"><i class="write icon"></i> <?php esc_html_e('Start a Petition', 'petition'); ?></button>
                                     </div>
                                 <?php }
                             }
@@ -122,7 +131,7 @@ $style_menu = isset($conikal_header_settings['conikal_style_header_menu_field'])
                         <?php
                         $inverted_logo = isset($conikal_general_settings['conikal_inverted_logo_field']) ? $conikal_general_settings['conikal_inverted_logo_field'] : '';
                         if($inverted_logo != '') {
-                            print '<img src="' . esc_url($inverted_logo) . '" alt="' . esc_attr(get_bloginfo('name')) . '" height="40"/>';
+                            print '<img src="' . esc_url($inverted_logo) . '" alt="' . esc_attr(get_bloginfo('name')) . '"/>';
                         } else {
                             print '<div class="ui inverted header" style="padding-top: 12px">' . esc_html(get_bloginfo('name')) . '</div>';
                         }
@@ -132,7 +141,7 @@ $style_menu = isset($conikal_header_settings['conikal_style_header_menu_field'])
                         <?php
                         $logo = isset($conikal_general_settings['conikal_logo_field']) ? $conikal_general_settings['conikal_logo_field'] : '';
                         if($logo != '') {
-                            print '<img src="' . esc_url($logo) . '" alt="' . esc_attr(get_bloginfo('name')) . '" height="40"/>';
+                            print '<img src="' . esc_url($logo) . '" alt="' . esc_attr(get_bloginfo('name')) . '"/>';
                         } else {
                             print '<div class="ui header" style="padding-top: 10px">' . esc_html(get_bloginfo('name')) . '</div>';
                         }

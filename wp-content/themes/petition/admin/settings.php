@@ -59,7 +59,11 @@ if( !function_exists('conikal_admin_general_settings') ):
     function conikal_admin_general_settings() {
         add_settings_section( 'conikal_generalSettings_section', __( 'General Settings', 'petition'), 'conikal_general_settings_section_callback', 'conikal_general_settings' );
         add_settings_field( 'conikal_logo_field', __( 'Logo', 'petition'), 'conikal_logo_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
-        add_settings_field( 'conikal_inverted_logo_field', __( 'Logo inverted', 'petition'), 'conikal_inverted_logo_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
+        add_settings_field( 'conikal_inverted_logo_field', __( 'Logo inverse', 'petition'), 'conikal_inverted_logo_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
+        add_settings_field( 'conikal_victory_icon_field', __( 'Victory icon (class name or URL)', 'petition'), 'conikal_victory_icon_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
+        add_settings_field( 'conikal_victory_inverse_icon_field', __( 'Victory inverse icon (class name or URL)', 'petition'), 'conikal_victory_inverse_icon_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
+        add_settings_field( 'conikal_sign_button_icon_field', __( 'Sign button icon (class name or URL)', 'petition'), 'conikal_sign_button_icon_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
+        add_settings_field( 'conikal_supporter_icon_field', __( 'Supporter icon (class name or URL)', 'petition'), 'conikal_supporter_icon_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
         add_settings_field( 'conikal_country_field', __( 'Country', 'petition'), 'conikal_country_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
         add_settings_field( 'conikal_minimum_signature_field', __( 'Minimum of signature to display', 'petition'), 'conikal_minimum_signature_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
         add_settings_field( 'conikal_number_sign_change_field', __( 'Number signature to change goal', 'petition'), 'conikal_number_sign_change_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
@@ -67,8 +71,11 @@ if( !function_exists('conikal_admin_general_settings') ):
         add_settings_field( 'conikal_smooth_scroll_field', __( 'Smooth scroll', 'petition'), 'conikal_smooth_scroll_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
         add_settings_field( 'conikal_ajax_pages_field', __( 'Ajax pages', 'petition'), 'conikal_ajax_pages_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
         add_settings_field( 'conikal_type_ajax_preloader_field', __( 'Type of ajax preloader', 'petition'), 'conikal_type_ajax_preloader_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
+        add_settings_field( 'conikal_format_separate_fullname_field', __( 'Format separate fullname', 'petition'), 'conikal_format_separate_fullname_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
+        add_settings_field( 'conikal_admin_submit_petition_only_field', __( 'Admin submit petition only', 'petition'), 'conikal_admin_submit_petition_only_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
         add_settings_field( 'conikal_review_field', __( 'Front-end petition publish without admin approval', 'petition'), 'conikal_review_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
         add_settings_field( 'conikal_review_decision_field', __( 'Decision Maker publish without admin approval', 'petition'), 'conikal_review_decision_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
+        add_settings_field( 'conikal_review_contribute_field', __( 'Contribute & donation publish without admin approval', 'petition'), 'conikal_review_contribute_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
         add_settings_field( 'conikal_google_analytics_field', __( 'Google Analytics Code', 'petition'), 'conikal_google_analytics_field_render', 'conikal_general_settings', 'conikal_generalSettings_section' );
     }
 endif;
@@ -119,15 +126,25 @@ endif;
 if( !function_exists('conikal_admin_appearance') ): 
     function conikal_admin_appearance() {
         add_settings_section( 'conikal_appearance_section', __( 'Appearance', 'petition'), 'conikal_appearance_section_callback', 'conikal_appearance_settings' );
+        add_settings_field( 'conikal_container_width_field', __( 'Container width', 'petition'), 'conikal_container_width_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
         add_settings_field( 'conikal_sidebar_field', __( 'Sidebar position', 'petition'), 'conikal_sidebar_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
         add_settings_field( 'conikal_ajax_comment_field', __( 'Use ajax comments', 'petition'), 'conikal_ajax_comment_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
+        add_settings_field( 'conikal_action_after_sign_field', __( 'Action after sign petition', 'petition'), 'conikal_action_after_sign_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
+        add_settings_field( 'conikal_default_accordion_sign_field', __( 'Default accourdion after sign', 'petition'), 'conikal_default_accordion_sign_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
+        add_settings_field( 'conikal_disable_unsign_field', __( 'Disable unsign', 'petition'), 'conikal_disable_unsign_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
+        add_settings_field( 'conikal_view_counter_field', __( 'Show view counter', 'petition'), 'conikal_view_counter_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
         add_settings_field( 'conikal_related_field', __( 'Show related articles on blog post', 'petition'), 'conikal_related_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
         add_settings_field( 'conikal_similar_field', __( 'Show similar petitions on petition page', 'petition'), 'conikal_similar_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
+        add_settings_field( 'conikal_similar_base_field', __( 'Show similar petitions base on', 'petition'), 'conikal_similar_base_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
+        add_settings_field( 'conikal_similar_related_per_page_field', __( 'Similar petitions & related posts per page', 'petition'), 'conikal_similar_related_per_page_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
         add_settings_field( 'conikal_petitions_per_page_field', __( 'Number of petitions per page', 'petition'), 'conikal_petitions_per_page_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
         add_settings_field( 'conikal_updates_per_page_field', __( 'Number of updates per page', 'petition'), 'conikal_updates_per_page_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
         add_settings_field( 'conikal_comments_per_page_field', __( 'Number of comments per page', 'petition'), 'conikal_comments_per_page_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
         add_settings_field( 'conikal_reply_per_comment_field', __( 'Number of reply per comment', 'petition'), 'conikal_reply_per_comment_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
+        add_settings_field( 'conikal_suppporter_per_page_field', __( 'Number of supporter per page', 'petition'), 'conikal_supporter_per_page_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
         add_settings_field( 'conikal_breadcrumbs_field', __( 'Show breadcrumbs on pages', 'petition'), 'conikal_breadcrumbs_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
+        add_settings_field( 'conikal_show_supporters_section_field', __( 'Show Supporters section', 'petition'), 'conikal_show_supporters_section_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
+        add_settings_field( 'conikal_show_donors_section_field', __( 'Show Donors section', 'petition'), 'conikal_show_donors_section_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
         add_settings_field( 'conikal_copyright_field', __( 'Copyright text', 'petition'), 'conikal_copyright_field_render', 'conikal_appearance_settings', 'conikal_appearance_section' );
     }
 endif;
@@ -144,10 +161,12 @@ if( !function_exists('conikal_admin_colors') ):
         add_settings_field( 'conikal_opacity_hero_page_color_field', __( 'Opacity hero page color', 'petition'), 'conikal_opacity_hero_page_color_field_render', 'conikal_colors_settings', 'conikal_colors_section' );
         add_settings_field( 'conikal_header_menu_color_field', __( 'Header menu', 'petition'), 'conikal_header_menu_color_field_render', 'conikal_colors_settings', 'conikal_colors_section' );
         add_settings_field( 'conikal_header_menu_text_color_field', __( 'Header menu text color', 'petition'), 'conikal_header_menu_text_color_field_render', 'conikal_colors_settings', 'conikal_colors_section' );
+        add_settings_field( 'conikal_home_menu_text_color_field', __( 'Home menu text color', 'petition'), 'conikal_home_menu_text_color_field_render', 'conikal_colors_settings', 'conikal_colors_section' );
         add_settings_field( 'conikal_victory_color_field', __( 'Text and Progress Victory color', 'petition'), 'conikal_victory_color_field_render', 'conikal_colors_settings', 'conikal_colors_section' );
         add_settings_field( 'conikal_signup_button_color_field', __( 'Sign up button color', 'petition'), 'conikal_signup_button_color_field_render', 'conikal_colors_settings', 'conikal_colors_section' );
         add_settings_field( 'conikal_victory_label_color_field', __( 'Victory label color', 'petition'), 'conikal_victory_label_color_field_render', 'conikal_colors_settings', 'conikal_colors_section' );
         add_settings_field( 'conikal_sign_petition_button_color_field', __( 'Sign petition button color', 'petition'), 'conikal_sign_petition_button_color_field_render', 'conikal_colors_settings', 'conikal_colors_section' );
+        add_settings_field( 'conikal_submit_petition_button_color_field', __( 'Submit petition button color', 'petition'), 'conikal_submit_petition_button_color_field_render', 'conikal_colors_settings', 'conikal_colors_section' );
         add_settings_field( 'conikal_mobile_menu_bg_color_field', __( 'Mobile menu background color', 'petition'), 'conikal_mobile_menu_bg_color_field_render', 'conikal_colors_settings', 'conikal_colors_section' );
         add_settings_field( 'conikal_mobile_menu_text_link_color_field', __( 'Mobile menu text link color', 'petition'), 'conikal_mobile_menu_text_link_color_field_render', 'conikal_colors_settings', 'conikal_colors_section' );
         add_settings_field( 'conikal_post_overlay_primary_color_field', __( 'Posts overlay primary color', 'petition'), 'conikal_post_overlay_primary_color_field_render', 'conikal_colors_settings', 'conikal_colors_section' );
@@ -244,6 +263,10 @@ if( !function_exists('conikal_admin_auth') ):
         add_settings_field( 'conikal_google_id_field', __( 'Google Client ID', 'petition'), 'conikal_google_id_field_render', 'conikal_auth_settings', 'conikal_auth_section' );
         add_settings_field( 'conikal_google_secret_field', __( 'Google Client Secret', 'petition'), 'conikal_google_secret_field_render', 'conikal_auth_settings', 'conikal_auth_section' );
         add_settings_field( 'conikal_gmaps_key_field', __( 'Google Map API key', 'petition'), 'conikal_gmaps_key_field_render', 'conikal_auth_settings', 'conikal_auth_section' );
+        add_settings_field( 'conikal_sendinblue_list_field', __( 'SendinBlue Save List', 'petition'), 'conikal_sendinblue_list_field_render', 'conikal_auth_settings', 'conikal_auth_section' );
+        add_settings_field( 'conikal_sendinblue_key_field', __( 'SendinBlue API key v2', 'petition'), 'conikal_sendinblue_key_field_render', 'conikal_auth_settings', 'conikal_auth_section' );
+        add_settings_field( 'conikal_sendinblue_folder_id_field', __( 'SendinBlue List Folder ID', 'petition'), 'conikal_sendinblue_folder_id_field_render', 'conikal_auth_settings', 'conikal_auth_section' );
+        add_settings_field( 'conikal_sendinblue_name_field', __( 'SendinBlue name fields', 'petition'), 'conikal_sendinblue_name_field_render', 'conikal_auth_settings', 'conikal_auth_section' );
     }
 endif;
 
@@ -278,6 +301,71 @@ if( !function_exists('conikal_inverted_logo_field_render') ):
             </div>
             <div class="col-sm-2">
                 <button id="invertedLogoImageBtn" class="btn btn-primary" style="margin-left: 1rem; padding: 0.4rem 1rem"><?php esc_html_e('Browse...', 'petition') ?></button>
+            </div>
+        </div>
+        <?php
+    }
+endif;
+
+if( !function_exists('conikal_victory_icon_field_render') ): 
+    function conikal_victory_icon_field_render() { 
+        $options = get_option( 'conikal_general_settings' );
+        ?>
+        <div class="row no-gutters">
+            <div class="col-sm-9" style="padding-left: 0px;">
+                <input class="form-control" id="victoryIconImage" type="text" size="40" name="conikal_general_settings[conikal_victory_icon_field]" value="<?php if(isset($options['conikal_victory_icon_field'])) { echo esc_attr($options['conikal_victory_icon_field']); } ?>" />
+            </div>
+            <div class="col-sm-2">
+                <button id="victoryIconBtn" class="btn btn-primary" style="margin-left: 1rem; padding: 0.4rem 1rem"><?php esc_html_e('Browse...', 'petition') ?></button>
+            </div>
+        </div>
+        <?php
+    }
+endif;
+
+if( !function_exists('conikal_victory_inverse_icon_field_render') ): 
+    function conikal_victory_inverse_icon_field_render() { 
+        $options = get_option( 'conikal_general_settings' );
+        ?>
+        <div class="row no-gutters">
+            <div class="col-sm-9" style="padding-left: 0px;">
+                <input class="form-control" id="victoryInverseIconImage" type="text" size="40" name="conikal_general_settings[conikal_victory_inverse_icon_field]" value="<?php if(isset($options['conikal_victory_inverse_icon_field'])) { echo esc_attr($options['conikal_victory_inverse_icon_field']); } ?>" />
+            </div>
+            <div class="col-sm-2">
+                <button id="victoryInverseIconBtn" class="btn btn-primary" style="margin-left: 1rem; padding: 0.4rem 1rem"><?php esc_html_e('Browse...', 'petition') ?></button>
+            </div>
+        </div>
+        <?php
+    }
+endif;
+
+
+if( !function_exists('conikal_sign_button_icon_field_render') ): 
+    function conikal_sign_button_icon_field_render() { 
+        $options = get_option( 'conikal_general_settings' );
+        ?>
+        <div class="row no-gutters">
+            <div class="col-sm-9" style="padding-left: 0px;">
+                <input class="form-control" id="signIconImage" type="text" size="40" name="conikal_general_settings[conikal_sign_button_icon_field]" value="<?php if(isset($options['conikal_sign_button_icon_field'])) { echo esc_attr($options['conikal_sign_button_icon_field']); } ?>" />
+            </div>
+            <div class="col-sm-2">
+                <button id="signIconBtn" class="btn btn-primary" style="margin-left: 1rem; padding: 0.4rem 1rem"><?php esc_html_e('Browse...', 'petition') ?></button>
+            </div>
+        </div>
+        <?php
+    }
+endif;
+
+if( !function_exists('conikal_supporter_icon_field_render') ): 
+    function conikal_supporter_icon_field_render() { 
+        $options = get_option( 'conikal_general_settings' );
+        ?>
+        <div class="row no-gutters">
+            <div class="col-sm-9" style="padding-left: 0px;">
+                <input class="form-control" id="supporterIconImage" type="text" size="40" name="conikal_general_settings[conikal_supporter_icon_field]" value="<?php if(isset($options['conikal_supporter_icon_field'])) { echo esc_attr($options['conikal_supporter_icon_field']); } ?>" />
+            </div>
+            <div class="col-sm-2">
+                <button id="supporterIconBtn" class="btn btn-primary" style="margin-left: 1rem; padding: 0.4rem 1rem"><?php esc_html_e('Browse...', 'petition') ?></button>
             </div>
         </div>
         <?php
@@ -396,6 +484,39 @@ if( !function_exists('conikal_type_ajax_preloader_field_render') ):
     }
 endif;
 
+if( !function_exists('conikal_format_separate_fullname_field_render') ): 
+    function conikal_format_separate_fullname_field_render() {
+        $options = get_option( 'conikal_general_settings' );
+        $formats = array(
+            'first_s_middle_last' => __('Fistname | Middle Lastname', 'petition'),
+            'first_middle_s_last' => __('Fistname Middle | Lastname', 'petition'),
+            'last_s_middle_first' => __('Lastname | Middle Fistname', 'petition'),
+            'last_middle_s_first' => __('Lastname Middle | Fistname', 'petition') );
+
+        $format_fullname_select = '<select class="form-control" id="conikal_general_settings[conikal_format_separate_fullname_field]" name="conikal_general_settings[conikal_format_separate_fullname_field]">';
+        foreach($formats as $type => $format) {
+            $format_fullname_select .= '<option value="' . esc_attr($type) . '"';
+            if(isset($options['conikal_format_separate_fullname_field']) && $options['conikal_format_separate_fullname_field'] == $type) {
+                $format_fullname_select .= 'selected="selected"';
+            }
+            $format_fullname_select .= '>' . esc_html($format) . '</option>';
+        }
+
+        $format_fullname_select .= '</select>';
+
+        print $format_fullname_select;
+    }
+endif;
+
+if( !function_exists('conikal_admin_submit_petition_only_field_render') ): 
+    function conikal_admin_submit_petition_only_field_render() {
+        $options = get_option( 'conikal_general_settings' );
+        ?>
+        <input type="checkbox" name="conikal_general_settings[conikal_admin_submit_petition_only_field]" <?php if(isset($options['conikal_admin_submit_petition_only_field'])) { checked( $options['conikal_admin_submit_petition_only_field'], 1 ); } ?> value="1">
+        <?php
+    }
+endif;
+
 if( !function_exists('conikal_review_field_render') ): 
     function conikal_review_field_render() {
         $options = get_option( 'conikal_general_settings' );
@@ -410,6 +531,15 @@ if( !function_exists('conikal_review_decision_field_render') ):
         $options = get_option( 'conikal_general_settings' );
         ?>
         <input type="checkbox" name="conikal_general_settings[conikal_review_decision_field]" <?php if(isset($options['conikal_review_decision_field'])) { checked( $options['conikal_review_decision_field'], 1 ); } ?> value="1">
+        <?php
+    }
+endif;
+
+if( !function_exists('conikal_review_contribute_field_render') ): 
+    function conikal_review_contribute_field_render() {
+        $options = get_option( 'conikal_general_settings' );
+        ?>
+        <input type="checkbox" name="conikal_general_settings[conikal_review_contribute_field]" <?php if(isset($options['conikal_review_contribute_field'])) { checked( $options['conikal_review_contribute_field'], 1 ); } ?> value="1">
         <?php
     }
 endif;
@@ -713,7 +843,7 @@ if( !function_exists('conikal_user_menu_name_field_render') ):
     function conikal_user_menu_name_field_render() {
         $options = get_option( 'conikal_header_settings' );
 
-        $types_name = array('none' => 'None', 'firstname' => 'First name', 'lastname' => 'Last name', 'fullname' => 'Full name', 'nickname' => 'Nick name');
+        $types_name = array('none' => __('None', 'petition'), 'firstname' => __('First name', 'petition'), 'lastname' => __('Last name', 'petition'), 'fullname' => __('Full name', 'petition'), 'nickname' => __('Nick name', 'petition'));
         $type_select = '<select class="form-control" id="conikal_header_settings[conikal_user_menu_name_field]" name="conikal_header_settings[conikal_user_menu_name_field]">';
 
         foreach($types_name as $type => $name) {
@@ -733,7 +863,7 @@ endif;
 if( !function_exists('conikal_style_header_menu_field_render') ): 
     function conikal_style_header_menu_field_render() {
         $options = get_option( 'conikal_header_settings' );
-        $types_name = array('boxed' => 'Boxed', 'wide' => 'Wide');
+        $types_name = array('boxed' => __('Boxed', 'petition'), 'wide' => __('Wide', 'petition'));
         $type_select = '<select class="form-control" id="conikal_header_settings[conikal_style_header_menu_field]" name="conikal_header_settings[conikal_style_header_menu_field]">';
 
         foreach($types_name as $type => $name) {
@@ -754,7 +884,7 @@ endif;
 if( !function_exists('conikal_type_header_menu_field_render') ): 
     function conikal_type_header_menu_field_render() {
         $options = get_option( 'conikal_header_settings' );
-        $types_name = array('none' => 'None', 'fixed' => 'Fixed', 'scroll' => 'Scroll');
+        $types_name = array('none' => __('None', 'petition'), 'fixed' => __('Fixed', 'petition'), 'scroll' => __('Scroll', 'petition'));
         $type_select = '<select class="form-control" id="conikal_header_settings[conikal_type_header_menu_field]" name="conikal_header_settings[conikal_type_header_menu_field]">';
 
         foreach($types_name as $type => $name) {
@@ -775,7 +905,7 @@ endif;
 if( !function_exists('conikal_mobile_menu_animation_field_render') ): 
     function conikal_mobile_menu_animation_field_render() { 
         $options = get_option( 'conikal_header_settings' );
-        $animations = array('overlay' => 'Overlay', 'push' => 'Push', 'scale down' => 'Scale Down');
+        $animations = array('overlay' => __('Overlay', 'petition'), 'push' => __('Push', 'petition'), 'scale down' => __('Scale Down', 'petition'));
         $type_select = '<select class="form-control" id="conikal_header_settings[conikal_mobile_menu_animation_field]" name="conikal_header_settings[conikal_mobile_menu_animation_field]">';
 
         foreach($animations as $type => $name) {
@@ -837,6 +967,15 @@ endif;
 * APPEARENCE SECTION RENDER
 ************************************/
 
+if( !function_exists('conikal_container_width_field_render') ): 
+    function conikal_container_width_field_render() { 
+        $options = get_option( 'conikal_appearance_settings' );
+        ?>
+        <input class="form-control" type="number" size="5" name="conikal_appearance_settings[conikal_container_width_field]" value="<?php if(isset($options['conikal_container_width_field'])) { echo esc_attr($options['conikal_container_width_field']); } ?>" />
+        <?php
+    }
+endif;
+
 if( !function_exists('conikal_sidebar_field_render') ): 
     function conikal_sidebar_field_render() { 
         $options = get_option( 'conikal_appearance_settings' );
@@ -879,6 +1018,68 @@ if( !function_exists('conikal_ajax_comment_field_render') ):
     }
 endif;
 
+if( !function_exists('conikal_action_after_sign_field_render') ): 
+    function conikal_action_after_sign_field_render() {
+        $options = get_option( 'conikal_appearance_settings' );
+        $values = array('none' => __('None action', 'petition'), 'refresh' => __('Refresh current page', 'petition'), 'redirect' => __('Redirect to success page', 'petition'), 'modal' => __('Show modal', 'petition')); ?>
+
+        <?php 
+        $value_select = '<select class="form-control" id="conikal_appearance_settings[conikal_action_after_sign_field]" name="conikal_appearance_settings[conikal_action_after_sign_field]">';
+
+        foreach($values as $key => $value) {
+            $value_select .= '<option value="' . esc_attr($key) . '"';
+            if(isset($options['conikal_action_after_sign_field']) && $options['conikal_action_after_sign_field'] == $key) {
+                $value_select .= 'selected="selected"';
+            }
+            $value_select .= '>' . esc_html($value) . '</option>';
+        }
+
+        $value_select .= '</select>';
+
+        print $value_select;
+    }
+endif;
+
+if( !function_exists('conikal_default_accordion_sign_field_render') ): 
+    function conikal_default_accordion_sign_field_render() {
+        $options = get_option( 'conikal_appearance_settings' );
+        $values = array('share' => __('Share on Facebook', 'petition'), 'contribute' => __('Contribute & Donation', 'petition')); ?>
+
+        <?php 
+        $value_select = '<select class="form-control" id="conikal_appearance_settings[conikal_default_accordion_sign_field]" name="conikal_appearance_settings[conikal_default_accordion_sign_field]">';
+
+        foreach($values as $key => $value) {
+            $value_select .= '<option value="' . esc_attr($key) . '"';
+            if(isset($options['conikal_default_accordion_sign_field']) && $options['conikal_default_accordion_sign_field'] == $key) {
+                $value_select .= 'selected="selected"';
+            }
+            $value_select .= '>' . esc_html($value) . '</option>';
+        }
+
+        $value_select .= '</select>';
+
+        print $value_select;
+    }
+endif;
+
+if( !function_exists('conikal_disable_unsign_field_render') ): 
+    function conikal_disable_unsign_field_render() { 
+        $options = get_option( 'conikal_appearance_settings' );
+        ?>
+        <input type="checkbox" name="conikal_appearance_settings[conikal_disable_unsign_field]" <?php if(isset($options['conikal_disable_unsign_field'])) { checked( $options['conikal_disable_unsign_field'], 1 ); } ?> value="1">
+        <?php
+    }
+endif;
+
+if( !function_exists('conikal_view_counter_field_render') ): 
+    function conikal_view_counter_field_render() { 
+        $options = get_option( 'conikal_appearance_settings' );
+        ?>
+        <input type="checkbox" name="conikal_appearance_settings[conikal_view_counter_field]" <?php if(isset($options['conikal_view_counter_field'])) { checked( $options['conikal_view_counter_field'], 1 ); } ?> value="1">
+        <?php
+    }
+endif;
+
 if( !function_exists('conikal_related_field_render') ): 
     function conikal_related_field_render() { 
         $options = get_option( 'conikal_appearance_settings' );
@@ -893,6 +1094,37 @@ if( !function_exists('conikal_similar_field_render') ):
         $options = get_option( 'conikal_appearance_settings' );
         ?>
         <input type="checkbox" name="conikal_appearance_settings[conikal_similar_field]" <?php if(isset($options['conikal_similar_field'])) { checked( $options['conikal_similar_field'], 1 ); } ?> value="1">
+        <?php
+    }
+endif;
+
+if( !function_exists('conikal_similar_base_field_render') ): 
+    function conikal_similar_base_field_render() {
+        $options = get_option( 'conikal_appearance_settings' );
+        $values = array('both' => __('Both Category & Topics', 'petition'), 'category' => __('Base on Category', 'petition'), 'topics' => __('Base on Topics', 'petition')); ?>
+
+        <?php 
+        $value_select = '<select class="form-control" id="conikal_appearance_settings[conikal_similar_base_field]" name="conikal_appearance_settings[conikal_similar_base_field]">';
+
+        foreach($values as $key => $value) {
+            $value_select .= '<option value="' . esc_attr($key) . '"';
+            if(isset($options['conikal_similar_base_field']) && $options['conikal_similar_base_field'] == $key) {
+                $value_select .= 'selected="selected"';
+            }
+            $value_select .= '>' . esc_html($value) . '</option>';
+        }
+
+        $value_select .= '</select>';
+
+        print $value_select;
+    }
+endif;
+
+if( !function_exists('conikal_similar_related_per_page_field_render') ): 
+    function conikal_similar_related_per_page_field_render() { 
+        $options = get_option( 'conikal_appearance_settings' );
+        ?>
+        <input class="form-control" type="number" size="5" name="conikal_appearance_settings[conikal_similar_related_per_page_field]" value="<?php if(isset($options['conikal_similar_related_per_page_field'])) { echo esc_attr($options['conikal_similar_related_per_page_field']); } ?>" />
         <?php
     }
 endif;
@@ -934,11 +1166,38 @@ if( !function_exists('conikal_reply_per_comment_field_render') ):
     }
 endif;
 
+if( !function_exists('conikal_supporter_per_page_field_render') ): 
+    function conikal_supporter_per_page_field_render() { 
+        $options = get_option( 'conikal_appearance_settings' );
+        ?>
+        <input class="form-control" type="number" size="5" name="conikal_appearance_settings[conikal_supporter_per_page_field]" value="<?php if(isset($options['conikal_supporter_per_page_field'])) { echo esc_attr($options['conikal_supporter_per_page_field']); } ?>" />
+        <?php
+    }
+endif;
+
 if( !function_exists('conikal_breadcrumbs_field_render') ): 
     function conikal_breadcrumbs_field_render() { 
         $options = get_option( 'conikal_appearance_settings' );
         ?>
         <input type="checkbox" name="conikal_appearance_settings[conikal_breadcrumbs_field]" <?php if(isset($options['conikal_breadcrumbs_field'])) { checked( $options['conikal_breadcrumbs_field'], 1 ); } ?> value="1">
+        <?php
+    }
+endif;
+
+if( !function_exists('conikal_show_supporters_section_field_render') ): 
+    function conikal_show_supporters_section_field_render() { 
+        $options = get_option( 'conikal_appearance_settings' );
+        ?>
+        <input type="checkbox" name="conikal_appearance_settings[conikal_show_supporters_section_field]" <?php if(isset($options['conikal_show_supporters_section_field'])) { checked( $options['conikal_show_supporters_section_field'], 1 ); } ?> value="1">
+        <?php
+    }
+endif;
+
+if( !function_exists('conikal_show_donors_section_field_render') ): 
+    function conikal_show_donors_section_field_render() { 
+        $options = get_option( 'conikal_appearance_settings' );
+        ?>
+        <input type="checkbox" name="conikal_appearance_settings[conikal_show_donors_section_field]" <?php if(isset($options['conikal_show_donors_section_field'])) { checked( $options['conikal_show_donors_section_field'], 1 ); } ?> value="1">
         <?php
     }
 endif;
@@ -1011,13 +1270,61 @@ if( !function_exists('conikal_google_secret_field_render') ):
     }
 endif;
 
-
 if( !function_exists('conikal_gmaps_key_field_render') ): 
     function conikal_gmaps_key_field_render() {
         $options = get_option( 'conikal_auth_settings' );
         ?>
         <input class="form-control" type="text" size="40" name="conikal_auth_settings[conikal_gmaps_key_field]" value="<?php if(isset($options['conikal_gmaps_key_field'])) { echo esc_attr($options['conikal_gmaps_key_field']); } ?>" />
         <p class="help">The Google Maps JavaScript API v3 does not require an API key to function correctly. However, we strongly encourage you to load the Maps API using an APIs Console key. You can get it from <a href="https://developers.google.com/maps/documentation/javascript/tutorial#api_key" target="_blank">here</a>.</p>
+        <?php
+    }
+endif;
+
+if( !function_exists('conikal_sendinblue_list_field_render') ): 
+    function conikal_sendinblue_list_field_render() { 
+        $options = get_option( 'conikal_auth_settings' );
+        ?>
+        <input type="checkbox" name="conikal_auth_settings[conikal_sendinblue_list_field]" <?php if(isset($options['conikal_sendinblue_list_field'])) { checked( $options['conikal_sendinblue_list_field'], 1 ); } ?> value="1">
+        <?php
+    }
+endif;
+
+if( !function_exists('conikal_sendinblue_key_field_render') ): 
+    function conikal_sendinblue_key_field_render() {
+        $options = get_option( 'conikal_auth_settings' );
+        ?>
+        <input class="form-control" type="text" size="40" name="conikal_auth_settings[conikal_sendinblue_key_field]" value="<?php if(isset($options['conikal_sendinblue_key_field'])) { echo esc_attr($options['conikal_sendinblue_key_field']); } ?>" />
+        <?php
+    }
+endif;
+
+if( !function_exists('conikal_sendinblue_folder_id_field_render') ): 
+    function conikal_sendinblue_folder_id_field_render() {
+        $options = get_option( 'conikal_auth_settings' );
+        ?>
+        <input class="form-control" type="number" size="40" name="conikal_auth_settings[conikal_sendinblue_folder_id_field]" value="<?php if(isset($options['conikal_sendinblue_folder_id_field'])) { echo esc_attr($options['conikal_sendinblue_folder_id_field']); } ?>" />
+        <?php
+    }
+endif;
+
+if( !function_exists('conikal_sendinblue_name_field_render') ): 
+    function conikal_sendinblue_name_field_render() {
+        $options = get_option( 'conikal_auth_settings' );
+        ?>
+        <div class="row no-gutters">
+            <div class="col-sm-5">
+                <div class="input-group">
+                <div class="input-group-addon"><?php _e('NAME', 'petition') ?></div>
+                <input class="form-control" type="text" name="conikal_auth_settings[conikal_sendinblue_name_field]" value="<?php if(isset($options['conikal_sendinblue_name_field'])) { echo esc_attr($options['conikal_sendinblue_name_field']); } ?>" />
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="input-group">
+                <div class="input-group-addon"><?php _e('FIRSTNAME', 'petition') ?></div>
+                <input class="form-control" type="text" name="conikal_auth_settings[conikal_sendinblue_firstname_field]" value="<?php if(isset($options['conikal_sendinblue_firstname_field'])) { echo esc_attr($options['conikal_sendinblue_firstname_field']); } ?>" />
+                </div>
+            </div>
+        </div>
         <?php
     }
 endif;
@@ -1099,6 +1406,14 @@ if( !function_exists('conikal_header_menu_text_color_field_render') ):
         <?php
     }
 endif;
+if( !function_exists('conikal_home_menu_text_color_field_render') ): 
+    function conikal_home_menu_text_color_field_render() { 
+        $options = get_option( 'conikal_colors_settings' );
+        ?>
+        <input type="text" class="color-field" name="conikal_colors_settings[conikal_home_menu_text_color_field]" value="<?php if(isset($options['conikal_home_menu_text_color_field'])) echo esc_attr($options['conikal_home_menu_text_color_field']); ?>">
+        <?php
+    }
+endif;
 if( !function_exists('conikal_victory_color_field_render') ): 
     function conikal_victory_color_field_render() { 
         $options = get_option( 'conikal_colors_settings' );
@@ -1128,6 +1443,14 @@ if( !function_exists('conikal_sign_petition_button_color_field_render') ):
         $options = get_option( 'conikal_colors_settings' );
         ?>
         <input type="text" class="color-field" name="conikal_colors_settings[conikal_sign_petition_button_color_field]" value="<?php if(isset($options['conikal_sign_petition_button_color_field'])) echo esc_attr($options['conikal_sign_petition_button_color_field']); ?>">
+        <?php
+    }
+endif;
+if( !function_exists('conikal_submit_petition_button_color_field_render') ): 
+    function conikal_submit_petition_button_color_field_render() { 
+        $options = get_option( 'conikal_colors_settings' );
+        ?>
+        <input type="text" class="color-field" name="conikal_colors_settings[conikal_submit_petition_button_color_field]" value="<?php if(isset($options['conikal_submit_petition_button_color_field'])) echo esc_attr($options['conikal_submit_petition_button_color_field']); ?>">
         <?php
     }
 endif;
@@ -1206,7 +1529,7 @@ if( !function_exists('conikal_body_font_field_render') ):
     function conikal_body_font_field_render() {
         $google_fonts = get_google_fonts();
         $options = get_option( 'conikal_typography_settings' );
-        $weight = array('300', '400', '500', '600', '700');
+        $weight = array('300', '400', '500', '600', '700', '800', '900');
 
         $fonts_select = '<div class="row no-gutters"><div class="col-sm-4">';
         $fonts_select .= '<select id="conikal_typography_settings[conikal_typography_body_font_field]" name="conikal_typography_settings[conikal_typography_body_font_field]" class="google-fonts">';
@@ -1254,7 +1577,7 @@ if( !function_exists('conikal_home_heading_font_field_render') ):
     function conikal_home_heading_font_field_render() {
         $google_fonts = get_google_fonts();
         $options = get_option( 'conikal_typography_settings' );
-        $weight = array('300', '400', '500', '600', '700');
+        $weight = array('300', '400', '500', '600', '700', '800', '900');
 
         $fonts_select = '<div class="row no-gutters"><div class="col-sm-4">';
         $fonts_select .= '<select id="conikal_typography_settings[conikal_typography_home_heading_font_field]" name="conikal_typography_settings[conikal_typography_home_heading_font_field]" class="google-fonts">';
@@ -1302,9 +1625,9 @@ if( !function_exists('conikal_home_subheading_font_field_render') ):
     function conikal_home_subheading_font_field_render() {
         $google_fonts = get_google_fonts();
         $options = get_option( 'conikal_typography_settings' );
-        $weight = array('300', '400', '500', '600', '700');
+        $weight = array('300', '400', '500', '600', '700', '800', '900');
 
-       $fonts_select = '<div class="row no-gutters"><div class="col-sm-4">';
+        $fonts_select = '<div class="row no-gutters"><div class="col-sm-4">';
         $fonts_select .= '<select id="conikal_typography_settings[conikal_typography_home_subheading_font_field]" name="conikal_typography_settings[conikal_typography_home_subheading_font_field]" class="google-fonts">';
         foreach ($google_fonts->items as $font) {
             $fonts_select .= '<option value="' . esc_html($font->family . ',' . $font->category) . '" ';
@@ -1350,7 +1673,7 @@ if( !function_exists('conikal_heading_font_field_render') ):
     function conikal_heading_font_field_render() {
         $google_fonts = get_google_fonts();
         $options = get_option( 'conikal_typography_settings' );
-        $weight = array('300', '400', '500', '600', '700');
+        $weight = array('300', '400', '500', '600', '700', '800', '900');
 
         $fonts_select = '<div class="row no-gutters"><div class="col-sm-4">';
         $fonts_select .= '<select id="conikal_typography_settings[conikal_typography_heading_font_field]" name="conikal_typography_settings[conikal_typography_heading_font_field]" class="google-fonts">';
@@ -1399,7 +1722,7 @@ if( !function_exists('conikal_page_heading_font_field_render') ):
     function conikal_page_heading_font_field_render() {
         $google_fonts = get_google_fonts();
         $options = get_option( 'conikal_typography_settings' );
-        $weight = array('300', '400', '500', '600', '700');
+        $weight = array('300', '400', '500', '600', '700', '800', '900');
 
         $fonts_select = '<div class="row no-gutters"><div class="col-sm-4">';
         $fonts_select .= '<select id="conikal_typography_settings[conikal_typography_page_heading_font_field]" name="conikal_typography_settings[conikal_typography_page_heading_font_field]" class="google-fonts">';
@@ -1447,7 +1770,7 @@ if( !function_exists('conikal_widget_title_font_field_render') ):
     function conikal_widget_title_font_field_render() {
         $google_fonts = get_google_fonts();
         $options = get_option( 'conikal_typography_settings' );
-        $weight = array('300', '400', '500', '600', '700');
+        $weight = array('300', '400', '500', '600', '700', '800', '900');
 
         $fonts_select = '<div class="row no-gutters"><div class="col-sm-4">';
         $fonts_select .= '<select id="conikal_typography_settings[conikal_typography_widget_title_font_field]" name="conikal_typography_settings[conikal_typography_widget_title_font_field]" class="google-fonts">';
@@ -1495,7 +1818,7 @@ if( !function_exists('conikal_title_font_field_render') ):
     function conikal_title_font_field_render() { 
         $google_fonts = get_google_fonts();
         $options = get_option( 'conikal_typography_settings' );
-        $weight = array('300', '400', '500', '600', '700');
+        $weight = array('300', '400', '500', '600', '700', '800', '900');
 
         $fonts_select = '<div class="row no-gutters"><div class="col-sm-4">';
         $fonts_select .= '<select id="conikal_typography_settings[conikal_typography_title_font_field]" name="conikal_typography_settings[conikal_typography_title_font_field]" class="google-fonts">';
@@ -1543,7 +1866,7 @@ if( !function_exists('conikal_content_font_field_render') ):
     function conikal_content_font_field_render() { 
         $google_fonts = get_google_fonts();
         $options = get_option( 'conikal_typography_settings' );
-        $weight = array('300', '400', '500', '600', '700');
+        $weight = array('300', '400', '500', '600', '700', '800', '900');
 
         $fonts_select = '<div class="row no-gutters"><div class="col-sm-4">';
         $fonts_select .= '<select id="conikal_typography_settings[conikal_typography_content_font_field]" name="conikal_typography_settings[conikal_typography_content_font_field]" class="google-fonts">';
@@ -1591,7 +1914,7 @@ if( !function_exists('conikal_button_font_field_render') ):
     function conikal_button_font_field_render() { 
         $google_fonts = get_google_fonts();
         $options = get_option( 'conikal_typography_settings' );
-        $weight = array('300', '400', '500', '600', '700');
+        $weight = array('300', '400', '500', '600', '700', '800', '900');
 
         $fonts_select = '<div class="row no-gutters"><div class="col-sm-4">';
         $fonts_select .= '<select id="conikal_typography_settings[conikal_typography_button_font_field]" name="conikal_typography_settings[conikal_typography_button_font_field]" class="google-fonts">';
@@ -2579,7 +2902,7 @@ if( !function_exists('conikal_settings_page') ):
 
         <div class="petition-wrapper">
             <div class="petition-leftSide">
-                <div class="petition-logo"><img src="<?php echo get_template_directory_uri() . '/admin/images/logo.png'; ?>" /></div>
+                <div class="petition-logo"><img src="<?php echo get_template_directory_uri() . '/admin/images/logo.svg'; ?>" /></div>
                 <ul class="petition-tabs">
                     <li class="<?php echo ($active_tab == 'general_settings' ? esc_html('petition-tab-active') : '') ?>">
                         <a href="themes.php?page=admin/settings.php&tab=general_settings">

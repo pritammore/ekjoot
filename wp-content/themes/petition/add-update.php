@@ -52,7 +52,6 @@ get_header();
                 $status = get_post_meta($petition_id, 'petition_status', true);
                 $decisionmakers = get_post_meta($petition_id, 'petition_decisionmakers', true);
                 $decisionmakers = array_unique(explode(',', $decisionmakers));
-                $approvedleaders = get_post_meta($petition_id, 'lp_post_ids', true );
             }
         wp_reset_postdata();
         wp_reset_query();
@@ -63,19 +62,21 @@ get_header();
         $status = get_post_meta($petition_id, 'petition_status', true);
         $decisionmakers = get_post_meta($petition_id, 'petition_decisionmakers', true);
         $decisionmakers = array_unique(explode(',', $decisionmakers));
-        $approvedleaders = get_post_meta($petition_id, 'lp_post_ids', true );
     }
 
     $update_type = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : $type;
     $petition_status = isset($_GET['status']) ? $_GET['status'] : $status;
     $post_author_id = get_post_field( 'post_author', $petition_id );
 ?>
-<?php if ( $post_author_id == $current_user->ID || current_user_can('editor') || current_user_can('administrator') || in_array($current_user->ID, $decisionmakers) || (!empty($approvedleaders) && in_array($current_user->ID, $approvedleaders)) ) { ?>
+<?php if ( $post_author_id == $current_user->ID || current_user_can('editor') || current_user_can('administrator') || in_array($current_user->ID, $decisionmakers)) { ?>
     <div id="wrapper" class="wrapper">
         <div class="color silver">
             <div class="ui large secondary pointing grey menu" id="control-menu">
                 <div class="ui container">
+                         <!-- Campaign link -->
                         <a href="<?php echo isset($p_link) ? $p_link : '' ?>" class="item" data-bjax><?php _e('Campaign', 'petition') ?></a>
+
+                         <!-- Dashboard link -->
                         <?php
                             $args = array(
                                 'post_type' => 'page',
@@ -89,13 +90,40 @@ get_header();
                             while($query->have_posts()) {
                                 $query->the_post();
                                 $page_id = get_the_ID();
-                                $page_link = get_permalink($page_id) . '?edit_id=' . $petition_id;
+                                $page_link = get_permalink($page_id);
+                                $page_link = add_query_arg(array('edit_id' => $petition_id), $page_link);
                             }
                             wp_reset_postdata();
                             wp_reset_query();
                         ?>
                         <a href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Dashboard', 'petition') ?></a>
+
+                         <!-- Update petition link -->
                         <a href="#" class="active item"><?php _e('Update', 'petition') ?></a>
+
+                         <!-- Contribute link -->
+                        <?php
+                            $args = array(
+                                'post_type' => 'page',
+                                'post_status' => 'publish',
+                                'meta_key' => '_wp_page_template',
+                                'meta_value' => 'contribute.php'
+                            );
+
+                            $query = new WP_Query($args);
+
+                            while($query->have_posts()) {
+                                $query->the_post();
+                                $page_id = get_the_ID();
+                                $page_link = get_permalink($page_id);
+                                $page_link = add_query_arg(array('petition_id' => $petition_id), $page_link);
+                            }
+                            wp_reset_postdata();
+                            wp_reset_query();
+                        ?>
+                        <a href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Contribute', 'petition') ?></a>
+
+                         <!-- Edit petition link -->
                         <?php
                             $args = array(
                                 'post_type' => 'page',
@@ -109,14 +137,15 @@ get_header();
                             while($query->have_posts()) {
                                 $query->the_post();
                                 $page_id = get_the_ID();
-                                $page_link = get_permalink($page_id) . '?edit_id=' . $petition_id;
+                                $page_link = get_permalink($page_id);
+                                $page_link = add_query_arg(array('edit_id' => $petition_id), $page_link);
                             }
                             wp_reset_postdata();
                             wp_reset_query();
                         ?>
-                        <?php if ( $post_author_id == $current_user->ID || current_user_can('administrator')) { ?>
+
+                         <!-- Edit petition link -->
                         <a href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Edit', 'petition') ?></a>
-                        <?php } ?>
                 </div>
             </div>
         </div>

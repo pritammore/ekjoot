@@ -25,6 +25,54 @@
         return false;
     });
 
+    // Upload victory icon
+    $('#victoryIconBtn').click(function() {
+        tb_show('', 'media-upload.php?width=800&amp;height=500&amp;type=image&amp;TB_iframe=true');
+        $('#TB_ajaxWindowTitle').html('Victory Icon Image');
+        window.send_to_editor = function(html) {
+            var imgURL = $('img',html).attr('src');
+            $('#victoryIconImage').val(imgURL);
+            tb_remove();
+        }
+        return false;
+    });
+
+    // Upload victory icon
+    $('#victoryInverseIconBtn').click(function() {
+        tb_show('', 'media-upload.php?width=800&amp;height=500&amp;type=image&amp;TB_iframe=true');
+        $('#TB_ajaxWindowTitle').html('Victory Inverse Icon Image');
+        window.send_to_editor = function(html) {
+            var imgURL = $('img',html).attr('src');
+            $('#victoryInverseIconImage').val(imgURL);
+            tb_remove();
+        }
+        return false;
+    });
+
+    // Upload sign icon
+    $('#signIconBtn').click(function() {
+        tb_show('', 'media-upload.php?width=800&amp;height=500&amp;type=image&amp;TB_iframe=true');
+        $('#TB_ajaxWindowTitle').html('Sign Button Icon Image');
+        window.send_to_editor = function(html) {
+            var imgURL = $('img',html).attr('src');
+            $('#signIconImage').val(imgURL);
+            tb_remove();
+        }
+        return false;
+    });
+
+    // Upload supporter icon
+    $('#supporterIconBtn').click(function() {
+        tb_show('', 'media-upload.php?width=800&amp;height=500&amp;type=image&amp;TB_iframe=true');
+        $('#TB_ajaxWindowTitle').html('Supporter Icon Image');
+        window.send_to_editor = function(html) {
+            var imgURL = $('img',html).attr('src');
+            $('#supporterIconImage').val(imgURL);
+            tb_remove();
+        }
+        return false;
+    });
+
     // Upload video
     $('#homeVideoBtn').click(function() {
         tb_show('', 'media-upload.php?width=800&amp;height=500&amp;type=image&amp;TB_iframe=true');

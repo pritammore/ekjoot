@@ -11,14 +11,15 @@ get_header();
 $conikal_appearance_settings = get_option('conikal_appearance_settings','');
 $sidebar_position = isset($conikal_appearance_settings['conikal_sidebar_field']) ? $conikal_appearance_settings['conikal_sidebar_field'] : '';
 $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $conikal_appearance_settings['conikal_breadcrumbs_field'] : '';
+$view_counter = isset($conikal_appearance_settings['conikal_view_counter_field']) ? $conikal_appearance_settings['conikal_view_counter_field'] : '';
 ?>
 
 <div class="ui container">
-    <?php if($show_bc != '') {
-        conikal_petition_breadcrumbs();
-    } ?>
-    <div id="wrapper" style="padding-top: 40px;">
+    <div id="wrapper">
         <div class="page content">
+            <?php if($show_bc != '') {
+                conikal_petition_breadcrumbs();
+            } ?>
             <div class="ui grid">
                 <div class="sixteen wide moble sixteen tablet sixteen wide computer column">
                         <?php 
@@ -51,15 +52,25 @@ $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $c
                                 $p_excerpt = conikal_get_excerpt_by_id($p_id, 12);
                                 $p_author = get_the_author();
                                 $p_categories = get_the_category();
-                                $p_date = get_the_date(); ?>
+                                $p_date = get_the_date();
+                                $p_view = conikal_format_number('%!,0i', (int) conikal_get_post_views($p_id), true); ?>
 
                                 <div class="card blogs post petition-card">
-                                    <a href="<?php echo esc_url($p_link); ?>" target="_blank" class="image" data-bjax>
+                                    <a href="<?php echo esc_url($p_link); ?>" target="_blank" class="image blurring" data-bjax>
                                         <div class="ui dimmer">
                                             <div class="content">
-                                              <div class="center">
-                                                <div class="ui icon inverted circular big button"><i class="external icon"></i></div>
-                                              </div>
+                                                <div class="center">
+                                                    <div class="ui icon inverted circular big button"><i class="external icon"></i></div>
+                                                </div>
+                                                <div class="view-counter">
+                                                    <i class="comments icon"></i>
+                                                    <?php echo esc_html($p_comments->approved); ?>
+
+                                                    <?php if ($view_counter != '') { ?>
+                                                        <i class="eye icon"></i>
+                                                        <?php echo esc_html($p_view); ?>
+                                                    <?php } ?>
+                                                </div>
                                             </div>
                                         </div>
                                         <?php if (has_post_thumbnail()) { ?>
@@ -68,36 +79,31 @@ $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $c
                                         <img class="ui fluid image" src="<?php echo get_template_directory_uri() . '/images/thumbnail.svg'; ?>" alt="<?php echo esc_attr($p_title) ?>">
                                         <?php } ?>
                                     </a>
-                                    <div class="content">
-                                        <a href="<?php echo esc_url($p_link) ?>" class="card-post-title" data-bjax><?php echo esc_html($p_title); ?></a>
-                                        <?php if($p_comments->approved != 0) { ?>
-                                            <span class="ui circular label">
-                                                <i class="comments icon"></i>
-                                                <?php echo esc_html($p_comments->approved); ?>
-                                            </span>
-                                        <?php } ?>
-                                        <div class="meta">
-                                            <?php
+                                    <div class="content petition-content">
+                                        <?php
                                             $categories = get_the_category();
                                             $separator = ' ';
                                             $output = '';
                                             if($categories) {
                                                 foreach($categories as $category) {
-                                                    $output .= '<a href="' . esc_url(get_category_link( $category->term_id )) . '" title="' . esc_attr( sprintf( __( "View all posts in %s", "petition" ), $category->name ) ) . '">' . esc_html($category->cat_name) . '</a>' . esc_html($separator);
+                                                    $output .= '<a class="ui tiny label" href="' . esc_url(get_category_link( $category->term_id )) . '" title="' . esc_attr( sprintf( __( "View all posts in %s", "petition" ), $category->name ) ) . '">' . esc_html($category->cat_name) . '</a>' . esc_html($separator);
                                                 }
                                                 echo trim($output, $separator);
                                             }
-                                            ?>
+                                        ?>
+                                        <div class="header card-post-title">
+                                            <a href="<?php echo esc_url($p_link) ?>" data-bjax><?php echo esc_html($p_title); ?></a>
                                         </div>
-                                        <div class="description text grey" style="height: 60px">
-                                            <?php echo esc_html($p_excerpt); ?>
+                                        <div class="description">
+                                            <div class="text grey"><?php echo esc_html($p_excerpt); ?></div>
                                         </div>
                                     </div>
                                     <div class="extra content">
                                         <span><i class="calendar outline icon"></i><?php echo esc_html($p_date); ?></span>
-                                        <a class="right floated star" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' )); ?>" data-bjax>
-                                          <?php echo esc_html($p_author) ?>
-                                        </a>
+                                        <span class="right floated">
+                                            <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' )); ?>" data-bjax><?php echo esc_html($p_author) ?></a>
+
+                                        </span>
                                     </div>
                                 </div>
 

@@ -17,7 +17,6 @@ $google_client_secret = isset($conikal_auth_settings['conikal_google_secret_fiel
     <!-- SIGN IN AND SIGN UP MODAL -->
     <div class="ui modal" id="signinModal">
         <div class="content">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
             <div class="ui two column middle aligned stackable internally celled grid">
                 <div class="column">
                     <div class="respon-message" id="signinMessage"></div>
@@ -34,20 +33,6 @@ $google_client_secret = isset($conikal_auth_settings['conikal_google_secret_fiel
                             <div class="ui right icon input">
                                 <input type="text" name="emailSignup" id="emailSignup" placeholder="<?php _e('Enter your e-mail', 'petition') ?>">
                                 <i class="mail icon"></i>
-                            </div>
-                        </div>
-                        <div class="required field">
-                            <label><?php _e('Address', 'petition') ?></label>
-                            <div class="ui right icon input">
-                                <input type="text" name="addressSignup" id="addressSignup" placeholder="<?php _e('Enter your address', 'petition') ?>">
-                                <i class="marker icon"></i>
-                            </div>
-                        </div>
-                        <div class="required field">
-                            <label><?php _e('Pincode', 'petition') ?></label>
-                            <div class="ui right icon input">
-                                <input type="text" name="pincodeSignup" id="pincodeSignup" placeholder="<?php _e('Enter your pincode', 'petition') ?>">
-                                <i class="location arrow icon"></i>
                             </div>
                         </div>
                         <div class="required field">
@@ -197,93 +182,4 @@ $google_client_secret = isset($conikal_auth_settings['conikal_google_secret_fiel
             </form>
         </div>
     </div>
-<?php } ?>
-
-<?php if( is_user_logged_in() ) { ?>
-
-    <!-- MAKE DECISIONER MODAL -->
-    <div class="ui small modal" id="makeDecisioner">
-        <div class="header">
-            <?php _e('Update your profile to leader', 'petition') ?>
-        </div>
-        <div class="content">
-            <div class="respon-message" id="makeDecisionerMessage">
-                <?php _e('Sorry !! You need to become Leader to lead this issue. your current profile is Petitioner on Ekjoot portal. you need to upgrade your profile to leader so as to lead any issue on Ekjoot Profile.', 'petition') ?>
-            </div><br>
-            <form class="ui form" id="makeDecisionerForm" method="post">
-                <div class="field">
-                    <label><?php _e('Steps to request for a Leader Position on Ekjoot Portal', 'petition') ?></label>
-                    <ul>
-                        <li><?php _e('Go to Account Setting Page.', 'petition') ?></li>
-                        <li><?php _e('Scroll Down to Manage Profile.', 'petition') ?></li>
-                        <li><?php _e('Click on Leader Maker Tab in Account Setting form and submit the form.', 'petition') ?></li>
-                        <li><?php _e('On successfully submittion of form Request to become is submitted to Admin/Editor of Ekjoot Portal and will be updated to you soon.', 'petition') ?></li>
-                    </ul> 
-                
-                <?php wp_nonce_field('forgot_ajax_nonce', 'securityForgot', true); ?>
-                <?php
-                $args = array(
-                    'post_type' => 'page',
-                    'post_status' => 'publish',
-                    'meta_key' => '_wp_page_template',
-                    'meta_value' => 'user-account.php'
-                );
-
-                $query = new WP_Query($args);
-
-                while($query->have_posts()) {
-                    $query->the_post();
-                    $page_id = get_the_ID();
-                    $page_title = get_the_title($page_id);
-                    $page_link = get_permalink($page_id);
-                }
-                wp_reset_postdata();
-                wp_reset_query();
-                ?>
-                <a class="ui primary button" href="<?php echo esc_url($page_link); ?>" data-bjax></i><?php echo esc_html($page_title); ?></a>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-
-    <div class="ui small modal" id="requestForDecisionerWaiting">
-        <div class="header">
-            <?php _e('Update your profile to leader', 'petition') ?>
-        </div>
-        <div class="content">
-            <div class="respon-message" id="requestForDecisionerWaitingMessage">
-                <?php _e('Sorry !! Your request to become Leader is not yet confirmed by Admin. 
-                    your current profile is Petitioner on Ekjoot portal and hence cannot lead any issue on Ekjoot Portal. Please contact Admin for more details.', 'petition') ?>
-            </div><br>
-            <form class="ui form" id="requestForDecisionerWaitingForm" method="post">
-                <div class="field">
-                <label><?php _e('Request for a Leader Position on Ekjoot Portal is submitted to Admin.', 'petition') ?></label> 
-                
-                <?php wp_nonce_field('forgot_ajax_nonce', 'securityForgot', true); ?>
-                <?php
-                $args = array(
-                    'post_type' => 'page',
-                    'post_status' => 'publish',
-                    'meta_key' => '_wp_page_template',
-                    'meta_value' => 'user-account.php'
-                );
-
-                $query = new WP_Query($args);
-
-                while($query->have_posts()) {
-                    $query->the_post();
-                    $page_id = get_the_ID();
-                    $page_title = get_the_title($page_id);
-                    $page_link = get_permalink($page_id);
-                }
-                wp_reset_postdata();
-                wp_reset_query();
-                ?>
-                <a class="ui primary button" href="<?php echo esc_url($page_link); ?>" data-bjax></i><?php echo esc_html("View your Account"); ?></a>
-                </div>
-            </form>
-        </div>
-    </div>
-
 <?php } ?>

@@ -16,11 +16,11 @@
         <div class="ui secondary vertical fluid menu category-menu">
             <?php conikal_custom_menu('category'); ?>
         </div>
-        <!-- <div class="ui divider"></div>
+        <div class="ui divider"></div>
         <div class="ui text small right menu">
-                        <?php //conikal_custom_menu('footer') ?>
-                </div> -->
-        <?php /*if($copyright && $copyright != '') { ?>
+	            <?php conikal_custom_menu('footer') ?>
+	    </div>
+        <?php if($copyright && $copyright != '') { ?>
             <div class="copyright"><?php echo esc_html($copyright) ?></div>
-        <?php }*/ ?>
+        <?php } ?>
     </div>

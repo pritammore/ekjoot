@@ -36,11 +36,12 @@ if( !function_exists('conikal_add_comments') ):
 
         $post_id = isset($_POST['post_id']) ? sanitize_text_field($_POST['post_id']) : '';
         $user_id = isset($_POST['user_id']) ? sanitize_text_field($_POST['user_id']) : '';
-        $content = isset($_POST['content']) ? $_POST['content'] : '';
+        $content = isset($_POST['content']) ? sanitize_textarea_field($_POST['content']) : '';
         $ip_address = conikal_get_client_ip();
         $agent = $_SERVER['HTTP_USER_AGENT'];
         $parent = isset($_POST['parent']) ? sanitize_text_field($_POST['parent']) : 0;
         $author  = get_userdata( $user_id );
+        $moderation = get_option('comment_moderation');
 
         if ($content == '') {
             echo json_encode(array('save' => false, 'message' => __('Comment content is required!', 'petition')));
@@ -61,7 +62,7 @@ if( !function_exists('conikal_add_comments') ):
             'comment_author_IP' => $ip_address,
             'comment_agent' => $agent,
             'comment_date' => $time,
-            'comment_approved' => 1,
+            'comment_approved' => ($moderation != 1 ? 1 : 0)
         );
 
         $comment_id = wp_insert_comment($comment_data);
@@ -83,6 +84,7 @@ if( !function_exists('conikal_add_comments') ):
         
         $details->comment_author_name = $author_name;
         $details->comment_author_avatar = $author_avatar;
+        $details->comment_content = wpautop($details->comment_content);
         if ($comment_id != 0) {
             echo json_encode(array('save' => true, 'id' => $comment_id, 'time' => __(' just now', 'petition'), 'details' => $details, 'message' => __('The comment was successfuly saved', 'petition')));
             exit();
@@ -151,7 +153,7 @@ if( !function_exists('conikal_update_comment') ):
         $post_id = isset($_POST['post_id']) ? sanitize_text_field($_POST['post_id']) : '';
         $user_id = isset($_POST['user_id']) ? sanitize_text_field($_POST['user_id']) : '';
         $comment_id = isset($_POST['comment_id']) ? sanitize_text_field($_POST['comment_id']) : '';
-        $content = isset($_POST['content']) ? $_POST['content'] : '';
+        $content = isset($_POST['content']) ? sanitize_textarea_field($_POST['content']) : '';
 
         if ($content == '') {
             echo json_encode(array('save' => false, 'message' => __('Comment content is required!', 'petition')));
@@ -163,6 +165,8 @@ if( !function_exists('conikal_update_comment') ):
                 'comment_content' => $content
             );
         $update_comment = wp_update_comment($arg);
+
+        $content = wpautop($content);
 
         if ($update_comment) {
             echo json_encode(array('status' => true, 'id' => $comment_id, 'content' => $content, 'message' => __('Update comment successfuly.', 'petition') ));
@@ -211,6 +215,7 @@ if( !function_exists('conikal_add_comment_sign') ):
         $ip_address = conikal_get_client_ip();
         $agent = $_SERVER['HTTP_USER_AGENT'];
         $author  = get_userdata( $user_id );
+        $moderation = get_option('comment_moderation');
 
         if ($content == '') {
             echo json_encode(array('save' => false, 'message' => __('Comement content is required!', 'petition')));
@@ -231,7 +236,7 @@ if( !function_exists('conikal_add_comment_sign') ):
             'comment_author_IP' => $ip_address,
             'comment_agent' => $agent,
             'comment_date' => $time,
-            'comment_approved' => 1,
+            'comment_approved' => ($moderation != 1 ? 1 : 0)
         );
 
         $comment_id = wp_insert_comment($comment_data);
@@ -427,7 +432,7 @@ if( !function_exists('conikal_load_comments') ):
                                             'comment_date' => $comment->comment_date,
                                             'comment_date_gmt' => $comment->comment_date_gmt,
                                             'comment_time' => $comment_time,
-                                            'comment_content' => $comment->comment_content,
+                                            'comment_content' => wpautop($comment->comment_content),
                                             'comment_karma' => $comment->comment_karma,
                                             'comment_approved' => $comment->comment_approved,
                                             'comment_agent' => $comment->comment_agent,

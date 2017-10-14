@@ -62,7 +62,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                             </div>
                         </div>
                         <div class="text" id="comment-content-<?php echo esc_attr($comment->comment_ID) ?>">
-                            <p><?php echo esc_html($comment->comment_content) ?></p>
+                            <p><?php echo wpautop($comment->comment_content) ?></p>
                         </div>
                         <div class="actions">
                             <?php if (is_array($votes) && in_array(get_current_user_id(), $votes)) { ?>
@@ -116,7 +116,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                     </div>
                                 </div>
                                 <div class="text" id="comment-content-<?php echo esc_attr($reply->comment_ID) ?>">
-                                    <p><?php echo esc_html($reply->comment_content) ?></p>
+                                    <p><?php echo wpautop($reply->comment_content) ?></p>
                                 </div>
                                 <div class="actions">
                                     <?php if (is_array($votes) && in_array(get_current_user_id(), $votes)) { ?>

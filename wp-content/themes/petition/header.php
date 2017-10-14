@@ -10,7 +10,6 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-    <?php get_template_part('templates/social_meta'); ?>
     <?php wp_head(); ?>
 </head>
 
@@ -39,10 +38,12 @@ $home_header_hide_logined = isset($conikal_home_settings['conikal_home_header_hi
                     !is_page_template('edit-petition.php') &&
                     !is_page_template('dashboard-petition.php') &&
                     !is_page_template('add-update.php') &&
+                    !is_page_template('contribute.php') &&
+                    !is_page_template('sign-successful.php') &&
+                    !is_page_template('supporters-list.php') &&
                     !is_singular('petition') &&
                     !is_singular('update') &&
-                    !is_404() && 
-                    !is_page_template('all-issues.php')) { 
+                    !is_404()) { 
             get_template_part('templates/page_hero');
         }
 
@@ -53,7 +54,9 @@ $home_header_hide_logined = isset($conikal_home_settings['conikal_home_header_hi
                 is_page_template('dashboard-petition.php') ||
                 is_page_template('edit-petition.php') ||
                 is_page_template('add-update.php') ||
-                is_page_template('all-issues.php') || 
+                is_page_template('contribute.php') ||
+                is_page_template('sign-successful.php') ||
+                is_page_template('supporters-list.php') ||
                 is_404()) { 
             get_template_part('templates/app_header');
         } else {
@@ -91,8 +94,10 @@ $home_header_hide_logined = isset($conikal_home_settings['conikal_home_header_hi
                 !is_page_template('submit-petition.php') &&
                 !is_page_template('edit-petition.php') &&
                 !is_page_template('dashboard-petition.php') &&
-                !is_page_template('add-update.php') && 
-                !is_page_template('all-issues.php')) {
+                !is_page_template('add-update.php') &&
+                !is_page_template('contribute.php') &&
+                !is_page_template('sign-successful.php') &&
+                !is_page_template('supporters-list.php')) {
             get_template_part('templates/page_caption');
         } else if (is_home()) {
             get_template_part('templates/blog_featured');
@@ -110,7 +115,7 @@ $home_header_hide_logined = isset($conikal_home_settings['conikal_home_header_hi
             get_template_part('templates/victory_petitions');
         }
         
-        if(is_front_page() && $home_spotlight) {
+        if(is_front_page()) {
             get_template_part('templates/home_spotlight');  
         }
     ?>

@@ -53,23 +53,29 @@ endif;
  */
 if( !function_exists('conikal_user_signup_form') ): 
     function conikal_user_signup_form() {
+        check_ajax_referer('signup_ajax_nonce', 'security');
+        $conikal_general_settings = get_option('conikal_general_settings');
+        $format_separate = isset($conikal_general_settings['conikal_format_separate_fullname_field']) ? $conikal_general_settings['conikal_format_separate_fullname_field'] : 'first_s_middle_last';
         $signup_user = isset($_POST['signup_user']) ? sanitize_text_field( $_POST['signup_user'] ) : '';
         $signup_name = isset($_POST['signup_name']) ? sanitize_text_field( $_POST['signup_name'] ) : '';
         $signup_email = isset($_POST['signup_email']) ? sanitize_email( $_POST['signup_email'] ) : '';
         $signup_pass = isset($_POST['signup_pass']) ? $_POST['signup_pass'] : '';
         $signup_repass = isset($_POST['signup_repass']) ? $_POST['signup_repass'] : '';
         $signup_address = isset($_POST['signup_address']) ? sanitize_text_field( $_POST['signup_address'] ) : '';
-        $signup_pincode = isset($_POST['signup_pincode']) ? sanitize_text_field( $_POST['signup_pincode'] ) : '';
         $signup_city = isset($_POST['signup_city']) ? sanitize_text_field( $_POST['signup_city'] ) : '';
         $signup_state = isset($_POST['signup_state']) ? sanitize_text_field( $_POST['signup_state'] ) : '';
         $signup_neighborhood = isset($_POST['signup_neighborhood']) ? sanitize_text_field( $_POST['signup_neighborhood'] ) : '';
         $signup_country = isset($_POST['signup_country']) ? sanitize_text_field( $_POST['signup_country'] ) : '';
         $signup_lat = isset($_POST['signup_lat']) ? sanitize_text_field( $_POST['signup_lat'] ) : '';
         $signup_lng = isset($_POST['signup_lng']) ? sanitize_text_field( $_POST['signup_lng'] ) : '';
+
         $parse_name = explode(' ', $signup_name);
         $signup_firstname = '';
+        $signup_middle = '';
         $signup_lastname = '';
 
+
+        // separate fullname
         foreach ($parse_name as $key => $value) {
             if (count($parse_name) <= 2) {
                 if ($key == 0) {
@@ -78,15 +84,44 @@ if( !function_exists('conikal_user_signup_form') ):
                     $signup_lastname .= $value;
                 }
             } else {
-                if ($key == 0 || $key == 1) {
-                    $signup_firstname .= $value . ' ';
+                if ($key == 0) {
+                    $signup_firstname .= $value;
+                } elseif ($key == 1) {
+                    $signup_middle .= $value;
                 } elseif ($key >= 2) {
                     $signup_lastname .= $value . ' ';
                 }
             }
         }
 
-        if(empty($signup_user) || empty($signup_name) || empty($signup_email) || empty($signup_address) || empty($signup_pincode) || empty($signup_pass) || empty($signup_repass)) {
+        // reformat fullname
+        switch ($format_separate) {
+            case 'first_s_middle_last':
+                $signup_lastname = ($signup_middle != '' ? $signup_middle . ' ' : '') . $signup_lastname;
+                break;
+
+            case 'first_middle_s_last':
+                $signup_firstname = $signup_firstname . ($signup_middle != '' ? ' ' . $signup_middle : '');
+                break;
+
+            case 'last_s_middle_first':
+                $signup_lastname_format = ($signup_middle != '' ? $signup_middle . ' ' : '') . $signup_firstname;
+                $signup_firstname = $signup_lastname;
+                $signup_lastname = $signup_lastname_format;
+                break;
+
+            case 'last_middle_s_first':
+                $signup_firstname_format = $signup_lastname . ($signup_middle != '' ? ' ' . $signup_middle : '');
+                $signup_lastname = $signup_firstname;
+                $signup_firstname = $signup_firstname_format;
+                break;
+            
+            default:
+                $signup_lastname = ($signup_middle != '' ? $signup_middle . ' ' : '') . $signup_lastname;
+                break;
+        }
+
+        if(empty($signup_user) || empty($signup_name) || empty($signup_email) || empty($signup_pass) || empty($signup_repass)) {
             echo json_encode(array('signedup'=>false, 'message'=>__('Required form fields are empty!','petition')));
             exit();
         }
@@ -106,15 +141,9 @@ if( !function_exists('conikal_user_signup_form') ):
             echo json_encode(array('signedup'=>false, 'message'=>__('Invalid Email!','petition')));
             exit();
         }
+
         if(email_exists($signup_email)) {
             echo json_encode(array('signedup'=>false, 'message'=>__('Email already exists!','petition')));
-            exit();
-        }
-        $options_check = array(
-            'options' => array('min_range' => 6)
-        );
-        if (filter_var($signup_pincode, FILTER_VALIDATE_INT, $options_check) == FALSE) {
-            echo json_encode(array('signedup'=>false, 'message'=>__('Invalid Pincode!','petition')));
             exit();
         }
         if(strlen($signup_pass) < 6) {
@@ -139,7 +168,6 @@ if( !function_exists('conikal_user_signup_form') ):
 
         update_user_meta($new_user, 'user_type', 'petitioner');
         update_user_meta($new_user, 'user_address', $signup_address);
-        update_user_meta($new_user, 'user_pincode', $signup_pincode);
         update_user_meta($new_user, 'user_city', $signup_city);
         update_user_meta($new_user, 'user_state', $signup_state);
         update_user_meta($new_user, 'user_neighborhood', $signup_neighborhood);
@@ -484,7 +512,7 @@ if( !function_exists('conikal_social_signup') ):
                 update_user_meta($user_id, 'user_birthday', $birthday);
                 update_user_meta($user_id, 'user_gender', $gender);
                 update_user_meta($user_id, 'user_cover', $cover);
-                update_user_meta($user_id, 'user_type', 'petitioner');
+
                 if(is_wp_error($user_id)) {
                     // social user signup failed
                 }
@@ -497,7 +525,7 @@ if( !function_exists('conikal_social_signup') ):
                 update_user_meta($user_id, 'user_birthday', $birthday);
                 update_user_meta($user_id, 'user_gender', $gender);
                 update_user_meta($user_id, 'user_cover', $cover);
-                update_user_meta($user_id, 'user_type', 'petitioner');
+
                 if(is_wp_error($user_id)) {
                     // social user signup failed
                 }
@@ -525,7 +553,6 @@ if( !function_exists('conikal_update_user_profile') ):
         $email = isset($_POST['email']) ? sanitize_text_field($_POST['email']) : '';
         $birthday = isset($_POST['birthday']) ? sanitize_text_field($_POST['birthday']) : '';
         $address = isset($_POST['address']) ? sanitize_text_field($_POST['address']) : '';
-        $pincode = isset($_POST['pincode']) ? sanitize_text_field($_POST['pincode']) : '';
         $neighborhood = isset($_POST['neighborhood']) ? sanitize_text_field($_POST['neighborhood']) : '';
         $state = isset($_POST['state']) ? sanitize_text_field($_POST['state']) : '';
         $city = isset($_POST['city']) ? sanitize_text_field($_POST['city']) : '';
@@ -538,37 +565,25 @@ if( !function_exists('conikal_update_user_profile') ):
         $re_password = isset($_POST['re_password']) ? sanitize_text_field($_POST['re_password']) : '';
         $avatar = isset($_POST['avatar']) ? sanitize_text_field($_POST['avatar']) : '';
         $avatar_id = isset($_POST['avatar_id']) ? sanitize_text_field($_POST['avatar_id']) : '';
-        $mobile = isset($_POST['mobile']) ? sanitize_text_field($_POST['mobile']) : '';
-        $hidemobile = isset($_POST['hidemobile']) ? sanitize_text_field($_POST['hidemobile']) : '';
         $user_data = get_userdata($user_id);
         $current_email = $user_data->user_email;
 
         $decision_maker = isset($_POST['decision_id']) ? sanitize_text_field($_POST['decision_id']) : '';
         $decision_title = isset($_POST['decision_title']) ? sanitize_text_field($_POST['decision_title']) : '';
         $decision_organization = isset($_POST['decision_organization']) ? sanitize_text_field($_POST['decision_organization']) : '';
-        $ekwhomi = isset($_POST['ekwhomi']) ? sanitize_text_field($_POST['ekwhomi']) : '';
-        $ekorganizationname = isset($_POST['ekorganizationname']) ? sanitize_text_field($_POST['ekorganizationname']) : '';
 
-        if(empty($first_name) || empty($last_name) || empty($gender) || empty($email) || empty($birthday) || empty($address) || empty($pincode) || empty($bio) || empty($mobile)) {
+        if(empty($first_name) || empty($last_name) || empty($gender) || empty($email) || empty($birthday) || empty($address)) {
             echo json_encode(array('signedup'=>false, 'message'=>__('Required form fields are empty!','petition')));
             exit();
         }
         if($user_type == 'decisioner') {
-          if(empty($decision_title) || empty($decision_organization) || empty($ekwhomi) || empty($ekorganizationname)) {
+          if(empty($decision_title) || empty($decision_organization)) {
             echo json_encode(array('signedup'=>false, 'message'=>__('Required form fields are empty!','petition')));
             exit();
-          }
+          } 
         }
         if(!is_email($email)) {
             echo json_encode(array('signedup'=>false, 'message'=>__('Invalid Email!','petition')));
-            exit();
-        }
-
-        $options = array(
-            'options' => array('min_range' => 6)
-        );
-        if (filter_var($pincode, FILTER_VALIDATE_INT, $options) == FALSE) {
-            echo json_encode(array('signedup'=>false, 'message'=>__('Invalid Pincode!','petition')));
             exit();
         }
         if($current_email != $email) {
@@ -583,14 +598,6 @@ if( !function_exists('conikal_update_user_profile') ):
         }
         if($password != '' && $password != $re_password) {
             echo json_encode(array('reset'=>false, 'message'=>__('The passwords do not match!','petition')));
-            exit();
-        }
-        if($bio != '' && strlen($bio) >= 1000) {
-            echo json_encode(array('signedup'=>false, 'message'=>__('Biographical info must not exceed 1000 Characters! You have written ' . strlen($bio) . ' characters','petition')));
-            exit();
-        }
-        if (filter_var($mobile, FILTER_VALIDATE_INT, $options) == FALSE) {
-            echo json_encode(array('signedup'=>false, 'message'=>__('Invalid Mobile Number!','petition')));
             exit();
         }
         $images = array('', '');
@@ -642,8 +649,6 @@ if( !function_exists('conikal_update_user_profile') ):
 
             wp_set_object_terms($decision_id, array(intval($decision_title)), 'decisionmakers_title');
             wp_set_object_terms($decision_id, $decision_organization, 'decisionmakers_organization');
-            update_user_meta($user_id, 'user_ekwhomi', $ekwhomi);
-            update_user_meta($user_id, 'user_ekorganizationname', $ekorganizationname);
         } else {
             wp_delete_post($decision_maker);
         }
@@ -668,15 +673,12 @@ if( !function_exists('conikal_update_user_profile') ):
         update_user_meta($user_id, 'avatar_id', $avatar_id);
         update_user_meta($user_id, 'avatar_orginal', $images[1]);
         update_user_meta($user_id, 'user_address', $address);
-        update_user_meta($user_id, 'user_pincode', $pincode);
         update_user_meta($user_id, 'user_neighborhood', $neighborhood);
         update_user_meta($user_id, 'user_state', $state);
         update_user_meta($user_id, 'user_city', $city);
         update_user_meta($user_id, 'user_country', $country);
         update_user_meta($user_id, 'user_lat', $lat);
         update_user_meta($user_id, 'user_lng', $lng);
-        update_user_meta($user_id, 'user_mobile', $mobile);
-        update_user_meta($user_id, 'user_hidemobile', $hidemobile);
 
         wp_update_user($user_data);
 

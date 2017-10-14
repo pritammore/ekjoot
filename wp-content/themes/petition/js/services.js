@@ -21,15 +21,11 @@ var geocoder;
     function guestSign() {
         var name = $('#nameSign').val();
         var email = $('#emailSign').val();
-        if(email != "") {
+        var random = Math.floor((Math.random() * 1000) + 1);
         var username = email.split('@', 1);
-            username = username[0];
-        } else {
-            username = "";
-        }
+            username = username[0] + random;
         var pass = $('#passSign').val();
         var address = $('#addressSign').val();
-        var pincode = $('#pincodeSign').val();
         var city = $('#citySign').val();
         var state = $('#stateSign').val();
         var neighborhood = $('#neighborhoodSign').val();
@@ -53,7 +49,6 @@ var geocoder;
                 'signup_pass': pass,
                 'signup_repass': pass,
                 'signup_address': address,
-                'signup_pincode': pincode,
                 'signup_city': city,
                 'signup_state': state,
                 'signup_neighborhood': neighborhood,
@@ -65,9 +60,6 @@ var geocoder;
             success: function(data) {
                 $('.submitSign').removeClass('loading disabled');
                 if (data.signedup === true) {
-                    if ($('.fb-publish').hasClass('checked')) {
-                        fbPublish();
-                    }
                     var message = '<div class="ui success message">' +
                         '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
                         '</div>';
@@ -103,18 +95,12 @@ var geocoder;
     function userSignup() {
         var name = $('#nameSignup').val();
         var email = $('#emailSignup').val();
-        if(email != "") {
+        var random = Math.floor((Math.random() * 1000) + 1);
         var username = email.split('@', 2);
-        var userpart = username[1].split('.', 1);
-            username = username[0] + '_' + userpart[0];
-        }else {
-            userpart = "";
-            username = "";
-        }
+            username = username[0] + random;
         var pass = $('#passSignup').val();
         var repass = $('#repassSignup').val();
         var address = $('#addressSignup').val();
-        var pincode = $('#pincodeSignup').val();
         var city = $('#citySignup').val();
         var state = $('#stateSign').val();
         var neighborhood = $('#neighborhoodSignup').val();
@@ -138,7 +124,6 @@ var geocoder;
                 'signup_pass': pass,
                 'signup_repass': repass,
                 'signup_address': address,
-                'signup_pincode': pincode,
                 'signup_city': city,
                 'signup_state': state,
                 'signup_neighborhood': neighborhood,
@@ -600,6 +585,9 @@ var geocoder;
 
     function fbPost() {
         var content = $('.sign-comment').val();
+        if (content == '') {
+            content = $('.fb-message-share').val();
+        }
         var url = window.location.href;
 
         FB.api('/me/feed', 'POST', {
@@ -730,8 +718,6 @@ var geocoder;
         var ajaxURL = services_vars.admin_url + 'admin-ajax.php';
         var security = $('#securityUserProfile').val();
         var typeUser = $('input[name="typeUser"]:checked').val();
-        var hidemobile = $('input[name="hidemobile"]:checked').val();
-        var ekwhomi = $('input[name="ekwhomi"]:checked').val();
         $('#up_response').empty();
         $('#updateProfileBtn').addClass('loading disabled');
 
@@ -751,7 +737,6 @@ var geocoder;
                 'email': $('#emailUser').val(),
                 'birthday': $('#birthdayUser').val(),
                 'address': $('#addressUser').val(),
-                'pincode': $('#pincodeUser').val(),
                 'neighborhood': $('#neighborhoodUser').val(),
                 'state': $('#stateUser').val(),
                 'city': $('#cityUser').val(),
@@ -767,10 +752,6 @@ var geocoder;
                 'decision_id': $('#decision_id').val(),
                 'decision_title': $('#titleUser').val(),
                 'decision_organization': $('#organizationUser').val(),
-                'mobile': $('#mobile').val(),
-                'hidemobile': hidemobile,
-                'ekwhomi': ekwhomi,
-                'ekorganizationname': $('#ekorganizationname').val(),
                 'security': security
             },
             success: function(data) {
@@ -865,6 +846,7 @@ var geocoder;
                 'gallery': $('#new_gallery').val(),
                 'attach': $('#new_attach').val(),
                 'status': $('#new_status').val(),
+                'sendinblue_list': $('#sendinblue_list').val(),
                 'security': security
             },
             success: function(data) {
@@ -872,12 +854,6 @@ var geocoder;
                 console.log(data);
                 $('#finish-btn').removeClass('loading disabled');
                 if (data.save === true) {
-                    $('#new_id').val(data.propID);
-                    if (data.propStatus == 'publish') {
-                        $('#viewPropertyBtn').css('display', 'inline-block').attr('href', data.propLink);
-                    }
-                    $('#deletePropertyBtn').css('display', 'inline-block');
-
                     message = '<div class="ui success message">' +
                         '<i class="close icon"></i><i class="check circle large icon"></i>' + data.message +
                         '</div>';
@@ -890,13 +866,7 @@ var geocoder;
                     $('#save-response').empty().append(message);
                 }
 
-                $('#propertyModal .modal-dialog').removeClass('modal-sm');
                 $('#save_response').html(message);
-                $('.close-modal').click(function() {
-                    $('#save_response').empty();
-                    $('#propertyModal').modal('hide');
-                    $('#propertyModal .modal-dialog').addClass('modal-sm');
-                });
                 $('html,body').animate({ scrollTop: 0 }, 300)
             },
             error: function(errorThrown) {
@@ -907,6 +877,88 @@ var geocoder;
 
     $('#finish-btn').click(function() {
         submitPetition();
+    });
+
+
+    // SUBMIT CONTRIBUTE & DONATION
+    function submitContribute() {
+        var amount_level = '';
+        $('input[name="amount_level[]"]').each(function(index) {
+            amount_level += $(this).val() + ',';
+        });
+        var name_level = '';
+        $('input[name="name_level[]"]').each(function(index) {
+            name_level += $(this).val() + ',';
+        });
+
+        var goal_option = 'disabled';
+        if ( $('#goal_option').checkbox('is checked') ) {
+            goal_option = 'enabled';
+        }
+
+        var draft_status = '';
+        if ( $('#draft_status').checkbox('is checked') ) {
+            draft_status = 'draft';
+        }
+
+        var ajaxURL = services_vars.admin_url + 'admin-ajax.php';
+        var security = $('#securitySubmitContribute').val();
+        $('#submit-contribute').addClass('loading disabled');
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: ajaxURL,
+            data: {
+                'action': 'conikal_give_save_form',
+                'user_id': services_vars.user_id,
+                'form_id': $('#form_id').val(),
+                'petition_id': $('#petition_id').val(),
+                'title': $('#petition_title').val(),
+                'goal_option': goal_option,
+                'draft_status': draft_status,
+                'set_goal': $('#set_goal').val(),
+                'goal_format': $('#goal_format').val(),
+                'button_label': $('#button_label').val(),
+                'close_form_when_goal_achieved': $('#close_form_when_goal_achieved').val(),
+                'goal_achieved_message': $('#goal_achieved_message').val(),
+                'amount_level': amount_level,
+                'name_level': name_level,
+                'custom_amount_minimum': $('#custom_amount_minimum').val(),
+                'form_content': $('#form_content').val(),
+                'security': security
+            },
+            success: function(data) {
+                var message = '';
+                console.log(data);
+                $('#submit-contribute').removeClass('loading disabled');
+                if (data.save === true) {
+                    message = '<div class="ui success message">' +
+                        '<i class="close icon"></i><i class="check circle large icon"></i>' + data.message +
+                        '</div>';
+                    $('#save-response').empty().append(message);
+
+                    if (data.status == 'publish') {
+                        document.location.href = data.link;
+                    }
+                } else {
+                    message = '<div class="ui error message">' +
+                        '<i class="close icon"></i><i class="warning circle large icon"></i>' + data.message +
+                        '</div>';
+                    $('#save-response').empty().append(message);
+                }
+
+                $('#save_response').html(message);
+                $('html,body').animate({ scrollTop: 0 }, 300)
+            },
+            error: function(errorThrown) {
+
+            }
+        });
+    }
+
+    $('#submit-contribute').click(function() {
+        submitContribute();
     });
 
     // SET NEW GOAL
@@ -1192,11 +1244,23 @@ var geocoder;
                 success: function(data) {
                     $(id).removeClass('loading disabled');
                     if (data.addsign === true) {
-                        $('.fav_no').html(data.number);
+                        $('.fav_no').html(data.signature);
                         $('.ned_no').html(data.need);
-                        $(id).removeClass('signPetition').addClass('signedPetition');
+                        if (services_vars.unsign != '') {
+                            $(id).removeClass('signPetition');
+                        } else {
+                            $(id).removeClass('signPetition').addClass('signedPetition');
+                        }
                         $(id).children('i').removeClass('write').addClass('checkmark');
-                        $('.petition-goal').progress('increment').attr('data-value', data.number);
+                        $('.petition-goal').progress('increment').attr('data-value', parseInt(data.number) );
+
+                        if (services_vars.action_after_sign == 'refresh') {
+                            document.location.href = window.location.href;
+                        } else if (services_vars.action_after_sign == 'redirect') {
+                            document.location.href = $('#sign-successful-url').val();
+                        } else if (services_vars.action_after_sign == 'modal') {
+                            $('#sign-successful-modal').modal('show');
+                        } 
                     }
                 },
                 error: function(errorThrown) {
@@ -1218,17 +1282,19 @@ var geocoder;
                 success: function(data) {
                     $(id).removeClass('loading disabled');
                     if (data.removesign === true) {
-                        $('.fav_no').html(data.number);
+                        $('.fav_no').html(data.signature);
                         $('.ned_no').html(data.need);
                         $(id).removeClass('signedPetition').addClass('signPetition');
                         $(id).children('i').removeClass('checkmark').addClass('write');
-                        $('.petition-goal').progress('increment').attr('data-value', data.number);
+                        $('.petition-goal').progress('increment').attr('data-value', parseInt(data.number) );
                     }
                 },
                 error: function(errorThrown) {
 
                 }
             });
+        } else {
+            $(id).removeClass('loading disabled');
         }
     }
 
@@ -1369,7 +1435,6 @@ var geocoder;
             var ajaxURL = services_vars.admin_url + 'admin-ajax.php';
             var security = $('#securityComment').val();
             var content = $(id).val();
-            content = content.replace(/\n\r?/g, '<br/>');
             if (!parent) {
                 parent = 0;
             }
@@ -1512,7 +1577,6 @@ var geocoder;
         var ajaxURL = services_vars.admin_url + 'admin-ajax.php';
         var security = $('#securityComment').val();
         var content = $('#comment-editor-' + comment_id).val();
-        content = content.replace(/\n\r?/g, '<br/>');
 
         $('#comment-edit-submit-' + comment_id).addClass('loading disabled');
 
@@ -1730,7 +1794,6 @@ var geocoder;
     $('#save-letter').on('click', function() {
         var ajaxURL = services_vars.admin_url + 'admin-ajax.php';
         var letter = $('#textarea-letter').val();
-        letter = letter.replace(/\n\r?/g, '<br/>');
         var security = $('#securityLetter').val();
         $('#letter-response').empty();
         $('#save-letter').addClass('loading disabled');
@@ -1752,7 +1815,7 @@ var geocoder;
                     var message = '<div class="ui success message">' +
                         '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
                         '</div>';
-                    $('#content-letter').html(letter);
+                    $('#content-letter').html(data.content);
                     $('#save-letter').css('display', 'none');
                     $('#edit-letter').css('display', 'block');
                 } else {
@@ -1797,7 +1860,7 @@ var geocoder;
                         html += '<div class="ui segments petition-list-card">' +
                             '<div class="ui segment">';
                         if (parseInt(petition.sign) >= parseInt(petition.goal) || petition.status == '1') {
-                            html += '<div class="ui primary right corner large label victory-label"><i class="flag icon"></i></div>';
+                            html += '<div class="ui primary right corner large label victory-label">' + services_vars.victory_icon + '</div>';
                         }
                         html += '<div class="ui grid">' +
                             '<div class="sixteen wide mobile ten wide tablet ten wide computer column">' +
@@ -1806,7 +1869,7 @@ var geocoder;
                             '<div class="sixteen wide column">' +
                             '<div class="ui header list-petition-title">' +
                             '<div class="content">' +
-                            '<div class="sub header truncate"><i class="filter icon"><a href="' + petition.link + '" data-bjax></i>' + ' ' + petition.uic + '</a></div>' +
+                            '<div class="sub header truncate"><i class="send icon"></i>' + services_vars.petition_to + ' ' + petition.receiver + '</div>' +
                             '<a href="' + petition.link + '" data-bjax>' + petition.title + '</a>' +
                             '</div>' +
                             '</div>' +
@@ -1835,8 +1898,13 @@ var geocoder;
                             '<div class="content">' +
                             '<div class="center">' +
                             '<div class="ui icon inverted circular large button"><i class="external icon"></i></div>' +
-                            '</div>' +
-                            '</div>' +
+                            '</div>';
+                        if (services_vars.view_counter != '') {
+                            html += '<div class="view-counter">' +
+                            '<i class="eye icon"></i>' + petition.view +
+                            '</div>';
+                        }
+                        html += '</div>' +
                             '</div>' +
                             '<img class="ui fluid image" id="thumbnail-post" src="' + petition.thumbnail + '">' +
                             '</a>' +
@@ -1846,7 +1914,7 @@ var geocoder;
                             '<div class="ui segment" style="border-top-color: rgba(0,0,0,.05);">' +
                             '<div class="ui grid">' +
                             '<div class="ten wide tablet ten wide computer column tablet computer only">' +
-                            '<span class="ui primary label"><i class="user icon"></i>' + petition.sign_fomated + ' ' + services_vars.supporters + '</span> ' +
+                            '<span class="ui primary label">' + services_vars.supporter_icon + petition.sign_fomated + ' ' + services_vars.supporters + '</span> ' +
                             '<span class="ui label"><i class="comments icon"></i>' + petition.comments_fomated + ' ' + services_vars.comments + '</span> ';
                         if (petition.category_name) {
                             html += '<a class="ui label" href="' + petition.category_link + '" data-bjax><i class="tag icon"></i>' + petition.category_name + '</a>';
@@ -1859,7 +1927,7 @@ var geocoder;
                             '</div>' +
 
                             '<div class="thirteen wide column mobile only">' +
-                            '<span class="ui primary label"><i class="user icon"></i>' + petition.sign_compact + ' ' + services_vars.supporters + '</span>' +
+                            '<span class="ui primary label">' + services_vars.supporter_icon + petition.sign_compact + ' ' + services_vars.supporters + '</span>' +
                             '<span class="ui label"><i class="comments icon"></i>' + petition.comments_fomated + '</span> ' +
                             '</div>' +
                             '<div class="three wide right aligned column mobile only">' +
@@ -1959,25 +2027,32 @@ var geocoder;
                 if (data.status == true) {
                     var html = '';
                     $.each(data.posts, function(id, post) {
-                        html += '<div class="card">' +
-                            '<div class="image">' +
-                            '<a href="' + post.link + '" data-bjax>' +
+                        html += '<div class="card blogs post petition-card">' +
+                            '<a href="' + post.link + '" class="image" data-bjax>' +
+                            '<div class="ui dimmer">' +
+                            '<div class="content">' +
+                            '<div class="center">' +
+                            '<div class="ui icon inverted circular large button"><i class="external icon"></i></div>' +
+                            '</div>' +
+                            '<div class="view-counter">' +
+                            '<i class="comments icon"></i>' + post.comments;
+                        if (services_vars.view_counter != '') {
+                            html += '<i class="eye icon"></i>' + post.view;
+                        }
+                        html += '</div>' +
+                            '</div>' +
+                            '</div>' +
                             '<img class="ui fluid image" src="' + post.thumbnail + '">' +
                             '</a>' +
-                            '</div>' +
                             '<div class="content">' +
-                            '<a href="' + post.link + '" class="header card-post-title" data-bjax>' + post.title + '</a>' +
-                            '<div class="meta">' +
-                            '<a href="' + post.category_link + '" data-bjax>' + post.category_name + '</a>' +
-                            '</div>' +
-                            '<div class="description text grey">' + post.excerpt + '</div>' +
+                            '<a class="ui tiny label" href="' + post.category_link + '" data-bjax>' + post.category_name + '</a>' +
+                            '<div class="header card-post-title"><a href="' + post.link + '" data-bjax>' + post.title + '</a></div>' +
+                            '<div class="description"><div class="text grey">' + post.excerpt + '</div></div>' +
                             '</div>' +
                             '<div class="extra content">';
                         if (post.comments) {
                             html += '<span class="right floated">' +
-                                '<a href="' + post.link + '" class="header" data-bjax>' +
-                                '<i class="comments icon"></i>' + post.comments +
-                                '</a>' +
+                                '<a href="' + post.author_link + '" data-bjax>' + post.author_name + '</a>' +
                                 '</span>';
                         }
                         html += '<span><i class="calendar outline icon"></i>' + post.date + '</span>' +
@@ -2152,7 +2227,6 @@ var geocoder;
               image: 'avatar'
             },
             onSelect: function(result, response) {
-                console.log(result);
                 $(this).find('.decision-title').val(result.description)
                 $(this).find('.new_decisionmakers').val(result.author)
             }
@@ -2164,8 +2238,6 @@ var geocoder;
             }
         })
     });
-
-
 
     // SEARCH PETITION AUTOCOMPLETE
     var search_settings = $.parseJSON( services_vars.search_settings );
@@ -2245,7 +2317,7 @@ var geocoder;
                     html += '<div class="item">';
                         html += '<div class="image">';
                             if ( parseInt(item.sign) >= parseInt(item.goal) || item.status == '1') {
-                                html += '<div class="ui primary left corner label victory-label"> <i class="flag icon"></i></div>';
+                                html += '<div class="ui primary left corner label victory-label"> ' + services_vars.victory_icon + '</div>';
                             }
                                 html += '<a href="' + item.link + '" data-bjax><img class="ui fluid image" src="' + item.thumbnail + '" /></a>' +
                                 '</div>' +
@@ -2264,7 +2336,7 @@ var geocoder;
                                                 ' <img class="ui avatar bordered image" src="' + item.author_avatar + '" />' +
                                             '</a>' +
                                         '</div>' +
-                                        '<div class="ui primary label"><i class="user icon"></i>' + item.sign + ' ' + services_vars.supporters + '</div> ' +
+                                        '<div class="ui primary label">' + services_vars.supporter_icon + item.sign + ' ' + services_vars.supporters + '</div> ' +
                                         '<div class="ui label"><i class="comments icon"></i>' + item.comments + ' ' + services_vars.comments + '</div> ';
                                     } else {
                                         html += '<div class="ui right floated tiny header">' +
@@ -2272,7 +2344,7 @@ var geocoder;
                                                 '<img class="ui avatar bordered image" src="' + item.author_avatar + '" />' +
                                             '</a>' +
                                         '</div>' +
-                                        '<div class="ui primary label"><i class="user icon"></i>' + item.sign + ' ' + services_vars.supporters + '</div> ' +
+                                        '<div class="ui primary label">' + services_vars.supporter_icon + item.sign + ' ' + services_vars.supporters + '</div> ' +
                                         '<div class="ui label"><i class="comments icon"></i>' + item.comments + '</div>';
                                     }
                                     if (item.category_name && services_vars.is_mobile == 'false') {
@@ -2338,7 +2410,7 @@ var geocoder;
                     html += '<div class="item">';
                         html += '<div class="image">';
                             if ( parseInt(item.sign) >= parseInt(item.goal) || item.status == '1') {
-                                html += '<div class="ui primary left corner label victory-label"> <i class="flag icon"></i></div>';
+                                html += '<div class="ui primary left corner label victory-label"> ' + services_vars.victory_icon + '</div>';
                             }
                                 html += '<a href="' + item.link + '" data-bjax><img class="ui fluid image" src="' + item.thumbnail + '" /></a>' +
                                 '</div>' +
@@ -2357,7 +2429,7 @@ var geocoder;
                                                 ' <img class="ui avatar bordered image" src="' + item.author_avatar + '" />' +
                                             '</a>' +
                                         '</div>' +
-                                        '<div class="ui primary label"><i class="user icon"></i>' + item.sign + ' ' + services_vars.supporters + '</div> ' +
+                                        '<div class="ui primary label">' + services_vars.supporter_icon + item.sign + ' ' + services_vars.supporters + '</div> ' +
                                         '<div class="ui label"><i class="comments icon"></i>' + item.comments + ' ' + services_vars.comments + '</div> ';
                                     } else {
                                         html += '<div class="ui right floated tiny header">' +
@@ -2365,7 +2437,7 @@ var geocoder;
                                                 '<img class="ui avatar bordered image" src="' + item.author_avatar + '" />' +
                                             '</a>' +
                                         '</div>' +
-                                        '<div class="ui primary label"><i class="user icon"></i>' + item.sign + ' ' + services_vars.supporters + '</div> ' +
+                                        '<div class="ui primary label">' + services_vars.supporter_icon + item.sign + ' ' + services_vars.supporters + '</div> ' +
                                         '<div class="ui label"><i class="comments icon"></i>' + item.comments + '</div>';
                                     }
                                     if (item.category_name && services_vars.is_mobile == 'false') {
@@ -2513,46 +2585,4 @@ var geocoder;
     place_autocomplete('Signup');
     place_autocomplete('User');
 
-
-        
 })(jQuery);
-/*APPROVE DECISION MAKERS*/
-    function approve_decisionmakers(user_id,petition_id) {
-        
-        var ajaxURL = services_vars.admin_url + 'admin-ajax.php';
-        var security = jQuery('#securityInvitation').val();
-        
-        jQuery("#app_"+user_id).addClass('loading disabled');
-
-        jQuery.ajax({
-            type: 'POST',
-            dataType: 'json',
-            url: ajaxURL,
-            data: {
-                'action': 'approve_decisionmakers',
-                'user_id': user_id,
-                'petition_id': petition_id,
-                'security': security
-            },
-            success: function(data) {
-                jQuery("#app_"+user_id).removeClass('loading disabled');
-                jQuery("#col_app_"+user_id).remove();
-                if(jQuery('.app_leads .column').length<=0)
-                {
-                    jQuery('.app_leads').html('<div class="content"><div class="padding-15">No Approvals Pending.</div></div>');
-                }
-                var message = '';
-                console.log(data.message);
-                if (data.sent === true) {
-                    message = '<br><div class="ui success message" style="margin-top:5px;">' +
-                        '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
-                        '</div>';
-                } else {
-                    message = '<div class="ui error message" style="margin-top:5px;">' +
-                        '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
-                        '</div>';
-                }
-                jQuery('#approveinMessage').html(message);
-            }
-        });
-    }

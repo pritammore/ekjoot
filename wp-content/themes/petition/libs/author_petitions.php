@@ -92,6 +92,7 @@ if( !function_exists('conikal_load_author_petitions') ):
                 $excerpt = conikal_get_excerpt_by_id($id);
                 $comments = wp_count_comments($id);
                 $comments_fomated = conikal_format_number('%!,0i', $comments->approved, true);
+                $view = conikal_format_number('%!,0i', (int) conikal_get_post_views($id), true);
                 $gallery = get_post_meta($id, 'petition_gallery', true);
                 $images = explode("~~~", $gallery);
                 $address = get_post_meta($id, 'petition_address', true);
@@ -145,6 +146,7 @@ if( !function_exists('conikal_load_author_petitions') ):
                         'excerpt' => $excerpt,
                         'comments' => $comments->approved,
                         'comments_fomated' => $comments_fomated,
+                        'view' => $view,
                         'address' => $address,
                         'city' => $city,
                         'state' => $state,

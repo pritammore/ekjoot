@@ -36,7 +36,7 @@ $style_menu = isset($conikal_header_settings['conikal_style_header_menu_field'])
             <div class="ui header-menu secondary fixed menu" style="margin: auto 0">
                 <?php echo ($style_menu === 'boxed' ? '<div class="ui container">' : '') ?>
                     <div class="item" style="padding: 5px 0 0 0">
-                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" data-bjax>
+                        <a class="fixed-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" data-bjax>
                             <?php
                             $logo = isset($conikal_general_settings['conikal_logo_field']) ? $conikal_general_settings['conikal_logo_field'] : '';
                             if($logo != '') {
@@ -72,14 +72,14 @@ $style_menu = isset($conikal_header_settings['conikal_style_header_menu_field'])
                             wp_reset_query();
 
                         if ($submit_button) { ?>
-                            <div class="item">
-                                <a href="<?php echo esc_url($page_link); ?>" class="ui labeled icon <?php echo ($header_menu_color != '#ffffff' ? 'basic inverted ' : 'primary ') ?>button" id="add-petition-btn" data-bjax><i class="write icon"></i> <?php echo esc_html($page_title); ?></a>
-                            </div>
+                            <form action="<?php echo esc_url($page_link); ?>" class="item">
+                                <button class="ui labeled icon <?php echo ($header_menu_color != '#ffffff' ? 'basic inverted ' : 'primary button submit-petition-btn') ?>" id="add-petition-btn" data-bjax><i class="write icon"></i> <?php echo esc_html($page_title); ?></button>
+                            </form>
                         <?php } 
                         } else { 
                         if ($submit_button) { ?>
                             <div class="item">
-                                <a href="#" class="ui labeled icon <?php echo ($header_menu_color != '#ffffff' ? 'basic inverted ' : 'primary ') ?>button signin-btn" id="add-petition-btn"><i class="write icon"></i> <?php esc_html_e('Start a Petition', 'petition'); ?></a>
+                                <button href="#" class="submit-signin-btn ui labeled icon <?php echo ($header_menu_color != '#ffffff' ? 'basic inverted ' : 'primary button submit-petition-btn ') ?>" id="add-petition-btn"><i class="write icon"></i> <?php esc_html_e('Start a Petition', 'petition'); ?></button>
                             </div>
                         <?php }
                         }

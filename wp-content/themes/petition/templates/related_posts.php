@@ -6,6 +6,9 @@
 ?>
 
 <?php
+$conikal_appearance_settings = get_option('conikal_appearance_settings','');
+$view_counter = isset($conikal_appearance_settings['conikal_view_counter_field']) ? $conikal_appearance_settings['conikal_view_counter_field'] : '';
+$related_post_per_page = isset($conikal_appearance_settings['conikal_similar_related_per_page_field']) ? $conikal_appearance_settings['conikal_similar_related_per_page_field'] : 4;
 $orig_post = $post;
 $tags = wp_get_post_tags($post->ID);
 
@@ -15,7 +18,7 @@ $tags = wp_get_post_tags($post->ID);
         $args = array(
             'tag__in' => $tag_ids,
             'post__not_in' => array($post->ID),
-            'posts_per_page' => 4,
+            'posts_per_page' => $related_post_per_page,
             'ignore_sticky_posts' => false
         );
 
@@ -36,15 +39,25 @@ $tags = wp_get_post_tags($post->ID);
             $r_author = get_the_author();
             $r_categories = get_the_category();
             $r_date = get_the_date();
+            $r_view = conikal_format_number('%!,0i', (int) conikal_get_post_views($r_id), true);
         ?>
 
             <div class="card blogs post petition-card">
-                <a href="<?php echo esc_url($r_link); ?>" target="_blank" class="image" data-bjax>
+                <a href="<?php echo esc_url($r_link); ?>" target="_blank" class="image blurring" data-bjax>
                     <div class="ui dimmer">
                         <div class="content">
-                          <div class="center">
-                            <div class="ui icon inverted circular big button"><i class="external icon"></i></div>
-                          </div>
+                            <div class="center">
+                            <div class="ui icon inverted circular button"><i class="external icon"></i></div>
+                            </div>
+                            <div class="view-counter">
+                            <i class="comments icon"></i>
+                            <?php echo esc_html($r_comments->approved); ?>
+
+                            <?php if ($view_counter != '') { ?>
+                                <i class="eye icon"></i>
+                                <?php echo esc_html($r_view); ?>
+                            <?php } ?>
+                            </div>
                         </div>
                     </div>
                     <?php if (has_post_thumbnail()) { ?>

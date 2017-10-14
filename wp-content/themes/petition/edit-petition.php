@@ -116,10 +116,10 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                 $updates = get_post_meta($id, 'petition_update', true);
                 $thumb = get_post_meta($id, 'petition_thumb', true);
                 $status = get_post_meta($id, 'petition_status', true);
+                $sendinblue_list = get_post_meta($id, 'petition_sendinblue_list', true);
                 $post_author_id = get_post_field( 'post_author', $id );
                 $user_avatar = get_the_author_meta('avatar' , get_the_author_meta('ID'));
                 $attach_id = get_post_thumbnail_id($id);
-
             }
         }
         wp_reset_postdata();
@@ -134,7 +134,10 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
         <div class="color silver">
             <div class="ui large secondary pointing grey menu" id="control-menu">
                 <div class="ui container">
+                        <!-- Campaign link -->
                         <a href="<?php echo isset($link) ? $link : '' ?>" class="item" data-bjax><?php _e('Campaign', 'petition') ?></a>
+
+                        <!-- Dashboard link -->
                         <?php
                             $args = array(
                                 'post_type' => 'page',
@@ -148,12 +151,15 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                             while($query->have_posts()) {
                                 $query->the_post();
                                 $page_id = get_the_ID();
-                                $page_link = get_permalink($page_id) . '?edit_id=' . $edit_id;
+                                $page_link = get_permalink($page_id);
+                                $page_link = add_query_arg(array('edit_id' => $edit_id), $page_link);
                             }
                             wp_reset_postdata();
                             wp_reset_query();
                         ?>
                         <a href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Dashboard', 'petition') ?></a>
+
+                        <!-- Update petition link -->
                         <?php
                             $args = array(
                                 'post_type' => 'page',
@@ -167,15 +173,38 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                             while($query->have_posts()) {
                                 $query->the_post();
                                 $page_id = get_the_ID();
-                                $page_link = get_permalink($page_id) . '?petition_id=' . $edit_id . '&type=update';
+                                $page_link = get_permalink($page_id);
+                                $page_link = add_query_arg(array('petition_id' => $edit_id, 'type' => 'update'), $page_link);
                             }
                             wp_reset_postdata();
                             wp_reset_query();
                         ?>
                         <a href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Update', 'petition') ?></a>
-                        <?php if ( $post_author_id == $current_user->ID || current_user_can('administrator')) { ?>
+
+                        <!-- Contribute link -->
+                        <?php
+                            $args = array(
+                                'post_type' => 'page',
+                                'post_status' => 'publish',
+                                'meta_key' => '_wp_page_template',
+                                'meta_value' => 'contribute.php'
+                            );
+
+                            $query = new WP_Query($args);
+
+                            while($query->have_posts()) {
+                                $query->the_post();
+                                $page_id = get_the_ID();
+                                $page_link = get_permalink($page_id);
+                                $page_link = add_query_arg(array('petition_id' => $edit_id), $page_link);
+                            }
+                            wp_reset_postdata();
+                            wp_reset_query();
+                        ?>
+                        <a href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Contribute', 'petition') ?></a>
+
+                        <!-- Edit petition link -->
                         <a href="#" class="active item"><?php _e('Edit', 'petition') ?></a>
-                        <?php } ?>
                 </div>
             </div>
         </div>
@@ -191,9 +220,10 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                         <div class="ui form">
                         <?php wp_nonce_field('submit_petition_ajax_nonce', 'securitySubmitPetition', true); ?>
                         <input type="hidden" id="current_user" name="current_user" value="<?php echo esc_attr($post_author_id); ?>">
-                        <input type="hidden" id="new_id" name="new_id" value="<?php echo isset($edit_id) ? $edit_id : ''; ?>">
+                        <input type="hidden" id="new_id" name="new_id" value="<?php echo isset($edit_id) ? esc_attr($edit_id) : ''; ?>">
+                        <input type="hidden" id="sendinblue_list" name="sendinblue_list" value="<?php echo isset($sendinblue_list) ? esc_attr($sendinblue_list) : ''; ?>">
                         <input type="hidden" id="new_goal_d" name="new_goal_d" value="<?php echo ($goal ? esc_attr($goal) : esc_attr($p_goal_d) ) ?>">
-                        <input type="hidden" name="new_status" id="new_status" value="<?php echo isset($status) ? $status : 0; ?>">
+                        <input type="hidden" name="new_status" id="new_status" value="<?php echo isset($status) ? esc_attr($status) : 0; ?>">
 
                         <!-- STEP ONE -->
                                 <div class="required field">
