@@ -2556,3 +2556,142 @@ var geocoder;
             }
         });
     }
+
+    
+    function loadDecisionMakers(id, context) {
+        var ajaxURL = services_vars.admin_url + 'admin-ajax.php';
+        var security = $('#securityPetitions').val();
+        var post_number = $(id).attr('data-number');
+        var typed = $(id).attr('data-type');
+        var author = $(id).attr('data-author');
+        var paged = $(id).attr('data-page');
+
+        $(id).addClass('loading disabled');
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: ajaxURL,
+            data: {
+                'action': typed,
+                'user_id': services_vars.user_id,
+                'author_id': author,
+                'paged': paged,
+                'security': security
+            },
+            success: function(data) {
+                $(id).removeClass('loading disabled');
+                if (data.status == true) {
+                    var html = '';
+                    $.each(data.decisionmakers, function(id, petition) {
+                        html += '<div class="ui segments petition-list-card">' +
+                            '<div class="ui segment">';
+                        if (parseInt(petition.sign) >= parseInt(petition.goal) || petition.status == '1') {
+                            html += '<div class="ui primary right corner large label victory-label"><i class="flag icon"></i></div>';
+                        }
+                        html += '<div class="ui grid">' +
+                            '<div class="sixteen wide mobile ten wide tablet ten wide computer column">' +
+                            '<div class="petition-content">' +
+                            '<div class="ui grid">' +
+                            '<div class="sixteen wide column">' +
+                            '<div class="ui header list-petition-title">' +
+                            '<div class="content">' +
+                            '<div class="sub header truncate"><i class="filter icon"><a href="' + petition.link + '" data-bjax></i>' + ' ' + petition.uic + '</a></div>' +
+                            '<a href="' + petition.link + '" data-bjax>' + petition.title + '</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="sixteen wide column tablet computer only" style="padding-top: 0; padding-bottom: 0;">' +
+                            '<div class="text grey">' + petition.excerpt + '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="ui grid">' +
+                            '<div class="petition-footer">' +
+                            '<div class="sixteen wide column">' +
+                            '<span class="text grey place"><i class="marker icon"></i>' + (petition.city ? petition.city + ', ' : '') + (petition.state ? petition.state + ', ' : '') + (petition.country ? petition.country : '') + '</span>' +
+                            '<div class="ui tiny indicating primary progress petition-goal" id="petition-goal" data-value="' + petition.sign + '" data-total="' + (petition.status == '1' ? petition.sign : petition.goal) + '">' +
+                            '<div class="bar">' +
+                            '<div class="progress"></div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="sixteen wide mobile six wide tablet six wide computer column">' +
+                            '<a class="ui fluid image" href="' + petition.link + '" target="_blank" data-bjax>' +
+                            '<div class="ui dimmer">' +
+                            '<div class="content">' +
+                            '<div class="center">' +
+                            '<div class="ui icon inverted circular large button"><i class="external icon"></i></div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '<img class="ui fluid image" id="thumbnail-post" src="' + petition.thumbnail + '">' +
+                            '</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="ui segment" style="border-top-color: rgba(0,0,0,.05);">' +
+                            '<div class="ui grid">' +
+                            '<div class="ten wide tablet ten wide computer column tablet computer only">' +
+                            '<span class="ui primary label"><i class="user icon"></i>' + petition.sign_fomated + ' ' + services_vars.supporters + '</span> ' +
+                            '<span class="ui label"><i class="comments icon"></i>' + petition.comments_fomated + ' ' + services_vars.comments + '</span> ';
+                        if (petition.category_name) {
+                            html += '<a class="ui label" href="' + petition.category_link + '" data-bjax><i class="tag icon"></i>' + petition.category_name + '</a>';
+                        }
+                        html += '</div>' +
+                            '<div class="six wide tablet six wide computer right aligned column tablet computer only">' +
+                            '<a href="' + petition.author_link + '" data-bjax>' +
+                            '<strong>' + petition.author_name + '</strong> <img class="ui avatar bordered image" src="' + petition.author_avatar + '" />' +
+                            '</a>' +
+                            '</div>' +
+
+                            '<div class="thirteen wide column mobile only">' +
+                            '<span class="ui primary label"><i class="user icon"></i>' + petition.sign_compact + ' ' + services_vars.supporters + '</span>' +
+                            '<span class="ui label"><i class="comments icon"></i>' + petition.comments_fomated + '</span> ' +
+                            '</div>' +
+                            '<div class="three wide right aligned column mobile only">' +
+                            '<a href="' + petition.author_link + '" data-bjax>' +
+                            '<img class="ui avatar bordered image" src="' + petition.author_avatar + '" />' +
+                            '</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                    });
+
+                    $(id).attr('data-page', (parseInt(paged) + 1));
+                    $(id).attr('data-number', (parseInt(post_number) + data.found_posts));
+
+                    // Append content
+                    $(context).append(html);
+
+                    if (data.found_posts < data.per_page || (post_number + data.found_posts) == data.total) {
+                        $(id).css('display', 'none');
+                    }
+
+                    // Refresh progress
+                    $('.petition-goal').progress({
+                        'label': false
+                    });
+                } else {
+                    $(id).removeClass('loading disabled').css('display', 'none');
+                }
+            },
+            error: function() {}
+        });
+    }
+
+    $('#load-more-leaders').on('click', function() {
+        loadDecisionMakers('#load-more-leaders', '#content');
+    });
+
+    $('#load-more-leaders').visibility({
+        once: false,
+        observeChanges: true,
+        offset: 800,
+        onTopVisible: function() {
+            loadDecisionMakers('#load-more-leaders', '#content');
+        }
+    });

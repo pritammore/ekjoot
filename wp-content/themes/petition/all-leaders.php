@@ -263,21 +263,21 @@ if($decisionmakers->have_posts()) {
                     <?php }
                     } else {
                         print '<div class="not-found" id="content">';
-                        print '<div class="ui warning message">' . __('No Leader found.', 'petition') . '</div>';
+                        print '<div class="ui warning message">' . __('No Leader found.', 'decisionmakers') . '</div>';
                         print '</div>';
                     }
                     ?>
                 </div>
                 <br/>
                 <!-- LOAD MORE BUTTON -->
-                <button class="ui basic fluid large button" id="load-more" data-page="2" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="<?php echo ( !is_user_logged_in() ? 'conikal_load_featured_petitions' : 'conikal_load_newsfeed_petitions' ) ?>"><i class="long arrow down icon"></i><?php echo __('Load more...', 'petition'); ?></button>
+                <button class="ui basic fluid large button" id="load-more" data-page="2" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="<?php echo ( !is_user_logged_in() ? 'conikal_load_leadersfeed':'' ) ?>"><i class="long arrow down icon"></i><?php echo __('Load more...', 'decisionmakers'); ?></button>
             </div>
             <div class="ui tab" data-tab="trending">
                 <div id="content-trending">
                 </div>
                 <br/>
                 <!-- LOAD MORE BUTTON -->
-                <button class="ui basic fluid large button" id="load-trending" data-page="1" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="conikal_load_trending_petitions"><i class="long arrow down icon"></i><?php echo __('Load more...', 'petition'); ?></button>
+                <button class="ui basic fluid large button" id="load-trending" data-page="1" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="conikal_load_trending_petitions"><i class="long arrow down icon"></i><?php echo __('Load more...', 'decisionmakers'); ?></button>
             </div>
             <div class="ui tab" data-tab="recent">
                 <div id="content-recent">
