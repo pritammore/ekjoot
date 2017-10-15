@@ -291,7 +291,7 @@
         $('#contact-user').modal('show')
     });
     $('#invite-leader-to-lead-btn').on('click', function() {
-        $('#contact-user').modal('show')
+        $('#request-issue-support').modal('show')
     });
     $('.invite-responsive').on('click', function() {
         var email = $(this).attr('data-email');

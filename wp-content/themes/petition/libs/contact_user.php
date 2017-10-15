@@ -17,10 +17,20 @@ if( !function_exists('conikal_send_message_to_user') ):
         $client_email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
         $client_subject = isset($_POST['subject']) ? sanitize_text_field($_POST['subject']) : '';
         $client_message = isset($_POST['message']) ? $_POST['message'] : '';
+        $client_message_for = isset($_POST['messageFor']) ? $_POST['messageFor'] : '';
 
         if(empty($client_name) || empty($client_email) || empty($client_subject) || empty($client_message)) {
             echo json_encode(array('sent'=>false, 'message'=>__('Your message failed to be sent. Please check your fields.', 'petition')));
             exit();
+        }
+
+        if($client_message_for == 'RequestUICSupport') {
+            if(validate_uic($client_subject))
+                $client_subject = "Request for Support in leading Issue " . $client_subject;
+            else {
+                echo json_encode(array('sent'=>false, 'message'=>__('Your Unique Issue Code is not valid. Please try again.', 'petition')));
+                exit();
+            }
         }
 
         $headers = 'From: ' . $client_name . '  <' . $client_email . '>' . "\r\n" .

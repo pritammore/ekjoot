@@ -2066,6 +2066,7 @@ var geocoder;
                 'email': $('#contact_email').val(),
                 'subject': $('#contact_subject').val(),
                 'message': $('#contact_message').val(),
+                'messageFor': 'Contactonly',
                 'security': security
             },
             success: function(data) {
@@ -2086,6 +2087,52 @@ var geocoder;
                 }
 
                 $('#contact-response').html(message);
+            },
+            error: function(errorThrown) {
+
+            }
+        });
+    });
+
+    // REQUEST USER TO SUPPORT
+    $('#sendBtnToSUpportIssue').click(function() {
+        var ajaxURL = services_vars.admin_url + 'admin-ajax.php';
+        var security = $('#securityContactUser').val();
+        $('#contact-response').empty();
+        $('#sendBtnToSUpportIssue').addClass('loading disabled');
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: ajaxURL,
+            data: {
+                'action': 'conikal_send_message_to_user',
+                'user_email': $('#req_user_email').val(),
+                'name': $('#req_contact_name').val(),
+                'email': $('#req_contact_email').val(),
+                'subject': $('#req_contact_subject').val(),
+                'message': $('#req_contact_message').val(),
+                'messageFor': 'RequestUICSupport',
+                'security': security
+            },
+            success: function(data) {
+                $('#sendBtnToSUpportIssue').removeClass('loading disabled');
+                var message = '';
+                if (data.sent === true) {
+                    message = '<div class="ui success message">' +
+                        '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
+                        '</div>';
+                    $('#req_contact_name').val('');
+                    $('#req_contact_email').val('');
+                    $('#req_contact_subject').val('');
+                    $('#req_contact_message').val('');
+                } else {
+                    message = '<div class="ui error message">' +
+                        '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
+                        '</div>';
+                }
+
+                $('#request-issue-support-response').html(message);
             },
             error: function(errorThrown) {
 

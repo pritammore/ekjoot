@@ -140,4 +140,43 @@
 	        </form>
 	    </div>
 	</div>
+
+	<div class="ui small modal" id="request-issue-support">
+	    <div class="header">
+	        <?php _e('Request support for an issue', 'petition') ?>
+	    </div>
+	    <div class="content">
+	        <div class="respon-message" id="request-issue-support-response"></div>
+	        <form class="ui form">
+	            <input type="hidden" id="req_user_email" name="req_user_email" value="<?php echo esc_attr($curauth->user_email); ?>">
+	            <?php if (!is_user_logged_in()) { ?>
+	            <div class="fields">
+	                <div class="eight wide required field">
+	                       <label><?php esc_html_e('Name', 'petition'); ?></label>
+	                       <input type="text" id="req_contact_name" name="req_contact_name" placeholder="<?php esc_html_e('Enter your name', 'petition'); ?>">
+	                 </div>
+	                <div class="eight wide required field">
+	                        <label><?php esc_html_e('Email', 'petition'); ?></label>
+	                        <input type="text" id="req_contact_email" name="req_contact_email" placeholder="<?php esc_html_e('Enter your email', 'petition'); ?>">
+	                </div>
+	            </div>
+	            <?php } else { ?>
+	            	<input type="hidden" id="req_contact_name" name="req_contact_name" value="<?php echo esc_html($user->display_name); ?>">
+	            	<input type="hidden" id="req_contact_email" name="req_contact_email" value="<?php echo esc_html($user->user_email); ?>">
+	            <?php } ?>
+	            <div class="required field">
+	                        <label><?php esc_html_e('Unique Issue Code (UIC)', 'petition'); ?></label>
+	                        <input type="text" id="req_contact_subject" name="req_contact_subject" placeholder="<?php esc_html_e('Enter the Issue UIC', 'petition'); ?>">
+	            </div>
+	            <div class="required field">
+	                        <label><?php esc_html_e('Message', 'petition'); ?></label>
+	                        <textarea id="req_contact_message" name="req_contact_message" placeholder="<?php esc_html_e('Type your message', 'petition'); ?>" rows="5"></textarea>
+	            </div>
+	            <div class="field">
+	                <a href="javascript:void(0);" class="ui primary button" id="sendBtnToSUpportIssue"><?php esc_html_e('Request', 'petition'); ?></a>
+	            </div>
+	            <?php wp_nonce_field('contact_user_ajax_nonce', 'securityContactUser', true); ?>
+	        </form>
+	    </div>
+	</div>
 <?php } ?>

@@ -1239,6 +1239,7 @@ if (!function_exists('conikal_get_avatar_url')) :
         return $results;
     }
 endif;
+
 function hide_admin_bar_from_front_end(){
   if (is_blog_admin()) {
     return true;
@@ -1246,4 +1247,17 @@ function hide_admin_bar_from_front_end(){
   return false;
 }
 add_filter( 'show_admin_bar', 'hide_admin_bar_from_front_end' );
+
+//VALIDATE UIC CODE
+if(!function_exists('validate_uic')) :
+    function validate_uic($uic) {
+        global $wpdb;
+        $result = $wpdb->get_results( "select * from $wpdb->postmeta where meta_key = 'petition_uic' AND meta_value = '$uic'" );
+        if ( ! empty( $result ) ) {
+         return true;
+        }
+        return false;
+    }
+endif;
+add_filter( 'validate_uic', 'validate_uic' );
 ?>
