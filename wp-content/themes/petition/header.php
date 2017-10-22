@@ -42,7 +42,8 @@ $home_header_hide_logined = isset($conikal_home_settings['conikal_home_header_hi
                     !is_singular('petition') &&
                     !is_singular('update') &&
                     !is_404() && 
-                    !is_page_template('all-issues.php')) { 
+                    !is_page_template('all-issues.php') && 
+                    !is_page_template('all-leaders.php')) { 
             get_template_part('templates/page_hero');
         }
 
@@ -54,6 +55,7 @@ $home_header_hide_logined = isset($conikal_home_settings['conikal_home_header_hi
                 is_page_template('edit-petition.php') ||
                 is_page_template('add-update.php') ||
                 is_page_template('all-issues.php') || 
+                is_page_template('all-leaders.php') || 
                 is_404()) { 
             get_template_part('templates/app_header');
         } else {
@@ -92,7 +94,8 @@ $home_header_hide_logined = isset($conikal_home_settings['conikal_home_header_hi
                 !is_page_template('edit-petition.php') &&
                 !is_page_template('dashboard-petition.php') &&
                 !is_page_template('add-update.php') && 
-                !is_page_template('all-issues.php')) {
+                !is_page_template('all-issues.php') && 
+                !is_page_template('all-leaders.php')) {
             get_template_part('templates/page_caption');
         } else if (is_home()) {
             get_template_part('templates/blog_featured');

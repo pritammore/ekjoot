@@ -12,15 +12,10 @@ get_header();
 $current_user = wp_get_current_user();
 $conikal_appearance_settings = get_option('conikal_appearance_settings','');
 $posts_per_page_setting = isset($conikal_appearance_settings['conikal_petitions_per_page_field']) ? $conikal_appearance_settings['conikal_petitions_per_page_field'] : '';
-$posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
+$posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : '';
 $sidebar_position = isset($conikal_appearance_settings['conikal_sidebar_field']) ? $conikal_appearance_settings['conikal_sidebar_field'] : '';
 $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $conikal_appearance_settings['conikal_breadcrumbs_field'] : '';
-$newsfeed_petitions = get_post_meta(4321);
-if ( !is_user_logged_in() ) {
-    $newsfeed_petitions = conikal_featured_petitions();
-}
-$recently_petitions = conikal_recent_petitions();
-$trending_petitions = conikal_trending_petitions();
+
 $users = get_users();
 $conikal_general_settings = get_option('conikal_general_settings','');
 
@@ -270,21 +265,14 @@ if($decisionmakers->have_posts()) {
                 </div>
                 <br/>
                 <!-- LOAD MORE BUTTON -->
-                <button class="ui basic fluid large button" id="load-more" data-page="2" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="<?php echo ( !is_user_logged_in() ? 'conikal_load_leadersfeed':'' ) ?>"><i class="long arrow down icon"></i><?php echo __('Load more...', 'decisionmakers'); ?></button>
-            </div>
+                <button class="ui basic fluid large button" id="load-more-leaders" data-page="2" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="conikal_load_leadersfeed"><i class="long arrow down icon"></i><?php echo __('Load more...', 'decisionmakers'); ?></button>
+            </div>  
             <div class="ui tab" data-tab="trending">
                 <div id="content-trending">
                 </div>
                 <br/>
                 <!-- LOAD MORE BUTTON -->
-                <button class="ui basic fluid large button" id="load-trending" data-page="1" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="conikal_load_trending_petitions"><i class="long arrow down icon"></i><?php echo __('Load more...', 'decisionmakers'); ?></button>
-            </div>
-            <div class="ui tab" data-tab="recent">
-                <div id="content-recent">
-                </div>
-                <br/>
-                <!-- LOAD MORE BUTTON -->
-                <button class="ui basic fluid large button" id="load-recent" data-page="1" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="conikal_load_recent_petitions"><i class="long arrow down icon"></i><?php echo __('Load more...', 'petition'); ?></button>
+                <button class="ui basic fluid large button" id="load-more-institutions" data-page="1" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="conikal_load_trending_petitions"><i class="long arrow down icon"></i><?php echo __('Load more...', 'decisionmakers'); ?></button>
             </div>
         </div>
         <?php wp_nonce_field('load_petitions_ajax_nonce', 'securityPetitions', true); ?>

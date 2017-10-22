@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package WordPress
+ * @subpackage Petition
+ */
 // LOAD MORE LEADERSFEED 
 if( !function_exists('conikal_load_leadersfeed') ): 
     function conikal_load_leadersfeed() {
@@ -10,12 +14,7 @@ if( !function_exists('conikal_load_leadersfeed') ):
 		$posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
 		$sidebar_position = isset($conikal_appearance_settings['conikal_sidebar_field']) ? $conikal_appearance_settings['conikal_sidebar_field'] : '';
 		$show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $conikal_appearance_settings['conikal_breadcrumbs_field'] : '';
-		$newsfeed_petitions = get_post_meta(4321);
-		if ( !is_user_logged_in() ) {
-		    $newsfeed_petitions = conikal_featured_petitions();
-		}
-		$recently_petitions = conikal_recent_petitions();
-		$trending_petitions = conikal_trending_petitions();
+		
 		$users = get_users();
 		$conikal_general_settings = get_option('conikal_general_settings','');
 
@@ -45,7 +44,14 @@ if( !function_exists('conikal_load_leadersfeed') ):
 		        $organization_name = ($organization ? $organization[0]->name : '');
 		        $excerpt = conikal_get_excerpt_by_id($id);
 		        $author = get_the_author_meta('ID');
-
+		        $up_bio = conikal_get_biographical_by_id($author);
+	         	$up_avatar_orginal = get_user_meta($author, 'avatar_orginal', true);
+                $up_avatar_id = get_user_meta($author, 'avatar_id', true);
+                    if ($up_avatar_orginal != '') {
+                        $avatar = $up_avatar_orginal;
+                    } else {
+                        $avatar = get_template_directory_uri().'/images/avatar.svg';
+                    }
 		        $arrayDecision = array(
 		                'id' => $id, 
 		                'link' => $link,
@@ -56,13 +62,13 @@ if( !function_exists('conikal_load_leadersfeed') ):
 		                'excerpt' => $excerpt,
 		                'avatar' => $avatar,
 		                'author' => $author,
+		                'up_bio' => $up_bio,
 		            );
 
 		        $arrayDecision = (object) $arrayDecision;
 		        array_push($arrayDecisionmakers, $arrayDecision);
 		    }
 		}
-
         if ($arrayDecisionmakers) {
             echo json_encode(array('status' => true, 'found_posts' => count($arrayDecisionmakers), 'total' => $petitions->post_count, 'per_page' => $posts_per_page, 'decisionmakers' => $arrayDecisionmakers, 'message' => __('Decision Makers was loaded successfully.', 'decisionmakers')));
             exit();
