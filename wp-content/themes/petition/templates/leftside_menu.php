@@ -18,8 +18,8 @@ $copyright = isset($conikal_appearance_settings['conikal_copyright_field']) ? $c
             </div>
         </div>
     </div>
-    <?php conikal_custom_menu_mobile('category') ?>
-    <div class="item" style="padding: 20px 0"></div>
+    <?php //conikal_custom_menu_mobile('category') ?>
+    <!-- <div class="item" style="padding: 20px 0"></div> -->
     <?php conikal_custom_menu_mobile('primary') ?>
     <div class="item">
         <?php if($copyright && $copyright != '') { ?>
