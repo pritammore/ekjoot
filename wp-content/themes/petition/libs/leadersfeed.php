@@ -17,13 +17,14 @@ if( !function_exists('conikal_load_leadersfeed') ):
 		
 		$users = get_users();
 		$conikal_general_settings = get_option('conikal_general_settings','');
-
+		$paged = isset($_POST['paged']) ? sanitize_text_field($_POST['paged']) : 2;
 		$keyword = isset($_GET['q']) ? sanitize_text_field($_GET['q']) : '';
 
 		$args = array(
 		    'post_type' => 'decisionmakers',
-		    'posts_per_page' => -1,
+		    'posts_per_page' => $posts_per_page,
 		    'post_status' => array('publish'),
+		     'paged' => $paged,
 		    's' => $keyword
 		);
 

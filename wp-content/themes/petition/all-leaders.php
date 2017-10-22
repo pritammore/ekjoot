@@ -20,10 +20,11 @@ $users = get_users();
 $conikal_general_settings = get_option('conikal_general_settings','');
 
 $keyword = isset($_GET['q']) ? sanitize_text_field($_GET['q']) : '';
-
+$paged = 1;
 $args = array(
     'post_type' => 'decisionmakers',
-    'posts_per_page' => -1,
+    'posts_per_page' => $posts_per_page,
+    'paged' => $paged,
     'post_status' => array('publish'),
     's' => $keyword
 );
