@@ -2560,46 +2560,7 @@ var geocoder;
     place_autocomplete('Signup');
     place_autocomplete('User');
 
-    /*APPROVE DECISION MAKERS*/
-    function approve_decisionmakers(user_id,petition_id) {
-        
-        var ajaxURL = services_vars.admin_url + 'admin-ajax.php';
-        var security = jQuery('#securityInvitation').val();
-        
-        jQuery("#app_"+user_id).addClass('loading disabled');
-
-        jQuery.ajax({
-            type: 'POST',
-            dataType: 'json',
-            url: ajaxURL,
-            data: {
-                'action': 'approve_decisionmakers',
-                'user_id': user_id,
-                'petition_id': petition_id,
-                'security': security
-            },
-            success: function(data) {
-                jQuery("#app_"+user_id).removeClass('loading disabled');
-                jQuery("#col_app_"+user_id).remove();
-                if(jQuery('.app_leads .column').length<=0)
-                {
-                    jQuery('.app_leads').html('<div class="content"><div class="padding-15">No Approvals Pending.</div></div>');
-                }
-                var message = '';
-                console.log(data.message);
-                if (data.sent === true) {
-                    message = '<br><div class="ui success message" style="margin-top:5px;">' +
-                        '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
-                        '</div>';
-                } else {
-                    message = '<div class="ui error message" style="margin-top:5px;">' +
-                        '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
-                        '</div>';
-                }
-                jQuery('#approveinMessage').html(message);
-            }
-        });
-    }
+    
 
     
     function loadDecisionMakers(id, context) {
@@ -2719,4 +2680,43 @@ var geocoder;
     });
         
 })(jQuery);
-    
+    /*APPROVE DECISION MAKERS*/
+    function approve_decisionmakers(user_id,petition_id) {
+        
+        var ajaxURL = services_vars.admin_url + 'admin-ajax.php';
+        var security = jQuery('#securityInvitation').val();
+        
+        jQuery("#app_"+user_id).addClass('loading disabled');
+
+        jQuery.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: ajaxURL,
+            data: {
+                'action': 'approve_decisionmakers',
+                'user_id': user_id,
+                'petition_id': petition_id,
+                'security': security
+            },
+            success: function(data) {
+                jQuery("#app_"+user_id).removeClass('loading disabled');
+                jQuery("#col_app_"+user_id).remove();
+                if(jQuery('.app_leads .column').length<=0)
+                {
+                    jQuery('.app_leads').html('<div class="content"><div class="padding-15">No Approvals Pending.</div></div>');
+                }
+                var message = '';
+                console.log(data.message);
+                if (data.sent === true) {
+                    message = '<br><div class="ui success message" style="margin-top:5px;">' +
+                        '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
+                        '</div>';
+                } else {
+                    message = '<div class="ui error message" style="margin-top:5px;">' +
+                        '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
+                        '</div>';
+                }
+                jQuery('#approveinMessage').html(message);
+            }
+        });
+    }
