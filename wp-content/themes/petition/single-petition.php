@@ -63,6 +63,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
     $thumb = conikal_video_thumbnail($thumb_placeholder);
     $letter = get_post_meta($petition_id, 'petition_letter', true);
     $status = get_post_meta($petition_id, 'petition_status', true);
+    $uic = get_post_meta($petition_id, 'petition_uic', true);
 
     $user_address = get_user_meta(get_the_author_meta( 'ID' ), 'user_address', true);
     $user_country = get_user_meta(get_the_author_meta( 'ID' ), 'user_country', true);
@@ -194,7 +195,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
         <div class="ui basic padded vertical segment petition-title-block">
             <div class="ui left aligned header petition-title">
                 <div class="content">
-                    <!-- <div class="sub header"><i class="send icon"></i><?php //_e('Petition to', 'petition') ?> <strong><?php //echo esc_html($receiver[0]) ?></strong></div> -->
+                    <div class="sub header"><i class="filter icon"></i><?php _e('UIC', 'petition') ?> <strong><?php echo esc_html($uic) ?></strong></div>
                     <?php echo esc_html($title) ?>
                 </div>
             </div>
@@ -309,34 +310,34 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                     </div>
 
                     <!-- LETTER TO -->
-                    <div class="ui piled segment" id="letter">
+                    <!-- <div class="ui piled segment" id="letter">
                         <div class="ui grid">
                             <div class="twelve wide column">
-                                <div class="letter-title text grey"><?php _e('Letter to', 'petition') ?></div>
+                                <div class="letter-title text grey"><?php //_e('Letter to', 'petition') ?></div>
                             </div>
                             <div class="four wide right aligned column">
                                 <div class="letter-title text grey">
-                                    <?php if ( get_the_author_meta( 'ID' ) == $current_user->ID || current_user_can('administrator') ) { ?>
+                                    <?php /*if ( get_the_author_meta( 'ID' ) == $current_user->ID || current_user_can('administrator') ) { ?>
                                     <a href="javascript:void(0)" class="font medium" id="edit-letter"><i class="pencil icon"></i></a == true>
-                                    <?php } ?>
+                                    <?php }*/ ?>
                                 </div>
                             </div>
                         </div>
                         <?php 
-                        for ($i=0; $i < count($receiver); $i++) { 
+                        /*for ($i=0; $i < count($receiver); $i++) { 
                             if ($receiver[$i]) {
                                 echo '<div class="text grey font medium letter">' . ($position[$i] ? $position[$i] . ', ' : '') . '<strong>' . $receiver[$i] . '</strong></div>';
                             }
-                        }
+                        }*/
                         ?>
                         <div class="ui hidden divider"></div>
-                        <div class="font letter medium" id="content-letter"><?php echo ( $letter ? esc_html($letter) : esc_html($title) ) ?></div>
+                        <div class="font letter medium" id="content-letter"><?php //echo ( $letter ? esc_html($letter) : esc_html($title) ) ?></div>
                         <div class="ui basic segment">
-                            <button class="ui primary button" id="save-letter" style="display: none"><?php _e('Save', 'petition') ?></button>
+                            <button class="ui primary button" id="save-letter" style="display: none"><?php //_e('Save', 'petition') ?></button>
                         </div>
                         <div id="letter-response"></div>
-                        <?php wp_nonce_field('letter_ajax_nonce', 'securityLetter', true); ?>
-                    </div>
+                        <?php //wp_nonce_field('letter_ajax_nonce', 'securityLetter', true); ?>
+                    </div> -->
 
                     <!-- UPDATES -->
                     <div id="updates">
