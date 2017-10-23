@@ -2678,6 +2678,21 @@ var geocoder;
             loadDecisionMakers('#load-more-leaders', '#content');
         }
     });
+
+        // load trending petition homepage
+    $('#load-more-institutions').on('click', function() {
+        loadPetitions('#load-more-institutions', '#content-institutions');
+    });
+
+    $('#load-more-institutions').visibility({
+        once: false,
+        observeChanges: true,
+        offset: 800,
+        onTopVisible: function() {
+            loadPetitions('#load-more-institutions', '#content-institutions');
+        }
+    });
+
         
 })(jQuery);
     /*APPROVE DECISION MAKERS*/

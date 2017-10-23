@@ -268,12 +268,12 @@ if($decisionmakers->have_posts()) {
                 <!-- LOAD MORE BUTTON -->
                 <button class="ui basic fluid large button" id="load-more-leaders" data-page="2" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="conikal_load_leadersfeed"><i class="long arrow down icon"></i><?php echo __('Load more...', 'decisionmakers'); ?></button>
             </div>  
-            <div class="ui tab" data-tab="trending">
-                <div id="content-trending">
+            <div class="ui tab" data-tab="institutions">
+                <div id="content-institutions">
                 </div>
                 <br/>
                 <!-- LOAD MORE BUTTON -->
-                <button class="ui basic fluid large button" id="load-more-institutions" data-page="1" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="conikal_load_trending_petitions"><i class="long arrow down icon"></i><?php echo __('Load more...', 'decisionmakers'); ?></button>
+                <button class="ui basic fluid large button" id="load-more-institutions" data-page="1" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="conikal_load_leadersfeed"><i class="long arrow down icon"></i><?php echo __('Load more...', 'decisionmakers'); ?></button>
             </div>
         </div>
         <?php wp_nonce_field('load_petitions_ajax_nonce', 'securityPetitions', true); ?>

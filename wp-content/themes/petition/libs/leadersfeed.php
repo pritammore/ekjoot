@@ -24,7 +24,7 @@ if( !function_exists('conikal_load_leadersfeed') ):
 		    'post_type' => 'decisionmakers',
 		    'posts_per_page' => $posts_per_page,
 		    'post_status' => array('publish'),
-		     'paged' => $paged,
+		    'paged' => $paged,
 		    's' => $keyword
 		);
 
