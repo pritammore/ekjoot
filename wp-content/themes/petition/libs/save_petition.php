@@ -225,7 +225,7 @@ if( !function_exists('conikal_save_petition') ):
             update_post_meta($prop_id, 'petition_letter', $title);
 
             /* Setting UIC CODE */
-            /*if ($city != "") {
+            if ($city != "") {
                 $UIC = strtoupper(substr($city, 0, 2)).$prop_id;
             }
             else 
@@ -241,7 +241,7 @@ if( !function_exists('conikal_save_petition') ):
                 }
             }
             $UIC = 'EK'.$prop_id;
-            update_post_meta($prop_id, 'petition_uic', $UIC);*/
+            update_post_meta($prop_id, 'petition_uic', $UIC);
             /* ENDS */
             
         }
