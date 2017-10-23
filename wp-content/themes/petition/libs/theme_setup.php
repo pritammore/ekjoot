@@ -163,7 +163,7 @@ if( !function_exists('conikal_setup') ):
         }
 
         if (!isset($conikal_appearance_settings['conikal_copyright_field']) || ( isset($conikal_appearance_settings['conikal_copyright_field']) && $conikal_appearance_settings['conikal_copyright_field'] == '') ) {
-            $conikal_appearance_settings['conikal_copyright_field'] = 'Copyright © 2017 Conikal.com';
+            $conikal_appearance_settings['conikal_copyright_field'] = 'Copyright © 2017 Sun MediaNet';
         }
         update_option('conikal_appearance_settings', $conikal_appearance_settings);
 
