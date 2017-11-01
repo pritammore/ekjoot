@@ -42,9 +42,6 @@ $up_lng = get_user_meta($current_user->ID, 'user_lng', true);
 $up_mobile = get_user_meta($current_user->ID, 'user_mobile', true);
 $up_hidemobile = get_user_meta($current_user->ID, 'user_hidemobile', true);
 if($up_hidemobile == '') $up_hidemobile = 'yes';
-$up_ekwhomi = get_user_meta($current_user->ID, 'user_ekwhomi', true);
-if($up_ekwhomi == '') $up_ekwhomi = 'individual';
-$up_ekorganizationname = get_user_meta($current_user->ID, 'user_ekorganizationname', true);
 $avatar_default = get_template_directory_uri().'/images/avatar.svg';
 $up_avatar = isset($user_meta['avatar']) ? $user_meta['avatar'] : $avatar_default;
 
@@ -54,6 +51,11 @@ $decision_id = get_user_meta($current_user->ID, 'user_decision', true);
 $decision_status = get_post_status( $decision_id );
 $decision_title = wp_get_post_terms( $decision_id, 'decisionmakers_title' );
 $decision_title = $decision_title ? $decision_title[0]->term_id : '';
+$aPost = get_post( $decision_id );
+//echo "<pre>"; print_r($aPost); echo "</pre>";exit;
+$up_ekwhomi = get_post_meta($decision_id, 'post_whomi', true);
+$up_ekorganizationname = get_post_meta($decision_id, 'user_ekorganizationname', true);
+
 $decision_organization = wp_get_post_terms($decision_id, 'decisionmakers_organization');
 $decision_organization = $decision_organization ? $decision_organization[0]->name : '';
 
@@ -180,13 +182,13 @@ $decision_title_option = get_terms( 'decisionmakers_title', array(
                                 <div class="ui fields" style="padding-top: 10px;">
                                     <div class="seven wide field">
                                         <div class="ui radio checkbox">
-                                            <input type="radio" name="ekwhomi" tabindex="0" class="hidden" value="individual" <?php echo (isset($up_ekwhomi) && $up_ekwhomi == 'individual' ? 'checked' : ''); ?>>
+                                            <input type="radio" name="ekwhomi" tabindex="0" class="hidden" value="0" <?php echo (isset($up_ekwhomi) && $up_ekwhomi == '0' ? 'checked' : ''); ?>>
                                             <label><?php esc_html_e('Individual', 'petition') ?></label>
                                         </div>
                                     </div>
                                     <div class="seven wide field">
                                         <div class="ui radio checkbox">
-                                            <input type="radio" name="ekwhomi" tabindex="0" class="hidden" value="organization" <?php echo (isset($up_ekwhomi) && $up_ekwhomi == 'organization' ? 'checked' : ''); ?>>
+                                            <input type="radio" name="ekwhomi" tabindex="0" class="hidden" value="1" <?php echo (isset($up_ekwhomi) && $up_ekwhomi == '1' ? 'checked' : ''); ?>>
                                             <label><?php esc_html_e('Organization', 'petition') ?></label>
                                         </div>
                                     </div>

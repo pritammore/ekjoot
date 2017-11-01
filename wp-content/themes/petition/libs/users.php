@@ -554,7 +554,8 @@ if( !function_exists('conikal_update_user_profile') ):
             exit();
         }
         if($user_type == 'decisioner') {
-          if(empty($decision_title) || empty($decision_organization) || empty($ekwhomi) || empty($ekorganizationname)) {
+            //echo "decision_title = $decision_title  decision_organization = $decision_organization  ekwhomi = $ekwhomi   ekorganizationname = $ekorganizationname";
+          if(empty($decision_title) || empty($decision_organization) || $ekwhomi > 1 || empty($ekorganizationname)) {
             echo json_encode(array('signedup'=>false, 'message'=>__('Required form fields are empty!','petition')));
             exit();
           }
@@ -642,10 +643,12 @@ if( !function_exists('conikal_update_user_profile') ):
 
             wp_set_object_terms($decision_id, array(intval($decision_title)), 'decisionmakers_title');
             wp_set_object_terms($decision_id, $decision_organization, 'decisionmakers_organization');
-            update_user_meta($user_id, 'user_ekwhomi', $ekwhomi);
-            update_user_meta($user_id, 'user_ekorganizationname', $ekorganizationname);
+            update_post_meta($decision_id, 'user_ekorganizationname', $ekorganizationname);
+            update_post_meta($decision_id, 'post_whomi', $ekwhomi);
         } else {
             wp_delete_post($decision_maker);
+            delete_post_meta($decision_maker, 'post_whomi');
+            delete_post_meta($decision_maker, 'user_ekorganizationname');
         }
 
 
