@@ -94,7 +94,7 @@ $style_menu = isset($conikal_header_settings['conikal_style_header_menu_field'])
                             } else { 
                                 if ($submit_button) { ?>
                                     <div class="item">
-                                        <a href="#" class="ui labeled icon <?php echo ($header_menu_color != '#ffffff' || $shadow_opacity >= 90 || $shadow_opacity == 0 ? 'inverted ' : 'primary ') ?>button signin-btn" id="add-petition-btn"><i class="write icon"></i> <?php esc_html_e('Start a Petition', 'petition'); ?></a>
+                                        <a href="#" class="ui labeled icon <?php echo ($header_menu_color != '#ffffff' || $shadow_opacity >= 90 || $shadow_opacity == 0 ? 'inverted ' : 'primary ') ?>button signin-btn" id="add-petition-btn"><i class="write icon"></i> <?php esc_html_e('Start a Issue', 'petition'); ?></a>
                                     </div>
                                 <?php }
                             }
