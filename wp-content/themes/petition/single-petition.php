@@ -222,7 +222,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                 <div class="ui sticky" id="navigation-sticky">
                     <div class="ui pointing secondary menu" id="navigation-menu">
                         <a href="#story" class="item active"><?php _e('Story', 'petition') ?></a>
-                        <a href="#letter" class="item"><?php _e('Letter', 'petition') ?></a>
+                        <!-- <a href="#letter" class="item"><?php //_e('Letter', 'petition') ?></a> -->
                         <a href="#updates" class="item"><?php _e('Updates', 'petition') ?></a>
                         <a href="#comments-list" class="item"><?php _e('Comments', 'petition') ?></a>
                     </div>
@@ -642,8 +642,8 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                                 <textarea name="sign-comment" class="sign-comment" style="border: 0; font-weight: 400" rows="4" placeholder="<?php _e('I am signing because...', 'petition') ?>"></textarea>
                                             </div>
                                             <div class="ui message" style="margin-top: 0">
-                                                <div class="fb-publish ui toggle checkbox <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : ''); ?>">
-                                                    <input type="checkbox" name="fb-publish" class="hidden" <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : ''); ?>>
+                                                <div class="fb-publish ui toggle checkbox <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : 'checked'); ?>">
+                                                    <input type="checkbox" name="fb-publish" class="hidden" <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : 'checked'); ?> disabled="disabled" >
                                                     <label><i class="facebook icon"></i><?php _e('Share with Facebook friends', 'petition') ?></label>
                                                 </div>
                                             </div>
@@ -883,8 +883,8 @@ if($similar) { ?>
                                     <textarea name="sign-comment" class="sign-comment" style="border: 0; font-weight: 400" rows="4 " placeholder="<?php _e('I am signing because...', 'petition') ?>"></textarea>
                                 </div>
                                 <div class="ui message" style="margin-top: 0">
-                                    <div class="fb-publish ui toggle checkbox <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : ''); ?>">
-                                        <input type="checkbox" name="fb-publish" class="hidden" <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : ''); ?>>
+                                    <div class="fb-publish ui toggle checkbox <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : 'checked'); ?>">
+                                        <input type="checkbox" name="fb-publish" class="hidden" <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : 'checked'); ?> disabled="disabled" >
                                         <label><i class="facebook icon"></i><?php _e('Share on Facebook', 'petition') ?></label>
                                     </div>
                                 </div>
@@ -1029,8 +1029,8 @@ if($similar) { ?>
                                     <textarea name="sign-comment" class="sign-comment" style="border: 0; font-weight: 400" rows="3" placeholder="<?php _e('Add a personal message', 'petition') ?>"></textarea>
                                 </div>
                                 <div class="ui message" style="margin-top: 0">
-                                    <div class="fb-publish ui toggle checkbox <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : ''); ?>">
-                                        <input type="checkbox" name="fb-publish" class="hidden" <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : ''); ?>>
+                                    <div class="fb-publish ui toggle checkbox <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : 'checked'); ?>">
+                                        <input type="checkbox" name="fb-publish" class="hidden" <?php echo ($current_user->fb_publish == 'true' ? esc_attr('checked') : 'checked'); ?> disabled="disabled" >
                                         <label><i class="facebook icon"></i><?php _e('Share on Facebook', 'petition') ?></label>
                                     </div>
                                 </div>
