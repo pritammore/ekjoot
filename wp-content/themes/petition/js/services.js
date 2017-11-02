@@ -2681,7 +2681,7 @@ var geocoder;
 
         // load trending petition homepage
     $('#load-more-institutions').on('click', function() {
-        loadPetitions('#load-more-institutions', '#content-institutions');
+        loadDecisionMakers('#load-more-institutions', '#content-institutions');
     });
 
     $('#load-more-institutions').visibility({
@@ -2689,7 +2689,7 @@ var geocoder;
         observeChanges: true,
         offset: 800,
         onTopVisible: function() {
-            loadPetitions('#load-more-institutions', '#content-institutions');
+            loadDecisionMakers('#load-more-institutions', '#content-institutions');
         }
     });
 
@@ -2721,7 +2721,6 @@ var geocoder;
                     jQuery('.app_leads').html('<div class="content"><div class="padding-15">No Approvals Pending.</div></div>');
                 }
                 var message = '';
-                console.log(data.message);
                 if (data.sent === true) {
                     message = '<br><div class="ui success message" style="margin-top:5px;">' +
                         '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +

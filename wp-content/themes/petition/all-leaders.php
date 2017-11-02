@@ -12,7 +12,7 @@ get_header();
 $current_user = wp_get_current_user();
 $conikal_appearance_settings = get_option('conikal_appearance_settings','');
 $posts_per_page_setting = isset($conikal_appearance_settings['conikal_petitions_per_page_field']) ? $conikal_appearance_settings['conikal_petitions_per_page_field'] : '';
-$posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : '';
+$posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
 $sidebar_position = isset($conikal_appearance_settings['conikal_sidebar_field']) ? $conikal_appearance_settings['conikal_sidebar_field'] : '';
 $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $conikal_appearance_settings['conikal_breadcrumbs_field'] : '';
 
@@ -28,8 +28,17 @@ $args = array(
     'post_status' => array('publish'),
     's' => $keyword
 );
+$args['meta_query'] = array('relation' => 'AND');
+
+array_push($args['meta_query'], array(
+    'key'     => 'post_whomi',
+    'value'   => 0,
+    'type'    => 'NUMERIC',
+    'compare' => '='
+));
 
 $decisionmakers = new WP_Query($args);
+//echo "Last SQL-Query: {$decisionmakers->request}";exit;
 wp_reset_query();
 wp_reset_postdata();
 
@@ -38,7 +47,6 @@ if($decisionmakers->have_posts()) {
     while ( $decisionmakers->have_posts() ) {
         $decisionmakers->the_post();
         $id = get_the_ID();
-        $link = get_permalink($id);
         $name = get_the_title($id);
         $title =  wp_get_post_terms($id, 'decisionmakers_title', true);
         $title_name = ($title ? $title[0]->name : '');
@@ -46,6 +54,10 @@ if($decisionmakers->have_posts()) {
         $organization_name = ($organization ? $organization[0]->name : '');
         $excerpt = conikal_get_excerpt_by_id($id);
         $author = get_the_author_meta('ID');
+        $user_data = get_userdata(intval($author));
+        $user_login_name = $user_data->data->user_login;
+        $file = home_url( '/' );
+        $link = $file . 'author/'. $user_login_name;
 
         $arrayDecision = array(
                 'id' => $id, 
@@ -63,7 +75,7 @@ if($decisionmakers->have_posts()) {
         array_push($arrayDecisionmakers, $arrayDecision);
     }
 }
-// echo "<pre>"; print_r($arrayDecisionmakers); echo "</pre>";
+//echo "<pre>"; print_r($arrayDecisionmakers); echo "</pre>";
 ?>
 <!-- <div id="wrapper" class="wrapper read">
 <div class="ui container mobile">
@@ -95,8 +107,8 @@ if($decisionmakers->have_posts()) {
         <div class="sixteen wide mobile eleven wide computer column mobile-full" id="main-content">
             <div class="ui sticky" id="tab-sticky" style="margin-top: 0px;">
                 <div class="ui pointing secondary menu" id="petition-tab">
-                    <a class="item active" data-tab="newsfeed" id="newsfeed"><?php echo ( !is_user_logged_in() ? '<i class="fire icon"></i>' . __('Featured', 'petition') : '<i class="newspaper icon"></i>' . __('Individual', 'petition') ) ?></a>
-                    <a class="item" data-tab="trending" id="trending"><i class="lightning icon"></i><?php _e('Institutional', 'petition') ?></a>
+                    <a class="item active" data-tab="newsfeed" id="newsfeed"><?php echo ( !is_user_logged_in() ? '<i class="fire icon"></i>' . __('Individual', 'petition') : '<i class="newspaper icon"></i>' . __('Individual', 'petition') ) ?></a>
+                    <a class="item" data-tab="institutions" id="institutions"><i class="lightning icon"></i><?php _e('Institutional', 'petition') ?></a>
                 </div>
             </div>
             <br/>
@@ -133,7 +145,8 @@ if($decisionmakers->have_posts()) {
                         } else {
                             $avatar = get_template_directory_uri().'/images/avatar.svg';
                         }
-                         $author_petitions = conikal_author_petitions($up_author_id);
+
+                        $author_petitions = conikal_author_petitions($up_author_id);
 
                         if($author_petitions) {
                             $total_p = $author_petitions->found_posts;
@@ -246,9 +259,9 @@ if($decisionmakers->have_posts()) {
                                                     </div>
                                                 </div>*/ ?>
                                             </div>
-                                            <div class="sixteen wide column tablet computer only" style="padding-top: 0; padding-bottom: 0;">
-                                                <div class="text grey"><?php echo esc_html($excerpt) ?></div>
-                                            </div>
+                                            <!-- <div class="sixteen wide column tablet computer only" style="padding-top: 0; padding-bottom: 0;">
+                                                <div class="text grey"><?php //echo esc_html($excerpt) ?></div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -273,7 +286,7 @@ if($decisionmakers->have_posts()) {
                 </div>
                 <br/>
                 <!-- LOAD MORE BUTTON -->
-                <button class="ui basic fluid large button" id="load-more-institutions" data-page="1" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="conikal_load_leadersfeed"><i class="long arrow down icon"></i><?php echo __('Load more...', 'decisionmakers'); ?></button>
+                <button class="ui basic fluid large button" id="load-more-institutions" data-page="1" data-number="<?php echo esc_attr($posts_per_page) ?>" data-author="<?php echo esc_attr($current_user->ID) ?>" data-type="conikal_load_institutionsfeed"><i class="long arrow down icon"></i><?php echo __('Load more...', 'decisionmakers'); ?></button>
             </div>
         </div>
         <?php wp_nonce_field('load_petitions_ajax_nonce', 'securityPetitions', true); ?>

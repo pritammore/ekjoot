@@ -4,10 +4,9 @@
  * @subpackage Petition
  */
 // LOAD MORE LEADERSFEED 
-if( !function_exists('conikal_load_leadersfeed') ): 
-    function conikal_load_leadersfeed() {
-        check_ajax_referer('load_petitions_ajax_nonce', 'security');
-
+if( !function_exists('conikal_load_institutionsfeed') ): 
+    function conikal_load_institutionsfeed() {
+        //check_ajax_referer('load_petitions_ajax_nonce', 'security');
         $current_user = wp_get_current_user();
 		$conikal_appearance_settings = get_option('conikal_appearance_settings','');
 		$posts_per_page_setting = isset($conikal_appearance_settings['conikal_petitions_per_page_field']) ? $conikal_appearance_settings['conikal_petitions_per_page_field'] : '';
@@ -31,13 +30,13 @@ if( !function_exists('conikal_load_leadersfeed') ):
 
 		array_push($args['meta_query'], array(
 		    'key'     => 'post_whomi',
-		    'value'   => 0,
+		    'value'   => 1,
 		    'type'    => 'NUMERIC',
 		    'compare' => '='
 		));
 
-
 		$decisionmakers = new WP_Query($args);
+		//echo "Last SQL-Query: {$decisionmakers->request}";exit;
 		wp_reset_query();
 		wp_reset_postdata();
 
@@ -94,7 +93,7 @@ if( !function_exists('conikal_load_leadersfeed') ):
     }
 endif;
 
-add_action( 'wp_ajax_nopriv_conikal_load_leadersfeed', 'conikal_load_leadersfeed' );
-add_action( 'wp_ajax_conikal_load_leadersfeed', 'conikal_load_leadersfeed' );
+add_action( 'wp_ajax_nopriv_conikal_load_institutionsfeed', 'conikal_load_institutionsfeed' );
+add_action( 'wp_ajax_conikal_load_institutionsfeed', 'conikal_load_institutionsfeed' );
 
 ?>

@@ -7,6 +7,7 @@ include get_template_directory() . '/admin/settings.php';
 include get_template_directory() . '/libs/widgets.php';
 include get_template_directory() . '/libs/newsfeed.php';
 include get_template_directory() . '/libs/leadersfeed.php';
+include get_template_directory() . '/libs/institutionsfeed.php';
 include get_template_directory() . '/libs/search_petitions.php';
 include get_template_directory() . '/libs/featured_petitions.php';
 include get_template_directory() . '/libs/trending_petitions.php';
