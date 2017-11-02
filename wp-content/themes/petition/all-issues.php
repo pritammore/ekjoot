@@ -187,7 +187,7 @@ $users = get_users();
                                 <div class="six wide tablet six wide computer right aligned column tablet computer only">
                                     <a href="<?php echo esc_url($author_link); ?>" data-bjax>
                                         <strong><?php echo esc_html($author_name) ?></strong>
-                                        <img class="ui avatar bordered image" src="<?php echo esc_url($avatar) ?>" alt="<?php echo esc_attr($author_name) ?>" />
+                                        <img class="ui avatar bordered image" src="<?php echo esc_url($avatar) ?>" alt="<?php //echo esc_attr($author_name) ?>" />
                                     </a>
                                 </div>
 
