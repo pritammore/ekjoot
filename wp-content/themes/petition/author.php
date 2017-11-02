@@ -78,7 +78,7 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
         <!-- RIGHT SIDEBAR -->
         <?php if( !wp_is_mobile() ) { ?>
             <div class="five wide column computer only">
-                <div class="ui sticky" id="about-sticky">
+                <div class="ui" id="about-sticky">
                     <div class="ui segment">
                         <div class="ui header"><?php esc_html_e('About', 'petition') ?> <span style="float: right;"><?php echo esc_html( ucwords($user_type) ); ?></span></div>
                         <?php echo ($curauth->description) ? esc_html($curauth->description) : ''; ?>
