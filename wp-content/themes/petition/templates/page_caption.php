@@ -168,9 +168,8 @@
 	                        <label><?php esc_html_e('Unique Issue Code (UIC)', 'petition'); ?></label>
 	                        <input type="text" id="req_contact_subject" name="req_contact_subject" placeholder="<?php esc_html_e('Enter the Issue UIC', 'petition'); ?>">
 	            </div>
-	            <div class="required field">
-	                        <label><?php esc_html_e('Message', 'petition'); ?></label>
-	                        <textarea id="req_contact_message" name="req_contact_message" placeholder="<?php esc_html_e('Type your message', 'petition'); ?>" rows="5"></textarea>
+	            <div class="field">
+	            	<p>Email will be send to the requested user with the Issue UIC and Issue URL. The leader will be requested to visit the issue page and click on the 'Lead this issue' button on Issue page & after the confirmation of Issue Creator/Admin this user will lead the issue to resolve.</p>
 	            </div>
 	            <div class="field">
 	                <a href="javascript:void(0);" class="ui primary button" id="sendBtnToSUpportIssue"><?php esc_html_e('Request', 'petition'); ?></a>

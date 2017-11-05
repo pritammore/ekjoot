@@ -1253,7 +1253,7 @@ add_filter( 'show_admin_bar', 'hide_admin_bar_from_front_end' );
 if(!function_exists('validate_uic')) :
     function validate_uic($uic) {
         global $wpdb;
-        $result = $wpdb->get_results( "select * from $wpdb->postmeta where meta_key = 'petition_uic' AND meta_value = '$uic'" );
+        $result = $wpdb->get_results( "select * from `".$wpdb->postmeta."` where meta_key = 'petition_uic' AND meta_value = '$uic'" );
         if ( ! empty( $result ) ) {
          return true;
         }
@@ -1261,6 +1261,37 @@ if(!function_exists('validate_uic')) :
     }
 endif;
 add_filter( 'validate_uic', 'validate_uic' );
+
+// PETITON DATA USING UIC
+if(!function_exists('get_petition_data')) :
+    function get_petition_data($uic) {
+        global $wpdb;
+        $rd_args = array(
+            'post_type' => 'petition',
+            'meta_query' => array(
+                array(
+                    'key' => 'petition_uic',
+                    'value' => $uic
+                )
+            )
+        );
+         
+        $rd_query = new WP_Query( $rd_args );
+        if ( ! empty( $rd_query ) ) {
+            foreach($rd_query->posts as $post) {
+                $post_data['ID'] = $post->ID;
+                $post_data['post_title'] = $post->post_title;
+                $post_data['url'] = get_permalink($post->ID);
+            }
+            return $post_data;
+        }else
+        {
+            return false;
+        }
+    }
+endif;
+add_filter( 'get_petition_data', 'get_petition_data' );
+
 // GET PETITION SEARCH RESULT FORMATED DATA
 if(!function_exists('get_petition_search_result')) :
     function get_petition_search_result($petition_uic_post) {

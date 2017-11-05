@@ -2111,7 +2111,6 @@ var geocoder;
                 'name': $('#req_contact_name').val(),
                 'email': $('#req_contact_email').val(),
                 'subject': $('#req_contact_subject').val(),
-                'message': $('#req_contact_message').val(),
                 'messageFor': 'RequestUICSupport',
                 'security': security
             },
@@ -2125,7 +2124,6 @@ var geocoder;
                     $('#req_contact_name').val('');
                     $('#req_contact_email').val('');
                     $('#req_contact_subject').val('');
-                    $('#req_contact_message').val('');
                 } else {
                     message = '<div class="ui error message">' +
                         '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
