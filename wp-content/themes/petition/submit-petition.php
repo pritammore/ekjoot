@@ -114,9 +114,9 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                     <!-- STEP ONE -->
                     <div class="ui active tab step-one" data-tab="step-one">
                         <h2 class="ui header">
-                            <div class="content"><?php _e('Write your petition title', 'petition') ?>
+                            <div class="content"><?php _e('Write your Issue title', 'petition') ?>
                                 <div class="sub header">
-                                    <p><?php _e('This is the first thing people will see about your petition. Get their attention with a short title that focuses on the change you’d like them to support.', 'petition') ?></p>
+                                    <p><?php _e('This is the first thing people will see about your issue. Get their attention with a short title that focuses on the change you’d like them to support.', 'petition') ?></p>
                                 </div>
                             </div>
                         </h2>
@@ -192,7 +192,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                         <h2 class="ui header">
                             <div class="content"><?php _e('Choose a leader', 'petition') ?>
                                 <div class="sub header">
-                                    <p><?php _e('This is the person, organization, or group that can make a leader about your petition. We will send them updates on your petition and encourage a response.', 'petition') ?></p>
+                                    <p><?php _e('This is the person, organization, or group that can help you to solve this issue. They will have access to your issue profile page and can also do update on Issue.', 'petition') ?></p>
                                 </div>
                             </div>
                         </h2>
@@ -297,7 +297,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                         <h2 class="ui header">
                             <div class="content"><?php _e('Explain the problem', 'petition') ?>
                                 <div class="sub header">
-                                    <p><?php _e('People are more likely to support your petition if it’s clear why you care. Explain how this change will impact you, your family, or your community.', 'petition') ?></p>
+                                    <p><?php _e('People are more likely to support your issue if it’s clear why you care. Explain how this change will impact you, your family, or your community.', 'petition') ?></p>
                                 </div>
                             </div>
                         </h2>
@@ -375,7 +375,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                         <h2 class="ui header">
                             <div class="content"><?php _e('Add a photo or video', 'petition') ?>
                                 <div class="sub header">
-                                    <p><?php _e('Petitions with a photo or video receive six times more signatures than those without. Include one that captures the emotion of your story.', 'petition') ?></p>
+                                    <p><?php _e('Issue with a photo or video receive six times more signatures than those without. Include one that captures the emotion of your story.', 'petition') ?></p>
                                 </div>
                             </div>
                         </h2>
@@ -393,7 +393,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                                 <div class="ui large bulleted list">
                                     <div class="item">
                                         <div class="content">
-                                            <div class="header"><?php _e('Choose a photo that captures the emotion of your petition', 'petition') ?></div>
+                                            <div class="header"><?php _e('Choose a photo that captures the emotion of your issue', 'petition') ?></div>
                                             <div class="description"><?php _e('Photos of people or animals work well.', 'petition') ?></div>
                                         </div>
                                     </div>
