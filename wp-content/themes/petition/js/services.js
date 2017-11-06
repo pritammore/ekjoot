@@ -1197,6 +1197,7 @@ var geocoder;
                         $(id).removeClass('signPetition').addClass('signedPetition');
                         $(id).children('i').removeClass('write').addClass('checkmark');
                         $('.petition-goal').progress('increment').attr('data-value', data.number);
+                        location.reload();
                     }
                 },
                 error: function(errorThrown) {
