@@ -16,8 +16,8 @@ $google_client_secret = isset($conikal_auth_settings['conikal_google_secret_fiel
 <?php if(!is_user_logged_in()) { ?>
     <!-- SIGN IN AND SIGN UP MODAL -->
     <div class="ui modal" id="signinModal">
+        <i class="close icon"></i>
         <div class="content">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
             <div class="ui two column middle aligned stackable internally celled grid">
                 <div class="column">
                     <div class="respon-message" id="signinMessage"></div>
