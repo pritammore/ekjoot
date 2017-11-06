@@ -60,7 +60,7 @@
 				} else { ?>
 					<a href="javascript:void(0)" class="ui tiny inverted circular button signin-btn"><i class="plus icon"></i><?php _e('Follow', 'petition') ?></a>
 				<?php } ?>
-				<button class="ui tiny inverted circular button" id="contact-btn"><i class="mail outline icon"></i><?php _e('Contact', 'petition') ?></button>
+				<!-- <button class="ui tiny inverted circular button" id="contact-btn"><i class="mail outline icon"></i><?php //_e('Contact', 'petition') ?></button> -->
 			</div>
 		</div>
 	</div>
@@ -142,6 +142,7 @@
 	</div>
 
 	<div class="ui small modal" id="request-issue-support">
+		<i class="close icon"></i>
 	    <div class="header">
 	        <?php _e('Request support for an issue', 'petition') ?>
 	    </div>
