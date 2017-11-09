@@ -2692,7 +2692,6 @@ var geocoder;
         }
     });
 
-        
 })(jQuery);
     /*APPROVE DECISION MAKERS*/
     function approve_decisionmakers(user_id,petition_id) {
@@ -2701,6 +2700,7 @@ var geocoder;
         var security = jQuery('#securityInvitation').val();
         
         jQuery("#app_"+user_id).addClass('loading disabled');
+        jQuery(".LeadersLeadingIssueDiv").addClass('loading');
 
         jQuery.ajax({
             type: 'POST',
@@ -2714,16 +2714,19 @@ var geocoder;
             },
             success: function(data) {
                 jQuery("#app_"+user_id).removeClass('loading disabled');
-                jQuery("#col_app_"+user_id).remove();
-                if(jQuery('.app_leads .column').length<=0)
-                {
-                    jQuery('.app_leads').html('<div class="content"><div class="padding-15">No Approvals Pending.</div></div>');
-                }
                 var message = '';
                 if (data.sent === true) {
+                    jQuery("#col_app_"+user_id).remove();
+                    if(jQuery('.app_leads .column').length<=0)
+                    {
+                        jQuery('.app_leads').html('<div class="content"><div class="padding-15">No Approvals Pending.</div></div>');
+                    }
                     message = '<br><div class="ui success message" style="margin-top:5px;">' +
                         '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
                         '</div>';
+                    
+                    update_decisionmakers(data.new_decisionermakers);
+                    jQuery(".LeadersLeadingIssueDiv").removeClass('loading');
                 } else {
                     message = '<div class="ui error message" style="margin-top:5px;">' +
                         '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
@@ -2732,4 +2735,82 @@ var geocoder;
                 jQuery('#approveinMessage').html(message);
             }
         });
+    }
+
+    /* CONFIRM REMOVE DECISION MAKERS */
+    function confirm_remove_decisionmakers(user_id,petition_id) {
+        jQuery("#confirm_user_id").val(user_id)
+        jQuery("#confirm_petition_id").val(petition_id)
+        jQuery('#confirm-remove-leader').modal('show')
+    }
+
+    jQuery("#remove-leader").click( function() {
+        user_id = jQuery("#confirm_user_id").val();
+        petition_id = jQuery("#confirm_petition_id").val();
+       remove_decisionmakers(user_id,petition_id);
+    });
+
+    /*REMOVE DECISION MAKERS*/
+    function remove_decisionmakers(user_id,petition_id) {
+        
+        var ajaxURL = services_vars.admin_url + 'admin-ajax.php';
+        var security = jQuery('#securityInvitation').val();
+        
+        jQuery("#app_"+user_id).addClass('loading disabled');
+
+        jQuery.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: ajaxURL,
+            data: {
+                'action': 'remove_decisionmakers',
+                'user_id': user_id,
+                'petition_id': petition_id,
+                'security': security
+            },
+            success: function(data) {
+                jQuery("#app_"+user_id).removeClass('loading disabled');
+                var message = '';
+                if (data.sent === true) {
+                    jQuery("#col_app_"+user_id).remove();
+                    if(jQuery('.app_leads .column').length<=0)
+                    {
+                        jQuery('.app_leads').html('<div class="content"><div class="padding-15">No Leaders Supporting.</div></div>');
+                    }
+
+                    message = '<br><div class="ui success message" style="margin-top:5px;">' +
+                        '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
+                        '</div>';
+                } else {
+                    message = '<div class="ui error message" style="margin-top:5px;">' +
+                        '<i class="close icon"></i><i class="check circle icon"></i>' + data.message +
+                        '</div>';
+                }
+                jQuery('#removeinMessage').html(message);
+            }
+        });
+    }
+
+    function update_decisionmakers(new_decisionermakers)
+    {
+        var html="";
+        jQuery.each(new_decisionermakers, function(ids, leaders) {
+        html +='<div class="column" id="col_app_' + leaders.user_id + '">'
+            +   '<div class="ui fluid card">'
+            +       '<div class="content">'
+            +            '<img class="right floated mini ui image" src="' + leaders.user_avatar + '">'
+            +            '<div class="header">'
+            +                '<a href="' + leaders.author_posts_url + '" data-bjax>' + leaders.user_name + '</a>'
+            +            '</div>'
+            +            '<div class="meta">'
+            +               leaders.decision_title + ' of' + leaders.organization
+            +            '</div>'
+            +        '</div>'
+            +        '<div class="extra content">'
+            +            '<div class="ui primary small fluid button approve-responsive" id="app_' + leaders.user_id + '" onclick="remove_decisionmakers(' + leaders.user_id + ',' + leaders.petition_id + ');"><i class="remove user icon"></i>Remove</div>'
+            +        '</div>'
+            +   '</div>'
+            + '</div>';
+        });
+        jQuery(".approved_leads").html(html);
     }

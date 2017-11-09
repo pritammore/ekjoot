@@ -233,11 +233,120 @@ if( !function_exists('approve_decisionmakers') ):
                 delete_post_meta( $petition_id, 'lp_approve_decisioners', $echo );
             }
             
-            echo json_encode(array('sent'=>true, 'message' => 'Leader Approved Successfully.'));
+            $left_decisionermakers = getAll_decisionmakers($petition_id);
+            echo json_encode(array('sent'=>true, 'message' => 'Leader Approved Successfully.', 'new_decisionermakers' => $left_decisionermakers));
         endif;
         die();
     }
 endif;
 add_action( 'wp_ajax_nopriv_approve_decisionmakers', 'approve_decisionmakers' );
 add_action( 'wp_ajax_approve_decisionmakers', 'approve_decisionmakers' );
+
+if( !function_exists('remove_decisionmakers') ): 
+    function remove_decisionmakers() {
+        // check_ajax_referer('remove_decisionmakers', 'security');
+        $bErrorFound = true;
+        $petition_id = isset($_POST['petition_id']) ? sanitize_text_field($_POST['petition_id']) : '';
+        $user_id = isset($_POST['user_id']) ? sanitize_text_field($_POST['user_id']) : '';
+        $current_user_role = get_user_meta( wp_get_current_user()->ID,'user_type',true);
+
+        // Checking for current user if Current user is the Author of petition 
+        // OR Leader or decision maker or Admin then only proceed.
+        
+        global $current_user;
+        get_currentuserinfo();
+        $post_author_id = get_post_field( 'post_author', $petition_id );
+
+        if($petition_id != '' || $user_id != '') {
+            $bErrorFound = false;
+        }
+
+        if (($current_user->ID == $post_author_id) || $current_user_role == 'decisioner' || current_user_can('administrator'))  {
+            $bErrorFound = false;
+        }
+
+        if(!$bErrorFound) :
+            $sign_key = 'lp_post_ids';
+            if( get_post_meta( $petition_id, $sign_key, true ) !== null ) {
+                $value = get_post_meta( $petition_id, $sign_key, true );
+            }
+
+            if( $value ) {
+                if(($key = array_search($user_id, $value))!==false)
+                {
+                    unset($value[$key]);
+                    $echo = array_values($value);
+                    if(!empty($echo))
+                        update_post_meta( $petition_id, $sign_key, $echo );
+                    else
+                        delete_post_meta( $petition_id, $sign_key );
+                }
+            }
+            else {
+                $echo = array( $user_id );
+                delete_post_meta( $petition_id, $sign_key, $echo );
+            }
+
+            $sign_key = 'lp_approve_decisioners';
+            if( get_post_meta( $petition_id, $sign_key, true ) !== null ) {
+                $value = get_post_meta( $petition_id, $sign_key, true );
+            }
+
+            if( $value ) {
+                if(($key = array_search($user_id, $value))!==false)
+                {
+                    unset($value[$key]);
+                    $echo = array_values($value);
+                    if(!empty($echo))
+                        update_post_meta( $petition_id, 'lp_approve_decisioners', $echo );
+                    else
+                        delete_post_meta( $petition_id, 'lp_approve_decisioners' );
+                }
+            }
+            else {
+                $echo = array( $user_id );
+                delete_post_meta( $petition_id, 'lp_approve_decisioners', $echo );
+            }
+            echo json_encode(array('sent'=>true, 'message' => 'Leader Removed Successfully.'));
+        endif;
+        die();
+    }
+endif;
+add_action( 'wp_ajax_nopriv_remove_decisionmakers', 'remove_decisionmakers' );
+add_action( 'wp_ajax_remove_decisionmakers', 'remove_decisionmakers' );
+
+if( !function_exists('getAll_decisionmakers') ): 
+    function getAll_decisionmakers($petition_id) {
+        $final_array = array();
+        $approvedleaders = get_post_meta($petition_id, 'lp_post_ids', true );
+
+        if( isset($approvedleaders[0]) ) {
+            $i=0;
+            foreach ($approvedleaders as $id) {
+                if ($id) {
+
+                    $user = get_userdata($id);
+                    $final_array[$i]["user_id"] = $user_id = $user->ID;
+                    $final_array[$i]["user_name"] = $user->display_name;
+                    $user_avatar = $user->avatar;
+                    $final_array[$i]["petition_id"] = $petition_id;
+
+                    $user_decisionmakers = get_user_meta($user_id, 'user_decision', true);
+                    $decision_title =  wp_get_post_terms($user_decisionmakers, 'decisionmakers_title', true);
+                    $final_array[$i]["decision_title"] = ($decision_title ? $decision_title[0]->name : '');
+                    $organization =  wp_get_post_terms($user_decisionmakers, 'decisionmakers_organization', true);
+                    $final_array[$i]["organization"] = ($organization ? $organization[0]->name : '');
+                    $final_array[$i]["author_posts_url"] = get_author_posts_url($user_id);
+
+                    if (!$user_avatar) {
+                        $user_avatar = get_template_directory_uri().'/images/avatar.svg';
+                    }
+                    $final_array[$i]["user_avatar"] = conikal_get_avatar_url( $user_id, array('size' => 35, 'default' => $user_avatar) );
+                }
+                $i++;
+            }
+        }
+        return $final_array;
+    }
+endif;
 ?>

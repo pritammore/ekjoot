@@ -233,9 +233,9 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                                     
                                 ?>
                                 <a class="ui primary button" href="<?php echo ($page_link ? $page_link : '') ?>" class="item" data-bjax><?php _e('Download CSV', 'petition') ?></a>
-                                <button class="ui button" id="close-petition"><?php _e('Close petition', 'petition') ?></button>
+                                <button class="ui button" id="close-petition"><?php _e('Close Issue', 'petition') ?></button>
                             <?php } else { ?>
-                                <button class="ui primary button" id="reopen-petition"><?php _e('Reopen Petition', 'petition') ?></button>
+                                <button class="ui primary button" id="reopen-petition"><?php _e('Reopen Issue', 'petition') ?></button>
                                 <?php
                                     $args = array(
                                         'post_type' => 'page',
@@ -303,6 +303,56 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                     $chartDate = json_encode( $chartDate );
                 ?>
             </div>
+
+            <!-- APPROVED DECISION MAKERS LIST -->
+            <div class="ui segment LeadersLeadingIssueDiv">
+                <div class="ui dividing header widget-title"><?php esc_html_e('Leaders Leading Issue', 'petition'); ?></div>
+                <div class="ui four column stackable grid approved_leads">
+                <?php if( isset($approvedleaders[0]) ) { ?>
+                    <?php foreach ($approvedleaders as $id) { 
+                        if ($id) {
+                            $user = get_userdata($id);
+                            $user_id = $user->ID;
+                            $user_name = $user->display_name;
+                            $user_avatar = $user->avatar;
+
+                            $user_decisionmakers = get_user_meta($user_id, 'user_decision', true);
+                            $decision_title =  wp_get_post_terms($user_decisionmakers, 'decisionmakers_title', true);
+                            $decision_title = ($decision_title ? $decision_title[0]->name : '');
+                            $organization =  wp_get_post_terms($user_decisionmakers, 'decisionmakers_organization', true);
+                            $organization = ($organization ? $organization[0]->name : '');
+                            
+                            if (!$user_avatar) {
+                                $user_avatar = get_template_directory_uri().'/images/avatar.svg';
+                            }
+                            $user_avatar = conikal_get_avatar_url( $user_id, array('size' => 35, 'default' => $user_avatar) );
+                    ?>
+                    <div class="column" id="col_app_<?php echo $user_id; ?>">
+                        <div class="ui fluid card">
+                            <div class="content">
+                                <img class="right floated mini ui image" src="<?php echo esc_attr($user_avatar) ?>">
+                                <div class="header">
+                                    <a href="<?php echo get_author_posts_url($user_id) ?>" data-bjax><?php echo esc_html($user_name) ?></a>
+                                </div>
+                                <div class="meta">
+                                    <?php echo esc_html($decision_title) . __(' of ', 'petition') . esc_html($organization) ?>
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <div class="ui primary small fluid button remove-responsive" id="app_<?php echo $user_id; ?>" onclick="confirm_remove_decisionmakers('<?php echo $user_id; ?>','<?php echo $edit_id; ?>');"><i class="remove user icon"></i><?php esc_html_e('Remove', 'petition') ?></div>
+                            </div>
+                      </div>
+                    </div>
+                    <?php }
+                    } ?>
+                 <?php } else { ?>
+                    <div class="content"><div class="padding-15">No Leaders Supporting yet.</div></div>
+                 <?php } ?>
+                </div>
+                <div class="respon-message" id="removeinMessage" style="width: 24%;"></div>
+            </div>
+            <!-- APPROVED LEADERS LIST ENDS-->
+
             <?php if( isset($decisionmakers[1]) ) { ?>
             <div class="ui segment">
                 <div class="ui dividing header widget-title"><?php esc_html_e('Invite Leaders', 'petition'); ?></div>
@@ -356,9 +406,10 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                 </div>
             </div>
             <?php } ?>
+            
             <!-- APPROVE DECISION MAKERS -->
             <div class="ui segment">
-                <div class="ui dividing header widget-title"><?php esc_html_e('Approve Leaders', 'petition'); ?></div>
+                <div class="ui dividing header widget-title "><?php esc_html_e('Approve Leaders', 'petition'); ?></div>
                 <div class="ui four column stackable grid app_leads">
                 <?php if( isset($approve_decisionmakers[0]) ) { ?>
                     <?php foreach ($approve_decisionmakers as $id) { 
@@ -366,16 +417,6 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                             $user = get_userdata($id);
                             $user_id = $user->ID;
                             $user_name = $user->display_name;
-                            $user_email = $user->user_email;
-                            $user_address = get_user_meta($user_id, 'user_address', true);
-                            $user_neigborhood = get_user_meta($user_id, 'user_neigborhood', true);
-                            $user_city = get_user_meta($user_id, 'user_city', true);
-                            $user_state = get_user_meta($user_id, 'user_state', true);
-                            $user_country = get_user_meta($user_id, 'user_country', true);
-                            $user_lat = get_user_meta($user_id, 'user_lat', true);
-                            $user_lng = get_user_meta($user_id, 'user_lng', true);
-                            $user_gender = get_user_meta($user_id, 'user_gender', true);
-                            $user_birthday = get_user_meta($user_id, 'user_birthday', true);
                             $user_avatar = $user->avatar;
 
                             $user_decisionmakers = get_user_meta($user_id, 'user_decision', true);
@@ -401,7 +442,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                                 </div>
                             </div>
                             <div class="extra content">
-                                <div class="ui primary small fluid button approve-responsive" id="app_<?php echo $user_id; ?>" onclick="approve_decisionmakers('<?php echo $user_id; ?>','<?php echo $edit_id; ?>');"><i class="send icon"></i><?php esc_html_e('Approve', 'petition') ?></div>
+                                <div class="ui primary small fluid button approve-responsive" id="app_<?php echo $user_id; ?>" onclick="approve_decisionmakers('<?php echo $user_id; ?>','<?php echo $edit_id; ?>');"><i class="add user icon"></i><?php esc_html_e('Approve', 'petition') ?></div>
                             </div>
                       </div>
                     </div>
@@ -653,7 +694,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
 
 <div class="ui small modal" id="reopen-confirm">
     <div class="content">
-        <div class="ui header"><?php esc_html_e('Are you sure reopen this petition', 'petition') ?></div>
+        <div class="ui header"><?php esc_html_e('Are you sure reopen this issue', 'petition') ?></div>
     </div>
     <div class="actions">
         <div class="ui cancel button"><?php esc_html_e('Cancel', 'petition') ?></div>
@@ -663,11 +704,22 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
 
 <div class="ui small modal" id="close-confirm">
     <div class="content">
-        <div class="ui header"><?php esc_html_e('Are you sure close this petition', 'petition') ?></div>
+        <div class="ui header"><?php esc_html_e('Are you sure close this issue', 'petition') ?></div>
     </div>
     <div class="actions">
         <div class="ui cancel button"><?php esc_html_e('Cancel', 'petition') ?></div>
         <div class="ui positive right labeled icon button" id="approve-close" data-id="<?php echo esc_attr($edit_id) ?>"><?php esc_html_e('Yes', 'petition') ?><i class="checkmark icon"></i></div>
+    </div>
+</div>
+<div class="ui small modal" id="confirm-remove-leader">
+    <div class="content">
+        <div class="ui header"><?php esc_html_e('Are you sure to remove this leader', 'petition') ?></div>
+    </div>
+    <div class="actions">
+        <div class="ui cancel button"><?php esc_html_e('Cancel', 'petition') ?></div>
+        <input type="hidden" name="confirm_user_id" id="confirm_user_id" value="">
+        <input type="hidden" name="confirm_petition_id" id="confirm_petition_id" value="<?php echo esc_attr($edit_id) ?>">
+        <div class="ui positive right labeled icon button" id="remove-leader"><?php esc_html_e('Yes', 'petition') ?><i class="checkmark icon"></i></div>
     </div>
 </div>
 <?php wp_nonce_field('dashboard_petition_ajax_nonce', 'securityDashboard', true); ?>

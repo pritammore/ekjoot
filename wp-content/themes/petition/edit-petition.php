@@ -221,7 +221,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
 
                         <!-- STEP TWO -->
                             <h2 class="ui header">
-                                <div class="content"><?php _e('Choose a decision maker', 'petition') ?>
+                                <div class="content"><?php _e('Choose a leader', 'petition') ?>
                             </h2>
                                 <div class="input-fields-wrap">
                                     <div class="ui grid search decision-search">
