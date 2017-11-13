@@ -259,6 +259,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                                                     <div class="<?php ($p_receiver_r == 'required' ? 'required ' : '') ?>field">
                                                         <div class="ui large fluid input">
                                                             <input class="prompt" type="text" id="new_receiver" name="new_receiver[]" placeholder="<?php esc_html_e('Who can make this happen?', 'petition'); ?>" value="<?php echo esc_html($receiver[$i]) ?>">
+                                                            <i class="search icon"></i>
                                                             <input class="new_decisionmakers" type="hidden" name="new_decisionmakers[]" value="<?php echo isset($decisionmakers[$i]) ? $decisionmakers[$i] : ''; ?>">
                                                         </div>
                                                     </div>

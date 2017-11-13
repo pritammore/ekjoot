@@ -2198,7 +2198,6 @@ var geocoder;
               image: 'avatar'
             },
             onSelect: function(result, response) {
-                console.log(result);
                 $(this).find('.decision-title').val(result.description)
                 $(this).find('.new_decisionmakers').val(result.author)
             }

@@ -202,8 +202,9 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                                     <div class="sixteen wide mobile eight wide tablet eight wide computer column">
                                         <div class="<?php ($p_receiver_r == 'required' ? 'required ' : '') ?>field">
                                             <label><?php _e('Full name', 'petition') ?></label>
-                                            <div class="ui large fluid input">
+                                            <div class="ui icon large fluid input">
                                                 <input class="prompt" type="text" id="new_receiver" name="new_receiver[]" placeholder="<?php esc_html_e('Who can make this happen?', 'petition'); ?>" value="">
+                                                <i class="search icon"></i>
                                                 <input class="new_decisionmakers" type="hidden" name="new_decisionmakers[]" value="">
                                             </div>
                                         </div>
