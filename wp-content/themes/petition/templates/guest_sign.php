@@ -9,7 +9,7 @@
 <div class="respon-message" id="signMessage"></div>
 <div class="ui form" id="userSignForm">
     <div class="field">
-    	<div class="ui right icon large input">
+        <div class="ui right icon large input">
             <input type="text" name="nameSign" id="nameSign" placeholder="<?php _e('Full name', 'petition') ?>">
             <i class="user icon"></i>
         </div>
@@ -42,16 +42,16 @@
     <input type="hidden" id="lngSign" name="lngSign" value="">
 
     <div class="field">
-    	<div class="ui pointing below fluid basic label font large">
-    		<textarea name="sign-comment" id="sign-comment" style="border: 0; font-weight: 400" rows="3" placeholder="<?php _e('I am signing because...', 'petition') ?>"></textarea>
-    	</div>
-		<div class="ui message" style="margin-top: 0">
-			<div class="ui toggle checkbox checked">
-				<input type="checkbox" name="fb-publish" id="fb-publish" class="hidden" checked>
-				<label><i class="facebook icon"></i><?php _e('Share on Facebook', 'petition') ?></label>
-			</div>
-		</div>
-	</div>
+        <div class="ui pointing below fluid basic label font large">
+            <textarea name="sign-comment" id="sign-comment" style="border: 0; font-weight: 400" rows="3" placeholder="<?php _e('I am signing because...', 'petition') ?>"></textarea>
+        </div>
+        <div class="ui message" style="margin-top: 0">
+            <div class="ui toggle checkbox checked">
+                <input type="checkbox" name="fb-publish" id="fb-publish" class="hidden" checked disabled="disabled">
+                <label><i class="facebook icon"></i><?php _e('Share on Facebook', 'petition') ?></label>
+            </div>
+        </div>
+    </div>
     <div class="field">
         <button class="ui primary fluid big button submitSign"><i class="write icon"></i><?php _e('Sign this petition', 'petition') ?></button>
     </div>
@@ -104,7 +104,7 @@
         </div>
         <div class="ui message" style="margin-top: 0">
             <div class="fb-publish ui toggle checkbox checked">
-                <input type="checkbox" name="fb-publish" class="hidden" checked>
+                <input type="checkbox" name="fb-publish" class="hidden" checked disabled="disabled">
                 <label><i class="facebook icon"></i><?php _e('Share on Facebook', 'petition') ?></label>
             </div>
         </div>
