@@ -82,6 +82,7 @@ $search_topics = array();
                         $thumb = get_post_meta($id, 'petition_thumb', true);
                         $thumb = ( !wp_is_mobile() ? conikal_video_thumbnail($thumb) : $thumb );
                         $status = get_post_meta($id, 'petition_status', true);
+                        $petition_uic = get_post_meta($id, 'petition_uic', true);
 
                         $author_url = get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ));
                         $user_avatar = get_the_author_meta('avatar' , get_the_author_meta('ID'));
@@ -135,10 +136,8 @@ $search_topics = array();
                                     <?php } ?>
                             </a>
                             <div class="content">
+                                <div class="sub header truncate"><i class="filter icon"></i><a href="<?php echo esc_url($link) ?>" data-bjax> <?php echo esc_html($petition_uic) ?></a></div>
                                 <a class="header list-petition-title" href="<?php echo esc_url($link) ?>"><?php echo esc_html($title) ?></a>
-                                <div class="meta">
-                                    <span class="receiver"><i class="send icon"></i> <?php _e('Petition to', 'petition') ?> <?php echo esc_html($receiver[0]) ?></span>
-                                </div>
                                 <div class="description">
                                     <div class="text grey"><?php echo esc_html($excerpt) ?></div>
                                 </div>
