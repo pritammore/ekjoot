@@ -232,6 +232,7 @@ function get_email_tempalte($client_message_for, $uic, $user_email) {
               <div class='content' style='box-sizing: border-box; display: block; Margin: 0 auto; max-width: 580px; padding: 10px;'>
 
                 <!-- START CENTERED WHITE CONTAINER -->
+                <span class='preheader' style='color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;'>Support request for Issue " . $uic . " - " . $petition['post_title'] . "</span>
                 <table class='main' style='border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;'>
 
                   <!-- START MAIN CONTENT AREA -->
@@ -412,6 +413,7 @@ function get_template_for_invite($invite_message,$user_email)
               <div class='content' style='box-sizing: border-box; display: block; Margin: 0 auto; max-width: 580px; padding: 10px;'>
 
                 <!-- START CENTERED WHITE CONTAINER -->
+                <span class='preheader' style='color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;'>Invitation letter to support issue on Ekjoot</span>
                 <table class='main' style='border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;'>
 
                   <!-- START MAIN CONTENT AREA -->
