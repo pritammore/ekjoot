@@ -71,7 +71,11 @@ if($petitions->have_posts()) {
         if($proceed)
         {
             $link = get_permalink($id);
-            $title = get_the_title($id);
+            $petition_uic = get_post_meta($id, 'petition_uic', true);
+            if($petition_uic != "")
+                $title = $petition_uic."-" . get_the_title($id);
+            else
+                $title = get_the_title($id);
             $category =  wp_get_post_terms($id, 'petition_category', true);
             $excerpt = conikal_get_excerpt_by_id($id);
             $comments = wp_count_comments($id);
@@ -98,7 +102,6 @@ if($petitions->have_posts()) {
             $thumb = get_post_meta($id, 'petition_thumb', true);
             $thumb = conikal_video_thumbnail($thumb);
             $status = get_post_meta($id, 'petition_status', true);
-            $petition_uic = get_post_meta($id, 'petition_uic', true);
             $author_link = get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ));
 
             $user_avatar = get_the_author_meta('avatar' , get_the_author_meta('ID'));

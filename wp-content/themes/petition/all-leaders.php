@@ -97,7 +97,7 @@ if($decisionmakers->have_posts()) {
             <!-- <div class="ui hidden divider"></div> -->
             <div class="ui fluid category search petitions-search focus">
                 <div class="ui icon fluid input">
-                  <input class="prompt search-input" type="text" placeholder="<?php esc_html_e('Leader Name', 'name') ?>">
+                  <input class="prompt search-input" type="text" placeholder="<?php esc_html_e('UIC Code / Title / Catergory', 'petition') ?>">
                   <i class="search link icon"></i>
                 </div>
             </div>
