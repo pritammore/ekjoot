@@ -673,6 +673,11 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
         </div>
         <div class="ui hidden divider"></div>
         <div class="ui grid">
+            <div class="sixteen left aligned">
+                <p>Invitation Letter will be sent to the leader and response from the will be notified in Approve Leaders section if user wishes to Support(Lead) this issue.</p>
+            </div>
+        </div>
+        <div class="ui grid">
             <div class="sixteen right aligned column">
                 <div class="ui cancel button" id="invita-cancel"><?php esc_html_e('Cancel', 'petition') ?></div>
                 <div class="ui positive right labeled icon button" id="send-invite" data-id="<?php echo esc_attr($edit_id) ?>"><?php esc_html_e('Send', 'petition') ?><i class="send icon"></i></div>
