@@ -557,14 +557,14 @@
             if (theming_vars.type_menu == 'scroll') {
                 $('.header-menu').removeClass('nav-down').addClass('nav-up')
             } else if (theming_vars.type_menu == 'fixed') {
-                $('#tab-sticky, #navigation-sticky').css('margin-top', '60px').removeClass('nav-down').addClass('nav-up')
+                $('#tab-sticky, #navigation-sticky').css('margin-top', '0px').removeClass('nav-down').addClass('nav-up')
             }
             $('#mobile-sign-btn').removeClass('sign-btn-down').addClass('sign-btn-up')
         } else {
             if (theming_vars.type_menu == 'scroll') {
                 $('.header-menu').removeClass('nav-up').addClass('nav-down')
             } else if (theming_vars.type_menu == 'fixed') {
-                $('#tab-sticky, #navigation-sticky').css('margin-top', '60px').removeClass('nav-up').addClass('nav-down')
+                $('#tab-sticky, #navigation-sticky').css('margin-top', '0px').removeClass('nav-up').addClass('nav-down')
             }
             $('#mobile-sign-btn').removeClass('sign-btn-up').addClass('sign-btn-down')
         }

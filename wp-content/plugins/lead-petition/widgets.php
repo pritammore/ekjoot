@@ -58,13 +58,13 @@ class LP_Widget extends WP_Widget {
 			$users = get_users( array( 'fields' => array( 'ID' ) ) );
 			foreach($ids as $user_id){
 				$current_user = get_userdata($user_id);
-					$current_user_avatar = $current_user->avatar;
-				    if (!$current_user_avatar) {
-				        $current_user_avatar = get_template_directory_uri().'/images/avatar.svg';
-				    }
-				    $current_user_avatar = conikal_get_avatar_url( $user_id, array('size' => 35, 'default' => $current_user_avatar) );
-		        	$user_info = $current_user;
-	        	// $user_info = get_userdata($user_id);
+				$current_user_avatar = $current_user->avatar;
+			    if (!$current_user_avatar) {
+			        $current_user_avatar = get_template_directory_uri().'/images/avatar.svg';
+			    }
+			    $current_user_avatar = conikal_get_avatar_url( $user_id, array('size' => 35, 'default' => $current_user_avatar) );
+	        	$user_info = $current_user;
+        		// $user_info = get_userdata($user_id);
 	    ?>
 	    	<div class="leader_avtar">
 	    		<a href="<?php echo get_site_url(); ?>/user/<?php echo $user_info->display_name; ?>" title="<?php echo $user_info->first_name." ".$user_info->last_name ; ?>"> <img class="ui avatar bordered image" src="<?php echo esc_url($current_user_avatar) ?>">
@@ -78,7 +78,7 @@ class LP_Widget extends WP_Widget {
 	    {
 	    	echo '<p>No Leaders Supporting This Issue.</p>';
 	    }
-	    echo "</div></div></div>";
+	    echo "</div></div></div></div>";
 
 	    $html = "";
 	    $petition_id = get_the_ID();
@@ -108,9 +108,9 @@ class LP_Widget extends WP_Widget {
 			}
 
 			$html = '<div class="ui secondary segment"><h3 class="font medium">Lead This Issue</h3>
-					<div class="lp_body">
-					<p>If you think you can contribute in resolving this issue with your expertise, please lead this issue and help the grievant</p>
-					<div id="lp_content">';
+						<div class="lp_body">
+						<p>If you think you can contribute in resolving this issue with your expertise, please lead this issue and help the grievant</p>
+						<div id="lp_content">';
 
 			if( ((!empty($ids) && !in_array(wp_get_current_user()->ID, $ids)) || empty($ids)) )
 			{ 
@@ -127,7 +127,7 @@ class LP_Widget extends WP_Widget {
 				$html .= '<a href="#" class="ui large home-cta-button fluid button">
 						  <i class="warning icon"></i>This issue is lead by you.</a></div>';
 			}	
-			$html .="</div></div></div>";
+			$html .="</div></div>";
 
 			echo $html;	
 		}

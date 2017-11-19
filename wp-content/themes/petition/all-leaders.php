@@ -16,7 +16,7 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
 $sidebar_position = isset($conikal_appearance_settings['conikal_sidebar_field']) ? $conikal_appearance_settings['conikal_sidebar_field'] : '';
 $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $conikal_appearance_settings['conikal_breadcrumbs_field'] : '';
 
-$users = get_users();
+//$users = get_users(); # Was used for showing leader's followers
 $conikal_general_settings = get_option('conikal_general_settings','');
 
 $keyword = isset($_GET['q']) ? sanitize_text_field($_GET['q']) : '';
@@ -154,7 +154,7 @@ if($decisionmakers->have_posts()) {
                             $total_p = 0;
                         }
 
-                        $following = $up_details->follow_user;
+                        /*$following = $up_details->follow_user;
                         $followers = array();
                         foreach ($users as $user) {
                             $follow_user = get_user_meta($user->data->ID, 'follow_user', true);
@@ -173,7 +173,7 @@ if($decisionmakers->have_posts()) {
                                 $follower = (object) $follower;
                                 array_push($followers, $follower);
                             }
-                        }
+                        }*/
                         $decision_id = get_user_meta($up_author_id, 'user_decision', true);
                         $decision_status = get_post_status( $decision_id );
                         $decision_title = wp_get_post_terms( $decision_id, 'decisionmakers_title' );
@@ -201,21 +201,6 @@ if($decisionmakers->have_posts()) {
                                                 <?php if ($up_bio) { ?>
                                                 <span class="text grey"><?php echo ($up_bio ? esc_html($up_bio):'') ?></span><br>
                                                 <?php } ?>
-
-                                                <?php /* if ($up_details->user_email) { ?>
-                                                <span class="text grey"><?php echo ($up_details->user_email ? esc_html($up_details->user_email):'') ?></span><br>
-                                                <?php } ?>
-                                                
-                                                <?php if ($up_address || $up_pincode) { ?>
-                                                <span class="text grey"><!-- <i class="marker icon"></i> -->
-                                                    <?php echo ($up_address ? esc_html($up_address).',' : '').($up_pincode ? esc_html($up_pincode) : '') ?></span><br>
-                                                <?php } */ ?>
-                                                <?php /*if ($decision_title) { ?>
-                                                <br><span class="text grey"><b>Title : </b><?php echo ($decision_title ? esc_html($decision_title):'') ?></span><br>
-                                                <?php } ?>
-                                                <?php if ($decision_organization) { ?>
-                                                <span class="text grey"><b>Organization : </b><?php echo ($decision_organization ? esc_html($decision_organization):'') ?></span><br>
-                                                <?php }*/ ?>
                                                 <div class="col-sm-12 mar-top10">
                                                     <?php if ($decision_title) { ?>
                                                     <div class="col-sm-6">
@@ -238,36 +223,12 @@ if($decisionmakers->have_posts()) {
                                                     </div>
                                                     <?php } ?>
                                                 </div>
-                                                <?php /*<div class="ui mini three statistics">
-                                                    <div class="statistic">
-                                                        <div class="value">
-                                                            <?php echo esc_html( conikal_format_number('%!.0i', $total_p, true) ); ?>
-                                                        </div>
-                                                        <div class="label" style="font-size: 11px;"><?php esc_html_e('Petitions', 'petition') ?></div>
-                                                    </div>
-                                                    <div class="statistic">
-                                                        <div class="value">
-                                                            <?php echo esc_html( conikal_format_number('%!.0i', count($followers), true) ); ?>
-                                                        </div>
-                                                        <div class="label" style="font-size: 11px;"><?php esc_html_e('Followers', 'petition') ?></div>
-                                                    </div>
-                                                    <div class="statistic">
-                                                        <div class="value">
-                                                            <?php echo esc_html( conikal_format_number('%!.0i', count($following), true) ); ?>
-                                                        </div>
-                                                        <div class="label" style="font-size: 11px;"><?php esc_html_e('Following', 'petition') ?></div>
-                                                    </div>
-                                                </div>*/ ?>
                                             </div>
-                                            <!-- <div class="sixteen wide column tablet computer only" style="padding-top: 0; padding-bottom: 0;">
-                                                <div class="text grey"><?php //echo esc_html($excerpt) ?></div>
-                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                     <?php }
                     } else {

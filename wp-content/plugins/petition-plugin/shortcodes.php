@@ -100,6 +100,7 @@ if( !function_exists('conikal_register_shortcodes') ):
         add_shortcode('latest_posts', 'conikal_latest_posts_shortcode');
         add_shortcode('featured_posts', 'conikal_featured_posts_shortcode');
         add_shortcode('category', 'conikal_category_shortcode');
+        add_shortcode('leaders', 'conikal_leaders_shortcode');
     }
 endif;
 
@@ -489,7 +490,7 @@ if( !function_exists('conikal_recent_petitions_shortcode') ):
 
         $posts = get_posts($args);
 
-        $return_string = '<div class="ui center aligned basic segment"><h1 class="ui header">' . esc_html($title) . '</h1>';
+        $return_string = '<div class="ui left aligned basic segment"><h1 class="ui header">' . esc_html($title) . '</h1>';
         $return_string .= '<div class="title-divider"></div></div>';
 
         if ($style == 'grid') {
@@ -714,7 +715,7 @@ if( !function_exists('conikal_featured_petitions_shortcode') ):
 
         $posts = get_posts($args);
 
-        $return_string = '<div class="ui center aligned basic segment"><h1 class="ui header">' . esc_html($title) . '</h1>';
+        $return_string = '<div class="ui left aligned basic segment"><h1 class="ui header">' . esc_html($title) . '</h1>';
         $return_string .= '<div class="title-divider"></div></div>';
 
         if ($style == 'grid') {
@@ -1928,6 +1929,340 @@ if( !function_exists('conikal_category_shortcode') ):
         $return_string .= '</div>';
 
         wp_reset_query();
+        return $return_string;
+    }
+endif;
+
+if( !function_exists('conikal_leaders_shortcode') ): 
+    function conikal_leaders_shortcode() {
+
+        $paged = isset($_POST['paged']) ? sanitize_text_field($_POST['paged']) : 1;
+        $keyword = isset($_GET['q']) ? sanitize_text_field($_GET['q']) : '';
+
+        $args = array(
+            'post_type' => 'decisionmakers',
+            'posts_per_page' => "4",
+            'post_status' => array('publish'),
+            'paged' => '1'
+        );
+        $args['meta_query'] = array('relation' => 'AND');
+
+        array_push($args['meta_query'], array(
+            'key'     => 'post_whomi',
+            'value'   => 0,
+            'type'    => 'NUMERIC',
+            'compare' => '='
+        ));
+
+        $decisionmakers = new WP_Query($args);
+        wp_reset_query();
+        wp_reset_postdata();
+
+        $arrayDecisionmakers = array();
+        if($decisionmakers->have_posts()) {
+            while ( $decisionmakers->have_posts() ) {
+                $decisionmakers->the_post();
+                $id = get_the_ID();
+                $name = get_the_title($id);
+                $title =  wp_get_post_terms($id, 'decisionmakers_title', true);
+                $title_name = ($title ? $title[0]->name : '');
+                $organization =  wp_get_post_terms($id, 'decisionmakers_organization', true);
+                $organization_name = ($organization ? $organization[0]->name : '');
+                $excerpt = conikal_get_excerpt_by_id($id);
+                $author = get_the_author_meta('ID');
+                $user_data = get_userdata(intval($author));
+                $user_login_name = $user_data->data->user_login;
+                $file = home_url( '/' );
+                $link = $file . 'author/'. $user_login_name;
+                $up_bio = conikal_get_biographical_by_id($author);
+                $up_avatar_orginal = get_user_meta($author, 'avatar_orginal', true);
+                $up_avatar_id = get_user_meta($author, 'avatar_id', true);
+                if ($up_avatar_orginal != '') {
+                    $avatar = $up_avatar_orginal;
+                } else {
+                    $avatar = get_template_directory_uri().'/images/avatar.svg';
+                }
+                $arrayDecision = array(
+                        'id' => $id, 
+                        'link' => $link,
+                        'name' => $name,
+                        'title' => $title_name,
+                        'organization' => $organization_name,
+                        'description' => $title_name . __(' of ', 'petition') . $organization_name,
+                        'excerpt' => $excerpt,
+                        'avatar' => $avatar,
+                        'author' => $author,
+                        'up_bio' => $up_bio,
+                    );
+
+                $arrayDecision = (object) $arrayDecision;
+                array_push($arrayDecisionmakers, $arrayDecision);
+            }
+        }
+        
+        $return_string = '<div class="ui left aligned basic segment"><h1 class="ui header">' . esc_html('Leaders - Individual') . '</h1>';
+        $return_string .= '<div class="title-divider"></div></div>';
+        $return_string .= '<div class="ui two column grid">';
+        if(count($arrayDecisionmakers)>0) {
+            foreach ( $arrayDecisionmakers as $decisionmakers ) {
+                $up_id = $decisionmakers->ID;
+                $up_link = $decisionmakers->link;
+                $up_decisionmaker_name = $decisionmakers->name;
+                $up_author_id = $decisionmakers->author;
+                $up_author_name = $decisionmakers->title_name;
+                $up_details = get_user_by( 'ID', $up_author_id );
+                $up_bio = conikal_get_biographical_by_id($up_author_id);
+                $up_type = get_user_meta($up_author_id, 'user_type', true);
+                $up_birthday = get_user_meta($up_author_id, 'user_birthday', true);
+                $up_gender = get_user_meta($up_author_id, 'user_gender', true);
+                $up_address = get_user_meta($up_author_id, 'user_address', true);
+                $up_pincode = get_user_meta($up_author_id, 'user_pincode', true);
+                $up_neighborhood = get_user_meta($up_author_id, 'user_neighborhood', true);
+                $up_state = get_user_meta($up_author_id, 'user_state', true);
+                $up_city = get_user_meta($up_author_id, 'user_city', true);
+                $up_country = get_user_meta($up_author_id, 'user_country', true);
+                $up_lat = get_user_meta($up_author_id, 'user_lat', true);
+                $up_lng = get_user_meta($up_author_id, 'user_lng', true);
+
+                $user_meta = get_user_meta($up_author_id);
+                $up_avatar_orginal = get_user_meta($up_author_id, 'avatar_orginal', true);
+                $up_avatar_id = get_user_meta($up_author_id, 'avatar_id', true);
+                if ($up_avatar_orginal != '') {
+                    $avatar = $up_avatar_orginal;
+                } else {
+                    $avatar = get_template_directory_uri().'/images/avatar.svg';
+                }
+
+                $author_petitions = conikal_author_petitions($up_author_id);
+
+                if($author_petitions) {
+                    $total_p = $author_petitions->found_posts;
+                } else {
+                    $total_p = 0;
+                }
+
+                $decision_id = get_user_meta($up_author_id, 'user_decision', true);
+                $decision_status = get_post_status( $decision_id );
+                $decision_title = wp_get_post_terms( $decision_id, 'decisionmakers_title' );
+                $decision_title = $decision_title ? $decision_title[0]->name : '';
+                $decision_organization = wp_get_post_terms($decision_id, 'decisionmakers_organization');
+                $decision_organization = $decision_organization ? $decision_organization[0]->name : '';
+                $return_string .='<div class="column">';
+                $return_string .= '<div class="ui segments petition-list-card">
+                                        <div class="ui segment">
+                                            <div class="ui grid">
+                                                <div class="sixteen wide mobile six wide tablet six wide computer column" style="width:15% !important;float: left">';
+                $return_string .= '<a class="ui fluid" href="' . esc_url($up_link). '" target="_blank" data-bjax>
+                                                <img class="ui image" src="' .esc_url($avatar). '" alt="' . esc_attr($title). '"></a>
+                                                </div>';
+                $return_string .= '<div class="sixteen wide mobile ten wide tablet ten wide computer column" style="width:85% !important;float: left">
+                            <div class="">
+                                <div class="ui grid">
+                                    <div class="sixteen wide column">
+                                        <div class="ui header mar-bot2">
+                                            <div class="content">
+                                                <a href="' .esc_url($up_link). '" data-bjax>' .esc_html($up_decisionmaker_name). '</a>
+                                            </div>
+                                        </div>';
+                                        if ($up_bio) {
+                                        $return_string .= '<span class="text grey">' .($up_bio ? esc_html($up_bio):''). '</span><br>';
+                                        }
+                                        $return_string .= '<div class="col-sm-12 mar-top10">';
+                                            if ($decision_title) {
+                                            $return_string .= '<div class="col-sm-6">
+                                                <div class="">
+                                                    <strong>Title:' . ($decision_title ? esc_html($decision_title) : '') . '</strong>
+                                                </div>
+                                            </div>';
+                                            }
+                                            if ($decision_organization) {
+                                            $return_string .= '<div class="col-sm-6">
+                                                <div class="">
+                                                    <strong>Organization:'. ($decision_organization ? esc_html($decision_organization):'') . '</strong>
+                                                </div>
+                                            </div>';
+                                            }
+                            $return_string .= '</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>';
+            }
+        }
+
+        $return_string .= '</div>';
+
+
+        /* Orginazation Leaders */
+        $paged = isset($_POST['paged']) ? sanitize_text_field($_POST['paged']) : 1;
+        $keyword = isset($_GET['q']) ? sanitize_text_field($_GET['q']) : '';
+
+        $args = array(
+            'post_type' => 'decisionmakers',
+            'posts_per_page' => "4",
+            'post_status' => array('publish'),
+            'paged' => '1'
+        );
+        $args['meta_query'] = array('relation' => 'AND');
+
+        array_push($args['meta_query'], array(
+            'key'     => 'post_whomi',
+            'value'   => 1,
+            'type'    => 'NUMERIC',
+            'compare' => '='
+        ));
+
+        $decisionmakers = new WP_Query($args);
+        wp_reset_query();
+        wp_reset_postdata();
+
+        $arrayDecisionmakers = array();
+        if($decisionmakers->have_posts()) {
+            while ( $decisionmakers->have_posts() ) {
+                $decisionmakers->the_post();
+                $id = get_the_ID();
+                $name = get_the_title($id);
+                $title =  wp_get_post_terms($id, 'decisionmakers_title', true);
+                $title_name = ($title ? $title[0]->name : '');
+                $organization =  wp_get_post_terms($id, 'decisionmakers_organization', true);
+                $organization_name = ($organization ? $organization[0]->name : '');
+                $excerpt = conikal_get_excerpt_by_id($id);
+                $author = get_the_author_meta('ID');
+                $user_data = get_userdata(intval($author));
+                $user_login_name = $user_data->data->user_login;
+                $file = home_url( '/' );
+                $link = $file . 'author/'. $user_login_name;
+                $up_bio = conikal_get_biographical_by_id($author);
+                $up_avatar_orginal = get_user_meta($author, 'avatar_orginal', true);
+                $up_avatar_id = get_user_meta($author, 'avatar_id', true);
+                if ($up_avatar_orginal != '') {
+                    $avatar = $up_avatar_orginal;
+                } else {
+                    $avatar = get_template_directory_uri().'/images/avatar.svg';
+                }
+                $arrayDecision = array(
+                        'id' => $id, 
+                        'link' => $link,
+                        'name' => $name,
+                        'title' => $title_name,
+                        'organization' => $organization_name,
+                        'description' => $title_name . __(' of ', 'petition') . $organization_name,
+                        'excerpt' => $excerpt,
+                        'avatar' => $avatar,
+                        'author' => $author,
+                        'up_bio' => $up_bio,
+                    );
+
+                $arrayDecision = (object) $arrayDecision;
+                array_push($arrayDecisionmakers, $arrayDecision);
+            }
+        }
+        
+        $return_string .= '<div class="ui left aligned basic segment" style="margin-top:40px;"><h1 class="ui header">' . esc_html('Leaders - Institution') . '</h1>';
+        $return_string .= '<div class="title-divider"></div></div>';
+        $return_string .= '<div class="ui two column grid">';
+        if(count($arrayDecisionmakers)>0) {
+            foreach ( $arrayDecisionmakers as $decisionmakers ) {
+                $up_id = $decisionmakers->ID;
+                $up_link = $decisionmakers->link;
+                $up_decisionmaker_name = $decisionmakers->name;
+                $up_author_id = $decisionmakers->author;
+                $up_author_name = $decisionmakers->title_name;
+                $up_details = get_user_by( 'ID', $up_author_id );
+                $up_bio = conikal_get_biographical_by_id($up_author_id);
+                $up_type = get_user_meta($up_author_id, 'user_type', true);
+                $up_birthday = get_user_meta($up_author_id, 'user_birthday', true);
+                $up_gender = get_user_meta($up_author_id, 'user_gender', true);
+                $up_address = get_user_meta($up_author_id, 'user_address', true);
+                $up_pincode = get_user_meta($up_author_id, 'user_pincode', true);
+                $up_neighborhood = get_user_meta($up_author_id, 'user_neighborhood', true);
+                $up_state = get_user_meta($up_author_id, 'user_state', true);
+                $up_city = get_user_meta($up_author_id, 'user_city', true);
+                $up_country = get_user_meta($up_author_id, 'user_country', true);
+                $up_lat = get_user_meta($up_author_id, 'user_lat', true);
+                $up_lng = get_user_meta($up_author_id, 'user_lng', true);
+
+                $user_meta = get_user_meta($up_author_id);
+                $up_avatar_orginal = get_user_meta($up_author_id, 'avatar_orginal', true);
+                $up_avatar_id = get_user_meta($up_author_id, 'avatar_id', true);
+                if ($up_avatar_orginal != '') {
+                    $avatar = $up_avatar_orginal;
+                } else {
+                    $avatar = get_template_directory_uri().'/images/avatar.svg';
+                }
+
+                $author_petitions = conikal_author_petitions($up_author_id);
+
+                if($author_petitions) {
+                    $total_p = $author_petitions->found_posts;
+                } else {
+                    $total_p = 0;
+                }
+
+                $decision_id = get_user_meta($up_author_id, 'user_decision', true);
+                $decision_status = get_post_status( $decision_id );
+                $decision_title = wp_get_post_terms( $decision_id, 'decisionmakers_title' );
+                $decision_title = $decision_title ? $decision_title[0]->name : '';
+                $decision_organization = wp_get_post_terms($decision_id, 'decisionmakers_organization');
+                $decision_organization = $decision_organization ? $decision_organization[0]->name : '';
+                $return_string .='<div class="column">';
+                $return_string .= '<div class="ui segments petition-list-card">
+                                        <div class="ui segment">
+                                            <div class="ui grid">
+                                                <div class="sixteen wide mobile six wide tablet six wide computer column" style="width:15% !important;float: left">';
+                $return_string .= '<a class="ui fluid" href="' . esc_url($up_link). '" target="_blank" data-bjax>
+                                                <img class="ui image" src="' .esc_url($avatar). '" alt="' . esc_attr($title). '"></a>
+                                                </div>';
+                $return_string .= '<div class="sixteen wide mobile ten wide tablet ten wide computer column" style="width:85% !important;float: left">
+                            <div class="">
+                                <div class="ui grid">
+                                    <div class="sixteen wide column">
+                                        <div class="ui header mar-bot2">
+                                            <div class="content">
+                                                <a href="' .esc_url($up_link). '" data-bjax>' .esc_html($up_decisionmaker_name). '</a>
+                                            </div>
+                                        </div>';
+                                        if ($up_bio) {
+                                        $return_string .= '<span class="text grey">' .($up_bio ? esc_html($up_bio):''). '</span><br>';
+                                        }
+                                        $return_string .= '<div class="col-sm-12 mar-top10">';
+                                            if ($decision_title) {
+                                            $return_string .= '<div class="col-sm-6">
+                                                <div class="">
+                                                    <strong>Title:' . ($decision_title ? esc_html($decision_title) : '') . '</strong>
+                                                </div>
+                                            </div>';
+                                            }
+                                            if ($decision_organization) {
+                                            $return_string .= '<div class="col-sm-6">
+                                                <div class="">
+                                                    <strong>Organization:'. ($decision_organization ? esc_html($decision_organization):'') . '</strong>
+                                                </div>
+                                            </div>';
+                                            }
+                            $return_string .= '</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>';
+            }
+        }
+        $return_string .='<div class="ui basic vertical segment" style="width:100%">
+                            <div class="ui grid">
+                                <div class="eleven wide column" style="padding-right: 0"></div>
+                                <div class="five wide right aligned column" style="padding-left: 0">
+                                    <a href="/ekjoot/leaders/" class="bookmarkPetition" >see more leaders</a>
+                                </div>
+                            </div>
+                        </div>';
+        $return_string .= '</div>';
+
         return $return_string;
     }
 endif;

@@ -105,15 +105,15 @@ $home_header_hide_logined = isset($conikal_home_settings['conikal_home_header_hi
         </div>
 
         <?php
-        if(is_front_page() && $home_victory && $home_victory_hide_logined) {
+        /*if(is_front_page() && $home_victory && $home_victory_hide_logined) {
             if (!is_user_logged_in()) {
                 get_template_part('templates/victory_petitions');
             }
         } else if (is_front_page() && $home_victory) {
             get_template_part('templates/victory_petitions');
-        }
+        }*/
         
-        if(is_front_page() && $home_spotlight) {
+        /*if(is_front_page() && $home_spotlight) {
             get_template_part('templates/home_spotlight');  
-        }
+        }*/
     ?>
