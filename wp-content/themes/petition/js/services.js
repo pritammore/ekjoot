@@ -1797,9 +1797,15 @@ var geocoder;
                     $.each(data.petitions, function(id, petition) {
                         html += '<div class="ui segments petition-list-card">' +
                             '<div class="ui segment">';
-                        if (parseInt(petition.sign) >= parseInt(petition.goal) || petition.status == '1') {
+                        /*if (parseInt(petition.sign) >= parseInt(petition.goal) || petition.status == '1') {
                             html += '<div class="ui primary right corner large label victory-label"><i class="flag icon"></i></div>';
+                        }*/
+                        var uic = '';
+                        if (petition.uic) {
+                            console.log(petition.uic);
+                            uic = '<div class="sub header"><a class="ui orange button label small" style="margin-left: 0px;" href="' + petition.link + '" data-bjax><i class="filter icon"></i>' + ' ' + petition.uic + '</a></div>';
                         }
+
                         html += '<div class="ui grid">' +
                             '<div class="sixteen wide mobile ten wide tablet ten wide computer column">' +
                             '<div class="petition-content">' +
@@ -1807,7 +1813,7 @@ var geocoder;
                             '<div class="sixteen wide column">' +
                             '<div class="ui header list-petition-title">' +
                             '<div class="content">' +
-                            '<div class="sub header truncate"><i class="filter icon"><a href="' + petition.link + '" data-bjax></i>' + ' ' + petition.uic + '</a></div>' +
+                            uic +
                             '<a href="' + petition.link + '" data-bjax>' + petition.title + '</a>' +
                             '</div>' +
                             '</div>' +

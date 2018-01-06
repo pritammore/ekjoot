@@ -178,13 +178,13 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
             <?php if ($approve == 'pending') { ?>
                 <div class="ui large warning message">
                     <i class="warning icon"></i>
-                    <?php _e('Petition is pending approval!', 'petition') ?>
+                    <?php _e('Issue is pending approval!', 'petition') ?>
                 </div>
             <?php } ?>
             <?php if ($sign_num < $minimum_signature) { ?>
                 <div class="ui large warning message">
                     <i class="warning icon"></i>
-                    <?php echo __('Getting to', 'petition') . ' <strong>' . $minimum_signature . '</strong> ' . __('signatures makes your petition visible to the whole community', 'petition'); ?>
+                    <?php echo __('Getting to', 'petition') . ' <strong>' . $minimum_signature . '</strong> ' . __('signatures makes your issue visible to the whole community', 'petition'); ?>
                 </div>
             <?php } ?>
             </div>
@@ -194,12 +194,16 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
         <!-- TITLE AND AUTHOR OF PETITION -->
         <div class="ui basic padded vertical segment petition-title-block">
             <div class="ui left aligned header petition-title">
-                <div class="content">
-                    <div class="sub header"><i class="filter icon"></i><?php _e('UIC', 'petition') ?> <strong><?php echo esc_html($uic) ?></strong></div>
+                <div class="content" style="font-size: 30px !important;">
+                    <?php if ($uic != "") { ?>
+                    <div class="sub header"><a class="ui orange button label large" style="margin-left: 0px;">
+                        <i class="filter icon"></i><?php _e('UIC ', 'petition') ?><?php echo esc_html($uic) ?></a>
+                    </div>
+                    <?php } ?>
                     <?php echo esc_html($title) ?>
                 </div>
             </div>
-            <div class="ui center aligned small header">
+            <div class="ui left aligned small header">
                 <div class="sub header">
                     <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' )); ?>" data-bjax>
                         <img src="<?php echo esc_url($avatar); ?>" class="ui avatar bordered image" alt="<?php the_author(); ?>">
@@ -286,7 +290,19 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                         <!-- MAIN CONTENT PETITION -->
                         <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                             <div class="entry-content">
-                                <?php the_content(); ?>         <!-- Here is the main content of the post. Add Show more link -->
+                                <?php //the_content(); ?>         <!-- Here is the main content of the post. Add Show more link -->
+                                <div class="issue-excerpt"><?php the_excerpt(); ?>
+                                    <div class="ui right floated primary button read">
+                                      Read More
+                                      <i class="right chevron icon"></i>
+                                    </div>
+                                </div>
+                                <div class="issue-content"><?php the_content(); ?>
+                                    <div class="ui right floated primary button read-less">
+                                    <i class="left chevron icon"></i>  
+                                      Read Less
+                                    </div>
+                                </div>
                                 <div class="clearfix"></div>
                                 <?php wp_link_pages( array(
                                     'before'      => '<div class="page-links">',
@@ -370,9 +386,9 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                 </div>
                                 <div class="sixteen wide mobile ten wide tablet twelve wide computer column">
                                     <?php if (in_array($current_user->ID, $decisionmakers) && !current_user_can('editor') && !current_user_can('administrator')) { ?>
-                                        <p class="font medium"><?php _e('This petition is sent to you, let you clearly respond the problems stated  in this petition for supporters of petition.', 'petition') ?></p>
+                                        <p class="font medium"><?php _e('This issue is sent to you, let you clearly respond the problems stated  in this issue for supporters of issue.', 'petition') ?></p>
                                     <?php } else { ?>
-                                        <p class="font medium"><?php _e('Keep your supporters engaged with a news update. Every update you post will be sent as a separate email to signers of your petition.', 'petition') ?></p>
+                                        <p class="font medium"><?php _e('Keep your supporters engaged with a news update. Every update you post will be sent as a separate email to signers of your issue.', 'petition') ?></p>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -382,7 +398,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                     <?php wp_nonce_field('update_petition_ajax_nonce', 'securityUpdate', true); ?>
                     <div class="ui secondary segment grid">
                         <div class="ten wide column">
-                            <strong><?php the_author() ?> <?php _e('start this petition', 'petition') ?></strong>
+                            <strong><?php the_author() ?> <?php _e('start this issue', 'petition') ?></strong>
                         </div>
                         <div class="six wide right aligned column ">
                             <?php echo esc_html($time) . __(' ago', 'petition') ?>
@@ -399,14 +415,14 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
             </div>
             <div class="six wide tablet six wide computer column tablet computer only" >
                 <!-- Here is the Leaders supporting this issue box must come. -->
-                <h2><i class="user icon"></i><span class="fav_no"></span><?php  _e('Leaders Supporting this petition', 'petition') ?></h2>
+                <h2><i class="user icon"></i><span class="fav_no"></span><?php  _e('Leaders Supporting this issue', 'petition') ?></h2>
                 <?php the_widget( 'LP_Widget' ); //get_sidebar(); ?>
                 <br>
 
                 <!-- SIGN AND SHARE PETITION -->
                 <div class="ui sticky" id="sign-sticky">
                     <div class="ui basic vertical segment">
-                        <?php if ($sign_num >= $goal || $status == '1') { ?>
+                        <?php /*if ($sign_num >= $goal || $status == '1') { ?>
                             <h2 class="ui text victory"><i class="flag icon"></i><?php echo ( $status == '1' ? __('Confirm Victory!', 'petition') : __('Victory!', 'petition') ); ?></h2>
                             <div class="ui indicating small victory progress petition-goal" data-value="<?php echo esc_html($goal) ?>" data-total="<?php echo esc_html($goal) ?>">
                                 <div class="bar">
@@ -436,7 +452,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                     <span class="ned_no"><?php echo conikal_format_number('%!,0i', esc_html($goal - $sign_num)) ?></span> <?php echo _e('needed to reach', 'petition') . ' ' . conikal_format_number('%!,0i', esc_html($goal)) ?>
                                 </div>
                             </div>
-                        <?php } ?>
+                        <?php }*/ ?>
                         
                         <?php
                         if($sign != '') {
@@ -494,7 +510,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                             </div>
                                         </div>
                                         <div class="field">
-                                            <a href="javascript:void(0);" class="ui fluid primary big button signBtn signPetition"><i class="write icon"></i><?php _e('Sign', 'petition') ?></a>
+                                            <a href="javascript:void(0);" class="ui fluid primary big button signBtn signPetition"><i class="write icon"></i><?php _e('I SUPPORT', 'petition') ?></a>
                                         </div>
                                         <div class="field">
                                             <div class="email-notice ui checkbox <?php echo ($current_user->notice == 'true' ? esc_attr('checked') : ''); ?>">
@@ -505,11 +521,11 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                     </div>
                                 <?php } else { ?>
                                     <!-- FACEBOOK SHARE -->
-                                    <div class="ui fitted divider"></div>
+                                    <div class="ui fitted"></div>
                                     <div class="ui accordion">
                                         <div class="title active">
                                             <h3 class="ui header">
-                                            <i class="dropdown icon"></i>
+                                            <i class="share icon"></i>
                                             <?php _e('Share on Facebook', 'petition') ?>
                                             </h3>
                                         </div>
@@ -801,7 +817,7 @@ if($similar) { ?>
 <div class="ui bottom sidebar segment" id="sign-sidebar" style="z-index: 999;">
     <div class="ui grid mobile only">
         <div class="sixteen wide column">
-            <?php if ($sign_num >= $goal || $status == '1') { ?>
+            <?php /* if ($sign_num >= $goal || $status == '1') { ?>
                 <div class="ui grid">
                     <div class="thirteen wide column">
                         <h3 class="ui text victory"><i class="flag icon"></i><?php echo ( $status == '1' ? __('Confirm Victory!', 'petition') : __('Victory!', 'petition') ); ?></h3>
@@ -852,7 +868,7 @@ if($similar) { ?>
                         <span class="ned_no"><?php print conikal_format_number('%!,0i', esc_html($goal - $sign_num)) ?></span> <?php echo _e('needed to reach', 'petition') . ' ' . conikal_format_number('%!,0i', esc_html($goal)) ?>
                     </div>
                 </div>
-            <?php } ?>
+            <?php }*/ ?>
             
             <?php
             if($sign != '') {
@@ -898,7 +914,7 @@ if($similar) { ?>
                                 </div>
                             </div>
                             <div class="field">
-                                <a href="javascript:void(0);" class="ui fluid primary big button signBtn signPetition"><i class="write icon"></i><?php _e('Sign', 'petition') ?></a>
+                                <a href="javascript:void(0);" class="ui fluid primary big button signBtn signPetition"><i class="write icon"></i><?php _e('I SUPPORT', 'petition') ?></a>
                             </div>
                         </div>
                     <?php } else { ?>
@@ -963,7 +979,7 @@ if($similar) { ?>
                         <div class="ui accordion">
                             <div class="title active">
                                 <h3 class="ui header">
-                                <i class="dropdown icon"></i>
+                                <i class="share icon"></i>
                                 <?php _e('Share on Facebook', 'petition') ?>
                                 </h3>
                             </div>
@@ -1182,7 +1198,22 @@ if($similar) { ?>
     </div>
 </div>
 <?php } ?>
+<script type="text/javascript">
+(function ($) {
+    $('.issue-content').hide();
+    $('div.read').click(function () {
+    $(this).parent('.issue-excerpt').hide();
+    $(this).closest('.entry-content').find('.issue-content').slideDown('fast');
+    //return false;
+    });
+    $('div.read-less').click(function () {
+    $(this).parent('.issue-content').slideUp('fast');
+    $(this).closest('.entry-content').find('.issue-excerpt').show();
+    //return false;
+    });
+})(jQuery);
 
+</script>
 <?php if($fb_login && is_user_logged_in()) { ?>
     <div id="fb-root"></div>
     <script>
@@ -1205,4 +1236,4 @@ if($similar) { ?>
     </script>
 <?php } ?>
 
-<?php get_footer(); ?>
+<?php //get_footer(); ?>

@@ -166,7 +166,7 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                                 <div class="value">
                                     <?php echo esc_html( conikal_format_number('%!.0i', $total_p, true) ); ?>
                                 </div>
-                                <div class="label" style="font-size: 11px;"><?php esc_html_e('Petitions', 'petition') ?></div>
+                                <div class="label" style="font-size: 11px;"><?php esc_html_e('My Issues', 'petition') ?></div>
                             </div>
                             <div class="statistic">
                                 <div class="value">
@@ -289,7 +289,7 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                             <div class="value">
                                 <?php echo esc_html( conikal_format_number('%!.0i', $total_p, true) ); ?>
                             </div>
-                            <div class="label" style="font-size: 11px;"><?php esc_html_e('Petitions', 'petition') ?></div>
+                            <div class="label" style="font-size: 11px;"><?php esc_html_e('My Issues', 'petition') ?></div>
                         </div>
                         <div class="statistic">
                             <div class="value">
@@ -358,11 +358,11 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                 ?>
                 <div class="ui segments petition-list-card">
                     <div class="ui segment">
-                        <?php if ($sign >= $goal || $status == '1') { ?>
+                        <?php /*if ($sign >= $goal || $status == '1') { ?>
                             <div class="ui primary right corner large label victory-label">
                                 <i class="flag icon"></i>
                             </div>
-                        <?php } ?>
+                        <?php }*/ ?>
                         <div class="ui grid">
                             <div class="sixteen wide mobile ten wide tablet ten wide computer column">
                                 <div class="petition-content">
@@ -370,7 +370,10 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                                         <div class="sixteen wide column">
                                             <div class="ui header list-petition-title">
                                                 <div class="content">
-                                                    <div class="sub header truncate"><i class="filter icon"></i><a href="<?php echo esc_url($link) ?>" data-bjax> <?php echo esc_html($petition_uic) ?></a></div>
+                                                    <?php if($petition_uic) { ?>
+                                                    <div class="sub header truncate"><a class="ui orange button label small" style="margin-left: 0px;" href="<?php echo esc_url($link) ?>" data-bjax><i class="filter icon"></i> <?php echo esc_html($petition_uic) ?></a>
+                                                    </div>
+                                                    <?php } ?>
                                                     <a href="<?php echo esc_url($link) ?>" data-bjax><?php echo esc_html($title) ?></a>
                                                 </div>
                                             </div>

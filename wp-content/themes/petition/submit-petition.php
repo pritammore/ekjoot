@@ -95,7 +95,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                     </div>
                     <div class="disabled step" id="step-four">
                         <div class="content">
-                          <a href="#" class="title" data-tab="step-four"><?php _e('Photo', 'petition') ?></a>
+                          <a href="#" class="title" data-tab="step-four"><?php _e('Video', 'petition') ?></a>
                         </div>
                     </div>
                 </div>
@@ -165,19 +165,19 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                                     <div class="item">
                                         <div class="content">
                                             <div class="header"><?php _e('Keep it short and to the point', 'petition') ?></div>
-                                            <div class="description"><?php _e('Example: "Buy organic, free-range eggs for your restaurants".', 'petition') ?></div>
+                                            <div class="description"><?php _e('Example: ‘Save Tigers’, ‘Fight Malnutrition’.', 'petition') ?></div>
                                         </div>
                                     </div>
                                     <div class="item">
                                         <div class="content">
                                             <div class="header"><?php _e('Focus on the solution', 'petition') ?></div>
-                                            <div class="description"><?php _e('Example: "Raise the minimum wage in Minneapolis to $15 an hour".', 'petition') ?></div>
+                                            <div class="description"><?php _e('Example: ‘Make Sanitation a compulsory subject in primary schools’.', 'petition') ?></div>
                                         </div>
                                     </div>
                                     <div class="item">
                                         <div class="content">
                                             <div class="header"><?php _e('Communicate urgency', 'petition') ?></div>
-                                            <div class="description"><?php _e('Example: "Approve life-saving medication for my daughter’s insurance before it’s too late".', 'petition') ?></div>
+                                            <div class="description"><?php _e('Example: ‘Donate Kidney and save my son’', 'petition') ?></div>
                                         </div>
                                     </div>
                                 </div>
@@ -275,18 +275,6 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                                             <div class="description"><?php _e('You might need to do some research to find the right person who can make or influence the leader.', 'petition') ?></div>
                                         </div>
                                     </div>
-                                    <div class="item">
-                                        <div class="content">
-                                            <div class="header"><?php _e('Do not go straight to the top', 'petition') ?></div>
-                                            <div class="description"><?php _e('You might see faster results if you choose a more junior person who is petitioned less often than more recognizable figures.', 'petition') ?></div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="content">
-                                            <div class="header"><?php _e('Choose someone you can work with', 'petition') ?></div>
-                                            <div class="description"><?php _e('Your petition is most likely to win by reaching an agreement with your leader.', 'petition') ?></div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -321,7 +309,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                         </div>
                         <?php if($p_topics != '' && $p_topics == 'enabled') { ?>
                         <div class="<?php echo ($p_topics_r == 'required' ? esc_html('required ') : '') ?>field">
-                            <label><?php _e('Add topics', 'petition') ?></label>
+                            <label><?php _e('Add keywords', 'petition') ?></label>
                             <div class="ui fluid multiple search selection large dropdown" id="topics-search">
                                 <input name="new_topics" id="new_topics" type="hidden">
                                 <i class="dropdown icon"></i>
@@ -374,9 +362,9 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                     <!-- STEP FOUR -->
                     <div class="ui tab step-four" data-tab="step-four">
                         <h2 class="ui header">
-                            <div class="content"><?php _e('Add a photo or video', 'petition') ?>
+                            <div class="content"><?php _e('Add a video', 'petition') ?>
                                 <div class="sub header">
-                                    <p><?php _e('Issue with a photo or video receive six times more signatures than those without. Include one that captures the emotion of your story.', 'petition') ?></p>
+                                    <p><?php _e('In case, you don\'t have a video, you can upload an image here. However, we encourage you to upload a video to make your issue more effective.', 'petition') ?></p>
                                 </div>
                             </div>
                         </h2>
@@ -387,27 +375,33 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                             <div class="title">
                                 <h3 class="ui header">
                                 <i class="dropdown icon"></i>
-                                <?php _e('Tips for adding a photo or video', 'petition') ?>
+                                <?php _e('Tips for adding a video', 'petition') ?>
                                 </h3>
                             </div>
                             <div class="content">
                                 <div class="ui large bulleted list">
                                     <div class="item">
                                         <div class="content">
-                                            <div class="header"><?php _e('Choose a photo that captures the emotion of your issue', 'petition') ?></div>
-                                            <div class="description"><?php _e('Photos of people or animals work well.', 'petition') ?></div>
+                                            <!-- <div class="header"><?php //_e('Choose a photo that captures the emotion of your issue', 'petition') ?></div> -->
+                                            <div class="description"><?php _e('Give a personal touch to your video by giving your brief information.', 'petition') ?></div>
                                         </div>
                                     </div>
                                     <div class="item">
                                         <div class="content">
-                                            <div class="header"><?php _e('Try to upload photos that are 1600 x 900 pixels or larger', 'petition') ?></div>
-                                            <div class="description"><?php _e('Large photos look good on all screen sizes.', 'petition') ?></div>
+                                            <!-- <div class="header"><?php //_e('Try to upload photos that are 1600 x 900 pixels or larger', 'petition') ?></div> -->
+                                            <div class="description"><?php _e('First upload your video on Youtube and than embed the link in the space provided here.', 'petition') ?></div>
                                         </div>
                                     </div>
                                     <div class="item">
                                         <div class="content">
-                                            <div class="header"><?php _e('Keep it friendly for all audiences', 'petition') ?></div>
-                                            <div class="description"><?php _e('Make sure your photo doesn’t include graphic violence or sexual content.', 'petition') ?></div>
+                                            <!-- <div class="header"><?php //_e('Keep it friendly for all audiences', 'petition') ?></div> -->
+                                            <div class="description"><?php _e('Keep your video duration short. Users avoid long videos.', 'petition') ?></div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="content">
+                                            <!-- <div class="header"><?php //_e('Keep it friendly for all audiences', 'petition') ?></div> -->
+                                            <div class="description"><?php _e('If possible, take professional help to edit your video content.', 'petition') ?></div>
                                         </div>
                                     </div>
                                 </div>

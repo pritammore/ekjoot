@@ -118,11 +118,11 @@ $users = get_users();
                     ?>
                     <div class="ui segments petition-list-card">
                         <div class="ui segment">
-                            <?php if ($sign >= $goal || $status == '1') { ?>
+                            <?php /*if ($sign >= $goal || $status == '1') { ?>
                                 <span class="ui primary right corner large label victory-label">
                                         <i class="flag icon"></i>
                                 </span>
-                            <?php } ?>
+                            <?php }*/ ?>
                             <div class="ui grid">
                                 <div class="sixteen wide mobile ten wide tablet ten wide computer column">
                                     <div class="petition-content">
@@ -130,7 +130,10 @@ $users = get_users();
                                             <div class="sixteen wide column">
                                                 <div class="ui header list-petition-title">
                                                     <div class="content">
-                                                        <div class="sub header truncate"><i class="filter icon"></i><a href="<?php echo esc_url($link) ?>" data-bjax> <?php echo esc_html($petition_uic) ?></a></div>
+                                                        <?php if($petition_uic != "") { ?>
+                                                        <div class="sub header"><a class="ui orange button label small" style="margin-left: 0px;" href="<?php echo esc_url($link) ?>" data-bjax><i class="filter icon"></i> <?php echo esc_html($petition_uic) ?></a>
+                                                        </div>
+                                                        <?php } ?>
                                                         <a href="<?php echo esc_url($link) ?>" data-bjax><?php echo esc_html($title) ?></a>
                                                     </div>
                                                 </div>

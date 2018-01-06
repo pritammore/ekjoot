@@ -1379,4 +1379,10 @@ if(!function_exists('get_petition_search_result')) :
     }
 endif;
 add_action('get_petition_search_result', 'get_petition_search_result');
+
+function custom_excerpt_length( $length ) {
+    return 50;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
 ?>

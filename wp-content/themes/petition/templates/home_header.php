@@ -63,7 +63,7 @@ $style_menu = isset($conikal_header_settings['conikal_style_header_menu_field'])
                         </a>
                     </div>
                     <div class="right menu">
-                        <a href="javascript:void(0)" class="item searchBtn" id="searchBtn"><i class="search icon"></i><?php esc_html_e('Search', 'petition') ?></a>
+                        <!-- <a href="javascript:void(0)" class="item searchBtn" id="searchBtn"><i class="search icon"></i><?php //esc_html_e('Search', 'petition') ?></a> -->
                         <?php 
                             conikal_custom_menu('primary');
 

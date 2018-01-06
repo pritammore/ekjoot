@@ -208,16 +208,16 @@ $google_client_secret = isset($conikal_auth_settings['conikal_google_secret_fiel
         </div>
         <div class="content">
             <div class="respon-message" id="makeDecisionerMessage">
-                <?php _e('Sorry !! You need to become Leader to lead this issue. your current profile is Petitioner on Ekjoot portal. you need to upgrade your profile to leader so as to lead any issue on Ekjoot Profile.', 'petition') ?>
+                <?php _e('Sorry !! You need to become Leader to lead this issue. You are currently a primary user on Ekjoot portal. you need to upgrade your profile to leader so as to lead any issue on Ekjoot Portal.', 'petition') ?>
             </div><br>
             <form class="ui form" id="makeDecisionerForm" method="post">
                 <div class="field">
                     <label><?php _e('Steps to request for a Leader Position on Ekjoot Portal', 'petition') ?></label>
                     <ul>
-                        <li><?php _e('Go to Account Setting Page.', 'petition') ?></li>
-                        <li><?php _e('Scroll Down to Manage Profile.', 'petition') ?></li>
+                        <li><?php _e('Click on your name in the right corner.', 'petition') ?></li>
+                        <li><?php _e('Go to Account setting.', 'petition') ?></li>
                         <li><?php _e('Click on Leader Maker Tab in Account Setting form and submit the form.', 'petition') ?></li>
-                        <li><?php _e('On successfully submittion of form Request to become is submitted to Admin/Editor of Ekjoot Portal and will be updated to you soon.', 'petition') ?></li>
+                        <li><?php _e('On successfully submittion of form, Request to become leader is submitted to Admin/Editor of Ekjoot Portal and will be updated to you soon.', 'petition') ?></li>
                     </ul> 
                 
                 <?php wp_nonce_field('forgot_ajax_nonce', 'securityForgot', true); ?>

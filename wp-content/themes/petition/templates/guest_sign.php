@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="field">
-        <button class="ui primary fluid big button submitSign"><i class="write icon"></i><?php _e('Sign this petition', 'petition') ?></button>
+        <button class="ui primary fluid big button submitSign"><i class="write icon"></i><?php _e('I SUPPORT', 'petition') ?></button>
     </div>
     <div class="field">
         <div class="email-notice ui checkbox checked">
