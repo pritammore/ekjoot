@@ -110,6 +110,7 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
 		        $thumb = get_post_meta($id, 'petition_thumb', true);
                 $thumb = conikal_video_thumbnail($thumb);
 		        $status = get_post_meta($id, 'petition_status', true);
+                $uic = get_post_meta($id, 'petition_uic', true);
 
 		        $user_avatar = get_the_author_meta('avatar' , get_the_author_meta('ID'));
 		        if($user_avatar != '') {
@@ -122,11 +123,6 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
 
 			<div class="ui segments petition-list-card">
                 <div class="ui segment">
-                    <?php if ($sign >= $goal || $status == '1') { ?>
-                        <div class="ui primary right corner large label victory-label">
-                                <i class="flag icon"></i>
-                        </div>
-                    <?php } ?>
                     <div class="ui grid">
                         <div class="sixteen wide mobile ten wide tablet ten wide computer column">
                             <div class="petition-content">
@@ -134,7 +130,11 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                                     <div class="sixteen wide column">
                                         <div class="ui header list-petition-title">
                                             <div class="content">
-                                                <div class="sub header truncate"><i class="send icon"></i><?php esc_html_e('Petition to', 'petition') ?> <?php echo esc_html($receiver[0]) ?></div>
+                                                <?php if ($uic != "") { ?>
+                                                <div class="sub header"><a class="ui orange button label large" style="margin-left: 0px;">
+                                                    <i class="filter icon"></i><?php _e('UIC ', 'petition') ?><?php echo esc_html($uic) ?></a>
+                                                </div>
+                                                <?php } ?>
                                                 <a href="<?php echo esc_url($link) ?>" data-bjax><?php echo esc_html($title) ?></a>
                                             </div>
                                         </div>

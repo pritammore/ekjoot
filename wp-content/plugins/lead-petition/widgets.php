@@ -64,10 +64,14 @@ class LP_Widget extends WP_Widget {
 			    }
 			    $current_user_avatar = conikal_get_avatar_url( $user_id, array('size' => 35, 'default' => $current_user_avatar) );
 	        	$user_info = $current_user;
-        		// $user_info = get_userdata($user_id);
+
+	        	$user_login_name = $current_user->data->user_login;
+			    $file = home_url( '/' );
+			    $link = $file . 'author/'. $user_login_name;
+
 	    ?>
 	    	<div class="leader_avtar">
-	    		<a href="<?php echo get_site_url(); ?>/user/<?php echo $user_info->display_name; ?>" title="<?php echo $user_info->first_name." ".$user_info->last_name ; ?>"> <img class="ui avatar bordered image" src="<?php echo esc_url($current_user_avatar) ?>">
+	    		<a href="<?php echo $link; ?>" title="<?php echo $user_info->first_name." ".$user_info->last_name ; ?>"> <img class="ui avatar bordered image" src="<?php echo esc_url($current_user_avatar) ?>">
 	    		<span style="font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;font-weight: 700;color: rgba(0,0,0,.87);padding-right: 5px;line-height: 7px;"><?php echo $user_info->first_name." ".$user_info->last_name ; ?></span>
 	    		</a>
 	    	</div>
@@ -129,8 +133,17 @@ class LP_Widget extends WP_Widget {
 			}	
 			$html .="</div></div>";
 
-			echo $html;	
+			
+		} else if( !is_user_logged_in() && get_post_type() == "petition" && ( $status == 0 ) && ( $sign_num < $goal )) {
+			$html = '<div class="ui secondary segment"><h3 class="font medium">Lead This Issue</h3>
+						<div class="lp_body">
+						<p>If you think you can contribute in resolving this issue with your expertise, please lead this issue and help the grievant</p>
+						<div id="lp_content">';
+						$html .= '<a href="#" class="signup-btn ui large primary fluid button">
+						  <i class="warning icon"></i>Signup / SignIn to lead this issue.</a></div>';
+			$html .="</div></div>";
 		}
+		echo $html;	
 	}
 }
 add_action( 'widgets_init', function(){ register_widget( 'LP_Widget' ); } );

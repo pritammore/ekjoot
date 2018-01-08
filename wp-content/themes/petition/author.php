@@ -13,7 +13,7 @@ $show_bc = isset($conikal_appearance_settings['conikal_breadcrumbs_field']) ? $c
 $posts_per_page_setting = isset($conikal_appearance_settings['conikal_petitions_per_page_field']) ? $conikal_appearance_settings['conikal_petitions_per_page_field'] : '';
 $copyright = isset($conikal_appearance_settings['conikal_copyright_field']) ? $conikal_appearance_settings['conikal_copyright_field'] : '';
 $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
-
+$update_hero_title = '0';
 ?>
 
 
@@ -65,14 +65,13 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
         if ($user_type == 'decisioner') $user_type = 'Leader';
         $user_gender = get_user_meta($curauth->ID, 'user_gender', true);
         $user_ekwhomi = get_user_meta($curauth->ID, 'user_ekwhomi', true);
-        $user_ekorganizationname = get_user_meta($curauth->ID, 'user_ekorganizationname', true);
         $user_email = get_user_meta($curauth->ID, 'user_email', true);
         $user_hidemobile = get_user_meta($curauth->ID, 'user_hidemobile', true);
         if ($user_hidemobile != 'yes') 
             $user_mobile = get_user_meta($curauth->ID, 'user_mobile', true);
         if(wp_get_current_user()->roles[0] == 'administrator')
             $user_mobile = get_user_meta($curauth->ID, 'user_mobile', true);
-        
+
     ?>
     <div class="ui grid mobile-full">
         <!-- RIGHT SIDEBAR -->
@@ -80,7 +79,7 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
             <div class="five wide column computer only">
                 <div class="ui" id="about-sticky">
                     <div class="ui segment">
-                        <div class="ui header"><?php esc_html_e('About', 'petition') ?> <span style="float: right;"><?php echo esc_html( ucwords($user_type) ); ?></span></div>
+                        <div class="ui header"><?php esc_html_e('About Leader', 'petition') ?></span></div>
                         <?php echo ($curauth->description) ? esc_html($curauth->description) : ''; ?>
                         <div class="ui list">
                             <?php if ($user_ekwhomi) { ?>
@@ -124,7 +123,7 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                             <?php if ($curauth->user_url) { ?>
                                 <div class="item"><i class="linkify icon" style="float: left;"></i>
                                     <div class="content truncate">
-                                    <a target="_blank" href="<?php echo esc_url($curauth->user_url) ?>"><?php echo esc_html($curauth->user_url) ?></a>
+                                    <a target="_blank" style="color:#4183C4 !important;" href="<?php echo esc_url($curauth->user_url) ?>"><?php echo esc_html($curauth->user_url) ?></a>
                                     </div>
                                 </div>
                             <?php } ?>
@@ -242,7 +241,7 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
                         <?php if ($curauth->user_url) { ?>
                             <div class="item"><i class="linkify icon" style="float: left;"></i>
                                 <div class="content truncate">
-                                <a target="_blank" href="<?php echo esc_attr($curauth->user_url) ?>"><?php echo esc_html($curauth->user_url) ?></a>
+                                <a target="_blank" style="color:#4183C4 !important;"  href="<?php echo esc_attr($curauth->user_url) ?>"><?php echo esc_html($curauth->user_url) ?></a>
                                 </div>
                             </div>
                         <?php } ?>
@@ -476,5 +475,14 @@ $posts_per_page = $posts_per_page_setting != '' ? $posts_per_page_setting : 10;
     </div>
     </div>
 </div>
-
+<?php if($update_hero_title == '1') { ?>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            alert("in here");
+            var decisioner_hero_name = document.getElementById('#decisioner_hero_name');
+            decisioner_hero_name.innerHTML = "<?php echo $user_ekorganizationname; ?>";
+            //$("#decisioner_hero_name").html("<?php echo $user_ekorganizationname; ?>");
+        });
+    </script> 
+<?php }  ?>
 <?php get_footer(); ?>

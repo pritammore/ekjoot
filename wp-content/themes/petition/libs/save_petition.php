@@ -266,6 +266,10 @@ if( !function_exists('conikal_save_petition') ):
         update_post_meta($prop_id, 'petition_gallery', $gallery);
         update_post_meta($prop_id, 'petition_status', $status);
 
+
+        $default_leader = array( $user_id );
+        update_post_meta( $prop_id, 'lp_post_ids', $default_leader );
+
         $post_thumbnail = set_post_thumbnail( $prop_id, $attach_id );
         $addsign = conikal_add_to_signatures_plus( $user_id, $prop_id, '' );
         $approve = get_post_status($prop_id);
@@ -295,10 +299,10 @@ if( !function_exists('conikal_save_petition') ):
 
         if($prop_id != 0) {
             if($review != '') {
-                echo json_encode(array('save'=>true, 'propID'=>$prop_id, 'propLink'=>$prop_link, 'addsign' => $addsign, 'thumbnail' => $post_thumbnail, 'propStatus'=>'publish', 'message'=>__('The petition was successfully saved and published.', 'petition')));
+                echo json_encode(array('save'=>true, 'propID'=>$prop_id, 'propLink'=>$prop_link, 'addsign' => $addsign, 'thumbnail' => $post_thumbnail, 'propStatus'=>'publish', 'message'=>__('The issue was successfully saved and published.', 'petition')));
                 exit();
             } else {
-                echo json_encode(array('save'=>true, 'propID'=>$prop_id, 'propLink'=>$prop_link, 'addsign' => $addsign, 'thumbnail' => $post_thumbnail, 'propStatus'=>'pending', 'message'=>__('The petition was successfully saved and pending for approval.', 'petition')));
+                echo json_encode(array('save'=>true, 'propID'=>$prop_id, 'propLink'=>$prop_link, 'addsign' => $addsign, 'thumbnail' => $post_thumbnail, 'propStatus'=>'pending', 'message'=>__('The issue was successfully saved and pending for approval.', 'petition')));
                 exit();
             }
         } else {

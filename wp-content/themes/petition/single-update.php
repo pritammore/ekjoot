@@ -68,6 +68,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
     $thumb = conikal_video_thumbnail($thumb_placeholder);
     $letter = get_post_meta($petition_id, 'petition_letter', true);
     $status = get_post_meta($petition_id, 'petition_status', true);
+    $uic = get_post_meta($petition_id, 'petition_uic', true);
 
     $user_address = get_user_meta(get_the_author_meta( 'ID' ), 'user_address', true);
     $user_country = get_user_meta(get_the_author_meta( 'ID' ), 'user_country', true);
@@ -107,7 +108,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
 
     switch ($update_type) {
         case 'update':
-            $update_feed = __('Petition Update', 'petition');
+            $update_feed = __('Issue Update', 'petition');
             break;
         case 'featured':
             $update_feed = __('Featured on Press', 'petition');
@@ -116,11 +117,11 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
             $update_feed = __('Decision maker Responsive', 'petition');
             break;
         case 'victory':
-            $update_feed = __('Petition Victory', 'petition');
+            $update_feed = __('Issue Victory', 'petition');
             break;
         
         default:
-            $update_feed = __('Petition Update', 'petition');
+            $update_feed = __('Issue Update', 'petition');
             break;
     }
 
@@ -229,7 +230,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                 <!-- SIGN AND SHARE PETITION -->
                 <div class="ui sticky" id="sign-sticky">
                     <div class="ui basic vertical segment">
-                        <?php if ($sign_num >= $goal || $status == '1') { ?>
+                        <?php /*if ($sign_num >= $goal || $status == '1') { ?>
                             <h2 class="ui text victory"><i class="flag icon"></i><?php echo ( $status == '1' ? __('Confirm Victory!', 'petition') : __('Victory!', 'petition') ); ?></h2>
                             <div class="ui indicating small victory progress petition-goal" data-value="<?php echo esc_html($goal) ?>" data-total="<?php echo esc_html($goal) ?>">
                                 <div class="bar">
@@ -239,7 +240,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                     <span><?php _e('This petition won with', 'petition') ?><?php echo ' ' . conikal_format_number('%!,0i', esc_html($sign_num)) . ' ' ?><?php _e('supporters', 'petition') ?></span>
                                 </div>
                             </div>
-                        <?php } else if ($status == '2') { ?>
+                        <?php } else*/ /*if ($status == '2') { ?>
                             <h2><i class="lock icon"></i><span class="fav_no"><?php  _e('Petition closed', 'petition') ?></span></h2>
                             <div class="ui small progress petition-goal" data-value="<?php echo esc_html($sign_num) ?>" data-total="<?php echo esc_html($goal) ?>">
                                 <div class="bar">
@@ -259,7 +260,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                                     <span class="ned_no"><?php echo conikal_format_number('%!,0i', esc_html($goal - $sign_num)) ?></span> <?php echo _e('needed to reach', 'petition') . ' ' . conikal_format_number('%!,0i', esc_html($goal)) ?>
                                 </div>
                             </div>
-                        <?php } ?>
+                        <?php }*/ ?>
                         
                         <?php
                         if($sign != '') {
@@ -605,38 +606,38 @@ if($similar) { ?>
         <div class="sixteen wide column">
             <?php if ($sign_num >= $goal || $status == '1') { ?>
                 <div class="ui grid">
-                    <div class="thirteen wide column">
-                        <h3 class="ui text victory"><i class="flag icon"></i><?php echo ( $status == '1' ? __('Confirm Victory!', 'petition') : __('Victory!', 'petition') ); ?></h3>
-                    </div>
+                    <!-- <div class="thirteen wide column">
+                        <h3 class="ui text victory"><i class="flag icon"></i><?php //echo ( $status == '1' ? __('Confirm Victory!', 'petition') : __('Victory!', 'petition') ); ?></h3>
+                    </div> -->
                     <div class="three wide right aligned column">
                         <a href="javascript:void(0)" class="font big" id="close-mobile-sign"><i class="angle down icon"></i></a>
                     </div>
                 </div>
-                <div class="ui indicating tiny victory progress petition-goal" data-value="<?php echo esc_html($goal) ?>" data-total="<?php echo esc_html($goal) ?>">
+                <!-- <div class="ui indicating tiny victory progress petition-goal" data-value="<?php //echo esc_html($goal) ?>" data-total="<?php //echo esc_html($goal) ?>">
                     <div class="bar">
                         <div class="progress"></div>
                     </div>
                     <div class="label">
-                        <span><?php _e('This petition won with', 'petition') ?><?php echo ' ' . conikal_format_number('%!,0i', esc_html($sign_num)) . ' ' ?><?php _e('supporters', 'petition') ?></span>
+                        <span><?php //_e('This petition won with', 'petition') ?><?php //echo ' ' . conikal_format_number('%!,0i', esc_html($sign_num)) . ' ' ?><?php //_e('supporters', 'petition') ?></span>
                     </div>
-                </div>
+                </div> -->
             <?php } else if ($status == '2') { ?>
                 <div class="ui grid">
                     <div class="thirteen wide column">
-                        <h3><i class="lock icon"></i><span class="fav_no"><?php  _e('Petition closed', 'petition') ?></span></h3>
+                        <h3><i class="lock icon"></i><span class="fav_no"><?php  _e('Issue closed', 'petition') ?></span></h3>
                     </div>
                     <div class="three wide right aligned column">
                         <a href="javascript:void(0)" class="font big" id="close-mobile-sign"><i class="angle down icon"></i></a>
                     </div>
                 </div>
-                <div class="ui tiny progress petition-goal" data-value="<?php echo esc_html($sign_num) ?>" data-total="<?php echo esc_html($goal) ?>">
+                <!-- <div class="ui tiny progress petition-goal" data-value="<?php echo esc_html($sign_num) ?>" data-total="<?php echo esc_html($goal) ?>">
                     <div class="bar">
                         <div class="progress"></div>
                     </div>
                     <div class="label">
-                        <span class="ned_no"><?php print conikal_format_number('%!,0i', esc_html($goal - $sign_num)) ?></span> <?php echo _e('needed to reach', 'petition') . ' ' . conikal_format_number('%!,0i', esc_html($goal)) ?>
+                        <span class="ned_no"><?php //print conikal_format_number('%!,0i', esc_html($goal - $sign_num)) ?></span> <?php //echo _e('needed to reach', 'petition') . ' ' . conikal_format_number('%!,0i', esc_html($goal)) ?>
                     </div>
-                </div>
+                </div> -->
             <?php } else { ?>
                 <div class="ui grid">
                     <div class="thirteen wide column">
@@ -646,14 +647,14 @@ if($similar) { ?>
                         <a href="javascript:void(0)" class="font big" id="close-mobile-sign"><i class="angle down icon"></i></a>
                     </div>
                 </div>
-                <div class="ui indicating tiny primary progress petition-goal" data-value="<?php echo esc_html($sign_num) ?>" data-total="<?php echo esc_html($goal) ?>">
+                <!-- <div class="ui indicating tiny primary progress petition-goal" data-value="<?php //echo esc_html($sign_num) ?>" data-total="<?php //echo esc_html($goal) ?>">
                     <div class="bar">
                         <div class="progress"></div>
                     </div>
                     <div class="label">
-                        <span class="ned_no"><?php print conikal_format_number('%!,0i', esc_html($goal - $sign_num)) ?></span> <?php echo _e('needed to reach', 'petition') . ' ' . conikal_format_number('%!,0i', esc_html($goal)) ?>
+                        <span class="ned_no"><?php //print conikal_format_number('%!,0i', esc_html($goal - $sign_num)) ?></span> <?php //echo _e('needed to reach', 'petition') . ' ' . conikal_format_number('%!,0i', esc_html($goal)) ?>
                     </div>
-                </div>
+                </div> -->
             <?php } ?>
             
             <?php
@@ -965,19 +966,19 @@ if($similar) { ?>
             <?php if(is_user_logged_in()) { ?>
                 <?php if ($sign != '') { 
                     if (in_array($petition_id, $sign) === false && $status == '0') { ?>
-                        <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('Sign this Petition', 'petition') ?></button>
+                        <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('SUPPORT ISSUE', 'petition') ?></button>
                     <?php } else { ?>
-                        <button class="ui primary fluid button"><i class="share icon"></i><?php esc_html_e('Share this Petition', 'petition') ?></button>
+                        <button class="ui primary fluid button"><i class="share icon"></i><?php esc_html_e('Share this Issue', 'petition') ?></button>
                 <?php   }
                     } else {
                     if ($status == '0') { ?>
-                        <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('Sign this Petition', 'petition') ?></button>
+                        <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('SUPPORT ISSUE', 'petition') ?></button>
                     <?php } else { ?>
-                        <button class="ui primary fluid button"><i class="share icon"></i><?php esc_html_e('Share this Petition', 'petition') ?></button>
+                        <button class="ui primary fluid button"><i class="share icon"></i><?php esc_html_e('Share this Issue', 'petition') ?></button>
                 <?php   }
                 } ?>
             <?php } else { ?>
-                <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('Sign this Petition', 'petition') ?></button>
+                <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('SUPPORT ISSUE', 'petition') ?></button>
             <?php } ?>
             </div>
         </div>

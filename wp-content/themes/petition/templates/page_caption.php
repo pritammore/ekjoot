@@ -27,6 +27,30 @@
 	    // follow user
 	    $user = wp_get_current_user();
 	    $follow_user = get_user_meta($user->ID, 'follow_user', true);
+
+	    // diff individual and Org user
+	    $args = array('author' => $curauth->ID, 'showposts' => '1', 'post_type'=> 'decisionmakers', 'post_status' => array('publish'));
+        $whomi_query_rs = new WP_Query($args);
+        $user_post_details = $whomi_query_rs->posts;
+        foreach($user_post_details as $post) {
+            $postId = $post->ID;
+        }
+        wp_reset_query();
+        $user_whomi = get_post_meta($postId, 'post_whomi', true);
+
+        if($user_whomi == 1) {
+            $user_ekorganizationname = get_post_meta($postId, 'user_ekorganizationname', true);
+            if($user_ekorganizationname != "") { 
+                $update_hero_title = $user_ekorganizationname . 
+                					"<h2 class='ui header text white' style='padding:0.4em 0;' >( " . 
+                					$curauth->display_name . 
+                					" )</h2>";
+            } else {
+            	$update_hero_title = $curauth->display_name;
+            }
+        } else {
+        	$update_hero_title = $curauth->display_name;
+        }
 ?>
 
 	<div class="ui grid">
@@ -37,7 +61,7 @@
 			<div class="ui basic vertical segment">
 				<div class="ui inverted header petition-title">
 					<div class="content">
-						<?php echo esc_html($curauth->display_name) ?>
+						<div id="decisioner_hero_name"><?php echo $update_hero_title ?></div>
 						<div class="sub header">
 							<?php if ($curauth->user_country || $curauth->user_state || $curauth->user_city) { ?>
 							<i class="marker icon"></i>
@@ -76,7 +100,7 @@
 		$follow_topics = get_user_meta($current_user->ID, 'follow_topics', true); 
 	?>
 	<div class="page-title"><?php single_term_title(); ?>
-		<p class="font small text white"><?php echo esc_html($term->count) . ' ' . __('petitions', 'petition') ?></p>
+		<p class="font small text white"><?php echo esc_html($term->count) . ' ' . __('issues', 'petition') ?></p>
 	</div>
 	<?php if ($term->taxonomy === 'petition_topics') { ?>
 	<div class="ui center aligned basic segment">

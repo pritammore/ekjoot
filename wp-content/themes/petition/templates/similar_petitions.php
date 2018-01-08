@@ -93,6 +93,7 @@ $minimum_signature = isset($conikal_general_settings['conikal_minimum_signature_
             $thumb = get_post_meta($id, 'petition_thumb', true);
             $thumb = conikal_video_thumbnail($thumb);
             $status = get_post_meta($id, 'petition_status', true);
+            $uic = get_post_meta($id, 'petition_uic', true);
 
             $user_avatar = get_the_author_meta('avatar' , get_the_author_meta('ID'));
             if($user_avatar != '') {
@@ -101,11 +102,14 @@ $minimum_signature = isset($conikal_general_settings['conikal_minimum_signature_
                 $avatar = get_template_directory_uri().'/images/avatar.svg';
             }
         ?>
-        <div class="card petition-card">
-            <?php if ($sign >= $goal || $status == '1') { ?>
+        <div class="ui card petition-card">
+            <?php /*if ($sign >= $goal || $status == '1') { ?>
                 <div class="ui primary right corner large label victory-label">
                     <i class="flag icon"></i>
                 </div>
+            <?php }*/ ?>
+            <?php if($uic != "") { ?>
+            <div class="content ui grey label" style="width:100%;"><i class="filter icon"></i>UIC <?php echo esc_html($uic); ?> </div>
             <?php } ?>
             <div class="image">
                 <a href="<?php echo esc_url($link) ?>" data-bjax>

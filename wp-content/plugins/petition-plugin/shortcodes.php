@@ -530,6 +530,7 @@ if( !function_exists('conikal_recent_petitions_shortcode') ):
             $thumb = get_post_meta($id, 'petition_thumb', true);
             $thumb = conikal_video_thumbnail($thumb);
             $status = get_post_meta($id, 'petition_status', true);
+            $uic = get_post_meta($id, 'petition_uic', true);
 
             $user_avatar = get_the_author_meta('avatar' , get_the_author_meta('ID'));
             if($user_avatar != '') {
@@ -559,9 +560,11 @@ if( !function_exists('conikal_recent_petitions_shortcode') ):
                     $return_string .= '<div>';
                     $return_string .= '<div class="ui card petition-card" style="margin-bottom: 2px;">';
                 }
-                if ($sign >= $goal || $status == '1') {
+                /*if ($sign >= $goal || $status == '1') {
                     $return_string .= '<div class="ui primary right corner large label victory-label"><i class="flag icon"></i></div>';
-                }
+                }*/
+                if($uic != "")
+                $return_string .= '<div class="content ui grey label" style="width:100%;"><i class="filter icon"></i>UIC ' . esc_html($uic) . '</div>';
                 $return_string .= '<a href="' . esc_url($link) . '" class="image" data-bjax>';
                 $return_string .= '<img class="ui fluid image" src="' . esc_url($thumbnail) . '" alt="' . esc_attr($title) . '">';
                 $return_string .= '</a>';
@@ -755,6 +758,7 @@ if( !function_exists('conikal_featured_petitions_shortcode') ):
             $thumb = get_post_meta($id, 'petition_thumb', true);
             $thumb = conikal_video_thumbnail($thumb);
             $status = get_post_meta($id, 'petition_status', true);
+            $uic = get_post_meta($id, 'petition_uic', true);
 
             $user_avatar = get_the_author_meta('avatar' , get_the_author_meta('ID'));
             if($user_avatar != '') {
@@ -784,9 +788,11 @@ if( !function_exists('conikal_featured_petitions_shortcode') ):
                     $return_string .= '<div>';
                     $return_string .= '<div class="ui card petition-card" style="margin-bottom: 2px;">';
                 }
-                if ($sign >= $goal || $status == '1') {
+                /*if ($sign >= $goal || $status == '1') {
                     $return_string .= '<div class="ui primary right corner large label victory-label"><i class="flag icon"></i></div>';
-                }
+                }*/
+                if($uic != "")
+                $return_string .= '<div class="content ui grey label" style="width:100%;"><i class="filter icon"></i>UIC ' . esc_html($uic) . '</div>';
                 $return_string .= '<a href="' . esc_url($link) . '" class="image" data-bjax>';
                 $return_string .= '<img class="ui fluid image" src="' . esc_url($thumbnail) . '" alt="' . esc_attr($title) . '">';
                 $return_string .= '</a>';
@@ -1999,11 +2005,11 @@ if( !function_exists('conikal_leaders_shortcode') ):
                 array_push($arrayDecisionmakers, $arrayDecision);
             }
         }
-        
+
+        if(count($arrayDecisionmakers)>0) {
         $return_string = '<div class="ui left aligned basic segment"><h1 class="ui header">' . esc_html('Leaders - Individual') . '</h1>';
         $return_string .= '<div class="title-divider"></div></div>';
         $return_string .= '<div class="ui two column grid">';
-        if(count($arrayDecisionmakers)>0) {
             foreach ( $arrayDecisionmakers as $decisionmakers ) {
                 $up_id = $decisionmakers->ID;
                 $up_link = $decisionmakers->link;
@@ -2091,10 +2097,8 @@ if( !function_exists('conikal_leaders_shortcode') ):
                 </div>
             </div></div>';
             }
+            $return_string .= '</div>';
         }
-
-        $return_string .= '</div>';
-
 
         /* Orginazation Leaders */
         $paged = isset($_POST['paged']) ? sanitize_text_field($_POST['paged']) : 1;
@@ -2161,10 +2165,11 @@ if( !function_exists('conikal_leaders_shortcode') ):
             }
         }
         
-        $return_string .= '<div class="ui left aligned basic segment" style="margin-top:40px;"><h1 class="ui header">' . esc_html('Leaders - Institution') . '</h1>';
-        $return_string .= '<div class="title-divider"></div></div>';
-        $return_string .= '<div class="ui two column grid">';
         if(count($arrayDecisionmakers)>0) {
+            $return_string .= '<div class="ui left aligned basic segment" style="margin-top:40px;"><h1 class="ui header">' . esc_html('Leaders - Institution') . '</h1>';
+            $return_string .= '<div class="title-divider"></div></div>';
+            $return_string .= '<div class="ui two column grid">';
+        
             foreach ( $arrayDecisionmakers as $decisionmakers ) {
                 $up_id = $decisionmakers->ID;
                 $up_link = $decisionmakers->link;
@@ -2252,7 +2257,6 @@ if( !function_exists('conikal_leaders_shortcode') ):
                 </div>
             </div></div>';
             }
-        }
         $return_string .='<div class="ui basic vertical segment" style="width:100%">
                             <div class="ui grid">
                                 <div class="eleven wide column" style="padding-right: 0"></div>
@@ -2263,6 +2267,8 @@ if( !function_exists('conikal_leaders_shortcode') ):
                         </div>';
         $return_string .= '</div>';
 
+        }
+        
         return $return_string;
     }
 endif;

@@ -283,6 +283,10 @@ $decision_title_option = get_terms( 'decisionmakers_title', array(
                             </div>
                         </div>
                         <h3 class="ui header"><?php _e('Reset password', 'petition') ?></h3>
+                        <h5 class="ui header"><?php _e('<i>Note: Reset password only if required OR leave blank to use your existing password.<br>
+                        If you have registered using facebook; after resetting password you would not able to login with facebook. </br>
+                        Reset password only if you login using Email Id. facebook user don\'t reset the password.</i>', 'petition') ?></h5>
+
                         <div class="field required">
                             <label><?php esc_html_e('New Password', 'petition'); ?></label>
                             <input type="password" id="passUser" name="passwordUser" placeholder="<?php esc_html_e('Enter your new password', 'petition'); ?>">

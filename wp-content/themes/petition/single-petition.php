@@ -212,7 +212,6 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                     <?php if ($user_country || $user_state || $user_city) { ?>
                     <span class="text grey"><?php echo ' · ' . ($user_city ? esc_html($user_city) . ', ' : '') . ($user_state ? esc_html($user_state) . ', ' : '') . ($user_country ? esc_html($user_country) : '') ?></span>
                     <?php } ?>
-                    <?php //echo $petition_id; ?>
                 </div>
             </div>
         </div>
@@ -354,7 +353,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                         <div id="letter-response"></div>
                         <?php //wp_nonce_field('letter_ajax_nonce', 'securityLetter', true); ?>
                     </div> -->
-
+                    
                     <!-- UPDATES -->
                     <div id="updates">
                     <h3 class="ui dividing header"><?php _e('Updates', 'petition') ?></h3>
@@ -407,7 +406,14 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                     <div class="ui hidden divider"></div>
                     </div>
                 </div>
-
+                
+                <?php if (wp_is_mobile()) { ?>
+                <div>
+                    <h3 class="ui dividing header"><span class="fav_no"></span><?php  _e('Leaders Supporting this issue', 'petition') ?></h3>
+                    <?php the_widget( 'LP_Widget' ); //get_sidebar(); ?>
+                    <br>
+                </div>
+                <?php } ?>
                 <!-- COMMENT PETITION -->
                 <?php if(comments_open() || get_comments_number()) {
                         comments_template();
@@ -415,7 +421,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
             </div>
             <div class="six wide tablet six wide computer column tablet computer only" >
                 <!-- Here is the Leaders supporting this issue box must come. -->
-                <h2><i class="user icon"></i><span class="fav_no"></span><?php  _e('Leaders Supporting this issue', 'petition') ?></h2>
+                <h4><i class="user icon"></i><span class="fav_no"></span><?php  _e('Leaders Supporting this issue', 'petition') ?></h4>
                 <?php the_widget( 'LP_Widget' ); //get_sidebar(); ?>
                 <br>
 
@@ -794,6 +800,7 @@ $reply_per_comment = $reply_per_comment_setting != '' ? $reply_per_comment_setti
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -1179,19 +1186,19 @@ if($similar) { ?>
             <?php if(is_user_logged_in()) { ?>
                 <?php if ($sign != '') { 
                     if (in_array($petition_id, $sign) === false && $status == '0') { ?>
-                        <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('Sign this Petition', 'petition') ?></button>
+                        <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('SUPPORT ISSUE', 'petition') ?></button>
                     <?php } else { ?>
-                        <button class="ui primary fluid button"><i class="share icon"></i><?php esc_html_e('Share this Petition', 'petition') ?></button>
+                        <button class="ui primary fluid button"><i class="share icon"></i><?php esc_html_e('Share this Issue', 'petition') ?></button>
                 <?php   }
                     } else {
                     if ($status == '0') { ?>
-                        <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('Sign this Petition', 'petition') ?></button>
+                        <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('SUPPORT ISSUE', 'petition') ?></button>
                     <?php } else { ?>
-                        <button class="ui primary fluid button"><i class="share icon"></i><?php esc_html_e('Share this Petition', 'petition') ?></button>
+                        <button class="ui primary fluid button"><i class="share icon"></i><?php esc_html_e('Share this Issue', 'petition') ?></button>
                 <?php   }
                 } ?>
             <?php } else { ?>
-                <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('Sign this Petition', 'petition') ?></button>
+                <button class="ui primary fluid button"><i class="write icon"></i><?php esc_html_e('SUPPORT ISSUE', 'petition') ?></button>
             <?php } ?>
             </div>
         </div>
@@ -1236,4 +1243,4 @@ if($similar) { ?>
     </script>
 <?php } ?>
 
-<?php //get_footer(); ?>
+<?php wp_footer(); ?>

@@ -147,6 +147,15 @@ $users = get_users();
                     </div>
                 </div>
                 <div class="extra content">
+                    <?php
+                        $author_id = get_post_field ('post_author', $update_id);
+                        $display_name = get_the_author_meta( 'display_name' , $author_id );
+                    ?> 
+                    <span>
+                        <i class="user icon"></i>
+                        <?php echo esc_html($display_name); ?>
+                    </span>
+
                     <?php if($comments->approved != 0) { ?>
                         <span>
                             <i class="comments icon"></i>

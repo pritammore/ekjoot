@@ -180,15 +180,15 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                 <div class="ui section divider"></div>
                 <div class="ui grid">
                     <div class="sixteen wide mobile eight wide tablet eight wide computer center aligned column">
-                        <div class="ui form">
+                        <!-- <div class="ui form">
                             <div class="inline field">
-                                <label><?php esc_html_e('Set new goals', 'petition') ?></label>
-                                <div class="ui action <?php echo ($sign >= $number_sign_change_goal || current_user_can('editor') || current_user_can('administrator') ? '' : 'disabled ') ?>input">
-                                  <input type="number" id="new-goal" placeholder="<?php _e('Enter a new goal', 'petition') ?>" value="<?php echo (isset($goal) ? esc_attr($goal) : '') ?>">  
-                                  <button class="ui primary <?php echo ($sign >= $number_sign_change_goal || current_user_can('editor') || current_user_can('administrator') ? '' : 'disabled ') ?>button" id="set-goal"><?php _e('Save', 'petition') ?></button>
+                                <label><?php //esc_html_e('Set new goals', 'petition') ?></label>
+                                <div class="ui action <?php //echo ($sign >= $number_sign_change_goal || current_user_can('editor') || current_user_can('administrator') ? '' : 'disabled ') ?>input">
+                                  <input type="number" id="new-goal" placeholder="<?php //_e('Enter a new goal', 'petition') ?>" value="<?php //echo (isset($goal) ? esc_attr($goal) : '') ?>">  
+                                  <button class="ui primary <?php //echo ($sign >= $number_sign_change_goal || current_user_can('editor') || current_user_can('administrator') ? '' : 'disabled ') ?>button" id="set-goal"><?php //_e('Save', 'petition') ?></button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="sixteen wide mobile eight wide tablet eight wide computer center aligned column">
                             
@@ -211,7 +211,7 @@ $main_color = isset($conikal_colors_settings['conikal_main_color_field']) ? $con
                                     wp_reset_postdata();
                                     wp_reset_query();
                                 ?>
-                                <a href="<?php echo ($page_link ? $page_link : '') ?>" class="ui primary button" data-bjax><?php _e('Declare victory', 'petition') ?></a>
+                                <!-- <a href="<?php //echo ($page_link ? $page_link : '') ?>" class="ui primary button" data-bjax><?php //_e('Declare victory', 'petition') ?></a> -->
                                 
                                 <?php
                                     $args = array(
