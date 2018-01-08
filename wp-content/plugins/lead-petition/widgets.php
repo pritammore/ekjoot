@@ -134,7 +134,7 @@ class LP_Widget extends WP_Widget {
 			$html .="</div></div>";
 
 			
-		} else if( !is_user_logged_in() && get_post_type() == "petition" && ( $status == 0 ) && ( $sign_num < $goal )) {
+		} else if( !is_user_logged_in() && get_post_type() == "petition") {
 			$html = '<div class="ui secondary segment"><h3 class="font medium">Lead This Issue</h3>
 						<div class="lp_body">
 						<p>If you think you can contribute in resolving this issue with your expertise, please lead this issue and help the grievant</p>
