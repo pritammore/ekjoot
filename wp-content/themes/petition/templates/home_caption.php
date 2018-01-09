@@ -34,12 +34,12 @@ $home_caption_cta_size = isset($conikal_home_settings['conikal_home_caption_cta_
 <?php if (!wp_is_mobile()) { ?>
 <div class="sixteen wide column computer tablet only" style="max-width: 500px; margin: 200px auto; width: 100%;">
     <div class="ui hidden divider"></div>
-    <div class="field left"><h3 class="ui header widget-title" style="text-align: center;">Support an Issue. Enter the Unique Issue Code here.</h3></div>
+    <div class="field left"><h3 class="ui header widget-title" style="z-index: 9999; text-align: center;">Support an Issue. Enter the Unique Issue Code here.</h3></div>
     <!-- <div class="ui hidden divider"></div> -->
     <div class="ui fluid category search petitions-search focus">
-        <div class="ui icon fluid input">
-          <input class="prompt search-input" type="text" placeholder="<?php esc_html_e('UIC Code / Title / Catergory', 'petition') ?>" style="z-index: 9999;">
-          <i class="search link icon"></i>
+        <div class="ui icon fluid action input" style="z-index: 9999;">
+          <input class="search-input" type="text" placeholder="<?php esc_html_e('UIC Code / Title / Catergory', 'petition') ?>" style="z-index: 9999;">
+          <button class="ui button">Search</button>
         </div>
     </div>
     <!-- <div class="ui hidden divider"></div> -->
