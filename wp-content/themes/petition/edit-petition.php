@@ -221,67 +221,8 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
 
                         <!-- STEP TWO -->
                             <h2 class="ui header">
-                                <div class="content"><?php _e('Choose a leader', 'petition') ?>
+                                <div class="content"><?php _e('Edit location', 'petition') ?>
                             </h2>
-                                <div class="input-fields-wrap">
-                                    <div class="ui grid search decision-search">
-                                        <?php if($p_receiver != '' && $p_receiver == 'enabled') { ?>
-                                        <div class="sixteen wide mobile eight wide tablet eight wide computer column">
-                                            <div class="<?php ($p_receiver_r == 'required' ? 'required ' : '') ?>field">
-                                                <label><?php _e('Full name', 'petition') ?></label>
-                                                <div class="ui large fluid input">
-                                                    <input class="prompt" type="text" id="new_receiver" name="new_receiver[]" placeholder="<?php esc_html_e('Who can make this happen?', 'petition'); ?>" value="<?php echo isset($receiver[0]) ? $receiver[0] : ''; ?>">
-                                                    <input class="new_decisionmakers" type="hidden" name="new_decisionmakers[]" value="<?php echo isset($decisionmakers[0]) ? $decisionmakers[0] : ''; ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php } ?>
-                                        <?php if($p_position != '' && $p_position == 'enabled') { ?>
-                                        <div class="sixteen wide mobile eight wide tablet eight wide computer column">
-                                            <div class="<?php ($p_position_r == 'required' ? 'required ' : '') ?>field">
-                                                <?php if (!wp_is_mobile()) { ?>
-                                                    <label><?php _e('Title or organization', 'petition') ?></label>
-                                                <?php } ?>
-                                                <div class="ui large fluid input">
-                                                    <input class="decision-title" type="text" id="new_position" name="new_position[]" placeholder="<?php esc_html_e('What is their position?', 'petition'); ?>" value="<?php echo isset($position[0]) ? $position[0] : ''; ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php } ?>
-                                        <div class="results"></div>
-                                    </div>
-
-                                    <?php if($p_receiver != '' && $p_receiver == 'enabled' && isset($receiver)) { 
-                                        for ($i=1; $i < count($receiver); $i++) { 
-                                            if ($receiver[$i]) { ?>
-                                            <div class="ui grid search decision-search">
-                                                <div class="sixteen wide mobile eight wide tablet eight wide computer column">
-                                                    <div class="<?php ($p_receiver_r == 'required' ? 'required ' : '') ?>field">
-                                                        <div class="ui large fluid input">
-                                                            <input class="prompt" type="text" id="new_receiver" name="new_receiver[]" placeholder="<?php esc_html_e('Who can make this happen?', 'petition'); ?>" value="<?php echo esc_html($receiver[$i]) ?>">
-                                                            <i class="search icon"></i>
-                                                            <input class="new_decisionmakers" type="hidden" name="new_decisionmakers[]" value="<?php echo isset($decisionmakers[$i]) ? $decisionmakers[$i] : ''; ?>">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="sixteen wide mobile eight wide tablet eight wide computer column">
-                                                    <div class="<?php ($p_position_r == 'required' ? 'required ' : '') ?>field">
-                                                        <div class="ui large fluid input">
-                                                            <input class="decision-title" type="text" id="new_position" name="new_position[]" placeholder="<?php esc_html_e('What is their position?', 'petition'); ?>" value="<?php echo ($position[$i] ? $position[$i] : '') ?>">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="results"></div>
-                                                <a href="#" class="remove-field"><i class="inverted circular close link icon"></i></a>
-                                            </div>
-                                    <?php   }
-                                        }
-                                    } ?>
-                                </div>
-                                <div class="ui basic segment" style="padding: 0">
-                                    <button class="ui primary tiny right floated button add-field-button"><i class="plus icon"></i><?php _e('Add', 'petition') ?></button>
-                                </div>
-                                
                                 <?php if($p_address != '' && $p_address == 'enabled') { ?>
                                 <div class="<?php ($p_address_r == 'required' ? 'required ' : '') ?>field">
                                     <label><?php _e('Add a place', 'petition') ?></label>

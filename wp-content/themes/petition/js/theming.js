@@ -388,8 +388,8 @@
 
             $('#next-two').css('display', 'none');
             $('#next-three').css('display', 'none');
-            $('#next-four').css('display', 'inline-block');
-            $('#finish-btn').css('display', 'none');
+            $('#next-four').css('display', 'none');
+            $('#finish-btn').css('display', 'inline-block');
 
             $('#back-one').css('display', 'none');
             $('#back-two').css('display', 'inline-block');

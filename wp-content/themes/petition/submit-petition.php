@@ -83,19 +83,19 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                           <a href="#" class="title" data-tab="step-one"><?php _e('Title', 'petition') ?></a>
                         </div>
                     </div>
+                    <!-- <div class="disabled step" id="step-two">
+                        <div class="content">
+                          <a href="#" class="title" data-tab="step-two"><?php //_e('Invite Leader', 'petition') ?></a>
+                        </div>
+                    </div> -->
                     <div class="disabled step" id="step-two">
                         <div class="content">
-                          <a href="#" class="title" data-tab="step-two"><?php _e('Invite Leader', 'petition') ?></a>
+                          <a href="#" class="title" data-tab="step-two"><?php _e('Problem', 'petition') ?></a>
                         </div>
                     </div>
                     <div class="disabled step" id="step-three">
                         <div class="content">
-                          <a href="#" class="title" data-tab="step-three"><?php _e('Problem', 'petition') ?></a>
-                        </div>
-                    </div>
-                    <div class="disabled step" id="step-four">
-                        <div class="content">
-                          <a href="#" class="title" data-tab="step-four"><?php _e('Video', 'petition') ?></a>
+                          <a href="#" class="title" data-tab="step-three"><?php _e('Video', 'petition') ?></a>
                         </div>
                     </div>
                 </div>
@@ -151,6 +151,38 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                             </div>
                         <?php } ?>
                         <?php } ?>
+
+                            <!-- <div class="ui basic segment" style="padding: 0">
+                                <button class="ui primary tiny right floated button add-field-button"><i class="plus icon"></i><?php //_e('Add', 'petition') ?></button>
+                            </div> -->
+                            
+                            <?php if($p_address != '' && $p_address == 'enabled') { ?>
+                            <div class="<?php ($p_address_r == 'required' ? 'required ' : '') ?>field">
+                                <label><?php _e('Add a place', 'petition') ?></label>
+                                <div class="ui large fluid input">
+                                    <input type="text" id="new_address" name="new_address" value="" placeholder="<?php esc_html_e('Add a neighborhood, state, city or country', 'petition'); ?>" value="">
+                                <?php if($p_city != '' && $p_city == 'enabled') { ?>
+                                    <input type="hidden" id="new_city" name="new_city" value="">
+                                <?php } ?>
+                                <?php if($p_state != '' && $p_state == 'enabled') { ?>
+                                    <input type="hidden" id="new_state" name="new_state" value="">
+                                <?php } ?>
+                                <?php if($p_neighborhood != '' && $p_neighborhood == 'enabled') { ?>
+                                    <input type="hidden" id="new_neighborhood" name="new_neighborhood" value="">
+                                <?php } ?>
+                                <?php if($p_country != '' && $p_country == 'enabled') { ?>
+                                    <input type="hidden" id="new_country" name="new_country" value="">
+                                <?php } ?>
+                                <?php if($p_zip != '' && $p_zip == 'enabled') { ?>
+                                    <input type="hidden" id="new_zip" name="new_zip" value="">
+                                <?php } ?>
+                                <?php if($p_coordinates != '' && $p_coordinates == 'enabled') { ?>
+                                    <input type="hidden" id="new_lat" name="new_lat" value="">
+                                    <input type="hidden" id="new_lng" name="new_lng" value="">
+                                <?php } ?>
+                                </div>
+                            </div>
+                            <?php } ?>
                         <div class="ui hidden divider"></div>
                         
                         <div class="ui accordion">
@@ -185,104 +217,8 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                         </div>
                     </div>
 
-
-
-                    <!-- STEP TWO -->
-                    <div class="ui tab step-two" data-tab="step-two">
-                        <h2 class="ui header">
-                            <div class="content"><?php _e('Choose a leader', 'petition') ?>
-                                <div class="sub header">
-                                    <p><?php _e('This is the person, organization, or group that can help you to solve this issue. They will have access to your issue profile page and can also do update on Issue.', 'petition') ?></p>
-                                </div>
-                            </div>
-                        </h2>
-                            <div class="input-fields-wrap">
-                                <div class="ui grid search decision-search">
-                                    <?php if($p_receiver != '' && $p_receiver == 'enabled') { ?>
-                                    <div class="sixteen wide mobile eight wide tablet eight wide computer column">
-                                        <div class="<?php ($p_receiver_r == 'required' ? 'required ' : '') ?>field">
-                                            <label><?php _e('Full name', 'petition') ?></label>
-                                            <div class="ui icon large fluid input">
-                                                <input class="prompt" type="text" id="new_receiver" name="new_receiver[]" placeholder="<?php esc_html_e('Who can make this happen?', 'petition'); ?>" value="">
-                                                <i class="search icon"></i>
-                                                <input class="new_decisionmakers" type="hidden" name="new_decisionmakers[]" value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php } ?>
-                                    <?php if($p_position != '' && $p_position == 'enabled') { ?>
-                                    <div class="sixteen wide mobile eight wide tablet eight wide computer column">
-                                        <div class="<?php ($p_position_r == 'required' ? 'required ' : '') ?>field">
-                                            <?php if (!wp_is_mobile()) { ?>
-                                                <label><?php _e('Title or organization', 'petition') ?></label>
-                                            <?php } ?>
-                                            <div class="ui large fluid input">
-                                                <input class="decision-title" type="text" id="new_position" name="new_position[]" placeholder="<?php esc_html_e('What is their position?', 'petition'); ?>" value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php } ?>
-                                    <div class="results"></div>
-                                </div>
-                            </div>
-                            <div class="ui basic segment" style="padding: 0">
-                                <button class="ui primary tiny right floated button add-field-button"><i class="plus icon"></i><?php _e('Add', 'petition') ?></button>
-                            </div>
-                            
-                            <?php if($p_address != '' && $p_address == 'enabled') { ?>
-                            <div class="<?php ($p_address_r == 'required' ? 'required ' : '') ?>field">
-                                <label><?php _e('Add a place', 'petition') ?></label>
-                                <div class="ui large fluid input">
-                                    <input type="text" id="new_address" name="new_address" value="" placeholder="<?php esc_html_e('Add a neighborhood, state, city or country', 'petition'); ?>" value="">
-                                <?php if($p_city != '' && $p_city == 'enabled') { ?>
-                                    <input type="hidden" id="new_city" name="new_city" value="">
-                                <?php } ?>
-                                <?php if($p_state != '' && $p_state == 'enabled') { ?>
-                                    <input type="hidden" id="new_state" name="new_state" value="">
-                                <?php } ?>
-                                <?php if($p_neighborhood != '' && $p_neighborhood == 'enabled') { ?>
-                                    <input type="hidden" id="new_neighborhood" name="new_neighborhood" value="">
-                                <?php } ?>
-                                <?php if($p_country != '' && $p_country == 'enabled') { ?>
-                                    <input type="hidden" id="new_country" name="new_country" value="">
-                                <?php } ?>
-                                <?php if($p_zip != '' && $p_zip == 'enabled') { ?>
-                                    <input type="hidden" id="new_zip" name="new_zip" value="">
-                                <?php } ?>
-                                <?php if($p_coordinates != '' && $p_coordinates == 'enabled') { ?>
-                                    <input type="hidden" id="new_lat" name="new_lat" value="">
-                                    <input type="hidden" id="new_lng" name="new_lng" value="">
-                                <?php } ?>
-                                </div>
-                            </div>
-                            <?php } ?>
-                        <!--<div data-tags-input-name="decision-maker" id="decision-maker"></div>-->
-
-                        <div class="ui hidden divider"></div>
-
-                        <div class="ui accordion">
-                            <div class="title">
-                                <h3 class="ui header">
-                                <i class="dropdown icon"></i>
-                                <?php _e('How to find the right leader?', 'petition') ?>
-                                </h3>
-                            </div>
-                            <div class="content">
-                                <div class="ui large bulleted list">
-                                    <div class="item">
-                                        <div class="content">
-                                            <div class="header"><?php _e('Choose someone who can give you what you want', 'petition') ?></div>
-                                            <div class="description"><?php _e('You might need to do some research to find the right person who can make or influence the leader.', 'petition') ?></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                     <!-- STEP THREE -->
-                    <div class="ui tab step-three" data-tab="step-three">
+                    <div class="ui tab step-two" data-tab="step-two">
                         <h2 class="ui header">
                             <div class="content"><?php _e('Explain the problem', 'petition') ?>
                                 <div class="sub header">
@@ -360,7 +296,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                     </div>
 
                     <!-- STEP FOUR -->
-                    <div class="ui tab step-four" data-tab="step-four">
+                    <div class="ui tab step-three" data-tab="step-three">
                         <h2 class="ui header">
                             <div class="content"><?php _e('Add a video', 'petition') ?>
                                 <div class="sub header">
@@ -419,7 +355,7 @@ $p_media_upload = $p_media_upload === 'enabled' ? true : false;
                     <div class="eight wide right aligned column" style="margin-right: 0">
                         <button class="ui primary right labeled icon large button" id="next-two"><?php _e('Next', 'petition') ?><i class="arrow right icon"></i></button>
                         <button class="ui primary right labeled icon large button" id="next-three" style="display: none"><?php _e('Next', 'petition') ?><i class="arrow right icon"></i></button>
-                        <button class="ui primary right labeled icon large button" id="next-four" style="display: none"><?php _e('Next', 'petition') ?><i class="arrow right icon"></i></button>
+                        <!-- <button class="ui primary right labeled icon large button" id="next-four" style="display: none"><?php //_e('Next', 'petition') ?><i class="arrow right icon"></i></button> -->
                         <button class="ui primary right labeled icon large button" id="finish-btn" style="display: none"><?php _e('Finish', 'petition') ?><i class="send icon"></i></button>
                     </div>
                 </div>
